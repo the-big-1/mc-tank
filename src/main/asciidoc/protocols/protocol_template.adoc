@@ -1,25 +1,29 @@
-= Protokoll Gruppe XX
+= Protokoll Gruppe 18
 
-Treffen am XX.XX.20XX
+Treffen am 16.10.2019
 
-Ort:      Ort des Treffens +
-Beginn:   xx:xx Uhr +
-Ende:     xx:xx Uhr
+Ort:      APB Bereich Softwaretechnologie
+Beginn:   13:00 Uhr
+Ende:     14:30 Uhr
 
-__Schriftführer:__
+__Schriftführer:__ Vivien Landgrebe
 
 *Nächstes Treffen:* +
-XX.XX.20XX, xx:xx Uhr, Ort des nächsten Treffens
+24.10.2019, 14:50 Uhr, vor dem Ascii
 
 __Teilnehmer:__
 //Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
 
-- Teilnehmer 1
-- Teilnehmer 2
-- ...
+- Jannusch (Kunde)
+- David (Scrum Master)
+- Christoph
+- Clemens
+- Artem
+- Vivien (Protokoll)
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+IDE = Eclipse
+Termin für die wöchentlichen Treffen: donnerstags 5. DS.
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
@@ -34,8 +38,8 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 
 
 == Aktueller Stand
-Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
-Dokumenten.
+Erste Aufgabe (Guestbook) wird von jedem selbstständig bearbeitet.
+Jeder fertigt Zeitlisten an.
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
