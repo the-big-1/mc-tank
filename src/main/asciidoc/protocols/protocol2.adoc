@@ -1,0 +1,58 @@
+= Protokoll Gruppe 18
+
+Treffen am 24.10.2019
+
+Ort:      APB/E009 +
+Beginn:   14:50 Uhr +
+Ende:     16:20 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+31.10.2019, 14:50 Uhr, APB/E009
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David (Scrum Master)
+- Christoph
+- Clemens
+- Artem
+- Vivien (Protokoll)
+
+== Bemerkungen
+//Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+bis nächste Woche zur Tankstellen-Aufgabe: CRC-Kartenmethode, Kontextdiagramm, Top-Level-Architektur, Anwendungsfalldiagramm, Klassendiagramm, Sequenzdiagramm, GUI-Entwürfe, Pflichtenheft, Zeiten eintragen
+
+
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue 	   |Aufgabe     |Status     |Bemerkung
+|Guestbook |Erweiterung |bearbeitet |…
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|1     |…     |…            |David            |… 
+|2     |…     |…            |Christoph        |…
+|3     |…     |…            |Vivien           |…
+|4     |…     |…            |Clemens          |…
+|5     |…     |…            |Artem            |…
+|===
