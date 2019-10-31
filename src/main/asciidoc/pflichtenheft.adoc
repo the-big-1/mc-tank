@@ -27,9 +27,9 @@ Zusätzlich kurze Einleitung für fachfremde Personen
 
 == Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
-*McZapf GmbH
-*Mitarbeiter von McZapf
-*Entwickler der Anwendung
+* McZapf GmbH
+* Mitarbeiter von McZapf
+* Entwickler der Anwendung
 
 == Systemgrenze und Top-Level-Architektur
 
