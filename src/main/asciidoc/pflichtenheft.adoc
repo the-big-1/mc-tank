@@ -7,6 +7,7 @@
 |===
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
 |0.1     | In Arbeit   | 10.10.2019          | Autor       | Initiale Version
+|0.1     | In Arbeit   | 31.10.2019          | David L     | Inhaltsverzeichnis, Interessengruppen, Nicht-Funktionale Anforderungen, Akteure hinzugefügt
 |===
 
 == Inhaltsverzeichnis
@@ -14,6 +15,17 @@
 |===
 |<<Zusammenfassung>>
 |<<Aufgabenstellung und Zielsetzung>>
+|<<Produktnutzung>>
+|<<Interessensgruppen (Stakeholders)>>
+|<<Systemgrenze und Top-Level-Architektur>>
+|<<Anwendungsfälle>>
+|<<Funktionale Anforderungen>>
+|<<Nicht-Funktionale Anforderungen>>
+|<<GUI Prototyp>>
+|<<Datenmodell>>
+|<<Akzeptanztestfälle>>
+|<<Glossar>>
+|<<Offene Punkte>>
 |===
 
 
@@ -60,7 +72,10 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 [cols="1,4"]
 |===
 |Name |Beschreibung
-|...  |...
+|Manager/Admin  |Chef der Firma, hat alle Berechtigungen
+|Mitarbeiter    |Angestellter der Firman, hat erweiterten Zugriff
+|registrierter Kunde | Kunde, kann nur seine Daten einsehen
+|unregistrierter Kunde | Kunde, kann sich nur registrieren
 |===
 
 === Überblick Anwendungsfalldiagramm
@@ -82,13 +97,16 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 
 == Nicht-Funktionale Anforderungen
 
-Wartbarkeit: 3
-Erweiterbarkeit: 2
-Benutzerfreundlichkeit: 3
-Skalierbarkeit: 4
-Verlässlichkeit: 5
-Performance: 5
-Sicherheit: 2
+[cols="1"]
+|===
+| Wartbarkeit: 3
+| Erweiterbarkeit: 2
+| Benutzerfreundlichkeit: 3
+| Skalierbarkeit: 4
+| Verlässlichkeit: 5
+| Performance: 5
+| Sicherheit: 2
+|===
 
 === Qualitätsziele
 
