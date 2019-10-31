@@ -10,8 +10,10 @@
 |===
 
 == Inhaltsverzeichnis
-<<Zusammenfassung>>
-<<Aufgabenstellung>>
+[cols="1"]
+|===
+|<<Zusammenfassung>>
+|<<Aufgabenstellung und Zielsetzung>>
 Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
 
 == Zusammenfassung
@@ -27,9 +29,11 @@ Zusätzlich kurze Einleitung für fachfremde Personen
 
 == Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
-* McZapf GmbH
-* Mitarbeiter von McZapf
-* Entwickler der Anwendung
+[cols="1"]
+|===
+|McZapf GmbH
+|Mitarbeiter von McZapf
+|Entwickler der Anwendung
 
 == Systemgrenze und Top-Level-Architektur
 
