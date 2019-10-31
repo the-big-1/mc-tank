@@ -25,6 +25,9 @@ Zusätzlich kurze Einleitung für fachfremde Personen
 
 == Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
+McZapf GmbH
+Mitarbeiter von McZapf
+Entwickler der Anwendung
 
 == Systemgrenze und Top-Level-Architektur
 
@@ -67,6 +70,14 @@ Was das zu erstellende Programm auf alle Fälle leisten muss.
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
 
 == Nicht-Funktionale Anforderungen
+
+Wartbarkeit: 3
+Erweiterbarkeit: 2
+Benutzerfreundlichkeit: 3
+Skalierbarkeit: 4
+Verlässlichkeit: 5
+Performance: 5
+Sicherheit: 2
 
 === Qualitätsziele
 
