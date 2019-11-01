@@ -7,7 +7,8 @@
 |===
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
 |0.1     | In Arbeit   | 10.10.2019          | Autor       | Initiale Version
-|0.1     | In Arbeit   | 31.10.2019          | David L     | Inhaltsverzeichnis, Interessengruppen, Nicht-Funktionale Anforderungen, Akteure hinzugefügt
+|0.1.1   | In Arbeit   | 31.10.2019          | David L     | Inhaltsverzeichnis, Interessengruppen, Nicht-Funktionale Anforderungen, Akteure hinzugefügt
+|0.1.2   | In Arbeit   | 31.10.2019          | David L     | Muss-Kriterien hinzugefügt
 |===
 
 == Inhaltsverzeichnis
@@ -28,9 +29,6 @@
 |<<Offene Punkte>>
 |===
 
-
-Dieses Dokument benötigt ein Inhaltsverzeichnis. Es existieren mehrere Einbindungsmöglichkeiten.
-
 == Zusammenfassung
 Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 
@@ -41,6 +39,10 @@ Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht we
 == Produktnutzung
 In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
 Zusätzlich kurze Einleitung für fachfremde Personen
+
+Die Anwendung soll in einem Webbrowser genutzt werden optimal:
+  *Mozilla Firefox, version 55.0.3+
+  *Google Chrome, version 61.0.3163+
 
 == Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
@@ -91,6 +93,23 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 
 === Muss-Kriterien
 Was das zu erstellende Programm auf alle Fälle leisten muss.
+
+[options="header"]
+[cols="2"]
+|===
+|Kriterium            |Beschreibung
+|Rabattsystem         |Kunden bekommen für die Nutzung verschiedener McPoints Rabatt sowie bei Registrierung.
+|Kundenregistrierung  |Kunden müssen sich registrieren können.
+|Reservierungen       |Mitarbeiter müssen auf Kundenwunsch Reservierungen für McSit und McWash erstellen können.
+|Produktreklamation   |Kunden können Produkte zurückgeben. (außer Kraftstoff)
+|Kraftstoffverwaltung |Es soll eine Meldung an den Manager und die Tankstellenmitarbeiter geben, wenn die Kraftstofflager zur                   Neige gehen.
+|Prognose für Kraftstoff |Auf Grund des Verbrauchs der vergangenen Zeit soll es eine Empfehung geben, wie viel Kraftstoff für den Folgetag bestellt werden sollte.
+|Kraftstoffbestellung |Der Manager kann Kraftstoff bestellen, entweder nach der Empfehlung oder nach eigenem Ermessen.
+|Bezahlsystem         |Bei jedem Mitarbeiter können die Kunden bezahlen.
+|Verkaufshistorie     |Der Manager soll eine Aufstellung sehen, was in den letzten 100 Tagen verkauft wurde.
+|Kundenstammreinigung |registrierte Kunden die länger als ein Jahr nicht bei McTank eingekauft haben werden aus dem Datenbestand gelöscht.
+|Geschäftsauslastung  |Der Manager soll die Geschäftsauslastung einsehen können.
+|===
 
 === Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
