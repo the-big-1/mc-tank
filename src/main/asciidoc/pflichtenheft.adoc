@@ -8,7 +8,7 @@
 |Version | Status      | Bearbeitungsdatum   | Autoren(en) |  Vermerk
 |0.1     | In Arbeit   | 10.10.2019          | Autor       | Initiale Version
 |0.1.1   | In Arbeit   | 31.10.2019          | David L     | Inhaltsverzeichnis, Interessengruppen, Nicht-Funktionale Anforderungen, Akteure hinzugefügt
-|0.1.2   | In Arbeit   | 31.10.2019          | David L     | Muss-Kriterien hinzugefügt
+|0.1.2   | In Arbeit   | 1.11.2019           | David L     | Muss-Kriterien hinzugefügt
 |===
 
 == Inhaltsverzeichnis
