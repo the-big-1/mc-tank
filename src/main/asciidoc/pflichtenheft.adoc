@@ -182,6 +182,37 @@ Logout: +
 |Funktionale Anforderungen   |
 |===
 
+[cols="1h, 3"]
+[[UC6]]
+|===
+|ID                          |**<<UC6>>**
+|Name                        |Bestellungen ansehen
+|Beschreibung                |Der Manager hat Übersicht über alle getätigten Bestellungen
+|Personen                    |Manager
+|Auslöser                    |Er wählt die Rubrik "Bestellungen" auf der Website aus
+|Voraussetzung(en)           |Der Manager loggt sich erfolgreich auf der Website als Manager ein
+|notwendige Schritte         |1. Er wählt die Rubrik "Bestellungen" auf der Website aus +
+2. eine vollständige Liste aller getätigten Bestellungen wird angezeigt
+|Erweiterungen               |-
+|Funktionale Anforderungen   |
+|===
+
+[cols="1h, 3"]
+[[UC7]]
+|===
+|ID                          |**<<UC7>>**
+|Name                        |Tischreservierung
+|Beschreibung                |Ein Kunde möchte einen Tisch bei McSit bestellen
+|Personen                    |Kunde, Mitarbeiter
+|Auslöser                    |Kunde ruft bei McSit an, um einen Tisch zu bestellen
+|Voraussetzung(en)           |Kunde ruft Website von McTank auf und findet dort die notwendige Telefonnummer
+|notwendige Schritte         |1. Kunde meldet sich telefonisch bei McSit und fragt eine Tischreservierung an +
+2. Mitarbeiter prüft, ob ein Tisch zu der vom Kunden gewünschten Zeit frei ist +
+wenn ja, Tisch wird reserviert +
+wenn nein, Reservierung fehlgeschlagen
+|Erweiterungen               |-
+|Funktionale Anforderungen   |
+|===
 == Funktionale Anforderungen
 
 === Muss-Kriterien
@@ -321,6 +352,17 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Voraussetzung(en)     |ein authentifizierter Benutzer nutzt das System
 |Ereignis              |er drückt den "Ausloggen"-Button
 |erwartetes Ergebnis   |er ist nicht mehr authentifiziert und verliert den Zugriff auf alle Funktionalitäten, die für authentifizierte Nutzer bestimmt sind 
+|===
+
+[cols="1h, 4"]
+|===
+|ID                    |<<AT7>>
+|Anwendungsfall        |<<UC7>>
+|Voraussetzung(en)     |ein Kunde will einen Tisch bei McSit reservieren
+|Ereignis              |1. er ruft bei McSit an, um eine Reservierung am kommenden Tag um 15:00 Uhr anzufragen +
+2. Mitarbeiter prüft, ob ein Tisch zu dieser Zeit frei ist +
+3. Mitarbeiter bestätigt Reservierung
+|erwartetes Ergebnis   |Der Tisch ist am nächsten Tag für 15:00 Uhr reserviert. Wenn der Kunde mehr als 15 Minuten zu spät kommt, wird die Reservierung aufgelöst und der Tisch weitervergeben
 |===
 
 == Glossar
