@@ -108,7 +108,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 3. Prüfung, ob das Kennzeichen schon registriert ist +
  wenn ja, Fehlermeldung +
  wenn nicht, Erstellung des Benutzerkontos
-|Erweiterungen               |
+|Erweiterungen               |-
 |Funktionale Anforderungen   |
 |===
 
@@ -202,9 +202,10 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |===
 |ID                    |
 |Anwendungsfall        |<<UC1>>
-|Voraussetzung(en)     |
-|Ereignis              |
-|erwartetes Ergebnis   |
+|Voraussetzung(en)     |Ein nicht registrierter User will ein Benutzerkonto erstellen
+|Ereignis              |Der Benutzer drückt auf "Benutzerkonto anlegen" und gibt die folgenden Daten ein +
+Kennzeichen: DD-VB-11111
+|erwartetes Ergebnis   |Fehlermeldung, da falsches Kennzeichen (entspricht nicht den europäischen Richtlinien
 |===
 
 == Glossar
