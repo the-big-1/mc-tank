@@ -160,6 +160,28 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |Funktionale Anforderungen   |
 |===
 
+[cols="1h, 3"]
+[[UC5]]
+|===
+|ID                          |**<<UC5>>**
+|Name                        |Login/Logout
+|Beschreibung                |Ein Benutzer kann sich in sein Benutzerkonto einloggen und wieder ausloggen
+|Personen                    |registrierter Benutzer
+|Auslöser                    |Login: Benutzer meldet sich an, um mehr Funktionen zu nutzen +
+Logout: Benutzer möchte Shop verlassen
+|Voraussetzung(en)           |Login: Benutzer ist noch nicht authentifiziert +
+Logout: Benutzer ist  authentifiziert
+|notwendige Schritte         |Login: +
+1. Benutzer geht auf "Login"-Button +
+2. er gibt seine Anmeldedaten ein +
+3. drückt auf "Bestätigen" +
+Logout: +
+1. Benutzer geht auf "Logout"-Button +
+2. Benutzer ist nicht mehr authentifiziert und ihm wird die Startseite angezeigt
+|Erweiterungen               |-
+|Funktionale Anforderungen   |
+|===
+
 == Funktionale Anforderungen
 
 === Muss-Kriterien
@@ -248,7 +270,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 
 [cols="1h, 4"]
 |===
-|ID                    |
+|ID                    |<<AT1>>
 |Anwendungsfall        |<<UC1>>
 |Voraussetzung(en)     |Ein nicht registrierter User will ein Benutzerkonto erstellen
 |Ereignis              |Der Benutzer drückt auf "Benutzerkonto anlegen" und gibt die folgenden Daten ein +
@@ -259,7 +281,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 
 [cols="1h, 4"]
 |===
-|ID                    |
+|ID                    |<<AT2>>
 |Anwendungsfall        |<<UC2>>
 |Voraussetzung(en)     |Manager will Benzin nachbestellen
 |Ereignis              |Manager startet Bestellvorgang und gibt die folgenden Bestelldaten ein: +
@@ -271,7 +293,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 
 [cols="1h, 4"]
 |===
-|ID                    |
+|ID                    |<<AT3>>
 |Anwendungsfall        |<<UC3>>
 |Voraussetzung(en)     |Kunde löst Rabatt an Kasse bei Mitarbeiter ein
 |Ereignis              |1. Der Kunde hat 4 McPoints in Anspruch genommen und will seinen Startrabatt einlösen +
@@ -282,13 +304,23 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 
 [cols="1h, 4"]
 |===
-|ID                    |
+|ID                    |<<AT4>>
 |Anwendungsfall        |<<UC4>>
 |Voraussetzung(en)     |Kunde will Zigaretten und Alkohol kaufen
 |Ereignis              |1. Der Kunde geht zur Kasse und will Zigaretten und Alkohol kaufen +
 2. Kasse fordert Altersabfrage +
 3. Mitarbeiter prüft Ausweisdokument und sieht, Kunde ist erst 17
 |erwartetes Ergebnis   |Fehlermeldung, da Kunde zu jung 
+|===
+
+
+[cols="1h, 4"]
+|===
+|ID                    |<<AT5>>
+|Anwendungsfall        |<<UC5>>
+|Voraussetzung(en)     |ein authentifizierter Benutzer nutzt das System
+|Ereignis              |er drückt den "Ausloggen"-Button
+|erwartetes Ergebnis   |er ist nicht mehr authentifiziert und verliert den Zugriff auf alle Funktionalitäten, die für authentifizierte Nutzer bestimmt sind 
 |===
 
 == Glossar
