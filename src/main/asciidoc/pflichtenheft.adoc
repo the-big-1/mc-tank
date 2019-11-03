@@ -11,6 +11,7 @@
 |0.1.2   | In Arbeit   | 1.11.2019           | David L     | Muss-Kriterien hinzugefügt
 |0.1.3   | In Arbeit   | 3.11.2019           | David L     | Aufgabenstellung hinzugefügt, Formatierung
 |0.1.4   | In Arbeit   | 3.11.2019           | Vivien      | Anwendungsfälle und Akzeptanztestfälle hinzugefügt, Ergänzung funktionale Anforderungen, Zusammenfassung
+|0.1.5   | In Arbeit   | 3.11.2019           | Christoph     | Top Level Diagramm hinzugefügt
 |===
 
 == Inhaltsverzeichnis
@@ -66,6 +67,7 @@ Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur U
 
 === Top-Level-Architektur
 Dokumentieren Sie ihre Top-Level-Architektur mit Hilfe eines Komponentendiagramm.
+image:models/analysis/TopLevelDiagram.svg[]
 
 == Anwendungsfälle
 
