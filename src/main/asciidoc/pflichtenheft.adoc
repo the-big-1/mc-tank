@@ -10,7 +10,7 @@
 |0.1.1   | In Arbeit   | 31.10.2019          | David L     | Inhaltsverzeichnis, Interessengruppen, Nicht-Funktionale Anforderungen, Akteure hinzugefügt
 |0.1.2   | In Arbeit   | 1.11.2019           | David L     | Muss-Kriterien hinzugefügt
 |0.1.3   | In Arbeit   | 3.11.2019           | David L     | Aufgabenstellung hinzugefügt, Formatierung
-|0.1.4   | In Arbeit   | 3.11.2019           | Vivien      | Anwendungsfälle und Akzeptanztestfälle hinzugefügt
+|0.1.4   | In Arbeit   | 3.11.2019           | Vivien      | Anwendungsfälle und Akzeptanztestfälle hinzugefügt, Ergänzung Funktionale Anforderungen
 |===
 
 == Inhaltsverzeichnis
@@ -109,7 +109,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
  wenn ja, Fehlermeldung +
  wenn nicht, Erstellung des Benutzerkontos
 |Erweiterungen               |-
-|Funktionale Anforderungen   |
+|Funktionale Anforderungen   |<<F2>>
 |===
 
 [cols="1h, 3"]
@@ -125,7 +125,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 2. Prognose bzw. Empfehlung, wie viel nachbestellt werden soll +
 3. Manager entscheidet und bestellt 
 |Erweiterungen               |-
-|Funktionale Anforderungen   |
+|Funktionale Anforderungen   |<<F7>>
 |===
 
 [cols="1h, 3"]
@@ -141,7 +141,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 2. nutzt einen McPoint +
 3. erhält Rabatte
 |Erweiterungen               |-
-|Funktionale Anforderungen   |
+|Funktionale Anforderungen   |<<F1>>
 |===
 
 [cols="1h, 3"]
@@ -194,7 +194,7 @@ Logout: +
 |notwendige Schritte         |1. Er wählt die Rubrik "Bestellungen" auf der Website aus +
 2. eine vollständige Liste aller getätigten Bestellungen wird angezeigt
 |Erweiterungen               |-
-|Funktionale Anforderungen   |
+|Funktionale Anforderungen   |<<F9>>
 |===
 
 [cols="1h, 3"]
@@ -211,7 +211,7 @@ Logout: +
 wenn ja, Tisch wird reserviert +
 wenn nein, Reservierung fehlgeschlagen
 |Erweiterungen               |-
-|Funktionale Anforderungen   |
+|Funktionale Anforderungen   |<<F3>>
 |===
 == Funktionale Anforderungen
 
