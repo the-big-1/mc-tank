@@ -181,13 +181,12 @@ Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwa
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
 
 [cols="1h, 4"]
-[[AT0101]]
 |===
-|ID            |<<AT0101>>
-|Use Case      |<<UC0100>>
-|{Pre}        a|A user is using the system
-|{Event}      a|The user presses "BluRay Katalog" in the navigation bar
-|{Result}     a|The user is shown an overview of all existing discs that are BluRays (9 different discs)
+|ID              |
+|Use Case        |
+|Precondition(s) |A user is using the system
+|Event           |The user presses "BluRay Katalog" in the navigation bar
+|Expected Result |The user is shown an overview of all existing discs that are BluRays (9 different discs)
 |===
 
 == Glossar
