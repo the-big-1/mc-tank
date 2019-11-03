@@ -112,6 +112,22 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |Funktionale Anforderungen   |
 |===
 
+[cols="1h, 3"]
+[[UC1]]
+|===
+|ID                          |**<<UC2>>**
+|Name                        |Benzinbestellung
+|Beschreibung                |Manager bestellt Benzin nach
+|Personen                    |Manager
+|Auslöser                    |Manager wird benachrichtigt, wenn die Lagerbestände unter 25% sind
+|Voraussetzung(en)           |Lager ist nicht voll
+|notwendige Schritte         |1. Manager bekommt automatische Benachrichtung, wenn Benzin nachbestellt werden muss +
+2. Prognose bzw. Empfehlung, wie viel nachbestellt werden soll +
+3. Manager entscheidet und bestellt 
+|Erweiterungen               |-
+|Funktionale Anforderungen   |
+|===
+
 == Funktionale Anforderungen
 
 === Muss-Kriterien
@@ -205,7 +221,20 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Voraussetzung(en)     |Ein nicht registrierter User will ein Benutzerkonto erstellen
 |Ereignis              |Der Benutzer drückt auf "Benutzerkonto anlegen" und gibt die folgenden Daten ein +
 Kennzeichen: DD-VB-11111
-|erwartetes Ergebnis   |Fehlermeldung, da falsches Kennzeichen (entspricht nicht den europäischen Richtlinien
+|erwartetes Ergebnis   |Fehlermeldung, da falsches Kennzeichen (entspricht nicht den europäischen Richtlinien)
+|===
+
+
+[cols="1h, 4"]
+|===
+|ID                    |
+|Anwendungsfall        |<<UC2>>
+|Voraussetzung(en)     |Manager will Benzin nachbestellen
+|Ereignis              |Manager startet Bestellvorgang und gibt die folgenden Bestelldaten ein: +
+1. Benzin: 50.200 Liter +
+2. Diesel: 30.000 Liter +
+3. E10: 20.564 Liter
+|erwartetes Ergebnis   |Fehlermeldung, da Bestellmenge von Benzin zu hoch (jeder Tank hat jeweils 50.000 Liter Füllmenge) 
 |===
 
 == Glossar
