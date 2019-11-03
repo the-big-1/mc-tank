@@ -94,6 +94,20 @@ Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 Einfache Anwendungsfälle mit einem Absatz beschreiben.
 Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
 
+[cols="1h, 3"]
+[[UC1]]
+|===
+|ID                          |**<<UC1>>**
+|Name                        |
+|Beschreibung                |
+|Personen                    |
+|Auslöser                    |
+|Voraussetzung(en)           |
+|notwendige Schritte         |
+|Erweiterungen               |
+|Funktionale Anforderungen   |
+|===
+
 == Funktionale Anforderungen
 
 === Muss-Kriterien
@@ -182,11 +196,11 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 
 [cols="1h, 4"]
 |===
-|ID              |
-|Use Case        |
-|Precondition(s) |A user is using the system
-|Event           |The user presses "BluRay Katalog" in the navigation bar
-|Expected Result |The user is shown an overview of all existing discs that are BluRays (9 different discs)
+|ID                    |
+|Anwendungsfall        |
+|Voraussetzung(en)     |A user is using the system
+|Ereignis              |The user presses "BluRay Katalog" in the navigation bar
+|erwartetes Ergebnis   |The user is shown an overview of all existing discs that are BluRays (9 different discs)
 |===
 
 == Glossar
