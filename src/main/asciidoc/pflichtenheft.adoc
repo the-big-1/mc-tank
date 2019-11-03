@@ -10,6 +10,7 @@
 |0.1.1   | In Arbeit   | 31.10.2019          | David L     | Inhaltsverzeichnis, Interessengruppen, Nicht-Funktionale Anforderungen, Akteure hinzugefügt
 |0.1.2   | In Arbeit   | 1.11.2019           | David L     | Muss-Kriterien hinzugefügt
 |0.1.3   | In Arbeit   | 3.11.2019           | David L     | Aufgabenstellung hinzugefügt, Formatierung
+|0.1.4   | In Arbeit   | 3.11.2019           | Vivien      | Akzeptanztestfälle hinzugefügt
 |===
 
 == Inhaltsverzeichnis
@@ -178,6 +179,16 @@ Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Kl
 == Akzeptanztestfälle
 Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
 Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+
+[cols="1h, 4"]
+[[AT0101]]
+|===
+|ID            |<<AT0101>>
+|Use Case      |<<UC0100>>
+|{Pre}        a|A user is using the system
+|{Event}      a|The user presses "BluRay Katalog" in the navigation bar
+|{Result}     a|The user is shown an overview of all existing discs that are BluRays (9 different discs)
+|===
 
 == Glossar
 Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
