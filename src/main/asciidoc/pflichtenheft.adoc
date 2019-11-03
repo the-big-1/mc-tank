@@ -9,6 +9,7 @@
 |0.1     | In Arbeit   | 10.10.2019          | Autor       | Initiale Version
 |0.1.1   | In Arbeit   | 31.10.2019          | David L     | Inhaltsverzeichnis, Interessengruppen, Nicht-Funktionale Anforderungen, Akteure hinzugefügt
 |0.1.2   | In Arbeit   | 1.11.2019           | David L     | Muss-Kriterien hinzugefügt
+|0.1.3   | In Arbeit   | 3.11.2019           | David L     | Aufgabenstellung hinzugefügt, Formatierung
 |===
 
 == Inhaltsverzeichnis
@@ -36,13 +37,16 @@ Eine kurze Beschreibung des Dokuments. Wenige Absätze.
 Text aus Aufgabenstellung kopieren und ggfs. präzisieren.
 Insbesondere ergänzen, welche Ziele mit dem Abschluss des Projektes erreicht werden sollen.
 
+McTank ist nach einer Gesamtsanierung wieder für seine Kunden an der A555 geöffnet. Nachdem der 99-jährige Geschäftsführer an zu hohem Zigarettenkonsum entschlafen ist, verschwindet nun auch der lochkartengesteuerte Großrechner und wird durch einen neues System für die Verwaltung ersetzt. Sie wurden mit der Entwicklung dieses Systems betraut.  Die vier Kundenanlaufpunkte (Mc-Points) McZapf, McDrive, McSit und McWash sollen zentral von der Software gesteuert werden. McZapf bezeichnet den Zapfsäulenbereich, McDrive und McSit beziehen sich auf das Fast-Food-Restaurant und McWash ist der Oberbegriff für die Pflegeeinrichtungen wie Waschanlage, Staubsauger, Druckluftgerät, etc.  Die wichtigste Geschäftsidee des neuen Leiters von McTank ist die Einführung eines Rabatt- und Vorbestellungssystems. Die Kunden sollen telefonisch Vorbestellungen bei McSit und McWash tätigen können. MacZapf und McDrive werden aufgrund der schnellen Abarbeitungszeit nicht in die telefonische Reservierungsverwaltung eingegliedert.  Das Rabattsystem bezieht sich dann allerdings auf alle Mc-Points. Man stelle sich das folgendermaßen vor: Ein Kunde soll bei Inanspruchnahme eines Dienstes eine Art Identifizierung erhalten, mit der er dann auch an den anderen Mc-Points einkaufen darf. Verläßt der Kunde das Gelände, muss er an einer der Mc-Points den Gesamtbetrag bezahlen, wobei sich der Rabatt folgendermaßen errechnet: Es werden die Typen der genutzten McPoints gezählt (also nicht die Anzahl der Nutzungen). Diese Zahl mit 5 multipliziert ergibt den Gesamtrabatt auf den Gesamteinkaufspreis.  Weiterhin soll mit dem neuen System die Benzinlagerverwaltung gehandhabt werden.  Um die Dienste zu optimieren und einen längerfristigen Kundenstamm zu gewinnen, zum Beispiel Wochenendfahrer, sollen die Fahrer über Ihr Autokennzeichen registrierbar sein. Diese Registrierung, für die dem Kunden ein einmaliger Sonderrabatt gewährt wird, ist lediglich eine Option und an jedem Mc-Point möglich, auch wenn bereits eine anonyme Identifizierung des Kunden an einem anderen McPoint vorgenommen wurde. Eine Gesamtabrechnung soll dann die in den letzten 100 Tagen getätigten Einkäufe aufgegliedert nach Kennzeichen anzeigen können. Jeweils am Jahresende sollen alle Kundendaten älter als 100 Tage gelöscht werden. Kunden, die ein Jahr lang nicht bei McTank eingekauft haben, werden aus der Datei entfernt.  Ferner möchte der Leiter einen Überblick über die Auslastung seines Geschäftes erhalten.  
+ 
+
 == Produktnutzung
 In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingungen gelten?
 Zusätzlich kurze Einleitung für fachfremde Personen
 
-Die Anwendung soll in einem Webbrowser genutzt werden optimal:
-  *Mozilla Firefox, version 55.0.3+
-  *Google Chrome, version 61.0.3163+
+Die Anwendung soll in einem Webbrowser genutzt werden, z.B mit:
+  - Mozilla Firefox, version 55.0.3+
+  - Google Chrome, version 61.0.3163+
 
 == Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
@@ -116,6 +120,8 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 
 == Nicht-Funktionale Anforderungen
 
+=== Qualitätsziele
+
 [cols="1"]
 |===
 | Wartbarkeit: 3
@@ -127,7 +133,7 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 | Sicherheit: 2
 |===
 
-=== Qualitätsziele
+1 = niedrige Priorität  5 = hohe Priorität
 
 Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreichen soll, sowie deren Priorität.
 
