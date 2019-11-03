@@ -128,6 +128,23 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |Funktionale Anforderungen   |
 |===
 
+[cols="1h, 3"]
+[[UC1]]
+|===
+|ID                          |**<<UC3>>**
+|Name                        |Rabatt für den Kunden
+|Beschreibung                |Kunde löst Rabatte ein
+|Personen                    |registrierter Kunde, Mitarbeiter
+|Auslöser                    |Kunde erhält bei Registrierung einen einmaligen Rabatt in Höhe von 10% und zusätzlich gibt es pro genutzten McPoint 5% Rabatt
+|Voraussetzung(en)           |Kunde ist registriert und nimmt mind. einen McPoint in Anspruch
+|notwendige Schritte         |1. Kunde registriert sich +
+2. nutzt einen McPoint +
+3. erhält Rabatte
+
+|Erweiterungen               |-
+|Funktionale Anforderungen   |
+|===
+
 == Funktionale Anforderungen
 
 === Muss-Kriterien
@@ -220,7 +237,7 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Anwendungsfall        |<<UC1>>
 |Voraussetzung(en)     |Ein nicht registrierter User will ein Benutzerkonto erstellen
 |Ereignis              |Der Benutzer drückt auf "Benutzerkonto anlegen" und gibt die folgenden Daten ein +
-Kennzeichen: DD-VB-11111
+1. Kennzeichen: DD-VB-11111
 |erwartetes Ergebnis   |Fehlermeldung, da falsches Kennzeichen (entspricht nicht den europäischen Richtlinien)
 |===
 
@@ -234,7 +251,17 @@ Kennzeichen: DD-VB-11111
 1. Benzin: 50.200 Liter +
 2. Diesel: 30.000 Liter +
 3. E10: 20.564 Liter
-|erwartetes Ergebnis   |Fehlermeldung, da Bestellmenge von Benzin zu hoch (jeder Tank hat jeweils 50.000 Liter Füllmenge) 
+|erwartetes Ergebnis   |Fehlermeldung, da Bestellmenge von Benzin zu hoch (jeder Tank hat jeweils max. 50.000 Liter Füllmenge) 
+|===
+
+[cols="1h, 4"]
+|===
+|ID                    |
+|Anwendungsfall        |<<UC3>>
+|Voraussetzung(en)     |Kunde löst Rabatt an Kasse bei Mitarbeiter ein
+|Ereignis              |1. Der Kunde hat 4 McPoints in Anspruch genommen und will seinen Startrabatt einlösen +
+2. Mitarbeiter gibt einen Rabatt von 40% in die Kasse ein
+|erwartetes Ergebnis   |Fehlermeldung, da Rabatt in keinem Fall höher als 30% sein kann 
 |===
 
 == Glossar
