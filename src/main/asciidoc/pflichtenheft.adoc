@@ -219,7 +219,7 @@ wenn nein, Reservierung fehlgeschlagen
 Was das zu erstellende Programm auf alle Fälle leisten muss.
 
 [options="header"]
-[cols="2"]
+[cols="3"]
 |===
 |ID |Kriterium            |Beschreibung
 |[[F1]]<<F1>>|Rabattsystem         |Kunden bekommen für die Nutzung verschiedener McPoints Rabatt sowie bei Registrierung.
