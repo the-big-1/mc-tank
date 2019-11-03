@@ -54,8 +54,8 @@ Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforde
 
 [cols="1"]
 |===
-|McZapf GmbH
-|Mitarbeiter von McZapf
+|McTank GmbH
+|Mitarbeiter von McTank
 |Entwickler der Anwendung
 |===
 
