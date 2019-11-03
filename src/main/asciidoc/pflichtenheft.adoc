@@ -113,7 +113,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |===
 
 [cols="1h, 3"]
-[[UC1]]
+[[UC2]]
 |===
 |ID                          |**<<UC2>>**
 |Name                        |Benzinbestellung
@@ -129,7 +129,7 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |===
 
 [cols="1h, 3"]
-[[UC1]]
+[[UC3]]
 |===
 |ID                          |**<<UC3>>**
 |Name                        |Rabatt für den Kunden
@@ -140,7 +140,22 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |notwendige Schritte         |1. Kunde registriert sich +
 2. nutzt einen McPoint +
 3. erhält Rabatte
+|Erweiterungen               |-
+|Funktionale Anforderungen   |
+|===
 
+[cols="1h, 3"]
+[[UC4]]
+|===
+|ID                          |**<<UC4>>**
+|Name                        |Altersabfrage
+|Beschreibung                |Kunde muss 18 sein, wenn er Zigaretten und Alkohol kaufen will
+|Personen                    |Kunde, Mitarbeiter
+|Auslöser                    |Kunde geht zur Kasse und möchte Alkohol und Zigaretten kaufen
+|Voraussetzung(en)           |Kunde betritt McTank
+|notwendige Schritte         |1. Kunde sucht sich gewünschte Waren (Alkohol, Zigaretten) aus und geht zur Kasse +
+2. Kassensystem fordert Altersabfrage +
+3. Mitarbeiter kontrolliert Ausweisdokument des Kunden 
 |Erweiterungen               |-
 |Funktionale Anforderungen   |
 |===
@@ -262,6 +277,18 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |Ereignis              |1. Der Kunde hat 4 McPoints in Anspruch genommen und will seinen Startrabatt einlösen +
 2. Mitarbeiter gibt einen Rabatt von 40% in die Kasse ein
 |erwartetes Ergebnis   |Fehlermeldung, da Rabatt in keinem Fall höher als 30% sein kann 
+|===
+
+
+[cols="1h, 4"]
+|===
+|ID                    |
+|Anwendungsfall        |<<UC4>>
+|Voraussetzung(en)     |Kunde will Zigaretten und Alkohol kaufen
+|Ereignis              |1. Der Kunde geht zur Kasse und will Zigaretten und Alkohol kaufen +
+2. Kasse fordert Altersabfrage +
+3. Mitarbeiter prüft Ausweisdokument und sieht, Kunde ist erst 17
+|erwartetes Ergebnis   |Fehlermeldung, da Kunde zu jung 
 |===
 
 == Glossar
