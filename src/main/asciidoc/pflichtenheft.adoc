@@ -197,10 +197,10 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 [cols="1h, 4"]
 |===
 |ID                    |
-|Anwendungsfall        |
-|Voraussetzung(en)     |A user is using the system
-|Ereignis              |The user presses "BluRay Katalog" in the navigation bar
-|erwartetes Ergebnis   |The user is shown an overview of all existing discs that are BluRays (9 different discs)
+|Anwendungsfall        |<<UC1>>
+|Voraussetzung(en)     |
+|Ereignis              |
+|erwartetes Ergebnis   |
 |===
 
 == Glossar
