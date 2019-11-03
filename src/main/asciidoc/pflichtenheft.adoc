@@ -105,7 +105,9 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 |Voraussetzung(en)           |Das KFZ-Kennzeichen gehört noch keinem Benutzerkonto an, ist aber schon anonym registriert
 |notwendige Schritte         |1. Der Benutzer drückt auf "Benutzerkonto anlegen" +
 2. Er gibt sein KFZ-Kennzeichen, E-Mail-Adresse, Name, Zahlungsinformationen etc. ein +
-3. 
+3. Prüfung, ob das Kennzeichen schon registriert ist +
+ wenn ja, Fehlermeldung +
+ wenn nicht, Erstellung des Benutzerkontos
 |Erweiterungen               |
 |Funktionale Anforderungen   |
 |===
