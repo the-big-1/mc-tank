@@ -221,18 +221,18 @@ Was das zu erstellende Programm auf alle Fälle leisten muss.
 [options="header"]
 [cols="2"]
 |===
-|Kriterium            |Beschreibung
-|Rabattsystem         |Kunden bekommen für die Nutzung verschiedener McPoints Rabatt sowie bei Registrierung.
-|Kundenregistrierung  |Kunden müssen sich registrieren können.
-|Reservierungen       |Mitarbeiter müssen auf Kundenwunsch Reservierungen für McSit und McWash erstellen können.
-|Produktreklamation   |Kunden können Produkte zurückgeben. (außer Kraftstoff)
-|Kraftstoffverwaltung |Es soll eine Meldung an den Manager und die Tankstellenmitarbeiter geben, wenn die Kraftstofflager zur                   Neige gehen.
-|Prognose für Kraftstoff |Auf Grund des Verbrauchs der vergangenen Zeit soll es eine Empfehung geben, wie viel Kraftstoff für den Folgetag bestellt werden sollte.
-|Kraftstoffbestellung |Der Manager kann Kraftstoff bestellen, entweder nach der Empfehlung oder nach eigenem Ermessen.
-|Bezahlsystem         |Bei jedem Mitarbeiter können die Kunden bezahlen.
-|Verkaufshistorie     |Der Manager soll eine Aufstellung sehen, was in den letzten 100 Tagen verkauft wurde.
-|Kundenstammreinigung |registrierte Kunden die länger als ein Jahr nicht bei McTank eingekauft haben werden aus dem Datenbestand gelöscht.
-|Geschäftsauslastung  |Der Manager soll die Geschäftsauslastung einsehen können.
+|ID |Kriterium            |Beschreibung
+|[[F1]]<<F1>>|Rabattsystem         |Kunden bekommen für die Nutzung verschiedener McPoints Rabatt sowie bei Registrierung.
+|[[F2]]<<F2>>|Kundenregistrierung  |Kunden müssen sich registrieren können.
+|[[F3]]<<F3>>|Reservierungen       |Mitarbeiter müssen auf Kundenwunsch Reservierungen für McSit und McWash erstellen können.
+|[[F4]]<<F4>>|Produktreklamation   |Kunden können Produkte zurückgeben. (außer Kraftstoff)
+|[[F5]]<<F5>>|Kraftstoffverwaltung |Es soll eine Meldung an den Manager und die Tankstellenmitarbeiter geben, wenn die Kraftstofflager zur                   Neige gehen.
+|[[F6]]<<F6>>|Prognose für Kraftstoff |Auf Grund des Verbrauchs der vergangenen Zeit soll es eine Empfehung geben, wie viel Kraftstoff für den Folgetag bestellt werden sollte.
+|[[F7]]<<F7>>|Kraftstoffbestellung |Der Manager kann Kraftstoff bestellen, entweder nach der Empfehlung oder nach eigenem Ermessen.
+|[[F8]]<<F8>>|Bezahlsystem         |Bei jedem Mitarbeiter können die Kunden bezahlen.
+|[[F9]]<<F9>>|Verkaufshistorie     |Der Manager soll eine Aufstellung sehen, was in den letzten 100 Tagen verkauft wurde.
+|[[F10]]<<F10>>|Kundenstammreinigung |registrierte Kunden die länger als ein Jahr nicht bei McTank eingekauft haben werden aus dem Datenbestand gelöscht.
+|[[F11]]<<F11>>|Geschäftsauslastung  |Der Manager soll die Geschäftsauslastung einsehen können.
 |===
 
 === Kann-Kriterien
