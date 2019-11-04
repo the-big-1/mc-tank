@@ -53,6 +53,6 @@ Dokumenten.
 |https://github.com/st-tu-dresden-praktikum/swt19w18/issues/1#issue-515559375[1]     |Userbug     |Crash muss abgefangen werden            |David            |in Arbeit 
 |https://github.com/st-tu-dresden-praktikum/swt19w18/issues/3[2]     |Bewertungen     |Crash fixen         |Christoph        |in Arbeit
 |https://github.com/st-tu-dresden-praktikum/swt19w18/issues/2[3]     |Warenkorb     |begrenzte Anzahl an Artikeln            |Vivien           |fertig
-|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/4    | Kategorien     | Neue Funktion hinzufügen   |Clemens          |Fertig
-|5     |…     |…            |Artem            |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/4[4]   | Kategorien     | Neue Funktion hinzufügen   |Clemens          |Fertig
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/5[5]     |Warenkorb     | Verlinkuung von den Seiten und Frontend Warenkorb fix           |Artem             |fertig
 |===
