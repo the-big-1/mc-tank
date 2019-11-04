@@ -48,8 +48,9 @@ In welchem Kontext soll das System später genutzt werden? Welche Rahmenbedingun
 Zusätzlich kurze Einleitung für fachfremde Personen
 
 Die Anwendung soll in einem Webbrowser genutzt werden, z.B mit:
-  - Mozilla Firefox, version 55.0.3+
-  - Google Chrome, version 61.0.3163+
+
+ - Mozilla Firefox, version 55.0.3+
+ - Google Chrome, version 61.0.3163+
 
 == Interessensgruppen (Stakeholders)
 Welche realen und juristischen Personen(-gruppen) haben Einfluss auf die Anforderungen im Projekt?
@@ -90,6 +91,7 @@ Weitere relevante Spalten können bei Bedarf ergänzt werden.
 |===
 
 === Überblick Anwendungsfalldiagramm
+
 image:models/analysis/UseCaseSWT.svg[]
 
 === Anwendungsfallbeschreibungen
@@ -257,7 +259,7 @@ Anforderungen die das Programm leisten können soll, aber für den korrekten Bet
 | Sicherheit: 2
 |===
 
-1 = niedrige Priorität  5 = hohe Priorität
+1 = niedrige Priorität,  5 = hohe Priorität
 
 Dokumentieren Sie in einer Tabelle die Qualitätsziele, welche das System erreichen soll, sowie deren Priorität.
 
@@ -288,7 +290,9 @@ Für jeden Dialog:
 
 === Überblick: Klassendiagramm
 UML-Analyseklassendiagramm
-image:models/analysis/McTankDiagrams.vpp[]
+
+image:models/analysis/Customer-svg
+
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
 
