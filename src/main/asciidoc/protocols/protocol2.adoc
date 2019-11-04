@@ -40,8 +40,7 @@ bis nächste Woche zur Tankstellen-Aufgabe: CRC-Kartenmethode, Kontextdiagramm, 
 
 
 == Aktueller Stand
-Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
-Dokumenten.
+die Diagramme und GUI's werden beim nächsten Gruppentreffen zusammen fertig gestellt, jeder macht sich im Voraus Gedanken
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
