@@ -40,7 +40,7 @@
 Dies ist unser Pflichtenheft zu unserer Aufgabe, eine Website für die Tankstelle "McTank" zu erstellen. Hier wird beschrieben, was die Anwendung können soll und wie wir bei der Bearbeitung vorgehen. Es dient dazu, am Ende sicherzustellen, dass alle gewünschten Anforderungen erfüllt worden sind. Das Pflichtenheft wird von Beginn an ausgefüllt, kann aber jederzeit erweitert oder abgeändert werden. 
 
 == Aufgabenstellung und Zielsetzung
-
+[[definition]]
 
 McTank ist nach einer Gesamtsanierung wieder für seine Kunden an der A555 geöffnet. Nachdem der 99-jährige Geschäftsführer an zu hohem Zigarettenkonsum entschlafen ist, verschwindet nun auch der lochkartengesteuerte Großrechner und wird durch einen neues System für die Verwaltung ersetzt. Sie wurden mit der Entwicklung dieses Systems betraut.  Die vier Kundenanlaufpunkte (Mc-Points) McZapf, McDrive, McSit und McWash sollen zentral von der Software gesteuert werden. McZapf bezeichnet den Zapfsäulenbereich, McDrive und McSit beziehen sich auf das Fast-Food-Restaurant und McWash ist der Oberbegriff für die Pflegeeinrichtungen wie Waschanlage, Staubsauger, Druckluftgerät, etc.  Die wichtigste Geschäftsidee des neuen Leiters von McTank ist die Einführung eines Rabatt- und Vorbestellungssystems. Die Kunden sollen telefonisch Vorbestellungen bei McSit und McWash tätigen können. MacZapf und McDrive werden aufgrund der schnellen Abarbeitungszeit nicht in die telefonische Reservierungsverwaltung eingegliedert.  Das Rabattsystem bezieht sich dann allerdings auf alle Mc-Points. Man stelle sich das folgendermaßen vor: Ein Kunde soll bei Inanspruchnahme eines Dienstes eine Art Identifizierung erhalten, mit der er dann auch an den anderen Mc-Points einkaufen darf. Verläßt der Kunde das Gelände, muss er an einer der Mc-Points den Gesamtbetrag bezahlen, wobei sich der Rabatt folgendermaßen errechnet: Es werden die Typen der genutzten McPoints gezählt (also nicht die Anzahl der Nutzungen). Diese Zahl mit 5 multipliziert ergibt den Gesamtrabatt auf den Gesamteinkaufspreis.  Weiterhin soll mit dem neuen System die Benzinlagerverwaltung gehandhabt werden.  Um die Dienste zu optimieren und einen längerfristigen Kundenstamm zu gewinnen, zum Beispiel Wochenendfahrer, sollen die Fahrer über Ihr Autokennzeichen registrierbar sein. Diese Registrierung, für die dem Kunden ein einmaliger Sonderrabatt gewährt wird, ist lediglich eine Option und an jedem Mc-Point möglich, auch wenn bereits eine anonyme Identifizierung des Kunden an einem anderen McPoint vorgenommen wurde. Eine Gesamtabrechnung soll dann die in den letzten 100 Tagen getätigten Einkäufe aufgegliedert nach Kennzeichen anzeigen können. Jeweils am Jahresende sollen alle Kundendaten älter als 100 Tage gelöscht werden. Kunden, die ein Jahr lang nicht bei McTank eingekauft haben, werden aus der Datei entfernt.  Ferner möchte der Leiter einen Überblick über die Auslastung seines Geschäftes erhalten.  
  
@@ -82,6 +82,7 @@ Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darau
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 [cols="1,4"]
+[[actors]]
 |===
 |Name |Beschreibung
 |Manager/Admin  |Chef der Firma, hat alle Berechtigungen
@@ -335,10 +336,11 @@ UML-Analyseklassendiagramm
 image:models/analysis/Customer.svg[]
 
 === Klassen und Enumerationen
-Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
+Dieser Abschnitt stellt eine Vereinigung von <<Glossar, glossar>> und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
+[[classes_enumerations]]
 |===
 |Klasse/Enumeration |Beschreibung |
 |User                  |Beutzer der Anwendugung können Kunden, Mitarbeiter oder der Manager sein            |
@@ -426,9 +428,21 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |===
 
 == Glossar
-Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
-Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
-Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
+[options="header", cols="1h, 4"]
+[[glossar]]
+|===
+|Begriff                   |Beschreibung
+|Warenkorb                   | Auflistung der Produkte, die der Kunde ausgewählt, aber noch nicht bezahlt hat
+|registrierter Kunde                 | <<Akteure, actors>>
+|nicht-registrierter Kunde               | <<Akteure, actors>>
+|Lager             | <<Klassen/Enumerationen, classes_enumerations>>
+|Login                  | Authentifizierung des Users, nachdem er seine korrekten Anmeldedaten eingegeben hat
+|Bestellung                  | <<Klassen/Enumerationen, classes_enumerations>>
+|Produkt               | alle Produkte, die bei McTank zum Verkauf angeboten werden
+|Registrierung       | für Neukunden, die sich ein Benutzerkonto anlegen möchten
+|Role             | <<Klassen/Enumerationen, classes_enumerations>>
+|McTank              | <<Aufgabenstellung, definition>>
+|===
 
 == Offene Punkte
-Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
+- konkrete Nicht-Funktionale Anforderungen
