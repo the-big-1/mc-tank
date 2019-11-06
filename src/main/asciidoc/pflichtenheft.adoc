@@ -15,7 +15,7 @@
 |0.1.6    | In Arbeit   | 3.11.2019           | Clemens       | Kontext Diagramm verlinkt
 |0.1.7    | In Arbeit   | 5.11.2019           | David       | Klassen/Enum Tabelle hinzugefügt
 |0.1.8    | In Arbeit   | 6.11.2019           | Artem       | GUI-Prototypen hinzugefügt
-|0.1.9    | In Arbeit   | 6.11.2019           | Vivien      | Dialogbeschreibungen und Glossar hinzugefügt
+|0.1.9    | In Arbeit   | 6.11.2019           | Vivien      | Dialogbeschreibungen, Sequenzdiagramme und Glossar hinzugefügt
 |===
 
 == Inhaltsverzeichnis
@@ -219,6 +219,8 @@ wenn nein, Reservierung fehlgeschlagen
 |Erweiterungen               |-
 |Funktionale Anforderungen   |<<F3>>
 |===
+
+https://github.com/st-tu-dresden-praktikum/swt19w18/blob/master/src/main/asciidoc/models/analysis/Kunde%20tankt%2C%20bezahlt%2C%20geht.svg[]
 == Funktionale Anforderungen
 
 === Muss-Kriterien
