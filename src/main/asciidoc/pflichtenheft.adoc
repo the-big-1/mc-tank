@@ -271,6 +271,30 @@ Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein m
 
 == GUI Prototyp
 
+Einkauswagen
+image:models/design/cart.png[]
+
+Katalog
+image:models/design/catalog.png[]
+
+Login
+image:models/design/log.png[]
+
+Bestellung
+image:models/design/orders.png[]
+
+Managerübersicht
+image:models/design/overview.png[]
+
+User-Profil
+image:models/design/user-dashboard.png[]
+
+User-Bestellungen
+image:models/design/user-orders.png[]
+
+User-Einstellungen
+image:models/design/user-settings.png[]
+
 In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
 Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
 Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
