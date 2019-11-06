@@ -279,7 +279,7 @@ Der Katalog gibt eine Übersicht über alle Produkte die das Unternehmen führt.
 
 
 Login: +
-image:models/design/log.png[]+
+image:models/design/log.png[]
 Hier kann sich jeder Nutzer mit seinen Anmeldedaten über den Button einloggen. 
 
 
