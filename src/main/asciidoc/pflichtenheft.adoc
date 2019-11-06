@@ -134,7 +134,7 @@ Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 |Funktionale Anforderungen   |<<F7>>
 |===
 
-image:models/analysis/bestellungen.svg[]
+image:models/analysis/bestellung.svg[]
 
 
 [cols="1h, 3"]
@@ -225,6 +225,21 @@ wenn nein, Reservierung fehlgeschlagen
 |Funktionale Anforderungen   |<<F3>>
 |===
 
+
+[cols="1h, 3"]
+[[UC8]]
+|===
+|ID                          |**<<UC8>>**
+|Name                        |Bezahlvorgang
+|Beschreibung                |Ein Kunde möchte eine einfache Bestellung an einem McPoint abschließen
+|Personen                    |Kunde, Mitarbeiter
+|Auslöser                    |Kunde geht zu McTank und wird automatisch anonym registriert
+|Voraussetzung(en)           |Kunde wird durch Kennzeichen registriert und nimmt eine Dienstleistung bei McTank in Anspruch
+|notwendige Schritte         |1. Kunde nimmt eine Dienstleistung bei McTank in Anspruch +
+2. Mitarbeiter erstellt Rechnung für Kunden 
+|Erweiterungen               |-
+|Funktionale Anforderungen   |<<F8>>
+|===
 image:models/analysis/Kunde tankt, bezahlt, geht.svg[] +
 
 
