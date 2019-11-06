@@ -150,6 +150,8 @@ Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 |Funktionale Anforderungen   |<<F1>>
 |===
 
+image:models/analysis/rabatt.svg[]
+
 [cols="1h, 3"]
 [[UC4]]
 |===
@@ -220,7 +222,9 @@ wenn nein, Reservierung fehlgeschlagen
 |Funktionale Anforderungen   |<<F3>>
 |===
 
-image:models/analysis/Kunde tankt, bezahlt, geht.svg[]
+image:models/analysis/Kunde tankt, bezahlt, geht.svg[] +
+
+
 == Funktionale Anforderungen
 
 === Muss-Kriterien
