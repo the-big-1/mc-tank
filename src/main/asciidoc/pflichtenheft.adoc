@@ -14,6 +14,8 @@
 |0.1.5   | In Arbeit   | 3.11.2019           | Christoph     | Top Level Diagramm hinzugefügt
 |0.1.6    | In Arbeit   | 3.11.2019           | Clemens       | Kontext Diagramm verlinkt
 |0.1.7    | In Arbeit   | 5.11.2019           | David       | Klassen/Enum Tabelle hinzugefügt
+|0.1.8    | In Arbeit   | 6.11.2019           | Artem       | GUI-Prototypen hinzugefügt
+|0.1.9    | In Arbeit   | 6.11.2019           | Vivien      | Dialogbeschreibungen hinzugefügt
 |===
 
 == Inhaltsverzeichnis
@@ -281,19 +283,24 @@ Login
 image:models/design/log.png[]
 
 Bestellung
-image:models/design/orders.png[]
+image:models/design/orders.png[] +
+In der Bestellübersicht werden alle abgeschlossenen Bestellungen der letzten 100 Tage angezeigt. Nur durch den Manager aufrufbar. +
 
 Managerübersicht
-image:models/design/overview.png[]
+image:models/design/overview.png[] +
+Auf diese Seite kann nur der Manager zugreifen. Hier erhält er eine Übersicht über die Lagerbestände und über die täglichen Einnahmen, die stündlich aktualisiert werden. + 
 
 User-Profil
-image:models/design/user-dashboard.png[]
+image:models/design/user-dashboard.png[] + 
+Jeder Kunde kann sich ein eigenes Kundenprofil anlegen. Auf dieser Seite kann er darauf zugreifen und seine hinterlegten Daten einsehen. +
 
 User-Bestellungen
-image:models/design/user-orders.png[]
+image:models/design/user-orders.png[] +
+Der Kunde kann jede seiner getätigten Bestellungen detailliert nachverfolgen. + 
 
 User-Einstellungen
-image:models/design/user-settings.png[]
+image:models/design/user-settings.png[] +
+Der Kunde kann seine gespeicherten Daten wie z.B. seine Zahlarten, Adresse oder das Passwort jederzeit ändern. + 
 
 In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
 Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
