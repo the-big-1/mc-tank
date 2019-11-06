@@ -268,37 +268,45 @@ Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein m
 
 == GUI Prototyp
 
-Einkauswagen: +
+Einkaufswagen: +
 image:models/design/cart.png[] +
-Der Einkauswagen wird an der Kasse genutzt. Der Mitarbeiter trägt alle Einkäufe die der Kunde tätigen möchte und der Bestellvorgang wird abgeschlossen. Im Einkaufswagen werden alle enthaltenen Produkte mit Anzahl, Preis etc. aufgelistet. +
+Der Einkauswagen wird an der Kasse genutzt. Der Mitarbeiter trägt alle Einkäufe die der Kunde tätigen möchte und der Bestellvorgang wird abgeschlossen. Im Einkaufswagen werden alle enthaltenen Produkte mit Anzahl, Preis etc. aufgelistet. 
+
 
 Katalog: +
 image:models/design/catalog.png[] +
-Der Katalog gibt eine Übersicht über alle Produkte die das Unternehmen führt. Auch von dem Kunden einsehbar, aber es werden keine Informationen über den Lagerbestand der Produkte preisgegeben. +
+Der Katalog gibt eine Übersicht über alle Produkte die das Unternehmen führt. Auch von dem Kunden einsehbar, aber es werden keine Informationen über den Lagerbestand der Produkte preisgegeben. 
+
 
 Login: +
 image:models/design/log.png[]+
-Hier kann sich jeder Nutzer mit seinen Anmeldedaten über den Button einloggen. +
+Hier kann sich jeder Nutzer mit seinen Anmeldedaten über den Button einloggen. 
+
 
 Bestellung: +
 image:models/design/orders.png[] +
-In der Bestellübersicht werden alle abgeschlossenen Bestellungen der letzten 100 Tage angezeigt. Nur durch den Manager aufrufbar. +
+In der Bestellübersicht werden alle abgeschlossenen Bestellungen der letzten 100 Tage angezeigt. Nur durch den Manager aufrufbar. 
+
 
 Managerübersicht: + 
 image:models/design/overview.png[] +
-Auf diese Seite kann nur der Manager zugreifen. Hier erhält er eine Übersicht über die Lagerbestände und über die täglichen Einnahmen, die stündlich aktualisiert werden. + 
+Auf diese Seite kann nur der Manager zugreifen. Hier erhält er eine Übersicht über die Lagerbestände und über die täglichen Einnahmen, die stündlich aktualisiert werden. +
+
 
 User-Profil: +
 image:models/design/user-dashboard.png[] + 
-Jeder Kunde kann sich ein eigenes Kundenprofil anlegen. Auf dieser Seite kann er darauf zugreifen und seine hinterlegten Daten einsehen. +
+Jeder Kunde kann sich ein eigenes Kundenprofil anlegen. Auf dieser Seite kann er darauf zugreifen und seine hinterlegten Daten einsehen. 
+
 
 User-Bestellungen: +
 image:models/design/user-orders.png[] +
-Der Kunde kann jede seiner getätigten Bestellungen detailliert nachverfolgen. + 
+Der Kunde kann jede seiner getätigten Bestellungen detailliert nachverfolgen.  
+
 
 User-Einstellungen: +
 image:models/design/user-settings.png[] +
-Der Kunde kann seine gespeicherten Daten wie z.B. seine Zahlarten, Adresse oder das Passwort jederzeit ändern. + 
+Der Kunde kann seine gespeicherten Daten wie z.B. seine Zahlarten, Adresse oder das Passwort jederzeit ändern. +
+
 
 In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
 Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
