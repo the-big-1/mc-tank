@@ -220,7 +220,7 @@ wenn nein, Reservierung fehlgeschlagen
 |Funktionale Anforderungen   |<<F3>>
 |===
 
-https://github.com/st-tu-dresden-praktikum/swt19w18/blob/master/src/main/asciidoc/models/analysis/Kunde%20tankt%2C%20bezahlt%2C%20geht.svg[]
+image:models/analysis/Kunde tankt, bezahlt, geht.svg[]
 == Funktionale Anforderungen
 
 === Muss-Kriterien
