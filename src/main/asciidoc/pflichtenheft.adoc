@@ -16,6 +16,7 @@
 |0.1.7    | In Arbeit   | 5.11.2019           | David       | Klassen/Enum Tabelle hinzugefügt
 |0.1.8    | In Arbeit   | 6.11.2019           | Artem       | GUI-Prototypen hinzugefügt
 |0.1.9    | In Arbeit   | 6.11.2019           | Vivien      | Dialogbeschreibungen, Sequenzdiagramme und Glossar hinzugefügt
+|0.2      | In Arbeit   | 7.11.2019           | David       | Arbeit am Datenmodell
 |===
 
 == Inhaltsverzeichnis
@@ -267,6 +268,7 @@ image:models/analysis/Kunde tankt, bezahlt, geht.svg[] +
 
 === Kann-Kriterien
 - Altersabfrage bei dem Kauf von Zigaretten und Alkohol
+- bei Reservierungen: Tischzahl beachten Überbuchung verhindern
 
 == Nicht-Funktionale Anforderungen
 
@@ -294,42 +296,42 @@ Achten Sie darauf, dass deren Erfüllung (mindestens theoretisch) messbar sein m
 == GUI Prototyp
 
 Einkaufswagen: +
-image:models/design/cart.png[] +
+image:models/analysis/cart.png[] +
 Der Einkauswagen wird an der Kasse genutzt. Der Mitarbeiter trägt alle Einkäufe die der Kunde tätigen möchte und der Bestellvorgang wird abgeschlossen. Im Einkaufswagen werden alle enthaltenen Produkte mit Anzahl, Preis etc. aufgelistet. 
 
 
 Katalog: +
-image:models/design/catalog.png[] +
-Der Katalog gibt eine Übersicht über alle Produkte die das Unternehmen führt. Auch von dem Kunden einsehbar, aber es werden keine Informationen über den Lagerbestand der Produkte preisgegeben. 
+image:models/analysis/catalog.png[] +
+Der Katalog gibt eine Übersicht über alle Produkte die das Unternehmen führt.
 
 
 Login: +
-image:models/design/log.png[]
+image:models/analysis/log.png[]
 Hier kann sich jeder Nutzer mit seinen Anmeldedaten über den Button einloggen. 
 
 
 Bestellung: +
-image:models/design/orders.png[] +
+image:models/analysis/orders.png[] +
 In der Bestellübersicht werden alle abgeschlossenen Bestellungen der letzten 100 Tage angezeigt. Nur durch den Manager aufrufbar. 
 
 
 Managerübersicht: + 
-image:models/design/overview.png[] +
+image:models/analysis/overview.png[] +
 Auf diese Seite kann nur der Manager zugreifen. Hier erhält er eine Übersicht über die Lagerbestände und über die täglichen Einnahmen, die stündlich aktualisiert werden. +
 
 
 User-Profil: +
-image:models/design/user-dashboard.png[] + 
+image:models/analysis/user-dashboard.png[] + 
 Jeder Kunde kann sich ein eigenes Kundenprofil anlegen. Auf dieser Seite kann er darauf zugreifen und seine hinterlegten Daten einsehen. 
 
 
 User-Bestellungen: +
-image:models/design/user-orders.png[] +
+image:models/analysis/user-orders.png[] +
 Der Kunde kann jede seiner getätigten Bestellungen detailliert nachverfolgen.  
 
 
 User-Einstellungen: +
-image:models/design/user-settings.png[] +
+image:models/analysis/user-settings.png[] +
 Der Kunde kann seine gespeicherten Daten wie z.B. seine Zahlarten, Adresse oder das Passwort jederzeit ändern. +
 
 
@@ -357,7 +359,7 @@ Für jeden Dialog:
 === Überblick: Klassendiagramm
 UML-Analyseklassendiagramm
 
-image:models/analysis/Customer.svg[]
+image:models/analysis/McTank.svg[]
 
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von <<glossar, Glossar>> und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
@@ -367,17 +369,28 @@ Dieser Abschnitt stellt eine Vereinigung von <<glossar, Glossar>> und der Beschr
 [[classes_enumerations]]
 |===
 |Klasse/Enumeration |Beschreibung |
+|McTank                |beinhaltet Main methode                                                             |
+|Reservations          |Klasse für Reservierungen                                                           |              
+|McSit Reservations    |Reservierugen bei McSit                                                             |
+|McWash Reservations   |Reservierungen bei McWash                                                           | 
+|Manager Overview      |Statistiken für den Manager                                                         |
 |User                  |Beutzer der Anwendugung können Kunden, Mitarbeiter oder der Manager sein            |
-|ROLE                  |Rolle des Users                                                                     |
+|Manager               |Chef der Firma, hat Zugriff auf alle Funktionen                                     |
+|Employee              |Mitarbeiter/Angestellter der Firma, hat erweiterten Zugriff                         |
+|unregistered Customer |Kunde der Firma, kann sich nur registrieren                                         |
+|registered Customer   |Kunde der Firma, kann sein Profil einsehen                                          |
 |UserManagement        |Verwaltet die User                                                                  |
 |UserController        |Verbindet Frontend und Backend                                                      |
 |RegistrationForm      |nimmt Werte für registrierung/änderungen entgegen                                   |
 |UserRepository        |speichert alle User                                                                 |
 |Bill/Order            |Rechnung auf die alle Bestellungen gelistet werden                                  |
+|discount              |Rabatt den ein Kunde bekommt                                                        |
 |cash register         |Kassensystem                                                                        |
-|Catalog               |Katalog aller Produkte von Mc Tank                                                  |
+|Sales Volume Database |Datenbank der Umsätze                                                               |
+|Items                 |Katalog aller Produkte von Mc Tank                                                  |
 |Inventory             |Lager für konkrete Produkte                                                         |
 |FuelOrder             |Kraftstoffbestellung, kann nur vom Manager ausgelöst werden                         |
+|Benzin, Diesel, Cola  |Beispiele für Produkte im Lager/Angebot                                             |
 
 |===
 
