@@ -15,6 +15,13 @@
 * Hardware-Vorgaben
 * Software-Vorgaben
 * Vorgaben zum Betrieb des Software
+Hier wird beschrieben, wie die Anwendung benutzt werden soll, wenn sie fertig ist und unter welchen Umständen.
+
+Die Anwendung stellt die Website der Tankstelle McTank dar, auf die der Manager, die Mitarbeiter und die Kunden Zugriff haben. Dort können sich Kunden ein Benutzerkonto anlegen, dieses verwalten und sich immer ein- und ausloggen. Die Mitarbeiter bedienen mit dem System die Kasse und der Manager bekommt darüber Einsicht über die aktuellen Lagerbestände, getätigte Einkäufe und kann selber Bestellungen für die Lager tätigen. Die Software läuft über einen Server und kann im Internet von jedem zu jeder Zeit eingesehen werden.
+
+Die Anwendung soll leicht erweiterbar sein
+
+The system shall not need technical maintenance, as the staff of the Chair of Software Technology already has its hands full. Any data shall be stored persistently in a database and be accessible through the application (e.g. no SQL knowledge should be required for a boss).
 
 == Kontextabgrenzung
 * Kontextdiagramm
