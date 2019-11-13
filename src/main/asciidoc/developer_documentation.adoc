@@ -2,7 +2,7 @@
 [cols="1, 3, 3"]
 |===
 |Version | Bearbeitungsdatum   | Autor 
-|...	| ... | ...
+|0.1	| 13.11 | David L
 |===
 
 = Entwicklerdokumentation
@@ -58,8 +58,18 @@ The system shall not need technical maintenance, as the staff of the Chair of So
 === Erfüllung der Qualitätsziele
 [options="header"]
 |=== 
-|Qualitätsziel |Lösungsansatz
-|... |...
+|Qualitätsziel              |Lösungsansatz
+|Warbarkeit                a| * Modularität: Stellt bessere Überschaubarkeit sicher und es können einzelne Komponenten verändert/bearbeitet werden ohne Einfluss auf die ganze Anwendung zu haben. 
+                              * Wiederverwendbarkeit: Einzelne Komponenten sollen für andere Aufgaben wiederverwendet werden können.
+
+|Erweiterbarkeit           a| * Modularität: Es können leicht neuer Features in die Anwendung integriert werden. 
+|Benutzerfreundlichkeit    a| * Es wird eine klares GUI geben, was die schnelle und leichte Bedinung der Anwendung ermöglicht
+|Skalierbarkeit            a| * Modularität: Komponenten können bei Bedarf durch leistungsstärkere ersetzt werden.
+|Verlässlichkeit           a| * Unit und Integrationstest: Die verlässlichkeit soll durch unfassende Tests gesichert werden.
+|Performance               a| * Es werden die Laufzeiten der Anwendung überprüft z.B. in den Unittest. 
+|Sicherheit                a| * Bestimmte Funktionen sind nur autorisierten Nutzern gestattet und die werden mit @RreAuthorize
+überprüft.
+                              * Bestellungen werden gespeichert und können zurückverfolgt werden.
 |===
 
 === Softwarearchitektur
@@ -67,7 +77,9 @@ The system shall not need technical maintenance, as the staff of the Chair of So
 
 === Entwurfsentscheidungen
 * Verwendete Muster
+  - Spring MVC
 * Persistenz
+  - Kundendaten und Rechnungen werden in einer H2 Datenbank von Spring gespeichert
 * Benutzeroberfläche
 * Verwendung externer Frameworks
 
