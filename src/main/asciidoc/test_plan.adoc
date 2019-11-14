@@ -20,13 +20,13 @@ U1, U2, I1
 == Test Gegenstände
 
 == Zu testende Funktionalitäten
-- Registrierung [[U1]]**<<U1>>**
-- Benzinbestellung
-- Rabatt
-- Altersabfrage
-- Login/Logout
-- Reservierung
-- Bezahlvorgang
+- Registrierung <<U1>>
+- Benzinbestellung <<U2>>
+- Rabatt <<U3>>
+- Altersabfrage <<U4>>
+- Login/Logout <<U5>>
+- Reservierung <<U6>>
+- Bezahlvorgang <<U7>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -51,11 +51,11 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID   |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|<<U1>>  |Registrierung            |ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
-|U-2  |Benzinbestellung            |Manager will Benzin nachbestellen              |Benzin: 50.200 Liter       |Fehler, Bestellmenge zu hoch
-|U-3  |Rabatt            |Kunde löst Rabatt an Kasse bei Mitarbeiter ein              |Rabatt: 40%       |Fehler, höchstens 30% Rabatt möglich
-|U-4  |Altersabfrage            |Kunde will Zigaretten und Alkohol kaufen            |Alter: 17       |Fehler, Kunde zu jung
-|U-5  |Login/Logout           |ein authentifizierter Benutzer nutzt das System              |Betätigen des "Ausloggen"-Button       |Ausloggen erfolgreich
-|U-6  |Reservierung            |ein Kunde will einen Tisch bei Mcsit reservieren              |Datum, Uhrzeit       |Reservierung erfolgreich
-|U-7  |Bezahlvorgang            |ein Kunde will seine Rechnung(45.00€) begleichen              |40.00€       |Fehler, Betrag nicht ausreichend
+|[[U1]]**<<U1>>**  |Registrierung            |ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
+|[[U2]]**<<U2>>**  |Benzinbestellung            |Manager will Benzin nachbestellen              |Benzin: 50.200 Liter       |Fehler, Bestellmenge zu hoch
+|[[U3]]**<<U3>>**  |Rabatt            |Kunde löst Rabatt an Kasse bei Mitarbeiter ein              |Rabatt: 40%       |Fehler, höchstens 30% Rabatt möglich
+|[[U4]]**<<U4>>**  |Altersabfrage            |Kunde will Zigaretten und Alkohol kaufen            |Alter: 17       |Fehler, Kunde zu jung
+|[[U5]]**<<U5>>**  |Login/Logout           |ein authentifizierter Benutzer nutzt das System              |Betätigen des "Ausloggen"-Button       |Ausloggen erfolgreich
+|[[U6]]**<<U6>>**  |Reservierung            |ein Kunde will einen Tisch bei Mcsit reservieren              |Datum, Uhrzeit       |Reservierung erfolgreich
+|[[U7]]**<<U7>>**  |Bezahlvorgang            |ein Kunde will seine Rechnung(45.00€) begleichen              |40.00€       |Fehler, Betrag nicht ausreichend
 |===
