@@ -3,20 +3,30 @@
 Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
-Wozu dient das Dokument? Zielgruppe?
+Der Testplan wird erstellt, um den Testprozess des jeweiligen Produktes zu beschreiben und folgende Aspekte zu klären:
+
+- die Auswahl der richtigen Strategien für verschiedene Tests von Software-Komponenten
+- Verteilung der Aufgaben zwischen den Teammitgliedern
+- Priorität der Fragen
+- Ressourcenplanung
+- cie Nutzung der erforderlichen Software und Hardware
+- Abschätzung der Risiken, die während der Prüfung auftreten können.
 
 == Aufbau der Testbezeichner
-Nach welchem Schema sind die Tests benannt?
 
-*Bsp.*
-
-*U - Unit Test, I - Integrationstest*
-
-*U-1, U-2, I-1*
+U - Unit Test, I - Integrationstest
+U-1, U-2, I-1
 
 == Test Gegenstände
 
 == Zu testende Funktionalitäten
+- Registrierung
+- Benzinbestellung
+- Rabatt
+- Altersabfrage
+- Login/Logout
+- Reservierung
+- Bezahlvorgang
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -41,10 +51,11 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|U-1  |Registrierung            |Ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
+|U-1  |Registrierung            |ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
 |U-2  |Benzinbestellung            |Manager will Benzin nachbestellen              |Benzin: 50.200 Liter       |Fehler, Bestellmenge zu hoch
 |U-3  |Rabatt            |Kunde löst Rabatt an Kasse bei Mitarbeiter ein              |Rabatt: 40%       |Fehler, höchstens 30% Rabatt möglich
 |U-4  |Altersabfrage            |Kunde will Zigaretten und Alkohol kaufen            |Alter: 17       |Fehler, Kunde zu jung
 |U-5  |Login/Logout           |ein authentifizierter Benutzer nutzt das System              |Betätigen des "Ausloggen"-Button       |Ausloggen erfolgreich
 |U-6  |Reservierung            |ein Kunde will einen Tisch bei Mcsit reservieren              |Datum, Uhrzeit       |Reservierung erfolgreich
+|U-7  |Bezahlvorgang            |ein Kunde will seine Rechnung(45.00€) begleichen              |40.00€       |Fehler, Betrag nicht ausreichend
 |===
