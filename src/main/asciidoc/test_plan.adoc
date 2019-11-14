@@ -9,13 +9,14 @@ Der Testplan wird erstellt, um den Testprozess unserer Anwendung zu beschreiben 
 - Verteilung der Aufgaben zwischen den Teammitgliedern
 - Priorität der Fragen
 - Ressourcenplanung
-- cie Nutzung der erforderlichen Software und Hardware
+- die Nutzung der erforderlichen Software und Hardware
 - Abschätzung der Risiken, die während der Prüfung auftreten können.
 
 == Aufbau der Testbezeichner
 
-U - Unit Test, I - Integrationstest +
-U1, U2, I1
+U - Unit Test, I - Integrationstest
+
+zum Beispiel: U1, U2, I1
 
 == Test Gegenstände
 
