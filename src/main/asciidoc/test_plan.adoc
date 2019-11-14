@@ -20,7 +20,7 @@ U1, U2, I1
 == Test Gegenstände
 
 == Zu testende Funktionalitäten
-- Registrierung **<<U1>>**
+- Registrierung [[U1]]**<<U1>>**
 - Benzinbestellung
 - Rabatt
 - Altersabfrage
