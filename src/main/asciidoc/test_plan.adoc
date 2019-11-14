@@ -14,13 +14,13 @@ Der Testplan wird erstellt, um den Testprozess unserer Anwendung zu beschreiben 
 
 == Aufbau der Testbezeichner
 
-U - Unit Test, I - Integrationstest
-U-1, U-2, I-1
+U - Unit Test, I - Integrationstest +
+U1, U2, I1
 
 == Test Gegenstände
 
 == Zu testende Funktionalitäten
-- Registrierung
+- Registrierung **<<U1>>**
 - Benzinbestellung
 - Rabatt
 - Altersabfrage
@@ -50,8 +50,8 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|U-1  |Registrierung            |ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
+|ID   |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|<<U1>>  |Registrierung            |ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
 |U-2  |Benzinbestellung            |Manager will Benzin nachbestellen              |Benzin: 50.200 Liter       |Fehler, Bestellmenge zu hoch
 |U-3  |Rabatt            |Kunde löst Rabatt an Kasse bei Mitarbeiter ein              |Rabatt: 40%       |Fehler, höchstens 30% Rabatt möglich
 |U-4  |Altersabfrage            |Kunde will Zigaretten und Alkohol kaufen            |Alter: 17       |Fehler, Kunde zu jung
