@@ -41,5 +41,10 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+|U-1  |Registrierung            |Ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
+|U-2  |Benzinbestellung            |Manager will Benzin nachbestellen              |Benzin: 50.200 Liter       |Fehler, Bestellmenge zu hoch
+|U-3  |Rabatt            |Kunde löst Rabatt an Kasse bei Mitarbeiter ein              |Rabatt: 40%       |Fehler, höchstens 30% Rabatt möglich
+|U-4  |Altersabfrage            |Kunde will Zigaretten und Alkohol kaufen            |Alter: 17       |Fehler, Kunde zu jung
+|U-5  |Login/Logout           |ein authentifizierter Benutzer nutzt das System              |Betätigen des "Ausloggen"-Button       |Ausloggen erfolgreich
+|U-6  |Reservierung            |ein Kunde will einen Tisch bei Mcsit reservieren              |Datum, Uhrzeit       |Reservierung erfolgreich
 |===
