@@ -1,5 +1,6 @@
 package kickstart.ReservationPrototype;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import org.salespointframework.core.DataInitializer;
 import org.springframework.stereotype.Component;
@@ -16,11 +17,8 @@ public class ReservationDataInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-		GregorianCalendar date = new GregorianCalendar();
-		date.set(2020, 6, 12, 13, 10);
-		repo.save(new Reservation("1234", date.getTime()));
-		date.set(2019, 7, 22, 23, 15);
-		repo.save(new Reservation("5678", date.getTime()));
+		repo.save(new Reservation("Max", LocalDateTime.of(2019,12,4,13,12)));
+		repo.save(new Reservation("Mustermann", LocalDateTime.of(2019,12,6,15,15)));
 	}
 	
 	

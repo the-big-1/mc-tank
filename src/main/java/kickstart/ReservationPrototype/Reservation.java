@@ -1,6 +1,7 @@
 package kickstart.ReservationPrototype;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,11 +12,11 @@ public class Reservation {
 	private long id;
 	
 	private String name;
-	private Date date;
+	private LocalDateTime date;
 	
 	public Reservation() {}
 	
-	public Reservation(String name, Date date) {
+	public Reservation(String name, LocalDateTime date) {
 		this.name = name;
 		this.date = date;
 	}
@@ -24,7 +25,7 @@ public class Reservation {
 		return this.name;
 	}
 	
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return this.date;
 	}
 }

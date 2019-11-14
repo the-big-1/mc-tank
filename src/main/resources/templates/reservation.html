@@ -17,9 +17,22 @@
 			<tbody>
 				<tr th:each="reservation : ${reservations}">
 					<td th:text="${reservation.name}">Name<td> 
-					<td th:text="${#dates.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum<td> 
+					<td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum<td> 
 				</tr>
 			</tbody>
 		</table>
+		<form method="post" action="#" id="form" th:action="@{/reservation}" th:object="${form}">
+		<div>
+			<input th:field="*{name}" type="text"/>
+			<br/>
+            <label for="date">Datum</label>
+            <input th:field="*{date}" type="date"/>
+			<br/>
+			<label for="time">Zeit</label>
+            <input th:field="*{time}" type="time"/>
+			<br/>
+			<input type="submit" value="Submit"/>
+        </div>
+		</form>
 	</body>
 </html>
