@@ -48,7 +48,7 @@ Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen k
 - Maus +
 - Tastatur +
 * Software-Vorgaben +
-Benötigte Software zum Benutzen der Anwendung:  
+Benötigte Software zum Benutzen der Anwendung: + 
 Java Version: mind. Java 11 +
 Browser Versionen: 
 - Mozilla Firefox, version 55.0.3 +
