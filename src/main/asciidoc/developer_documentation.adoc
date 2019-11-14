@@ -48,14 +48,11 @@ Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen k
 - Maus +
 - Tastatur +
 * Software-Vorgaben +
-Benötigte Software zum Benutzen der Anwendung: + 
-
-Java Version: +
--mind. Java 11 +
-
-Browser Versionen: +
--Mozilla Firefox, version 55.0.3 +
--Google Chrome, version 61.0.3163 +
+Benötigte Software zum Benutzen der Anwendung:  
+Java Version: mind. Java 11 +
+Browser Versionen: 
+- Mozilla Firefox, version 55.0.3 +
+- Google Chrome, version 61.0.3163 +
 
 * Vorgaben zum Betrieb des Software +
 Hier wird beschrieben, wie die Anwendung benutzt werden soll, wenn sie fertig ist und unter welchen Umständen.
