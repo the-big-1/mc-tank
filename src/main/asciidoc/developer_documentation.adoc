@@ -48,12 +48,15 @@ Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen k
 - Maus +
 - Tastatur +
 * Software-Vorgaben +
-Benötigte Software zum Benutzen der Anwendung: +
+Benötigte Software zum Benutzen der Anwendung: + 
+
 Java Version: +
 -mind. Java 11 +
+
 Browser Versionen: +
 -Mozilla Firefox, version 55.0.3 +
 -Google Chrome, version 61.0.3163 +
+
 * Vorgaben zum Betrieb des Software +
 Hier wird beschrieben, wie die Anwendung benutzt werden soll, wenn sie fertig ist und unter welchen Umständen.
 
@@ -70,7 +73,7 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 [options="header"]
 |=== 
 |Qualitätsziel              |Lösungsansatz
-|Warbarkeit                a| * Modularität: Stellt bessere Überschaubarkeit sicher und es können einzelne Komponenten verändert/bearbeitet werden ohne Einfluss auf die ganze Anwendung zu haben. 
+|Wartbarkeit                a| * Modularität: Stellt bessere Überschaubarkeit sicher und es können einzelne Komponenten verändert/bearbeitet werden ohne Einfluss auf die ganze Anwendung zu haben. 
                               * Wiederverwendbarkeit: Einzelne Komponenten sollen für andere Aufgaben wiederverwendet werden können.
 
 |Erweiterbarkeit           a| * Modularität: Es können leicht neuer Features in die Anwendung integriert werden. 
