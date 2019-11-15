@@ -14,15 +14,21 @@
     		<header>
         		<h1>Add new Item</h1>
     		</header>
-    		<form th:action="@{/newItem.html}" method="post" th:object="${form}">
+    		<form th:action="@{/newItem}" method="post" th:object="${form}">
     			<div class="field">
     				<label> Name </label>
-    				<input th:field="*{productName}" type="text"/> <!-- FEHLER-->
+    				<input type="text" th:field="*{productName}" required="required" />
     			</div>
+
+                <div class="field">
+                    <label> Preis </label>
+                    <input th:field="*{price}" type="text" required="required" />
+                </div>
     			
+                <button type="submit"> OK </button>
     		</form>
 
-    		<!--<a href='/catalog'><button>Back to Catalog</button></a>-->
+    		<a href='/catalog'><button>Back to Catalog</button></a>
 		</div>
 	</body>
 

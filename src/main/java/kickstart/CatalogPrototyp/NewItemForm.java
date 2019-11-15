@@ -1,18 +1,18 @@
 package kickstart.CatalogPrototyp;
 
-import javax.money.MonetaryAmount;
 import javax.validation.constraints.NotEmpty;
 
 class NewItemForm {
 
 	@NotEmpty(message = "Name darf nicht leer sein.") //
-	private final String productName;
+	private String productName;
 
 	@NotEmpty(message = "Preis darf nicht leer sein.") //
-	private final MonetaryAmount price;
+	private String price;
+	
+	
 
-
-	public NewItemForm(String productName, MonetaryAmount price) {
+	public NewItemForm(String productName, String price) {
 
 		this.productName = productName;
 		this.price = price;
@@ -21,9 +21,11 @@ class NewItemForm {
 	public String getProductName() {
 		return productName;
 	}
-	
-	public MonetaryAmount getPrice() {
+
+
+	public String getPrice() {
 		return price;
 	}
+
 }
 

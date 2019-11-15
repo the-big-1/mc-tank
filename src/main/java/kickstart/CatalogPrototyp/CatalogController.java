@@ -14,19 +14,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CatalogController{
 	
 	private final CatalogPrototyp catalog;
+	private final CatalogManagement management;
 	
 	
-	public CatalogController(CatalogPrototyp catalog) {
+	public CatalogController(CatalogPrototyp catalog, CatalogManagement management) {
 		this.catalog = catalog;
+		this.management = management;
 	}
+	
+	
+	//----------------------------------------------------------
  	
 	
 	@RequestMapping("/catalog")
-	public String catalogPage (Model model, NewItemForm form){
+	public String catalogPage (Model model){
 		model.addAttribute("catalog", catalog.findAll());
 		return "catalog";
 	}
+		
+	@RequestMapping("/newItem")
+	public String newItem(Model model, NewItemForm form){  //in der Methode übergeben erzeugt hier ein neues Form
+		model.addAttribute("form", form);
+		
+		return"newItem";
+		
+	}
 	
+	//---------------------------------------------------------
+		
 	@PostMapping("/newItem")
 	String registerNew(@Valid NewItemForm form, Errors result) {
 
@@ -34,16 +49,11 @@ public class CatalogController{
 			return "newItem";
 		}
 
-		//CatalogManagement.createNewProduct(form);
+		management.createNewProduct(form);
 
 		return "redirect:/catalog";
 	}
-	
-	@RequestMapping("/newItem")
-	public String newItem(){
-		return"newItem";
-	}
-	
+		
 	
 	
 }

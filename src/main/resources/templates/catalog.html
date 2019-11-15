@@ -9,6 +9,13 @@
 
 	<body>
 		<h1>Hier wird ein catalog gehardcoded.</h1>
+
+		<div class="ui card" th:each="product : ${catalog}">
+			<a th:text="${product.name}"> Produktname </a>
+			<a th:text="${product.price}"> Preis </a>
+
+		</div>
+
 		<a href='/newItem'><button>New Item</button></a>
 	</body>
 
