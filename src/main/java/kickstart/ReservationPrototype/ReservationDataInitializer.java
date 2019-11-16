@@ -1,7 +1,6 @@
 package kickstart.ReservationPrototype;
 
 import java.time.LocalDateTime;
-import java.util.GregorianCalendar;
 import org.salespointframework.core.DataInitializer;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;

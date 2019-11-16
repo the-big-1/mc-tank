@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class ReservationForm {
-	@NotEmpty(message="Name must be not empty.")
+	@NotEmpty
+	@Size(min=3)
 	private String name;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")

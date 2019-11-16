@@ -6,7 +6,7 @@
 		<title>Reservation</title>
 	</head>
 	<body>
-		<h1>Reservations</h1>
+		<h1>Reservierungen</h1>
 		<table>
 			<thead>
 				<tr>
@@ -21,17 +21,25 @@
 				</tr>
 			</tbody>
 		</table>
+		<br/>
+		<br/>
+		<h3>Reservierung hinzufügen</h3>
 		<form method="post" action="#" id="form" th:action="@{/reservation}" th:object="${form}">
 		<div>
-			<input th:field="*{name}" type="text"/>
+			<label for="name">Name</label>
+			<br/>
+			<input th:field="*{name}" type="text" required="required"/>
 			<br/>
             <label for="date">Datum</label>
-            <input th:field="*{date}" type="date"/>
 			<br/>
-			<label for="time">Zeit</label>
-            <input th:field="*{time}" type="time"/>
+            <input th:field="*{date}" type="date" required="required"/>
 			<br/>
-			<input type="submit" value="Submit"/>
+			<label for="time">Uhrzeit</label>
+			<br/>
+            <input th:field="*{time}" type="time" required="required"/>
+			<br/>
+			<br/>
+			<input type="submit" value="Hinzufügen"/>
         </div>
 		</form>
 	</body>

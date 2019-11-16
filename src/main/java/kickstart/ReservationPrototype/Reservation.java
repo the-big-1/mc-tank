@@ -14,6 +14,7 @@ public class Reservation {
 	private String name;
 	private LocalDateTime date;
 	
+	@SuppressWarnings("unused")
 	private Reservation() {}
 	
 	public Reservation(String name, LocalDateTime date) {

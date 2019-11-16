@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,7 +29,11 @@ public class ReservationController {
 	}
 	
 	@PostMapping(value="/reservation")
-	public String reserve(@Valid ReservationForm form, Errors result) {
+	public String reserve(@Valid ReservationForm form, BindingResult result) {
+		// simply redirect if there is errors for now
+		if (result.hasErrors()) return "redirect:/reservation";
+		
+		// else save and redirect
 		repo.save(new Reservation(form.getName(), LocalDateTime.of(form.getDate(), form.getTime())));
 		return "redirect:/reservation";
 	}
