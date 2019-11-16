@@ -14,7 +14,7 @@ public class Reservation {
 	private String name;
 	private LocalDateTime date;
 	
-	public Reservation() {}
+	private Reservation() {}
 	
 	public Reservation(String name, LocalDateTime date) {
 		this.name = name;
