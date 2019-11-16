@@ -118,6 +118,8 @@ image:models/design/CatalogUML.svg[]
 ||
 |===
 
+=== Reservation
+image:models/design/ReservationUML.svg[]
 
 [options="header"]
 |=== 
@@ -140,6 +142,9 @@ image:models/design/CatalogSD.svg[]
 
 === Inventory
 image:models/design/InventorySD.svg[]
+
+=== Reservation
+image:models/design/ReservationSequence.svg[]
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
