@@ -4,6 +4,7 @@
 |Version | Bearbeitungsdatum   | Autor 
 |0.1	| 13.11 | David L
 |0.2	| 14.11 | Vivien
+|0.3  | 16.11 | David
 |===
 
 = Entwicklerdokumentation
@@ -42,11 +43,12 @@ Sicherheit: wie sicher soll die Software/die enthaltenen Daten sein
 
 == Randbedingungen
 * Hardware-Vorgaben +
-Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen kann+
+Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen kann +
 - Server +
 - Computer +
 - Maus +
 - Tastatur +
+
 * Software-Vorgaben +
 Benötigte Software zum Benutzen der Anwendung: + 
 Java Version: mind. Java 11 +
@@ -103,10 +105,25 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 == Bausteinsicht
 * Entwurfsklassendiagramme der einzelnen Packages
 
+=== Catalog
+image:models/design/CatalogUML.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|Catalog | listet alle Produkte der Firma nach McPoints sortiert auf
+|CatalogContoller | ein Spring MVC Controller um Anfragen zu bearbeiten
+|NewItemForm | nimmt die Daten für ein neues Item auf und validiert sie
+|CatalogManagement | Klasse um Items zu organisieren und anzulegen
+||
+|===
+
+
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
 |===
+
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
@@ -117,6 +134,12 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 
 == Laufzeitsicht
 * Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
+
+=== Catalog
+image:models/design/CatalogSD.svg[]
+
+=== Inventory
+image:models/design/InventorySD.svg[]
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
