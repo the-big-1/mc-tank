@@ -5,6 +5,7 @@
 |0.1	| 13.11 | David L
 |0.2	| 14.11 | Vivien
 |0.3  | 16.11 | David
+|0.4  | 16.11 | Christoph
 |===
 
 = Entwicklerdokumentation
@@ -120,6 +121,26 @@ image:models/design/CatalogUML.svg[]
 
 === Reservation
 image:models/design/ReservationUML.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|Reservation | repräsentiert eine Reservierung
+|ReservationController | Spring Controller, bearbeitet Anfragen wie das Hinzufügen einer neuen Reservierung
+|ReservationRepository | Interface (Spring Crudrepository) zum speichern von Reservations
+|ReservationDataInitializer | initialisiert die ReservationRepository
+|ReservationForm | repräsentiert und validiert Eingaben des Nutzers
+|===
+
+=== Inventory
+image:models/design/InventoryUML.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|InventoryController | Spring Controller, stellt das Inventory für den Nutzer dar
+|InventoryInitializer | initialisiert das Salespoint UniqueInventory
+|===
 
 [options="header"]
 |=== 
