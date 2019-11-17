@@ -97,6 +97,8 @@ image:models/design/Kontext_Diagramm_Dev.svg[]
 * Persistenz
   - Kundendaten und Rechnungen werden in einer H2 Datenbank von Spring gespeichert
 * Benutzeroberfläche
+image:models/design/UserInterfaceDiagram.svg[]
+
 * Verwendung externer Frameworks
 
 [options="header", cols="1,3,3"]
