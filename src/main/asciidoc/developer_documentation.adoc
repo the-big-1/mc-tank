@@ -68,7 +68,7 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 
 
 == Kontextabgrenzung
-* Kontextdiagramm
+image:models/design/Kontext_Diagramm_Dev.svg[]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
@@ -151,6 +151,20 @@ image:models/design/ReservationUML.svg[]
 |ReservationForm | repräsentiert und validiert Eingaben des Nutzers
 |===
 
+=== Customer
+image:models/design/Customer_Class_Diagramm.svg[]
+
+[options="header"]
+|===
+|Klasse/Enumeration|Description
+|Customer | repräsentiert einen Kunden
+|CustomerController | Spring MVC Controller um Anfragen bearbeiten
+|CustomerRepository | Interface (Spring Crudrepository) zum speichern von Customers
+|CustomerManagement | Service KLasse für Customer
+|CustomerDataInitializer | erstellt USeraccounts für Mitabeiter und Boss eventuelle Bestandskunden
+|RegistrationForm | repräsentiert und validiert Eingaben des Nutzers
+|===
+
 === Inventory
 image:models/design/InventoryUML.svg[]
 
@@ -185,6 +199,9 @@ image:models/design/InventorySD.svg[]
 
 === Reservation
 image:models/design/ReservationSequence.svg[]
+
+=== Customer
+image:models/design/CustomerSD.svg[]
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
