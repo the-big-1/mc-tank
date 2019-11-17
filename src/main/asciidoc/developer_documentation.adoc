@@ -6,6 +6,7 @@
 |0.2	| 14.11 | Vivien
 |0.3  | 16.11 | David
 |0.4  | 16.11 | Christoph
+|0.5  | 17.11 | Vivien
 |===
 
 = Entwicklerdokumentation
@@ -122,6 +123,7 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 |McTank | Spring container, bringt die Anwendung zum Laufen
 |McTankWebConfiguration | leitet /login direkt zum login.html template
 |WebSecurityConfiguration | baut die grundlegende Sicherheit und die Login/Logout Option auf
+|===
 
 === Catalog
 image:models/design/CatalogUML.svg[]
