@@ -76,7 +76,8 @@ Die Testfälle werden vor dem Code entwickelt, damit nur Dinge implementiert wer
 - es wird ein automatisch wiederholbarer JUnit-Test geschrieben und dann der zu testende Code. Der Test ist selbst ein Stück Software und wird ebenso wie der zu testende Code programmiert.
 * Wird zusätzliche Software für das Testen benötigt?
 
-jUnit
+- jUnit
+
 * Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
 - 
 
