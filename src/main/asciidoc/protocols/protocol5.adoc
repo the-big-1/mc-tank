@@ -1,0 +1,60 @@
+= Protokoll Gruppe 18
+
+Treffen am 14.11.2019
+
+Ort:      APB +
+Beginn:   14:50 Uhr +
+Ende:     16:20 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+19.11.2019, 13:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David (Scrum Master)
+- Christoph
+- Artem
+- Clemens
+- Vivien 
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+Das wöchentliche Treffen mit dem Tutor wird auf dienstags 4.DS im APB verlegt.
+In den nächsten zwei Wochen wird die Zwischenpräsentation unseres Projektes stattfinden.
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/11[11]     |Catalog Prototyp       |in Bearbeitung     |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/13[12]     |Rabatt Prototyp       |in Bearbeitung     |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/12[13]     |Reservierung Prototyp       |in Bearbeitung     |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/18[14]    |Kundenkonto Prototyp      |in Bearbeitung      |…
+|15     |…       |in Bearbeitung      |…
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/16[16]    |dUML Diagramme     |Entwurfsklassendiagramme werden digitalisiert und in die Entwicklerdokumentation eingefügt            |alle               |in Arbeit
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/15[17]    |Sequenzdiagramme     |Sequenzdiagramme werden digitalisiert und in die Entwicklerdokumentation eingefügt            |alle               |in Arbeit
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/14[18]    |Entwicklerdokumentation     |jeder bearbeitet einen Teilbereich der Entwicklerdokumentation           |alle               |in Arbeit
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/17[19]    |Testplan    |Testfälle aus dem Pflichtenheft werden in den Testplan übertragen           |alle               |in Arbeit
+|===

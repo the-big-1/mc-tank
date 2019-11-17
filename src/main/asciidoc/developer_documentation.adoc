@@ -6,6 +6,7 @@
 |0.2	| 14.11 | Vivien
 |0.3  | 16.11 | David
 |0.4  | 16.11 | Christoph
+|0.5  | 17.11 | Vivien
 |===
 
 = Entwicklerdokumentation
@@ -49,6 +50,7 @@ Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen k
 - Computer +
 - Maus +
 - Tastatur +
+- mobiles Gerät (z.B Tablet) +
 
 * Software-Vorgaben +
 Benötigte Software zum Benutzen der Anwendung: + 
@@ -66,7 +68,7 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 
 
 == Kontextabgrenzung
-* Kontextdiagramm
+image:models/design/Kontext_Diagramm_Dev.svg[]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
@@ -100,11 +102,28 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 [options="header", cols="1,3,3"]
 |===
 |Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
-|... |... |...
+|salespointframework.catalog    |org.salespointframework.catalog.* |catalog.Catalog
+|salespointframework.inventory  ||inventory.Inventory
+|salespointframework.quantity   ||invnetory.Inventory
+|salespointframework.SalespointSecurityConfiguration ||mctank.WebSecurityConfiguration
+|springframework.boot           |org.springframework.boot.SpringApplication |mctank.McTank
+|springframework.ui             |org.springframework.ui.* |all Contoller
+|springframework.validation     ||catalog.CatalogController
+|springframework.web            |org.springframework.web.bind.* |mctank.McTankWebConfiguration
 |===
 
 == Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+
+=== McTank
+image:models/design/mctank.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|McTank | Spring container, bringt die Anwendung zum Laufen
+|McTankWebConfiguration | leitet /login direkt zum login.html template
+|WebSecurityConfiguration | baut die grundlegende Sicherheit und die Login/Logout Option auf
+|===
 
 === Catalog
 image:models/design/CatalogUML.svg[]
@@ -130,6 +149,20 @@ image:models/design/ReservationUML.svg[]
 |ReservationRepository | Interface (Spring Crudrepository) zum speichern von Reservations
 |ReservationDataInitializer | initialisiert die ReservationRepository
 |ReservationForm | repräsentiert und validiert Eingaben des Nutzers
+|===
+
+=== Customer
+image:models/design/Customer_Class_Diagramm.svg[]
+
+[options="header"]
+|===
+|Klasse/Enumeration|Description
+|Customer | repräsentiert einen Kunden
+|CustomerController | Spring MVC Controller um Anfragen bearbeiten
+|CustomerRepository | Interface (Spring Crudrepository) zum speichern von Customers
+|CustomerManagement | Service KLasse für Customer
+|CustomerDataInitializer | erstellt USeraccounts für Mitabeiter und Boss eventuelle Bestandskunden
+|RegistrationForm | repräsentiert und validiert Eingaben des Nutzers
 |===
 
 === Inventory
@@ -166,6 +199,9 @@ image:models/design/InventorySD.svg[]
 
 === Reservation
 image:models/design/ReservationSequence.svg[]
+
+=== Customer
+image:models/design/CustomerSD.svg[]
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues
