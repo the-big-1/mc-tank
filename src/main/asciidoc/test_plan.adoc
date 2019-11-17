@@ -14,11 +14,29 @@ Der Testplan wird erstellt, um den Testprozess unserer Anwendung zu beschreiben 
 
 == Aufbau der Testbezeichner
 
-U - Unit Test, I - Integrationstest
+U = Unit Test:
+- prüft Einzelteile eines Computerprogrammes auf Funktionalität
+
+I = Integrationstest:
+- eine Reihe von aufeinander abgestimmten Einzeltests, die dazu dienen, verschiedene voneinander abhängige Komponenten eines komplexen Systems im Zusammenspiel miteinander zu testen
+- die einzelnen Komponenten sollten einen Unit-Test bestanden haben
 
 zum Beispiel: U1, U2, I1
 
 == Test Gegenstände
+Die gesamte Anwendung von McTank bestehend aus
+- McZapf
+- McWash
+- McSit
+- McDrive
+- registrierter Kunde
+- nicht registrierter Kunde
+- Manager
+- Mitarbeiter
+- Catalog
+- Inventory
+- Order
+
 
 == Zu testende Funktionalitäten
 - Registrierung <<U1>>
@@ -31,19 +49,30 @@ zum Beispiel: U1, U2, I1
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
+- Daten der Zapfsäulen
+- gegebene Bibliotheken oder Frameworks
 
 == Herangehensweise
-*Bsp.:*
+Die Units bzw. Klassen werden mit JUnit getestet.
+Die Testfälle werden vor dem Code entwickelt, damit nur Dinge implementiert werden, die auch getestet werden können, um somit Fehler beim Programmieren zu vermeiden.
 
-*Klassen werden mit JUnit getestet.*
-
-*Integrationstest nach Bottom-Up Prinzip*
+1. Testfälle ausdenken / Testfalltabellen erstellen
+- Bestimme die Extremwerte der Parameter der zu testenden Methode (Grenzwertanalyse, Nullwerte immer testen, z.B. 0 oder null, Randwerte z.B. 1.1. und 31.12.)
+- Bestimme Bereichseinschränkungen (Werte außerhalb eines Zahlenbereiches, Negative Werte, wenn natürliche Zahlen im Spiel sind)
+- Bestimme Zustände, in denen sich ein Objekt nach einer Anweisung befinden muss
+2. Testfälle in Klassen gruppieren
+3. pro Testfall eine Testmethode schreiben
+4. Testfälle (nach Änderungen im Programm wiederholt) ausführen = Regressionstest
 
 == Umgebungsvoraussetzungen
 * Wird spezielle Hardware benötigt?
+- keine spezielle Hardware, die Tests werden mit in das eigentliche Programm integriert
 * Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
+- es wird ein automatisch wiederholbarer JUnit-Test geschrieben und dann der zu testende Code. Der Test ist selbst ein Stück Software und wird ebenso wie der zu testende Code programmiert.
 * Wird zusätzliche Software für das Testen benötigt?
+jUnit
 * Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
+- 
 
 == Testfälle und Verantwortlichkeit
 Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
