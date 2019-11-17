@@ -15,27 +15,30 @@ Der Testplan wird erstellt, um den Testprozess unserer Anwendung zu beschreiben 
 == Aufbau der Testbezeichner
 
 U = Unit Test:
+
 - prüft Einzelteile eines Computerprogrammes auf Funktionalität
 
 I = Integrationstest:
+
 - eine Reihe von aufeinander abgestimmten Einzeltests, die dazu dienen, verschiedene voneinander abhängige Komponenten eines komplexen Systems im Zusammenspiel miteinander zu testen
 - die einzelnen Komponenten sollten einen Unit-Test bestanden haben
 
 zum Beispiel: U1, U2, I1
 
 == Test Gegenstände
-Die gesamte Anwendung von McTank bestehend aus
-- McZapf
-- McWash
-- McSit
-- McDrive
-- registrierter Kunde
-- nicht registrierter Kunde
-- Manager
-- Mitarbeiter
-- Catalog
-- Inventory
-- Order
+Die gesamte Anwendung von McTank bestehend aus 
+
+- McZapf 
+- McWash 
+- McSit 
+- McDrive 
+- registrierter Kunde 
+- nicht registrierter Kunde 
+- Manager 
+- Mitarbeiter 
+- Catalog 
+- Inventory 
+- Order 
 
 
 == Zu testende Funktionalitäten
@@ -49,6 +52,7 @@ Die gesamte Anwendung von McTank bestehend aus
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
+
 - Daten der Zapfsäulen
 - gegebene Bibliotheken oder Frameworks
 
