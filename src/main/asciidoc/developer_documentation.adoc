@@ -115,7 +115,7 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 == Bausteinsicht
 
 === McTank
-
+image:models/design/mctank.svg[]
 
 [options="header"]
 |=== 
