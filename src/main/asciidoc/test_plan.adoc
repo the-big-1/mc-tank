@@ -70,10 +70,12 @@ Die Testfälle werden vor dem Code entwickelt, damit nur Dinge implementiert wer
 
 == Umgebungsvoraussetzungen
 * Wird spezielle Hardware benötigt?
+
 - keine spezielle Hardware, die Tests werden mit in das eigentliche Programm integriert
 * Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
 - es wird ein automatisch wiederholbarer JUnit-Test geschrieben und dann der zu testende Code. Der Test ist selbst ein Stück Software und wird ebenso wie der zu testende Code programmiert.
 * Wird zusätzliche Software für das Testen benötigt?
+
 jUnit
 * Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
 - 
