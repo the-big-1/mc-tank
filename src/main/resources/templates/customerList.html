@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+</head>
+	<body>
+		<div class="ui link cards" th:remove="all-but-first">
+        	<div class="ui card" th:each=" customer : ${customerList}"> 
+            	<div class="content">
+               	 	<a class="header" th:text="${customer.userAccount.Username}"></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
