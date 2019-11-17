@@ -112,7 +112,16 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 |===
 
 == Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+
+=== McTank
+
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|McTank | Spring container, bringt die Anwendung zum Laufen
+|McTankWebConfiguration | leitet /login direkt zum login.html template
+|WebSecurityConfiguration | baut die grundlegende Sicherheit und die Login/Logout Option auf
 
 === Catalog
 image:models/design/CatalogUML.svg[]
