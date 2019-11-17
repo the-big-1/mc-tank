@@ -56,6 +56,5 @@ Dokumenten.
 |https://github.com/st-tu-dresden-praktikum/swt19w18/issues/16[16]    |dUML Diagramme     |Entwurfsklassendiagramme werden digitalisiert und in die Entwicklerdokumentation eingefügt            |alle               |in Arbeit
 |https://github.com/st-tu-dresden-praktikum/swt19w18/issues/15[17]    |Sequenzdiagramme     |Sequenzdiagramme werden digitalisiert und in die Entwicklerdokumentation eingefügt            |alle               |in Arbeit
 |https://github.com/st-tu-dresden-praktikum/swt19w18/issues/14[18]    |Entwicklerdokumentation     |jeder bearbeitet einen Teilbereich der Entwicklerdokumentation           |alle               |in Arbeit
-https://github.com/st-tu-dresden-praktikum/swt19w18/issues/17
 |https://github.com/st-tu-dresden-praktikum/swt19w18/issues/17[19]    |Testplan    |Testfälle aus dem Pflichtenheft werden in den Testplan übertragen           |alle               |in Arbeit
 |===
