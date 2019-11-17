@@ -19,7 +19,7 @@ __Teilnehmer:__
 - Christoph
 - Artem
 - Clemens
-- Vivien
+- Vivien 
 
 == Bemerkungen
 Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
@@ -32,7 +32,11 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 [option="headers"]
 |===
 |Issue |Aufgabe |Status |Bemerkung
-|…     |…       |…      |…
+|11     |Catalog Prototyp       |in Bearbeitung     |…
+|12     |Rabatt Prototyp       |in Bearbeitung     |…
+|13     |Reservierung Prototyp       |in Bearbeitung     |…
+|14     |…       |in Bearbeitung      |…
+|15     |…       |in Bearbeitung      |…
 |===
 
 
