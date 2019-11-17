@@ -49,6 +49,7 @@ Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen k
 - Computer +
 - Maus +
 - Tastatur +
+- mobiles Gerät (z.B Tablet) +
 
 * Software-Vorgaben +
 Benötigte Software zum Benutzen der Anwendung: + 
@@ -100,7 +101,15 @@ Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in e
 [options="header", cols="1,3,3"]
 |===
 |Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
-|... |... |...
+|salespointframework.catalog |... |catalog.Catalog
+|salespointframework.inventory ||inventory.Inventory
+|salespointframework.quantity ||invnetory.Inventory
+|salespointframework.SalespointSecurityConfiguration ||mctank.WebSecurityConfiguration
+|springframework.boot||mctank.McTank
+|springframework.ui| | all Contoller
+|springframework.validation || catalog.CatalogController
+
+|springframework.web || mctank.McTankWebConfiguration
 |===
 
 == Bausteinsicht
