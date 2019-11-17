@@ -8,15 +8,14 @@
 </head>
 <body>
 <h1>Kasse</h1>
-Gesamtpreis: 35,76€ <br>
-<form class="ui form" method="post" th:action="@{/rabatt}">
-    <div class="field">
-        <input id="rabattcode" type="rabattcode" name="rabattcode" value="Rabattcode hinzufügen"/><br/>
-    </div>
-    <button type="submit" class="ui labeled icon button">
-        <span> Rabattcode einlösen</span>
-    </button> <br>
-    Endpreis:${endpreis}€
+Gesamtpreis: 12.99€
+<form  method="post" th:action="@{/rabatt}">
+    <input id="rabattCode" name="rabattCode" type="text"/>
+    <br/>
+    <button type="submit">Rabattcode einlösen</button>
 </form>
+<div>
+    <p>Endpreis:</p><p th:text="${preis}">EUR 12.99</p>
+</div>
 </body>
 </html>
