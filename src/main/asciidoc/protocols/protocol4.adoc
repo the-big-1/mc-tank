@@ -1,0 +1,65 @@
+= Protokoll Gruppe 18
+
+Treffen am 07.11.2019
+
+Ort:      APB Computerkabinett +
+Beginn:   14:50 Uhr +
+Ende:     16:20 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+14.11.2019, 14:50 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David (Scrum Master)
+- Christoph
+- Clemens
+- Vivien
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+Jeder erstellt einen Branch für seinen Prototypen. Wenn alle Prototypen fertig sind, werden diese gemergt und es gibt nur noch einen Branch für den vollständigen Prototypen. +
+
+Entwicklerdokumentation schreiben! +
+
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/6[6]     |UML digitalisieren       |fertig     |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/7[7]     |Use-Case-Diagramm       |fertig      |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/8[8]     |Kontextdiagramm       |fertig      |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/9[9]     |Sequenzdiagramm       |fertig     |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/10[10]     |Top-Level-Architektur      |fertig     |…
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+Analyseklassen-Diagramm und Use-Case-Diagramm überarbeiten (übersichtlicher) und weitere Kann-Kriterien in das Pflichtenheft hinzufügen. 
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/11[11]    |Katalog    |neues Item in Katalog          |David              |in Arbeit
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/13[12]     |Rabatt     |Rabattcode einlösen          |Vivien               |in Arbeit
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/12[13]     |Reservierung     |Reservierung hinzufügen          |Christoph              |in Arbeit
+|…     |Kundenkonto     |neues Kundenkonto anhand der Autokennzeichen          |Clemens              |…
+|…     |     |          |Artem              |…
+|===

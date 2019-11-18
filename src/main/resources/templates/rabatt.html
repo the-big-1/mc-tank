@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+    <title>Kasse</title>
+</head>
+<body>
+<h1>Kasse</h1>
+Gesamtpreis: 12.99€
+<form  method="post" th:action="@{/rabatt}">
+    <input id="rabattCode" name="rabattCode" type="text"/>
+    <br/>
+    <button type="submit">Rabattcode einlösen</button>
+</form>
+<div>
+    <p>Endpreis:</p><p th:text="${preis}">EUR 12.99</p>
+</div>
+</body>
+</html>

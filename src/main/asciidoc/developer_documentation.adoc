@@ -9,12 +9,47 @@
 
 == Einführung und Ziele
 * Aufgabenstellung
+
+McTank ist nach einer Gesamtsanierung wieder für seine Kunden an der A555 geöffnet. Nachdem der 99-jährige Geschäftsführer an zu hohem Zigarettenkonsum entschlafen ist, verschwindet nun auch der lochkartengesteuerte Großrechner und wird durch einen neues System für die Verwaltung ersetzt. Sie wurden mit der Entwicklung dieses Systems betraut. Die vier Kundenanlaufpunkte (Mc-Points) McZapf, McDrive, McSit und McWash sollen zentral von der Software gesteuert werden. McZapf bezeichnet den Zapfsäulenbereich, McDrive und McSit beziehen sich auf das Fast-Food-Restaurant und McWash ist der Oberbegriff für die Pflegeeinrichtungen wie Waschanlage, Staubsauger, Druckluftgerät, etc. Die wichtigste Geschäftsidee des neuen Leiters von McTank ist die Einführung eines Rabatt- und Vorbestellungssystems. Die Kunden sollen telefonisch Vorbestellungen bei McSit und McWash tätigen können. MacZapf und McDrive werden aufgrund der schnellen Abarbeitungszeit nicht in die telefonische Reservierungsverwaltung eingegliedert. Das Rabattsystem bezieht sich dann allerdings auf alle Mc-Points. Man stelle sich das folgendermaßen vor: Ein Kunde soll bei Inanspruchnahme eines Dienstes eine Art Identifizierung erhalten, mit der er dann auch an den anderen Mc-Points einkaufen darf. Verläßt der Kunde das Gelände, muss er an einer der Mc-Points den Gesamtbetrag bezahlen, wobei sich der Rabatt folgendermaßen errechnet: Es werden die Typen der genutzten McPoints gezählt (also nicht die Anzahl der Nutzungen). Diese Zahl mit 5 multipliziert ergibt den Gesamtrabatt auf den Gesamteinkaufspreis. Weiterhin soll mit dem neuen System die Benzinlagerverwaltung gehandhabt werden. Um die Dienste zu optimieren und einen längerfristigen Kundenstamm zu gewinnen, zum Beispiel Wochenendfahrer, sollen die Fahrer über Ihr Autokennzeichen registrierbar sein. Diese Registrierung, für die dem Kunden ein einmaliger Sonderrabatt gewährt wird, ist lediglich eine Option und an jedem Mc-Point möglich, auch wenn bereits eine anonyme Identifizierung des Kunden an einem anderen McPoint vorgenommen wurde. Eine Gesamtabrechnung soll dann die in den letzten 100 Tagen getätigten Einkäufe aufgegliedert nach Kennzeichen anzeigen können. Jeweils am Jahresende sollen alle Kundendaten älter als 100 Tage gelöscht werden. Kunden, die ein Jahr lang nicht bei McTank eingekauft haben, werden aus der Datei entfernt. Ferner möchte der Leiter einen Überblick über die Auslastung seines Geschäftes erhalten.
+
 * Qualitätsziele
+
+Wartbarbeit: wie gut kann man die Anwendung warten
+
+Erweiterbarkeit: wie gut sollen neue Features zu implementieren sein
+
+Skalierbarkeit: Grad wie die Anwendung auf Vergrößerung des Unternehmens reagiert
+
+Verlässlichkeit: Grad wie zuverlässig die Anwedung läuft
+
+Performance: wie schnell soll die Software sein
+
+Sicherheit: wie sicher soll die Software/die enthaltenen Daten sein
+
+[cols="2"]
+|===
+| Wartbarkeit              | 3
+| Erweiterbarkeit          | 2
+| Benutzerfreundlichkeit   | 3
+| Skalierbarkeit           | 4
+| Verlässlichkeit          | 5
+| Performance              | 5
+| Sicherheit               | 2
+|===
+
+1 = niedrige Priorität,  5 = hohe Priorität
 
 == Randbedingungen
 * Hardware-Vorgaben
 * Software-Vorgaben
 * Vorgaben zum Betrieb des Software
+Hier wird beschrieben, wie die Anwendung benutzt werden soll, wenn sie fertig ist und unter welchen Umständen.
+
+Die Anwendung stellt die Website der Tankstelle McTank dar, auf die der Manager, die Mitarbeiter und die Kunden Zugriff haben. Dort können sich Kunden ein Benutzerkonto anlegen, dieses verwalten und sich immer ein- und ausloggen. Die Mitarbeiter bedienen mit dem System die Kasse und der Manager bekommt darüber Einsicht über die aktuellen Lagerbestände, getätigte Einkäufe und kann selber Bestellungen für die Lager tätigen. Die Software läuft über einen Server und kann im Internet von jedem zu jeder Zeit eingesehen werden.
+
+Die Anwendung soll leicht erweiterbar sein
+
+The system shall not need technical maintenance, as the staff of the Chair of Software Technology already has its hands full. Any data shall be stored persistently in a database and be accessible through the application (e.g. no SQL knowledge should be required for a boss).
 
 == Kontextabgrenzung
 * Kontextdiagramm
