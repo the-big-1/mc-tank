@@ -27,11 +27,12 @@ class CustomerInitializer implements DataInitializer {
 		
 		var password = "password";
 
-		List.of(//
-				new RegistrationForm("Test1", password),
-				new RegistrationForm("moar Test", password),
-				new RegistrationForm("%&$§_äöp*", password),
-				new RegistrationForm("BOB", password)//
+		List.of(
+				new RegistrationForm("Edward Snowden", password),
+				new RegistrationForm("Linus Torvalds", password),
+				new RegistrationForm("John Doe", password),
+				new RegistrationForm("Hue Lori", password),
+				new RegistrationForm("Tony Stark", password)
 		).forEach(customerManagement::createCustomer);
 	}
 }

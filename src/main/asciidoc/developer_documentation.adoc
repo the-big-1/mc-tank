@@ -2,7 +2,11 @@
 [cols="1, 3, 3"]
 |===
 |Version | Bearbeitungsdatum   | Autor 
-|...	| ... | ...
+|0.1	| 13.11 | David L
+|0.2	| 14.11 | Vivien
+|0.3  | 16.11 | David
+|0.4  | 16.11 | Christoph
+|0.5  | 17.11 | Vivien
 |===
 
 = Entwicklerdokumentation
@@ -40,26 +44,48 @@ Sicherheit: wie sicher soll die Software/die enthaltenen Daten sein
 1 = niedrige Priorität,  5 = hohe Priorität
 
 == Randbedingungen
-* Hardware-Vorgaben
-* Software-Vorgaben
-* Vorgaben zum Betrieb des Software
+* Hardware-Vorgaben +
+Eine Aufzählung der notwendigen Geräte, mit denen man die Anwendung benutzen kann +
+- Server +
+- Computer +
+- Maus +
+- Tastatur +
+- mobiles Gerät (z.B Tablet) +
+
+* Software-Vorgaben +
+Benötigte Software zum Benutzen der Anwendung: + 
+Java Version: mind. Java 11 +
+Browser Versionen: 
+- Mozilla Firefox, version 55.0.3 +
+- Google Chrome, version 61.0.3163 +
+
+* Vorgaben zum Betrieb des Software +
 Hier wird beschrieben, wie die Anwendung benutzt werden soll, wenn sie fertig ist und unter welchen Umständen.
 
 Die Anwendung stellt die Website der Tankstelle McTank dar, auf die der Manager, die Mitarbeiter und die Kunden Zugriff haben. Dort können sich Kunden ein Benutzerkonto anlegen, dieses verwalten und sich immer ein- und ausloggen. Die Mitarbeiter bedienen mit dem System die Kasse und der Manager bekommt darüber Einsicht über die aktuellen Lagerbestände, getätigte Einkäufe und kann selber Bestellungen für die Lager tätigen. Die Software läuft über einen Server und kann im Internet von jedem zu jeder Zeit eingesehen werden.
 
-Die Anwendung soll leicht erweiterbar sein
+Die Anwendung soll leicht erweiterbar sein und alle Daten werden persistent in einer Datenbank gespeichert und können über die Anwendung eingesehen werden.
 
-The system shall not need technical maintenance, as the staff of the Chair of Software Technology already has its hands full. Any data shall be stored persistently in a database and be accessible through the application (e.g. no SQL knowledge should be required for a boss).
 
 == Kontextabgrenzung
-* Kontextdiagramm
+image:models/design/Kontext_Diagramm_Dev.svg[]
 
 == Lösungsstrategie
 === Erfüllung der Qualitätsziele
 [options="header"]
 |=== 
-|Qualitätsziel |Lösungsansatz
-|... |...
+|Qualitätsziel              |Lösungsansatz
+|Wartbarkeit                a| * Modularität: Stellt bessere Überschaubarkeit sicher und es können einzelne Komponenten verändert/bearbeitet werden ohne Einfluss auf die ganze Anwendung zu haben. 
+                              * Wiederverwendbarkeit: Einzelne Komponenten sollen für andere Aufgaben wiederverwendet werden können.
+
+|Erweiterbarkeit           a| * Modularität: Es können leicht neuer Features in die Anwendung integriert werden. 
+|Benutzerfreundlichkeit    a| * Es wird eine klares GUI geben, was die schnelle und leichte Bedinung der Anwendung ermöglicht
+|Skalierbarkeit            a| * Modularität: Komponenten können bei Bedarf durch leistungsstärkere ersetzt werden.
+|Verlässlichkeit           a| * Unit und Integrationstest: Die verlässlichkeit soll durch unfassende Tests gesichert werden.
+|Performance               a| * Es werden die Laufzeiten der Anwendung überprüft z.B. in den Unittest. 
+|Sicherheit                a| * Bestimmte Funktionen sind nur autorisierten Nutzern gestattet und die werden mit @RreAuthorize
+überprüft.
+                              * Bestellungen werden gespeichert und können zurückverfolgt werden.
 |===
 
 === Softwarearchitektur
@@ -67,23 +93,93 @@ The system shall not need technical maintenance, as the staff of the Chair of So
 
 === Entwurfsentscheidungen
 * Verwendete Muster
+  - Spring MVC
 * Persistenz
+  - Kundendaten und Rechnungen werden in einer H2 Datenbank von Spring gespeichert
 * Benutzeroberfläche
 * Verwendung externer Frameworks
 
 [options="header", cols="1,3,3"]
 |===
 |Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
-|... |... |...
+|salespointframework.catalog    |org.salespointframework.catalog.* |catalog.Catalog
+|salespointframework.inventory  ||inventory.Inventory
+|salespointframework.quantity   ||invnetory.Inventory
+|salespointframework.SalespointSecurityConfiguration ||mctank.WebSecurityConfiguration
+|springframework.boot           |org.springframework.boot.SpringApplication |mctank.McTank
+|springframework.ui             |org.springframework.ui.* |all Contoller
+|springframework.validation     ||catalog.CatalogController
+|springframework.web            |org.springframework.web.bind.* |mctank.McTankWebConfiguration
 |===
 
 == Bausteinsicht
-* Entwurfsklassendiagramme der einzelnen Packages
+
+=== McTank
+image:models/design/mctank.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|McTank | Spring container, bringt die Anwendung zum Laufen
+|McTankWebConfiguration | leitet /login direkt zum login.html template
+|WebSecurityConfiguration | baut die grundlegende Sicherheit und die Login/Logout Option auf
+|===
+
+=== Catalog
+image:models/design/CatalogUML.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|Catalog | listet alle Produkte der Firma nach McPoints sortiert auf
+|CatalogContoller | ein Spring MVC Controller um Anfragen zu bearbeiten
+|NewItemForm | nimmt die Daten für ein neues Item auf und validiert sie
+|CatalogManagement | Klasse um Items zu organisieren und anzulegen
+||
+|===
+
+=== Reservation
+image:models/design/ReservationUML.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|Reservation | repräsentiert eine Reservierung
+|ReservationController | Spring Controller, bearbeitet Anfragen wie das Hinzufügen einer neuen Reservierung
+|ReservationRepository | Interface (Spring Crudrepository) zum speichern von Reservations
+|ReservationDataInitializer | initialisiert die ReservationRepository
+|ReservationForm | repräsentiert und validiert Eingaben des Nutzers
+|===
+
+=== Customer
+image:models/design/Customer_Class_Diagramm.svg[]
+
+[options="header"]
+|===
+|Klasse/Enumeration|Description
+|Customer | repräsentiert einen Kunden
+|CustomerController | Spring MVC Controller um Anfragen bearbeiten
+|CustomerRepository | Interface (Spring Crudrepository) zum speichern von Customers
+|CustomerManagement | Service KLasse für Customer
+|CustomerDataInitializer | erstellt USeraccounts für Mitabeiter und Boss eventuelle Bestandskunden
+|RegistrationForm | repräsentiert und validiert Eingaben des Nutzers
+|===
+
+=== Inventory
+image:models/design/InventoryUML.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|InventoryController | Spring Controller, stellt das Inventory für den Nutzer dar
+|InventoryInitializer | initialisiert das Salespoint UniqueInventory
+|===
 
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
 |===
+
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
@@ -94,6 +190,18 @@ The system shall not need technical maintenance, as the staff of the Chair of So
 
 == Laufzeitsicht
 * Komponentenbezogene Sequenzdiagramme, welche darstellen, wie die Anwendung mit externen Frameworks (zB. Salespoint, Spring) interagiert.
+
+=== Catalog
+image:models/design/CatalogSD.svg[]
+
+=== Inventory
+image:models/design/InventorySD.svg[]
+
+=== Reservation
+image:models/design/ReservationSequence.svg[]
+
+=== Customer
+image:models/design/CustomerSD.svg[]
 
 == Technische Schulden
 * Auflistung der nicht erreichten Quality Gates und der zugehörigen SonarQube Issues

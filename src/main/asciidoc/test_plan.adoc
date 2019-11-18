@@ -3,36 +3,83 @@
 Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 
 == Einführung
-Wozu dient das Dokument? Zielgruppe?
+Der Testplan wird erstellt, um den Testprozess unserer Anwendung zu beschreiben und folgende Aspekte zu klären:
+
+- die Auswahl der richtigen Strategien für verschiedene Tests von Software-Komponenten
+- Verteilung der Aufgaben zwischen den Teammitgliedern
+- Priorität der Fragen
+- Ressourcenplanung
+- die Nutzung der erforderlichen Software und Hardware
+- Abschätzung der Risiken, die während der Prüfung auftreten können.
 
 == Aufbau der Testbezeichner
-Nach welchem Schema sind die Tests benannt?
 
-*Bsp.*
+U = Unit Test:
 
-*U - Unit Test, I - Integrationstest*
+- prüft Einzelteile eines Computerprogrammes auf Funktionalität
 
-*U-1, U-2, I-1*
+I = Integrationstest:
+
+- eine Reihe von aufeinander abgestimmten Einzeltests, die dazu dienen, verschiedene voneinander abhängige Komponenten eines komplexen Systems im Zusammenspiel miteinander zu testen
+- die einzelnen Komponenten sollten einen Unit-Test bestanden haben
+
+zum Beispiel: U1, U2, I1
 
 == Test Gegenstände
+Die gesamte Anwendung von McTank bestehend aus 
+
+- McZapf 
+- McWash 
+- McSit 
+- McDrive 
+- registrierter Kunde 
+- nicht registrierter Kunde 
+- Manager 
+- Mitarbeiter 
+- Catalog 
+- Inventory 
+- Order 
+
 
 == Zu testende Funktionalitäten
+- Registrierung <<U1>>
+- Benzinbestellung <<U2>>
+- Rabatt <<U3>>
+- Altersabfrage <<U4>>
+- Login/Logout <<U5>>
+- Reservierung <<U6>>
+- Bezahlvorgang <<U7>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
 
+- Daten der Zapfsäulen
+- gegebene Bibliotheken oder Frameworks
+
 == Herangehensweise
-*Bsp.:*
+Die Units bzw. Klassen werden mit JUnit getestet.
+Die Testfälle werden vor dem Code entwickelt, damit nur Dinge implementiert werden, die auch getestet werden können, um somit Fehler beim Programmieren zu vermeiden.
 
-*Klassen werden mit JUnit getestet.*
-
-*Integrationstest nach Bottom-Up Prinzip*
+1. Testfälle ausdenken / Testfalltabellen erstellen
+- Bestimme die Extremwerte der Parameter der zu testenden Methode (Grenzwertanalyse, Nullwerte immer testen, z.B. 0 oder null, Randwerte z.B. 1.1. und 31.12.)
+- Bestimme Bereichseinschränkungen (Werte außerhalb eines Zahlenbereiches, Negative Werte, wenn natürliche Zahlen im Spiel sind)
+- Bestimme Zustände, in denen sich ein Objekt nach einer Anweisung befinden muss
+2. Testfälle in Klassen gruppieren
+3. pro Testfall eine Testmethode schreiben
+4. Testfälle (nach Änderungen im Programm wiederholt) ausführen = Regressionstest
 
 == Umgebungsvoraussetzungen
 * Wird spezielle Hardware benötigt?
+
+- keine spezielle Hardware, die Tests werden mit in das eigentliche Programm integriert
 * Welche Daten müssen bereitgestellt werden? Wie werden die Daten bereitgestellt?
+- es wird ein automatisch wiederholbarer JUnit-Test geschrieben und dann der zu testende Code. Der Test ist selbst ein Stück Software und wird ebenso wie der zu testende Code programmiert.
 * Wird zusätzliche Software für das Testen benötigt?
+
+- jUnit
+
 * Wie kommuniziert die Software während des Testens? Internet? Netzwerk?
+- 
 
 == Testfälle und Verantwortlichkeit
 Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
@@ -40,6 +87,12 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+|ID   |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|[[U1]]**<<U1>>**  |Registrierung            |ein nicht registrierter User will ein Benutzerkonto anlegen              |DD-VB-11111       |Fehler, Kennzeichen nicht gültig
+|[[U2]]**<<U2>>**  |Benzinbestellung            |Manager will Benzin nachbestellen              |Benzin: 50.200 Liter       |Fehler, Bestellmenge zu hoch
+|[[U3]]**<<U3>>**  |Rabatt            |Kunde löst Rabatt an Kasse bei Mitarbeiter ein              |Rabatt: 40%       |Fehler, höchstens 30% Rabatt möglich
+|[[U4]]**<<U4>>**  |Altersabfrage            |Kunde will Zigaretten und Alkohol kaufen            |Alter: 17       |Fehler, Kunde zu jung
+|[[U5]]**<<U5>>**  |Login/Logout           |ein authentifizierter Benutzer nutzt das System              |Betätigen des "Ausloggen"-Button       |Ausloggen erfolgreich
+|[[U6]]**<<U6>>**  |Reservierung            |ein Kunde will einen Tisch bei Mcsit reservieren              |Datum, Uhrzeit       |Reservierung erfolgreich
+|[[U7]]**<<U7>>**  |Bezahlvorgang            |ein Kunde will seine Rechnung(45.00€) begleichen              |40.00€       |Fehler, Betrag nicht ausreichend
 |===
