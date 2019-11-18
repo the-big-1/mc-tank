@@ -105,9 +105,9 @@ image:models/design/UserInterfaceDiagram.svg[]
 |===
 |Externe Klasse |Pfad der externen Klasse |Verwendet von (Klasse der eigenen Anwendung)
 |salespointframework.catalog    |org.salespointframework.catalog.* |catalog.Catalog
-|salespointframework.inventory  ||inventory.Inventory
-|salespointframework.quantity   ||invnetory.Inventory
-|salespointframework.SalespointSecurityConfiguration ||mctank.WebSecurityConfiguration
+|salespointframework.inventory  |org.salespointframework.inventory.* |inventory.Inventory
+|salespointframework.quantity   |org.salespointframework.quantity.* |invnetory.Inventory
+|salespointframework.SalespointSecurityConfiguration |org.salespointframework.SalespointSecurityConfiguration |mctank.WebSecurityConfiguration
 |springframework.boot           |org.springframework.boot.SpringApplication |mctank.McTank
 |springframework.ui             |org.springframework.ui.* |all Contoller
 |springframework.validation     ||catalog.CatalogController
@@ -188,6 +188,9 @@ image:models/design/InventoryUML.svg[]
 [options="header"]
 |===
 |Klasse/Enumeration (Analysemodell) |Klasse/Enumeration (Entwurfsmodell)
+|McTank | McTank
+|Items  | Catalog
+|Inventory | Inventory
 |===
 
 == Laufzeitsicht
