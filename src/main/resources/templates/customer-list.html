@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+  <style>
+    body{
+      text-align: center;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    form {
+      display: inline-block;
+    }
+
+
+    button {
+      border: none;
+      background-color: black;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    .danger {
+      background-color: darkred; /* Green */
+    }
+
+  </style>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <title>User List</title>
+</head>
+<body>
+<h2>Users</h2>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Roles</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each=" customer : ${customerList}">
+    <td th:text="${customer.userAccount.Username}">Alfreds Futterkiste</td>
+    <td th:each=" role : ${customer.userAccount.Roles}"><span th:text="${role} + ' '"></span></td>
+    <td>
+      <span th:if="${customer.userAccount.Enabled == true}">Active</span>
+      <span th:unless="${customer.userAccount.Enabled == true}">Disable</span>
+    </td>
+    <td>
+      <form th:if="${customer.userAccount.Enabled == true}" th:action="@{/customer/disable}">
+        <button th:name="id" th:value="${customer.userAccount.Id}">Disable</button>
+      </form>
+      <form th:unless="${customer.userAccount.Enabled == true}" th:action="@{/customer/enable}">
+        <button th:name="id" th:value="${customer.userAccount.Id}">Enable</button>
+      </form>
+      <form th:action="@{/customer/delete}">
+        <button th:name="id" th:value="${customer.Id}" class="danger">Delete</button>
+      </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
