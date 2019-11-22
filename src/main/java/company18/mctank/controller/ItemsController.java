@@ -3,11 +3,13 @@ package company18.mctank.controller;
 
 import company18.mctank.service.ItemsService;
 import company18.mctank.forms.NewItemForm;
+import company18.mctank.repository.Items;
 
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -45,7 +47,7 @@ public class ItemsController {
 			return "newItem";
 		}
 
-		management.createNewProduct(form);
+		service.createNewProduct(form);
 
 		return "redirect:/catalog";
 	}
