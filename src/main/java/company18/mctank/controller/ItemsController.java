@@ -1,6 +1,9 @@
 
 package company18.mctank.controller;
 
+import company18.mctank.service.ItemsService;
+import company18.mctank.forms.NewItemForm;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -12,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ItemsController {
 	
 	private final Items items;
-	private final ItemsManagement management;
+	private final ItemsService service;
 	
-	public ItemsController(Items items, ItemsManagement management) {
+	public ItemsController(Items items, ItemsService service) {
 		this.items = items;
-		this.management = management;
+		this.service = service;
 		
 	}
 	

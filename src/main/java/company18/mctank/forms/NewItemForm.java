@@ -2,7 +2,7 @@ package company18.mctank.forms;
 
 import javax.validation.constraints.NotEmpty;
 
-class NewItemForm {
+public class NewItemForm {
 
 	@NotEmpty(message = "Name darf nicht leer sein.") //
 	private String productName;
