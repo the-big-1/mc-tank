@@ -49,6 +49,6 @@ public class ItemsController {
 
 		service.createNewProduct(form);
 
-		return "redirect:/catalog";
+		return "redirect:/items";
 	}
 }

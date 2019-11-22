@@ -21,14 +21,27 @@
     			</div>
 
                 <div class="field">
-                    <label> Price </label>
+                    <label> Preis </label>
                     <input th:field="*{price}" type="text" required="required" />
+                </div>
+
+                <div class="field" id="Categories">
+                    <label> Erhältlich bei: </label></br>
+
+                    <input type="checkbox"/>
+                    <label> McZapf </label></br>
+                    <input type="checkbox"/>
+                    <label> McSit </label></br>
+                    <input type="checkbox"/>
+                    <label> McDrive </label></br>
+                    <input type="checkbox"/>
+                    <label> McWash </label></br>
                 </div>
     			
                 <button type="submit"> OK </button>
     		</form>
 
-    		<a href='/catalog'><button>Back to Catalog</button></a>
+    		<a href='/items'><button>Back to items</button></a>
 		</div>
 	</body>
 
