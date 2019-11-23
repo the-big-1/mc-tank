@@ -40,8 +40,7 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 
 
 == Aktueller Stand
-Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
-Dokumenten.
+Diagramme überarbeiten, Integrationstests zu Testplan hinzufügen, Berechnung für Prognose der Benzinbestellungen und Übersicht Bestellungen bedenken
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
