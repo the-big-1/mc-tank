@@ -49,5 +49,5 @@ Diagramme überarbeiten, Integrationstests zu Testplan hinzufügen, Berechnung f
 [option="headers"]
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/19[20]     |Basisfunktionalität    |jeder schreibt und erweitertert sein Prototyp-Feature und bekommt weitere Aufgabe           |alle                |in Arbeit
 |===
