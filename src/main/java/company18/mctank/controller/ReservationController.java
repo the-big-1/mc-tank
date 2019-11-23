@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import company18.mctank.domain.Reservation;
 import company18.mctank.domain.McSitReservation;
@@ -40,6 +41,12 @@ public class ReservationController {
 		
 		// else save and redirect
 		reservationService.save(form.getMcPoint(), form.getName(), LocalDateTime.of(form.getDate(), form.getTime()));
+		return "redirect:/reservation";
+	}
+	
+	@PostMapping(value="/delete-reservation/{id}")
+	public String delete(@PathVariable long id) {
+		reservationService.deleteById(id);
 		return "redirect:/reservation";
 	}
 }

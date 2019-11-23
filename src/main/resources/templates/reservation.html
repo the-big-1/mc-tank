@@ -7,20 +7,25 @@
 	</head>
 	<body>
 		<h1>Reservierungen</h1>
-		<table>
+		<table width="100%">
 			<td>
 				<table>
 					<thead>
-						<tr><th colspan="2">McSit</th></tr>
+						<tr><th colspan="3">McSit</th></tr>
 						<tr>
 							<th>Name</th>
-							<th>Datum</th>
+							<th colspan="2">Datum</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="reservation : ${mcsitreservations}">
-							<td th:text="${reservation.name}">Name<td> 
-							<td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum<td> 
+							<td th:text="${reservation.name}">Name</td> 
+							<td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum</td>
+							<td>
+								<form th:action="@{/delete-reservation/{id}(id=${reservation.id})}" method="POST">
+									<input value="Löschen" type="submit"/>
+								</form>
+							</td>  
 						</tr>
 					</tbody>
 				</table>
@@ -28,16 +33,21 @@
 			<td>
 				<table>
 					<thead>
-						<tr><th colspan="2">McWash</th></tr>
+						<tr><th colspan="3">McWash</th></tr>
 						<tr>
 							<th>Name</th>
-							<th>Datum</th>
+							<th colspan="2">Datum</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="reservation : ${mcwashreservations}">
-							<td th:text="${reservation.name}">Name<td> 
-							<td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum<td> 
+							<td th:text="${reservation.name}">Name</td> 
+							<td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum</td>
+							<td>
+								<form th:action="@{/delete-reservation/{id}(id=${reservation.id})}" method="POST">
+									<input value="Löschen" type="submit"/>
+								</form>
+							</td>  
 						</tr>
 					</tbody>
 				</table>

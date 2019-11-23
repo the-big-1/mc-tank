@@ -28,4 +28,8 @@ public class Reservation {
 	public LocalDateTime getDate() {
 		return this.date;
 	}
+	
+	public long getId() {
+		return id;
+	}
 }

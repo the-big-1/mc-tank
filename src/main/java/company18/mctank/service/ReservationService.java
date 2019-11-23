@@ -46,6 +46,11 @@ public class ReservationService {
 		return result;
 	}
 	
+	public void deleteById(long id) {
+		repo.deleteById(id);
+	}
+	
+	
 	public void save(String mcPoint, String name, LocalDateTime dateAndTime) {
 		if (mcPoint.equals("McSit")) repo.save(new McSitReservation(name, dateAndTime));
 		if (mcPoint.equals("McWash")) repo.save(new McWashReservation(name, dateAndTime));
