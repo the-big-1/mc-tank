@@ -22,7 +22,7 @@ __Teilnehmer:__
 - Vivien
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+Abschlusspräsentation nächsten Dienstag!
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
