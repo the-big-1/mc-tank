@@ -8,12 +8,10 @@
 	</head>
 
 	<body>
-		<h1>Hier werden neue Items hinzugefügt.</h1>
+		<h1>Neuen Gegenstand dem Sortiment hinzufügen</h1>
 
 		<div class="ui container">
-    		<header>
-        		<h1>Add new Item</h1>
-    		</header>
+
     		<form th:action="@{/newItem}" method="post" th:object="${form}">
     			<div class="field">
     				<label> Name </label>
@@ -25,17 +23,13 @@
                     <input th:field="*{price}" type="text" required="required" />
                 </div>
 
-                <div class="field" id="Categories">
+                <div id="Categories" >
                     <label> Erhältlich bei: </label></br>
 
-                    <input type="checkbox"/>
-                    <label> McZapf </label></br>
-                    <input type="checkbox"/>
-                    <label> McSit </label></br>
-                    <input type="checkbox"/>
-                    <label> McDrive </label></br>
-                    <input type="checkbox"/>
-                    <label> McWash </label></br>
+                    <div th:each="categorie: ${Categories}">
+                        <input th:value="${categorie}" th:field="*{productCategories}" type="checkbox"/>
+                        <label th:text="${categorie}"> Categorie </label>
+                    </div>
                 </div>
     			
                 <button type="submit"> OK </button>

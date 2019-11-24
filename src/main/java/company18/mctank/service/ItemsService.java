@@ -21,11 +21,21 @@ public class ItemsService{
 	
 	public Product createNewProduct(NewItemForm form) {
 		var name = form.getProductName();
-		String priceAsString = form.getPrice().replace(",", ".");
-		double priceToDouble = Double.parseDouble(priceAsString);
-		MonetaryAmount price = Monetary.getDefaultAmountFactory().setCurrency("EUR").setNumber(priceToDouble).create();
 		
-		return items.save(new Product(name, price));
+		String priceAsString = form.getPrice().replace(",", ".").replace("€", "");   // delete/replace all unwanted chars
+		double priceToDouble = Double.parseDouble(priceAsString);					 // convert to Double
+		MonetaryAmount price = Monetary.getDefaultAmountFactory().setCurrency("EUR").setNumber(priceToDouble).create();  //create MonetaryAmount   .setNumber() requests Double
+		
+		var product = new Product(name, price);
+		
+		if(form.getProductCategories() != null) {
+		for (String newCategory: form.getProductCategories()) { // hier wird aus Gründen null reingegeben und deshalb schmieerts ab.
+			product.addCategory(newCategory);
+		}
+		}
+		
+		
+		return items.save(product);
 	}
 	
 }

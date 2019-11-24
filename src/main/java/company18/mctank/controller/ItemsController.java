@@ -19,6 +19,8 @@ public class ItemsController {
 	private final Items items;
 	private final ItemsService service;
 	
+	private final String Categories[] = {"McZapf", "McSit", "McDrive", "McWash"}; //Categories are used to sort the Products
+	
 	public ItemsController(Items items, ItemsService service) {
 		this.items = items;
 		this.service = service;
@@ -28,13 +30,17 @@ public class ItemsController {
 	
 	@RequestMapping("/items")
 	public String index(Model model) {
-		model.addAttribute("Items", items.findAll());
+		//model.addAttribute("Items", items.findAll());
+		for (String category: Categories) {
+			model.addAttribute(category, items.findByCategory(category));  //not working i guesss
+		}
 		return "items";
 	}
 	
 	@RequestMapping("/newItem")
 	public String newItem(Model model, NewItemForm form){  //in der Methode übergeben erzeugt hier ein neues Form
 		model.addAttribute("form", form);
+		model.addAttribute("Categories", Categories);
 		
 		return"newItem";
 		
