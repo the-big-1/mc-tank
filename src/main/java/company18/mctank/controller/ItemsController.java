@@ -30,15 +30,14 @@ public class ItemsController {
 	
 	@RequestMapping("/items")
 	public String index(Model model) {
-		//model.addAttribute("Items", items.findAll());
 		for (String category: Categories) {
-			model.addAttribute(category, items.findByCategory(category));  //not working i guesss
+			model.addAttribute(category, items.findByCategory(category));
 		}
 		return "items";
 	}
 	
 	@RequestMapping("/newItem")
-	public String newItem(Model model, NewItemForm form){  //in der Methode übergeben erzeugt hier ein neues Form
+	public String newItem(Model model, NewItemForm form){  //creates new form
 		model.addAttribute("form", form);
 		model.addAttribute("Categories", Categories);
 		

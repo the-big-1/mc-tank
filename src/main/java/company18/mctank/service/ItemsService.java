@@ -19,7 +19,7 @@ public class ItemsService{
 		this.items = items;
 	}
 	
-	public Product createNewProduct(NewItemForm form) {
+	public Product createNewProduct(NewItemForm form) {  // takes the values from the given form, modifies them and creats a new product
 		var name = form.getProductName();
 		
 		String priceAsString = form.getPrice().replace(",", ".").replace("€", "");   // delete/replace all unwanted chars
@@ -29,13 +29,13 @@ public class ItemsService{
 		var product = new Product(name, price);
 		
 		if(form.getProductCategories() != null) {
-		for (String newCategory: form.getProductCategories()) { // hier wird aus Gründen null reingegeben und deshalb schmieerts ab.
+		for (String newCategory: form.getProductCategories()) {
 			product.addCategory(newCategory);
 		}
 		}
 		
 		
-		return items.save(product);
+		return items.save(product);    //save new Product in items
 	}
 	
 }
