@@ -22,7 +22,7 @@ __Teilnehmer:__
 - Vivien
 
 == Bemerkungen
-Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen +
 - bei der Zwischenpräsentation hätte die Aufabenverteilung und der Entwicklungsprozess grob beschrieben werden sollen, sowie die Hardware- und Software-Vorgaben => für Abschlusspräsentation
 
 
