@@ -180,6 +180,17 @@ image:models/design/InventoryUML.svg[]
 |InventoryInitializer | initialisiert das Salespoint UniqueInventory
 |===
 
+
+=== Order
+image:models/analysis/Order.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|OrderController | Spring Controller, der den Warenkorb verwaltet
+|Items | Catalog, listet Produkte auf, die in den Warenkorb hinzugefügt werden können
+|===
+
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
