@@ -1,0 +1,53 @@
+= Protokoll Gruppe 18
+
+Treffen am 26.11.2019
+
+Ort:      APB E069 +
+Beginn:   13:00 Uhr +
+Ende:     14:30 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+03.12.2019, 13:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David (Scrum Master)
+- Christoph
+- Clemens
+- Artem
+- Vivien
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+- bei der Zwischenpräsentation hätte die Aufabenverteilung und der Entwicklungsprozess grob beschrieben werden sollen, sowie die Hardware- und Software-Vorgaben => für Abschlusspräsentation
+
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/19[20]     |Baisfunktionalität      |in Arbeit      |einzelne Teilaufgaben kennzeichnen
+|===
+
+
+== Aktueller Stand
+- Testplan ausarbeiten, vor allem Integrationstests hinzufügen
+- bei Qualitätszielen die Sicherheit überdenken
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/21[21]    |Testplan     |Testfälle hinzufügen            |alle               |in Arbeit
+|===
