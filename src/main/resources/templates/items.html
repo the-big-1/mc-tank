@@ -12,27 +12,27 @@
 
 		<a href='/newItem'><button>New Item</button></a>
 
-		<header> McZapf </header>
+		<h3> McZapf </h3>
 		<div class="ui card" th:each="product : ${McZapf}">
 			<a th:text="${product.name}"> Produktname </a>
 			<a th:text="${product.price}"> Preis </a>
 
 		</div>
 
-		<header> McSit </header>
+		<h3> McSit </h3>
 		<div class="ui card" th:each="product : ${McSit}">
 			<a th:text="${product.name}"> Produktname </a>
 			<a th:text="${product.price}"> Preis </a>
 
 		</div>
 
-		<header> McDrive </header>
+		<h3> McDrive </h3>
 		<div class="ui card" th:each="product : ${McDrive}">
 			<a th:text="${product.name}"> Produktname </a>
 			<a th:text="${product.price}"> Preis </a>
 		</div>
 
-		<header> McWash </header>
+		<h3> McWash </h3>
 		<div class="ui card" th:each="product : ${McWash}">
 			<a th:text="${product.name}"> Produktname </a>
 			<a th:text="${product.price}"> Preis </a>
