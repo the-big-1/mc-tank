@@ -1,5 +1,10 @@
-b {
-  color: aliceblue;
-}
+/*
+---------------------
+	: ToC for CSS :
+---------------------
+1. Variables
+2. General rules
+*/
+@import url("https://fonts.googleapis.com/css?family=Muli:400,600,700&display=swap");
 
 /*# sourceMappingURL=theme.css.map */
