@@ -295,4 +295,282 @@ code {
   background-color: #ffffff;
 }
 
+/*
+--------------------------------------
+    : Form : Elements component :
+--------------------------------------
+*/
+label {
+  font-weight: 500;
+}
+
+.form-control {
+  background-color: #ffffff;
+  font-size: 15px;
+  color: #8A98AC;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 3px;
+}
+.form-control:focus {
+  border-color: #0080ff;
+  box-shadow: none !important;
+}
+.form-control:focus:disabled {
+  background-color: #d4d8de;
+  opacity: 1;
+}
+.form-control:disabled {
+  background-color: #d4d8de;
+  opacity: 1;
+}
+.form-control[readonly] {
+  background-color: #d4d8de;
+  opacity: 1;
+}
+.form-control .form-check-input {
+  margin-top: 0.25rem;
+}
+
+.form-control-plaintext {
+  color: #8A98AC;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #0080ff;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #0080ff;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #ffffff;
+  background-color: #0080ff;
+  border-color: #0080ff;
+}
+.custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #ffffff, 0 0 0 0.2rem #80c0ff;
+}
+.custom-control-input:disabled ~ .custom-control-label::before {
+  background-color: #d4d8de;
+  border-color: rgba(0, 0, 0, 0.03);
+}
+
+.custom-control-label::before {
+  background-color: transparent;
+  border: 1px solid #8A98AC;
+}
+.custom-control-label::before:focus {
+  border-color: #0080ff;
+}
+.input-group-addon {
+  border-radius: 5px;
+  border: none;
+}
+
+.input-group-text {
+  border: 1px solid #d4d8de;
+  background: #dde0e5;
+  color: #8A98AC;
+}
+
+.custom-select {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  color: #8A98AC;
+}
+.custom-select:focus {
+  border-color: #0080ff;
+  outline: 0;
+  box-shadow: none;
+}
+
+.custom-file-label {
+  color: #8A98AC;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  line-height: 1.9;
+  font-weight: 400;
+}
+.custom-file-label::after {
+  background-color: #0080ff;
+  border: none;
+  color: #ffffff;
+  height: 36px;
+  line-height: 24px;
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: #0080ff;
+  box-shadow: none !important;
+}
+.custom-file-input.is-invalid ~ .custom-file-label {
+  border-color: #91f2bc;
+  color: #8A98AC;
+}
+
+.custom-file-input.is-invalid ~ .custom-file-label,
+.form-control[readonly] {
+  background-color: #d4d8de;
+  opacity: 1;
+}
+
+.custom-select.is-valid {
+  border-color: #91f2bc;
+  background-color: #ffffff;
+}
+.custom-select.is-valid:focus {
+  border-color: #18d26b;
+}
+
+.form-control.is-valid {
+  border-color: #91f2bc;
+  background-color: #ffffff;
+}
+.form-control.is-valid:focus {
+  border-color: #18d26b;
+}
+
+.was-validated .custom-select:valid {
+  border-color: #91f2bc;
+  background-color: #ffffff;
+}
+.was-validated .custom-select:valid:focus {
+  border-color: #18d26b;
+  box-shadow: none !important;
+}
+.was-validated .custom-select:invalid {
+  border-color: #ffd8d8;
+  background-color: #ffffff;
+}
+.was-validated .custom-select:invalid:focus {
+  border-color: #ff3f3f;
+  box-shadow: none !important;
+}
+.was-validated .form-control:valid {
+  border-color: #91f2bc;
+  background-color: #ffffff;
+}
+.was-validated .form-control:valid:focus {
+  border-color: #18d26b;
+}
+.was-validated .form-control:invalid {
+  border-color: #ffd8d8;
+  background-color: #ffffff;
+}
+.was-validated .form-control:invalid:focus {
+  border-color: #ff3f3f;
+}
+.was-validated .custom-control-input:valid ~ .custom-control-label {
+  color: #18d26b;
+}
+.was-validated .custom-control-input:invalid ~ .custom-control-label {
+  color: #ff3f3f;
+}
+.was-validated .custom-control-input:valid:checked ~ .custom-control-label::before {
+  background-color: #18d26b;
+}
+.was-validated .custom-file-input:invalid ~ .custom-file-label {
+  border-color: #ffd8d8;
+  color: #8A98AC;
+}
+.was-validated .custom-file-input:invalid:focus ~ .custom-file-label {
+  border-color: #ff3f3f;
+}
+
+.valid-feedback {
+  color: #18d26b;
+}
+
+.custom-select.is-invalid {
+  border-color: #ffd8d8;
+  background-color: #ffffff;
+}
+
+.form-control.is-invalid {
+  border-color: #ffd8d8;
+  background-color: #ffffff;
+}
+.form-control.is-invalid:focus {
+  border-color: #ff3f3f;
+}
+
+.valid-tooltip {
+  background-color: #1ee577;
+}
+
+.invalid-tooltip {
+  background-color: #ff5959;
+}
+
+.custom-control-input.is-valid ~ .custom-control-label {
+  color: #18d26b;
+}
+
+.custom-control-input.is-invalid ~ .custom-control-label {
+  color: #ff3f3f;
+}
+.custom-control-input.is-invalid ~ .custom-control-label::before {
+  background-color: #ff3f3f;
+}
+
+.custom-control-input.is-valid:checked ~ .custom-control-label::before {
+  background-color: #18d26b;
+}
+
+.invalid-feedback {
+  color: #ff3f3f;
+}
+
+.form-check-input.is-invalid ~ .form-check-label {
+  color: #ff3f3f;
+}
+
+.was-validated .form-check-input:invalid ~ .form-check-label {
+  color: #ff3f3f;
+}
+
+.editable-click, a.editable-click, a.editable-click:hover {
+  border-bottom: dashed 1px #0080ff;
+}
+
+.editable-empty, .editable-empty:hover, .editable-empty:focus {
+  color: #ff3f3f;
+}
+
+.editable-submit {
+  padding: 4px 8px;
+}
+
+.editable-cancel {
+  padding: 4px 8px;
+}
+
+.custom-range {
+  width: 100%;
+  height: calc(1rem + .4rem);
+  padding: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.custom-range:focus {
+  outline: 0;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.03);
+  height: 5px;
+  cursor: default;
+  padding: initial;
+  border: initial;
+  margin: 2px;
+}
+input[type=range]:focus {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
 /*# sourceMappingURL=theme.css.map */
