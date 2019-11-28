@@ -15,13 +15,36 @@
  */
 package company18.mctank.controller;
 
+import company18.mctank.repository.CustomerRepository;
+import company18.mctank.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
+
+	@Autowired
+	CustomerRepository customerRepository;
+
+	@Autowired
+	CustomerService customerService;
+
 	@RequestMapping("/")
 	public String index() {
-		return "welcome";
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal == null) throw new IllegalStateException("Principal can not be null");
+		if (!(principal instanceof UserDetails)) return "redirect:/login";
+
+		UserDetails userDetails = (UserDetails) principal;
+		if (customerService.isAdmin(userDetails))
+			return "overview";
+		else if (customerService.isManager(userDetails))
+			return "shop-cart";
+		else if (customerService.isCustomer(userDetails))
+			return "account";
+		return "redirect:/login";
 	}
 }

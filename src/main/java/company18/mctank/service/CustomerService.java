@@ -1,12 +1,15 @@
 package company18.mctank.service;
 
 import company18.mctank.domain.Customer;
+import company18.mctank.domain.CustomerRoles;
 import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -53,5 +56,26 @@ public class CustomerService {
 
 	public Iterable<Customer> findAll() {
 		return customers.findAll();
+	}
+
+	public boolean isAdmin(UserDetails userDetails){
+		return this.checkRole(userDetails, CustomerRoles.ADMIN);
+	}
+
+	public boolean isManager(UserDetails userDetails){
+		return this.checkRole(userDetails, CustomerRoles.MANAGER);
+	}
+
+	public boolean isCustomer(UserDetails userDetails){
+		return this.checkRole(userDetails, CustomerRoles.CUSTOMER);
+	}
+
+	private boolean checkRole(UserDetails userDetails, CustomerRoles role){
+		 return userDetails.getAuthorities()
+			 .stream()
+			 .anyMatch(
+			 	a -> a.getAuthority()
+					.contains(role.getRole())
+			 );
 	}
 }
