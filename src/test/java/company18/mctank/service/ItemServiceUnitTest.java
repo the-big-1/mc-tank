@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import company18.mctank.forms.NewItemForm;
@@ -24,9 +24,12 @@ class ItemServiceUnitTest{
 		
 		var form = new NewItemForm("prod1", "1.30", new ArrayList<String>());
 		
+		
 		assertThat(service.createNewProduct(form)).isNotNull();  				// testing if an new Product is created
 		
-		//test various
+		
+		
+		//test various inputs for money like with . ; , ; € ; etc
 		
 		// test if adding Categories works properly
 		

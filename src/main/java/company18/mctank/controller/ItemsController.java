@@ -7,9 +7,14 @@ import company18.mctank.repository.Items;
 
 import javax.validation.Valid;
 
+import org.salespointframework.catalog.Product;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +23,7 @@ public class ItemsController {
 	
 	private final Items items;
 	private final ItemsService service;
+	//private final UniqueInventory<UniqueInventoryItem> inventory;  // kommt dazu wenn inventory vorhanden
 	
 	private final String Categories[] = {"McZapf", "McSit", "McDrive", "McWash"}; //Categories are used to sort the Products
 	
@@ -32,6 +38,7 @@ public class ItemsController {
 	public String index(Model model) {
 		for (String category: Categories) {
 			model.addAttribute(category, items.findByCategory(category));
+			model.addAttribute("Categories", Categories);
 		}
 		return "items";
 	}
@@ -46,7 +53,7 @@ public class ItemsController {
 	}
 		
 	@PostMapping("/newItem")
-	String registerNew(@Valid NewItemForm form, Errors result) {
+	public String registerNew(@Valid NewItemForm form, Errors result) {
 
 		if (result.hasErrors()) {
 			return "newItem";
@@ -55,5 +62,12 @@ public class ItemsController {
 		service.createNewProduct(form);
 
 		return "redirect:/items";
+	}
+	
+	@GetMapping("/items/{product}")	
+	public String itemDetails(@PathVariable Product product, Model model) {
+		//inventory spass
+		
+		return "itemDetails";
 	}
 }
