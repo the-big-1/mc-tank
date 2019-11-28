@@ -4,7 +4,284 @@
 ---------------------
 1. Variables
 2. General rules
+3. Bootstrap Overrides
+4. Buttons
 */
 @import url("https://fonts.googleapis.com/css?family=Muli:400,600,700&display=swap");
+/*
+--------------------------------
+    : General css :
+--------------------------------
+*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Muli", sans-serif;
+  margin: 0;
+  background: #f2f5fa;
+  font-size: 15px;
+  font-weight: 400;
+  color: #8A98AC;
+  line-height: 1.5;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #263a5b;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+h6 {
+  font-size: 15px;
+}
+
+b {
+  font-weight: 700;
+}
+
+strong {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+label {
+  vertical-align: middle;
+}
+
+* {
+  outline: none !important;
+}
+
+a {
+  color: #0080ff;
+}
+a:hover {
+  color: #0073e6;
+  outline: 0;
+  text-decoration: none;
+}
+a:active {
+  color: #0073e6;
+  outline: 0;
+  text-decoration: none;
+}
+a:focus {
+  color: #0073e6;
+  outline: 0;
+  text-decoration: none;
+}
+
+code {
+  color: #0080ff;
+}
+
+.logobar {
+  padding: 15px 0;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+.logobar .logo.logo-small {
+  display: none;
+}
+.logobar .logo img {
+  width: 128px;
+}
+
+.leftbar {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.03);
+  z-index: 9;
+  transition: all 0.3s ease;
+}
+
+.rightbar {
+  margin-left: 250px;
+  overflow: hidden;
+  min-height: 500px;
+  transition: all 0.3s ease;
+}
+
+.contentbar {
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.footerbar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 250px;
+  padding: 20px 30px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.toggle-menu .footerbar {
+  left: 0;
+}
+
+.slimScrollBar {
+  z-index: 0 !important;
+}
+
+.navigationbar {
+  height: calc(100vh - 100px);
+  overflow: auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* Webkit fallbacks */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/*
+--------------------------------
+    : Overrides for Bootstrap:
+--------------------------------
+*/
+.text-muted {
+  color: #8A98AC !important;
+}
+
+.text-primary {
+  color: #0080ff !important;
+}
+
+/*
+--------------------------------
+    : Buttons Component :
+--------------------------------
+*/
+.btn {
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+/* -- Success Button -- */
+/* -- Success Button -- */
+.btn-success {
+  color: #ffffff;
+  background-color: #18d26b;
+  border-color: #18d26b;
+  box-shadow: none;
+}
+.btn-success .disabled {
+  color: #ffffff;
+  background-color: #18d26b;
+  border-color: #18d26b;
+}
+.btn-success:disabled {
+  color: #ffffff;
+  background-color: #18d26b;
+  border-color: #18d26b;
+}
+.btn-success:active {
+  background-color: #15bb5f;
+  border-color: #15bb5f;
+}
+.btn-success:hover {
+  background-color: #15bb5f;
+  border-color: #15bb5f;
+}
+.btn-success.focus {
+  color: #ffffff;
+  background-color: #15bb5f;
+  border-color: #15bb5f;
+  box-shadow: 0 0 0 0.2rem #63eda1;
+}
+.btn-success:focus {
+  color: #ffffff;
+  background-color: #15bb5f;
+  border-color: #15bb5f;
+  box-shadow: 0 0 0 0.2rem #63eda1;
+}
+.btn-success:visited {
+  background-color: #15bb5f;
+  border-color: #15bb5f;
+}
+.btn-success:not(:disabled):not(.disabled).active {
+  background-color: #15bb5f;
+  border-color: #15bb5f;
+}
+.btn-success:not(:disabled):not(.disabled):active {
+  background-color: #15bb5f;
+  border-color: #15bb5f;
+}
+.btn-success:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem #63eda1;
+}
+.btn-success:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.2rem #63eda1;
+}
+
+/* -- Link Buttons -- */
+.btn-primary-rgba {
+  background-color: rgba(0, 128, 255, 0.1);
+  border: none;
+  color: #0080ff;
+}
+
+.btn-primary-rgba:hover {
+  background-color: #0080ff;
+  border: none;
+  color: #ffffff;
+}
+
+.btn-danger-rgba {
+  background-color: rgba(255, 63, 63, 0.1);
+  border: none;
+  color: #ff3f3f;
+}
+
+.btn-danger-rgba:hover {
+  background-color: #ff3f3f;
+  border: none;
+  color: #ffffff;
+}
 
 /*# sourceMappingURL=theme.css.map */

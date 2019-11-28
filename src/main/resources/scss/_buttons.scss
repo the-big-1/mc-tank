@@ -1,0 +1,103 @@
+@import "variables";
+/*
+--------------------------------
+    : Buttons Component :
+--------------------------------
+*/
+.btn {
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+/* -- Success Button -- */
+/* -- Success Button -- */
+.btn-success {
+  color: $white;
+  background-color: $success;
+  border-color:$success;
+  box-shadow: none;
+  .disabled {
+    color: $white;
+    background-color: $success;
+    border-color: $success;
+  }
+  &:disabled {
+    color: $white;
+    background-color: $success;
+    border-color: $success;
+  }
+  &:active {
+    background-color: darken($success, 5%);
+    border-color: darken($success, 5%);
+  }
+  &:hover {
+    background-color: darken($success, 5%);
+    border-color: darken($success, 5%);
+  }
+  &.focus {
+    color: $white;
+    background-color: darken($success, 5%);
+    border-color: darken($success, 5%);
+    box-shadow: 0 0 0 0.2rem lighten($success, 20%);
+  }
+  &:focus {
+    color: $white;
+    background-color: darken($success, 5%);
+    border-color: darken($success, 5%);
+    box-shadow: 0 0 0 0.2rem lighten($success, 20%);
+  }
+  &:visited {
+    background-color: darken($success, 5%);
+    border-color: darken($success, 5%);
+  }
+  &:not(:disabled) {
+    &:not(.disabled).active {
+      background-color: darken($success, 5%);
+      border-color: darken($success, 5%);
+    }
+    &:not(.disabled) {
+      &:active {
+        background-color: darken($success, 5%);
+        border-color: darken($success, 5%);
+      }
+    }
+  }
+  &:not(:disabled) {
+    &:not(.disabled).active {
+      &:focus {
+        box-shadow: 0 0 0 0.2rem lighten($success, 20%);
+      }
+    }
+    &:not(.disabled) {
+      &:active {
+        &:focus {
+          box-shadow: 0 0 0 0.2rem lighten($success, 20%);
+        }
+      }
+    }
+  }
+}
+
+/* -- Link Buttons -- */
+.btn-primary-rgba {
+  background-color: $primary-rgba;
+  border: none;
+  color: $primary;
+}
+.btn-primary-rgba:hover {
+  background-color: $primary;
+  border: none;
+  color: $white;
+}
+
+.btn-danger-rgba {
+  background-color: $danger-rgba;
+  border: none;
+  color: $danger;
+}
+.btn-danger-rgba:hover {
+  background-color: $danger;
+  border: none;
+  color: $white;
+}
