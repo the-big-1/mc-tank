@@ -9,10 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class DiscountCart extends Cart{
 	public DiscountCart(){
+		// adds a product to the cart with the given parameters
 		this.addOrUpdateItem(new Product("Product", Money.of(12.99, "EUR")),1);
 	}
 
 	public void addDiscount(String discountCode){
+		// add discount codes to cart as a product
 		if("McFive".equals(discountCode) && !this.containsDiscount("McFive"))
 			this.addOrUpdateItem(new Product("McFive", super.getPrice().multiply(0.05).negate()),1);
 		if("McTen".equals(discountCode) && !this.containsDiscount("McTen"))
@@ -20,6 +22,7 @@ public class DiscountCart extends Cart{
 	}
 
 	public boolean containsDiscount(String discountCode){
+		// every code can only be used once
 		for (CartItem item: this.toList()){
 			if(discountCode.equals(item.getProductName()))
 				return true;
@@ -28,10 +31,10 @@ public class DiscountCart extends Cart{
 	}
 }
 
-class DiscountController {
+/*class DiscountController {
 	private DiscountCart cart;
 
 	DiscountController(DiscountCart cart) {
 		this.cart = cart;
 	}
-}
+}*/

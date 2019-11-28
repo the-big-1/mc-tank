@@ -19,27 +19,27 @@ public class DiscountController {
 
 	@GetMapping(value="/discount")
 	public String showPrice(Model model){
+		// price will be shown in cart 
 		model.addAttribute("price", cart.getPrice().toString());
 		return "discount";
 	}
 
 	@PostMapping(value="/discount")
 	public String addDiscount(@RequestParam("discountCode") String discountCode){
+		//by entering a discount code and pressing the button the code will be added to cart
 		cart.addDiscount(discountCode); 
 		return "redirect:/discount";
 }
 	@GetMapping(value="/checkout")
 	public String pay() {
+		//show site for checkout
 		return "checkout";
 	}
 	
 	@PostMapping(value="/checkout")
-	
-	
-		public String returnthis() {
-		
+	public String checkout() {
+		// empty cart
 			cart.clear(); 
-	
 		return "redirect:/discount";
 	
 }}
