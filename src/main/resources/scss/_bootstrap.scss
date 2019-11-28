@@ -1,0 +1,12 @@
+@import "variables";
+/*
+--------------------------------
+    : Overrides for Bootstrap:
+--------------------------------
+*/
+.text-muted {
+  color: $muted !important;
+}
+.text-primary {
+  color: $primary !important;
+}
