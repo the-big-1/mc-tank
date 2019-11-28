@@ -40,11 +40,11 @@ public class MainController {
 
 		UserDetails userDetails = (UserDetails) principal;
 		if (customerService.isAdmin(userDetails))
-			return "overview";
+			return "redirect:/overview";
 		else if (customerService.isManager(userDetails))
-			return "shop-cart";
+			return "redirect:/shop-cart";
 		else if (customerService.isCustomer(userDetails))
-			return "account";
+			return "redirect:/account";
 		return "redirect:/login";
 	}
 }

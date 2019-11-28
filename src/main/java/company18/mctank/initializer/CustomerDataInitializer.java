@@ -29,7 +29,6 @@ class CustomerDataInitializer implements DataInitializer {
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerDataInitializer.class);
 
 	private final UserAccountManager userAccountManager;
-	private final CustomerService сustomerService;
 
 	/**
 	 * Creates a new {@link CustomerDataInitializer} with the given {@link UserAccountManager} and
@@ -44,7 +43,6 @@ class CustomerDataInitializer implements DataInitializer {
 		Assert.notNull(сustomerService, "CustomerRepository must not be null!");
 
 		this.userAccountManager = userAccountManager;
-		this.сustomerService = сustomerService;
 	}
 
 	/*

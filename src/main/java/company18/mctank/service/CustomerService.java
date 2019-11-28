@@ -75,7 +75,7 @@ public class CustomerService {
 			 .stream()
 			 .anyMatch(
 			 	a -> a.getAuthority()
-					.contains(role.getRole())
+					.equals(role.getRole())
 			 );
 	}
 }
