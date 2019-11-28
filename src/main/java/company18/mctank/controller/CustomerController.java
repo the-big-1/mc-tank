@@ -6,7 +6,7 @@ import company18.mctank.forms.RegistrationForm;
 import company18.mctank.service.CustomerService;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccountIdentifier;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;

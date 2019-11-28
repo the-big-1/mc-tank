@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-@Repository
+@Service
 public class CustomerService {
 
 	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
