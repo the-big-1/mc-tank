@@ -284,4 +284,15 @@ code {
   color: #ffffff;
 }
 
+/*
+------------------------------
+    : Card component :
+------------------------------
+*/
+.card {
+  border: none;
+  border-radius: 3px;
+  background-color: #ffffff;
+}
+
 /*# sourceMappingURL=theme.css.map */

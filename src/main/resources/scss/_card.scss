@@ -1,0 +1,11 @@
+@import "variables";
+/*
+------------------------------
+    : Card component :
+------------------------------
+*/
+.card {
+  border:none;
+  border-radius: 3px;
+  background-color: $card-bg;
+}
