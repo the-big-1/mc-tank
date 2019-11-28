@@ -8,8 +8,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 class MvcSecurityConfig extends SalespointSecurityConfiguration {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/**").permitAll().and()
-				.formLogin().loginProcessingUrl("/login").and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+		http.authorizeRequests()
+			.antMatchers("/**")
+			.permitAll()
+			.and()
+			.formLogin()
+			.loginPage("/login")
+			.and()
+			.logout()
+			.logoutUrl("/logout")
+			.logoutSuccessUrl("/");
 	}
 }
