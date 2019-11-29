@@ -9,3 +9,34 @@
   border-radius: 3px;
   background-color: $card-bg;
 }
+
+.card-header {
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
+}
+.card-header:first-child {
+  border-radius: calc(5px - 1px) calc(5px - 1px) 0 0;
+  padding: 15px 20px;
+}
+.card {
+  .card-header {
+    .card-title {
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+  }
+}
+.card {
+  .card-header {
+    .row {
+      .card-title {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.card-footer {
+  border-top: 1px solid $border-color;
+  background-color: transparent;
+}
