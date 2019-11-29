@@ -23,6 +23,7 @@ public class ReservationService {
 		return repo.findAll();
 	}
 	
+	// finds reservations by class (Reservation, McSitReservation or McWashReservation [.class] possible)
 	public Iterable<Reservation> findByClass(Class<?> reservationClass){
 		LinkedList<Reservation> result = new LinkedList<Reservation>();
 		for (Reservation reservation : repo.findAll())
@@ -30,7 +31,7 @@ public class ReservationService {
 		return result;
 	}
 	
-	
+	// sorts reservations by date
 	static public Iterable<Reservation> sortByDate(Iterable<Reservation> reservations){
 		LinkedList<Reservation> result = new LinkedList<Reservation>();
 		Iterator<Reservation> reservationsIterator = reservations.iterator();
@@ -50,9 +51,11 @@ public class ReservationService {
 		repo.deleteById(id);
 	}
 	
-	
+	// saves entry as concrete class
 	public void save(String mcPoint, String name, LocalDateTime dateAndTime) {
-		if (mcPoint.equals("McSit")) repo.save(new McSitReservation(name, dateAndTime));
-		if (mcPoint.equals("McWash")) repo.save(new McWashReservation(name, dateAndTime));
+		if (mcPoint.equals("McSit")) 
+			repo.save(new McSitReservation(name, dateAndTime));
+		if (mcPoint.equals("McWash")) 
+			repo.save(new McWashReservation(name, dateAndTime));
 	}
 }
