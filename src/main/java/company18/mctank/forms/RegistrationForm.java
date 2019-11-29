@@ -4,15 +4,15 @@ import javax.validation.constraints.NotEmpty;
 
 public class RegistrationForm {
 
-	@NotEmpty(message = "{RegistrationForm.name.NotEmpty}")
-	private final String name;
+	@NotEmpty(message = "{RegistrationForm.username.NotEmpty}")
+	private final String username;
 
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
 	private final String password;
 
-	public RegistrationForm(String name, String password) {
+	public RegistrationForm(String username, String password) {
 
-		this.name = name;
+		this.username = username;
 		this.password = password;
 	}
 
@@ -21,7 +21,7 @@ public class RegistrationForm {
 	}
 
 	public String getName() {
-		return name;
+		return username;
 	}
 
 }
