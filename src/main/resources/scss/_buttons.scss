@@ -10,7 +10,21 @@
   padding: 6px 12px;
 }
 
-/* -- Success Button -- */
+.btn-link {
+  color: $primary;
+  text-decoration: none;
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+  &.focus {
+    text-decoration: none;
+  }
+  &:focus {
+    text-decoration: none;
+  }
+}
+
 /* -- Success Button -- */
 .btn-success {
   color: $white;
@@ -89,6 +103,30 @@
   background-color: $primary;
   border: none;
   color: $white;
+}
+
+.btn-primary-rgba:focus {
+  background-color: $primary;
+  border: none;
+  color: $white;
+  box-shadow: 0 0 0 0.2rem lighten($primary, 20%);
+}
+
+.btn-secondary-rgba {
+  background-color: $secondary-rgba;
+  border: none;
+  color: $secondary;
+}
+.btn-secondary-rgba:hover {
+  background-color: $secondary;
+  border: none;
+  color: $white;
+}
+.btn-secondary-rgba:focus {
+  background-color: $secondary;
+  border: none;
+  color: $white;
+  box-shadow: 0 0 0 0.2rem lighten($secondary, 5%);
 }
 
 .btn-danger-rgba {
