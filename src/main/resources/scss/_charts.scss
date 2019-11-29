@@ -1,0 +1,17 @@
+@import "variables";
+/*
+-------------------------------
+    : Chart css :
+-------------------------------
+*/
+/* -- Apex Chart -- */
+.apexcharts-xaxis text,
+.apexcharts-yaxis text {
+  font-family: $font-primary !important;
+  fill: $muted;
+}
+.apexcharts-legend-text {
+  position: relative;
+  font-size: 14px;
+  font-family: $font-primary !important;
+}
