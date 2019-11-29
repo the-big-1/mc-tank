@@ -2,34 +2,67 @@ package company18.mctank.controller;
 
 import company18.mctank.domain.DiscountCart;
 
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.salespointframework.order.Cart;
+import org.salespointframework.order.OrderManager;
+import org.salespointframework.order.OrderStatus;
+import org.salespointframework.order.Order;
+import org.salespointframework.payment.Cash;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
+
+
 
 @Controller
+@SessionAttributes("cart")
 public class DiscountController {
 	private DiscountCart cart;
 
 	DiscountController(DiscountCart cart){
-		this.cart = cart;
+		this.cart = cart; }
+		
+		OrderManager<Order> orderManager;
+
+
+		void OrderController(OrderManager<Order> orderManager) {
+
+			Assert.notNull(orderManager, "OrderManager must not be null!");
+			this.orderManager = orderManager;
+		}
+
+	
+	@ModelAttribute("cart")
+	Cart initializeCart() {
+		return new Cart();
 	}
 
-	@GetMapping(value="/discount")
+
+	
+
+	@GetMapping(value="/cart")
 	public String showPrice(Model model){
 		// price will be shown in cart 
 		model.addAttribute("price", cart.getPrice().toString());
-		return "discount";
+		return "cart";
 	}
 
-	@PostMapping(value="/discount")
+	@PostMapping(value="/cart")
 	public String addDiscount(@RequestParam("discountCode") String discountCode){
 		//by entering a discount code and pressing the button the code will be added to cart
 		cart.addDiscount(discountCode); 
-		return "redirect:/discount";
-}
+		return "redirect:/cart";
+	}
+	
 	@GetMapping(value="/checkout")
 	public String pay() {
 		//show site for checkout
@@ -40,6 +73,19 @@ public class DiscountController {
 	public String checkout() {
 		// empty cart
 			cart.clear(); 
-		return "redirect:/discount";
-	
-}}
+		return "redirect:/cart";
+	/*String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
+		return userAccount.map(account -> {
+		
+			
+		var order = new Order(account, Cash.CASH);
+
+		cart.addItemsTo(order);
+
+		orderManager.payOrder(order);
+		orderManager.completeOrder(order);
+		 */
+		}
+	//);
+	}
+

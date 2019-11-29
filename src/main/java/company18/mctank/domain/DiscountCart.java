@@ -1,6 +1,7 @@
 package company18.mctank.domain;
 
 import org.javamoney.moneta.Money;
+
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
@@ -16,7 +17,7 @@ public class DiscountCart extends Cart{
 	public void addDiscount(String discountCode){
 		// add discount codes to cart as a product
 		if("McFive".equals(discountCode) && !this.containsDiscount("McFive"))
-			this.addOrUpdateItem(new Product("McFive", super.getPrice().multiply(0.05).negate()),1);
+			this.addOrUpdateItem(new Product("McTen", super.getPrice().multiply(0.05).negate()),1);
 		if("McTen".equals(discountCode) && !this.containsDiscount("McTen"))
 			this.addOrUpdateItem(new Product("McTen", super.getPrice().multiply(0.10).negate()),1);
 	}
@@ -31,10 +32,4 @@ public class DiscountCart extends Cart{
 	}
 }
 
-/*class DiscountController {
-	private DiscountCart cart;
 
-	DiscountController(DiscountCart cart) {
-		this.cart = cart;
-	}
-}*/
