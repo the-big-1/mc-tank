@@ -40,7 +40,12 @@ public class ReservationController {
 		if (result.hasErrors()) return "redirect:/reservation";
 		
 		// else save and redirect
-		reservationService.save(form.getMcPoint(), form.getName(), LocalDateTime.of(form.getDate(), form.getTime()));
+		try {
+			reservationService.save(form.getMcPoint(), form.getName(), LocalDateTime.of(form.getDate(), form.getTime()));
+		}
+		catch(IllegalArgumentException e){
+			// LocalDateTime given to save() is before now 
+		}
 		return "redirect:/reservation";
 	}
 	

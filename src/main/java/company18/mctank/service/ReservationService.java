@@ -51,8 +51,13 @@ public class ReservationService {
 		repo.deleteById(id);
 	}
 	
-	// saves entry as concrete class
-	public void save(String mcPoint, String name, LocalDateTime dateAndTime) {
+	
+	public void save(String mcPoint, String name, LocalDateTime dateAndTime){
+		// test if dateAndTime makes sense
+		if (dateAndTime.isBefore(LocalDateTime.now()))
+			throw new IllegalArgumentException();
+		
+		// save entry as concrete class
 		if (mcPoint.equals("McSit")) 
 			repo.save(new McSitReservation(name, dateAndTime));
 		if (mcPoint.equals("McWash")) 

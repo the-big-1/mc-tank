@@ -19,16 +19,16 @@ public class ReservationDataInitializer implements DataInitializer {
 
 	@Override
 	public void initialize() {
-		service.save("McSit", "a", LocalDateTime.of(2019, 12, 14, 10, 50));
-		service.save("McSit", "b", LocalDateTime.of(2019, 12, 13, 11, 30));
-		service.save("McSit", "c", LocalDateTime.of(2019, 12, 15, 12, 25));
-		service.save("McSit", "d", LocalDateTime.of(2019, 12, 11, 13, 20));
-		service.save("McSit", "e", LocalDateTime.of(2019, 12, 10, 14, 10));
+		service.save("McSit", "a", LocalDateTime.now().plusDays(1).plusHours(5));
+		service.save("McSit", "b", LocalDateTime.now().plusDays(2).plusHours(4));
+		service.save("McSit", "c", LocalDateTime.now().plusDays(3).plusHours(3));
+		service.save("McSit", "d", LocalDateTime.now().plusDays(4).plusHours(2));
+		service.save("McSit", "e", LocalDateTime.now().plusDays(5).plusHours(1));
 		
-		service.save("McWash", "f", LocalDateTime.of(2019, 12, 14, 10, 50));
-		service.save("McWash", "g", LocalDateTime.of(2019, 12, 13, 11, 30));
-		service.save("McWash", "h", LocalDateTime.of(2019, 12, 15, 12, 25));
-		service.save("McWash", "i", LocalDateTime.of(2019, 12, 11, 13, 20));
-		service.save("McWash", "j", LocalDateTime.of(2019, 12, 10, 14, 10));
+		service.save("McWash", "f", LocalDateTime.now().plusDays(5).plusHours(1));
+		service.save("McWash", "g", LocalDateTime.now().plusDays(4).plusHours(2));
+		service.save("McWash", "h", LocalDateTime.now().plusDays(3).plusHours(3));
+		service.save("McWash", "i", LocalDateTime.now().plusDays(2).plusHours(4));
+		service.save("McWash", "j", LocalDateTime.now().plusDays(1).plusHours(5));
 	}
 }
