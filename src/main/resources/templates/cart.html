@@ -28,15 +28,14 @@
         </p>
         <p>
     <form method="post" th:action="@{/cart}">
-        <label> Gutscheincode einlösen:</label><br>
-        <input id="discountCode" name="discountCode" type="text"/> <br>
-        <button type="submit"> add discount </button>
+        <!--<label> Gutscheincode einlösen:</label><br>-->
+        <!--<input id="discountCode" name="discountCode" type="text"/> <br>-->
+        <!-- <button type="submit"> add discount </button> -->
     </form>
     </p>
     <div>
- 
+  		<a href='/items'><button>add another item</button></a><br>
         <p>Final price:</p><p th:text="${finalprice}"></p>
-        <a href='/items'><button>add another item</button></a><br>
         <a href='/checkout'><button> complete Order</button></a><br>
     </div>
 </body>

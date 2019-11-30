@@ -3,6 +3,7 @@ package company18.mctank.controller;
 import company18.mctank.domain.DiscountCart;
 
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.salespointframework.quantity.Quantity;
+
+import java.util.List;
+
+import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderManager;
@@ -54,9 +59,10 @@ public class DiscountController {
 	}
 
 	@PostMapping(value="/cart")
-	public String addDiscount(@RequestParam("discountCode") String discountCode){
-		//by entering a discount code and pressing the button the code will be added to cart
-		cart.addDiscount(discountCode); 
+	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount,  @ModelAttribute Cart cart) {
+	cart.addOrUpdateItem(product, Quantity.of(amount));
+	/*public String addDiscount(@RequestParam("discountCode") String discountCode){
+		cart.addDiscount(discountCode); */
 		return "redirect:/cart";
 	}
 	
