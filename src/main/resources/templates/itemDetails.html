@@ -4,10 +4,17 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-		<title>Details</title>
+		<title>Item Details</title>
 	</head>
 
 	<body>
-		<h1>Item Details</h1>
+		<h1 th:text="${product.name}">Item Details</h1>
+		<div>
+			<span>Preis:</span>
+			<span th:text="${product.price}"></span><br>
+
+			<span>Auf Lager:</span>
+			<span th:text="${quantity}"></span><br>
+		</div>
 	</body>
 </html>

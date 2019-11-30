@@ -24,7 +24,7 @@
                 </div>
 
                 <div id="Categories" >
-                    <label> Erhältlich bei: </label></br>
+                    <label> Erhältlich bei: </label><br>
 
                     <div th:each="categorie: ${Categories}">
                         <input th:value="${categorie}" th:field="*{productCategories}" type="checkbox"/>

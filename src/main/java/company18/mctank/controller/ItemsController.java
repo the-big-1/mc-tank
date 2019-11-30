@@ -7,9 +7,12 @@ import company18.mctank.repository.Items;
 
 import javax.validation.Valid;
 
+
 import org.salespointframework.catalog.Product;
+import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -23,18 +26,21 @@ public class ItemsController {
 	
 	private final Items items;
 	private final ItemsService service;
-	//private final UniqueInventory<UniqueInventoryItem> inventory;  // kommt dazu wenn inventory vorhanden
+	private final UniqueInventory<UniqueInventoryItem> inventory;
+	
+	private static final Quantity NONE = Quantity.of(0);
 	
 	private final String Categories[] = {"McZapf", "McSit", "McDrive", "McWash"}; //Categories are used to sort the Products
 	
-	public ItemsController(Items items, ItemsService service) {
+	public ItemsController(Items items, ItemsService service, UniqueInventory<UniqueInventoryItem> inventory) {
 		this.items = items;
 		this.service = service;
+		this.inventory = inventory;
 		
 	}
 	
 	
-	@RequestMapping("/items")
+	@RequestMapping("/items")												//Catalog/Items Page
 	public String index(Model model) {
 		for (String category: Categories) {
 			model.addAttribute(category, items.findByCategory(category));
@@ -43,8 +49,8 @@ public class ItemsController {
 		return "items";
 	}
 	
-	@RequestMapping("/newItem")
-	public String newItem(Model model, NewItemForm form){  //creates new form
+	@RequestMapping("/newItem")												//New Item Page
+	public String newItem(Model model, NewItemForm form){  		//creates new form
 		model.addAttribute("form", form);
 		model.addAttribute("Categories", Categories);
 		
@@ -52,7 +58,7 @@ public class ItemsController {
 		
 	}
 		
-	@PostMapping("/newItem")
+	@PostMapping("/newItem")												//called after you submit the values for the new Items
 	public String registerNew(@Valid NewItemForm form, Errors result) {
 
 		if (result.hasErrors()) {
@@ -64,9 +70,16 @@ public class ItemsController {
 		return "redirect:/items";
 	}
 	
-	@GetMapping("/items/{product}")	
+	@GetMapping("/items/{product}")											//itemDetails Page for adding a Product to the Bill/Order
 	public String itemDetails(@PathVariable Product product, Model model) {
-		//inventory spass
+		
+		var quantity = inventory.findByProductIdentifier(product.getId())
+				.map(InventoryItem::getQuantity) //
+				.orElse(NONE);
+
+		model.addAttribute("product", product);
+		model.addAttribute("quantity", quantity);   // there is a problem with the unit *liter*  !!!
+		model.addAttribute("orderable", quantity.isGreaterThan(NONE));
 		
 		return "itemDetails";
 	}
