@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.order.Cart;
+import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.order.Order;
@@ -44,14 +45,11 @@ public class DiscountController {
 	Cart initializeCart() {
 		return new Cart();
 	}
-
-
 	
-
 	@GetMapping(value="/cart")
 	public String showPrice(Model model){
-		// price will be shown in cart 
-		model.addAttribute("price", cart.getPrice().toString());
+		// price will be shown in cart
+		model.addAttribute("finalprice", cart.getPrice().toString());
 		return "cart";
 	}
 
@@ -63,8 +61,13 @@ public class DiscountController {
 	}
 	
 	@GetMapping(value="/checkout")
-	public String pay() {
+	public String pay(Model model) {
 		//show site for checkout
+		//adds attributes for catalog
+		model.addAttribute("productName");
+		model.addAttribute("category");
+		model.addAttribute("quantity");
+		model.addAttribute("finalprice", cart.getPrice().toString());
 		return "checkout";
 	}
 	
@@ -73,6 +76,9 @@ public class DiscountController {
 		// empty cart
 			cart.clear(); 
 		return "redirect:/cart";
+		
+		
+		// for this part a user has to be logged in 
 	/*String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
 		return userAccount.map(account -> {
 		

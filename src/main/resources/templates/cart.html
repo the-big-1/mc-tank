@@ -16,11 +16,12 @@
                 <th>Quantity</th>
                 <th>Price</th>
             </tr>
-			<tr>
-				<td>Product</td>
-				<td>McTank</td>
-				<td>1</td>
-				<td>12.99€</td>
+			<!-- <tr>
+				<td th:text="${productName}>Product</td>
+				<td th:text="${category}>McZapf</td>
+				<td th:text="${quantity}>1</td>
+				<td th:text="${price}>12.99€</td>
+			</tr> -->
         </table>
         </p>
         <p>
@@ -31,10 +32,9 @@
     </p>
     <div>
  
-        <p>Final price:</p><p th:text="${price}">EUR 12.99</p>
+        <p>Final price:</p><p th:text="${finalprice}">EUR 12.99</p>
         <a href='/items'><button>add another item</button></a></br>
         <a href='/checkout'><button> complete Order</button></a></br>
     </div>
-
 </body>
 </html>

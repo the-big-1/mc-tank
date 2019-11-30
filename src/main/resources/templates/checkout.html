@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1> Checkout </h1>
+            <p>Final price:</p><p th:text="${finalprice}">EUR 12.99</p>
     <form method="post" th:action="@{/checkout}">
       	<button type="submit"> pay </button>
     </form>

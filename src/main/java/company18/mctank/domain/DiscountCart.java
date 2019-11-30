@@ -1,12 +1,14 @@
 package company18.mctank.domain;
 
 import org.javamoney.moneta.Money;
+import javax.money.MonetaryAmount;	
 
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class DiscountCart extends Cart{
@@ -16,6 +18,7 @@ public class DiscountCart extends Cart{
 		this.addOrUpdateItem(new Product("McZapf", Money.of(12.99, "EUR")),1);
 		this.addOrUpdateItem(new Product("McDrive", Money.of(12.99, "EUR")),1);
 		
+		// counts the number of categories in the cart to calculate discount
 		int[] countCat = new int[4];
 		float discount = 0;
 		
@@ -45,16 +48,11 @@ public class DiscountCart extends Cart{
 		
 
 			this.addOrUpdateItem(new Product("McTest", super.getPrice().multiply(discount).negate()),1);
-		
 
-		
-		/* 
-		 * 
-		 * 
-		 * 
-		 * */
 
 	}
+
+	   
 
 	public void addDiscount(String discountCode){
 		// add discount codes to cart as a product
