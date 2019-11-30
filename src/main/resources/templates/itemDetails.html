@@ -16,5 +16,14 @@
 			<span>Auf Lager:</span>
 			<span th:text="${quantity}"></span><br>
 		</div>
+
+		<form class="ui form" method="post" th:action="@{/cart}" th:if="${orderable}">
+            <input type="hidden" name="product-id" value="0" th:value="${product.id}"/>   <!-- name=""  werden für controller benötigt-->
+            <div class="field">
+            	<label>Anzahl</label>
+                <input name="amount" type="number" min="1" step="1" required="required"/><br/>
+            </div>
+            <button type="submit">Zur Rechnung hinzufügen</button>
+        </form>
 	</body>
 </html>
