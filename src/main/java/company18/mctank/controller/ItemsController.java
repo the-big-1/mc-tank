@@ -78,8 +78,8 @@ public class ItemsController {
 				.orElse(NONE);
 
 		model.addAttribute("product", product);
-		model.addAttribute("quantity", quantity);   // there is a problem with the unit *liter*  !!!
-		model.addAttribute("orderable", quantity.isGreaterThan(NONE));
+		model.addAttribute("quantity", quantity);   // there is NO problem with the unit *liter*  !!!
+		model.addAttribute("orderable", quantity.isGreaterThan(product.createQuantity(0)));
 		
 		return "itemDetails";
 	}
