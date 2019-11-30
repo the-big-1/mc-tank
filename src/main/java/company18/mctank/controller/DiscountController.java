@@ -63,10 +63,7 @@ public class DiscountController {
 	@GetMapping(value="/checkout")
 	public String pay(Model model) {
 		//show site for checkout
-		//adds attributes for catalog
-		model.addAttribute("productName");
-		model.addAttribute("category");
-		model.addAttribute("quantity");
+		//adds attributes for cart
 		model.addAttribute("finalprice", cart.getPrice().toString());
 		return "checkout";
 	}
@@ -79,6 +76,7 @@ public class DiscountController {
 		
 		
 		// for this part a user has to be logged in 
+		
 	/*String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
 		return userAccount.map(account -> {
 		
