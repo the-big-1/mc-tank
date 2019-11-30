@@ -1,7 +1,9 @@
 package company18.mctank.domain;
 
-import org.javamoney.moneta.Money;
+import javax.money.MonetaryAmount;
 
+import org.javamoney.moneta.Money;
+import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
@@ -49,6 +51,13 @@ public class DiscountCart extends Cart{
 			this.addOrUpdateItem(new Product("McTest", super.getPrice().multiply(discount).negate()),1);
 
 
+	}
+	
+	
+	// rounds Carts getPrice()
+	@Override
+	public MonetaryAmount getPrice() {
+		return super.getPrice().with(MonetaryOperators.rounding());
 	}
 
 	   
