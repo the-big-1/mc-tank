@@ -3,7 +3,6 @@ package company18.mctank.controller;
 import company18.mctank.domain.DiscountCart;
 
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -27,60 +26,59 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 
 
-
 @Controller
 @SessionAttributes("cart")
 public class DiscountController {
 	private DiscountCart cart;
 
-	DiscountController(DiscountCart cart){
-		this.cart = cart; }
-		
-		OrderManager<Order> orderManager;
+	DiscountController(DiscountCart cart) {
+		this.cart = cart;
+	}
+
+	OrderManager<Order> orderManager;
 
 
-		void OrderController(OrderManager<Order> orderManager) {
+	void OrderController(OrderManager<Order> orderManager) {
+		Assert.notNull(orderManager, "OrderManager must not be null!");
+		this.orderManager = orderManager;
+	}
 
-			Assert.notNull(orderManager, "OrderManager must not be null!");
-			this.orderManager = orderManager;
-		}
 
-	
 	@ModelAttribute("cart")
 	Cart initializeCart() {
 		return new Cart();
 	}
-	
-	@GetMapping(value="/cart")
-	public String showPrice(Model model){
+
+	@GetMapping(value = "/cart")
+	public String showPrice(Model model) {
 		// price will be shown in cart
 		model.addAttribute("finalprice", cart.getPrice().toString());
 		return "cart";
 	}
 
-	@PostMapping(value="/cart")
-	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount,  @ModelAttribute Cart cart) {
-	cart.addOrUpdateItem(product, Quantity.of(amount));   // quantity.of() can't be compared to metric *Liter* --> error --David-- 
+	@PostMapping(value = "/cart")
+	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @ModelAttribute Cart cart) {
+		cart.addOrUpdateItem(product, Quantity.of(amount));   // quantity.of() can't be compared to metric *Liter* --> error --David--
 	/*public String addDiscount(@RequestParam("discountCode") String discountCode){
 		cart.addDiscount(discountCode); */
 		return "redirect:/cart";
 	}
-	
-	@GetMapping(value="/checkout")
+
+	@GetMapping(value = "/checkout")
 	public String pay(Model model) {
 		//show site for checkout
 		//adds attributes for cart
 		model.addAttribute("finalprice", cart.getPrice().toString());
 		return "checkout";
 	}
-	
-	@PostMapping(value="/checkout")
+
+	@PostMapping(value = "/checkout")
 	public String checkout() {
 		// empty cart
-			cart.clear(); 
+		cart.clear();
 		return "redirect:/cart";
-		
-		
+
+
 		// for this part a user has to be logged in 
 		
 	/*String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
@@ -94,7 +92,7 @@ public class DiscountController {
 		orderManager.payOrder(order);
 		orderManager.completeOrder(order);
 		 */
-		}
-	//);
 	}
+	//);
+}
 

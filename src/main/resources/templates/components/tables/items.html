@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+  <meta charset="UTF-8"/>
+  <title>Items table</title>
+</head>
+<body>
+<div th:fragment="items-table" class="card m-b-30" th:each="point : ${assortment}">
+  <div class="card-header">
+    <div class="row align-items-center">
+      <div class="col-6">
+        <h5 class="card-title mb-0" th:text="${point.key}">No Data provided</h5>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Stock</th>
+          <th>Amount</th>
+          <th>Price</th>
+          <th>Orders</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each=" product : ${point.value}">
+          <th scope="row" th:text="'# ' + ${product.Id}"></th>
+          <td th:text="${product.Name}">No info</td>
+          <td>No Info</td>
+          <td>No Info</td>
+          <td th:text="${product.Price}">No info</td>
+          <td>No Info</td>
+          <td>
+            <div class="button-list">
+              <a th:href="@{/items/{id}(id=${product.id})}">
+                <button class="btn btn-primary-rgba disabled">
+                  <i class="feather icon-align-justify m-r-5"></i>
+                  Details
+                </button>
+              </a>
+              <!--              <form th:if="${customer.userAccount.Enabled == true}" th:action="@{/customer/disable}">-->
+              <!--                <button th:name="id" th:value="${customer.userAccount.Id}"-->
+              <!--                        class="btn btn-warning-rgba">-->
+              <!--                  <i class="feather icon-minus-square m-r-5"></i>-->
+              <!--                  Disable-->
+              <!--                </button>-->
+              <!--              </form>-->
+              <!--              <form th:unless="${customer.userAccount.Enabled == true}" th:action="@{/customer/enable}">-->
+              <!--                <button th:name="id" th:value="${customer.userAccount.Id}" -->
+              <!--                        class="btn btn-success-rgba">-->
+              <!--                  <i class="feather icon-plus-square m-r-5"></i>-->
+              <!--                  Enable-->
+              <!--                </button>-->
+              <!--              </form>-->
+              <!--              -->
+              <!--              <form th:action="@{/customer/delete}">-->
+              <!--                <button th:name="id" th:value="${customer.Id}" href="page-order-detail.html"-->
+              <!--                        class="btn btn-danger-rgba">-->
+              <!--                  <i class="feather icon-trash m-r-5"></i>-->
+              <!--                  Delete-->
+              <!--                </button>-->
+              <!--              </form>-->
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

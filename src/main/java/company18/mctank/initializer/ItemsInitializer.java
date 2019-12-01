@@ -1,4 +1,4 @@
-package company18.mctank.config;
+package company18.mctank.initializer;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
@@ -9,7 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import company18.mctank.repository.Items;
+import company18.mctank.repository.ItemsRepository;
 
 
 
@@ -20,14 +20,14 @@ import company18.mctank.repository.Items;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 class ItemsInitializer implements DataInitializer {
 	
-	private final Items items;
+	private final ItemsRepository itemsRepository;
 	
 	
-	public ItemsInitializer(Items items) {
+	public ItemsInitializer(ItemsRepository itemsRepository) {
 		
-		Assert.notNull(items, "Items can't be Null!");
+		Assert.notNull(itemsRepository, "Items can't be Null!");
 		
-		this.items = items;
+		this.itemsRepository = itemsRepository;
 	}
 	
 	
@@ -45,10 +45,10 @@ class ItemsInitializer implements DataInitializer {
 		prod4.addCategory("McSit");
 		prod5.addCategory("McWash");
 		
-		items.save(prod1);
-		items.save(prod2);
-		items.save(prod3);
-		items.save(prod4);
-		items.save(prod5);
+		itemsRepository.save(prod1);
+		itemsRepository.save(prod2);
+		itemsRepository.save(prod3);
+		itemsRepository.save(prod4);
+		itemsRepository.save(prod5);
 	}
 }

@@ -3,7 +3,7 @@ package company18.mctank.controller;
 
 import company18.mctank.service.ItemsService;
 import company18.mctank.forms.NewItemForm;
-import company18.mctank.repository.Items;
+import company18.mctank.repository.ItemsRepository;
 
 import javax.validation.Valid;
 
@@ -13,9 +13,9 @@ import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,44 +24,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ItemsController {
-	
-	private final Items items;
-	private final ItemsService service;
-	private final UniqueInventory<UniqueInventoryItem> inventory;
+	@Autowired
+	private ItemsRepository itemsRepository;
+	@Autowired
+	private ItemsService itemsService;
+	@Autowired
+	private UniqueInventory<UniqueInventoryItem> inventory;
 	
 	private static final Quantity NONE = Quantity.of(0);
 	
-	private final String Categories[] = {"McZapf", "McSit", "McDrive", "McWash"}; //Categories are used to sort the Products
-	
-	public ItemsController(Items items, ItemsService service, UniqueInventory<UniqueInventoryItem> inventory) {
-		
-		Assert.notNull(items, "Items can't be Null!");
-		Assert.notNull(service, "Service can't be Null!");
-		Assert.notNull(inventory, "Inventory can't be Null!");
-				
-		this.items = items;
-		this.service = service;
-		this.inventory = inventory;
-		
-	}
+	private final String mcPoints[] = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
+
 	
 	
-	@RequestMapping("/items")												//Catalog/Items Page
+	@GetMapping("/items")
 	public String index(Model model) {
-		model.addAttribute("Categories", Categories);
-		
-		for (String category: Categories) {
-			model.addAttribute(category, items.findByCategory(category));
-		}
-		
-		return "items";
+		model.addAttribute("assortment", itemsService.makeAssortment(mcPoints));
+		return "items-management";
 	}
 	
 	@RequestMapping("/newItem")												//New Item Page
 	public String newItem(Model model, NewItemForm form){  		//creates new form
 		model.addAttribute("form", form);
-		model.addAttribute("Categories", Categories);
-		
+		model.addAttribute("Categories", mcPoints);
 		return"newItem";
 		
 	}
@@ -73,7 +58,7 @@ public class ItemsController {
 			return "newItem";
 		}
 
-		service.createNewProduct(form);
+		itemsService.createNewProduct(form);
 
 		return "redirect:/items";
 	}

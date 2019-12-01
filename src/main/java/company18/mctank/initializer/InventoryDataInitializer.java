@@ -1,4 +1,4 @@
-package company18.mctank.config;
+package company18.mctank.initializer;
 
 import java.util.Iterator;
 
@@ -11,7 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import company18.mctank.repository.Items;
+import company18.mctank.repository.ItemsRepository;
 
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE)
@@ -19,19 +19,19 @@ public class InventoryDataInitializer implements DataInitializer {
 
 	private final UniqueInventory<UniqueInventoryItem> inv;
 	
-	private final Items items;
+	private final ItemsRepository itemsRepository;
 	
-	public InventoryDataInitializer(UniqueInventory<UniqueInventoryItem> inv, Items items) {
+	public InventoryDataInitializer(UniqueInventory<UniqueInventoryItem> inv, ItemsRepository itemsRepository) {
 		Assert.notNull(inv, "Inventory must not be null");
-		Assert.notNull(items, "Items must not be null");
+		Assert.notNull(itemsRepository, "Items must not be null");
 		
 		this.inv = inv;
-		this.items = items;
+		this.itemsRepository = itemsRepository;
 	}
 	
 	@Override
 	public void initialize() {
-		Iterator<Product> iterator = this.items.findAll().iterator();
+		Iterator<Product> iterator = this.itemsRepository.findAll().iterator();
 		while (iterator.hasNext()) {
 			Product product = iterator.next();
 			// save new uniqueinventoryitem if product  not in inventory
