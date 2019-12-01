@@ -3,7 +3,6 @@ package company18.mctank.controller;
 import company18.mctank.domain.DiscountCart;
 
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -61,8 +60,7 @@ public class DiscountController {
 	@PostMapping(value="/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount,  @ModelAttribute Cart cart) {
 	cart.addOrUpdateItem(product, Quantity.of(amount));   // quantity.of() can't be compared to metric *Liter* --> error --David-- 
-	/*public String addDiscount(@RequestParam("discountCode") String discountCode){
-		cart.addDiscount(discountCode); */
+
 		return "redirect:/cart";
 	}
 	
@@ -75,10 +73,11 @@ public class DiscountController {
 	}
 	
 	@PostMapping(value="/checkout")
-	public String checkout() {
+	public String addDiscount(@RequestParam("discountCode") String discountCode){
+	cart.addDiscount(discountCode); 
 		// empty cart
 			cart.clear(); 
-		return "redirect:/cart";
+		return "redirect:/checkout";
 		
 		
 		// for this part a user has to be logged in 

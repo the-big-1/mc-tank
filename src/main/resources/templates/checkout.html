@@ -9,8 +9,13 @@
 <body>
     <h1> Checkout </h1>
             <p>Final price:</p><p th:text="${finalprice}">EUR 12.99</p>
-    <form method="post" th:action="@{/checkout}">
-      	<button type="submit"> pay </button>
+    
+       <form method="post" th:action="@{/checkout}">
+        <label> Gutscheincode einlösen:</label><br>
+        <input id="discountCode" name="discountCode" type="text"/> <br>
+        <button type="submit"> add discount </button> 
+    </form>
+      	<a href='/checkout'><button> pay </button></a>
     </form>
 </body>
 </html>
