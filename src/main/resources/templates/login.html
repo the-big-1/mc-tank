@@ -34,6 +34,9 @@
                     <a href="/" class="logo"><img src="/images/logo.png" class="img-fluid" alt="logo"></a>
                   </div>
                   <h4 class="text-primary my-4">Log in.</h4>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${param.error}" >
+                    <strong>Oh no!</strong> Login or Password is incorrect.
+                  </div>
                   <div class="form-group">
                     <label class="d-none" for="username"></label>
                     <input type="text" class="form-control"

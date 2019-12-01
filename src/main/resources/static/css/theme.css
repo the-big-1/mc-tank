@@ -1349,6 +1349,9 @@ code {
   margin-right: 10px;
   margin-bottom: 10px;
 }
+.button-list form {
+  display: inline-block;
+}
 
 .btn-group .btn {
   margin-right: 0;

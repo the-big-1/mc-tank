@@ -14144,6 +14144,7 @@
   transform: rotate(315deg);
 }
 
+/*noinspection ALL*/
 .mdi-flip-h:before {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -14151,6 +14152,7 @@
   -ms-filter: "FlipH";
 }
 
+/*noinspection ALL*/
 .mdi-flip-v:before {
   -webkit-transform: scaleY(-1);
   transform: scaleY(-1);

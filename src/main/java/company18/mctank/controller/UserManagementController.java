@@ -27,20 +27,20 @@ class UserManagementController {
 	String disableCustomer(Model model,  @RequestParam UserAccountIdentifier id){
 		customerService.disableCustomer(id);
 		model.addAttribute("customerList", customerService.findAll());
-		return "redirect:/customer-list";
+		return "redirect:/user-management";
 	}
 	@RequestMapping("/customer/enable")
 	String enableCustomer(Model model,  @RequestParam UserAccountIdentifier id){
 		customerService.enableCustomer(id);
 		model.addAttribute("customerList", customerService.findAll());
-		return "redirect:/customer-list";
+		return "redirect:/user-management";
 	}
 
 	@RequestMapping("/customer/delete")
 	String deleteCustomer(Model model,  @RequestParam long id){
 		customerService.deleteCustomer(id);
 		model.addAttribute("customerList", customerService.findAll());
-		return "redirect:/customer-list";
+		return "redirect:/user-management";
 	}
 
 }

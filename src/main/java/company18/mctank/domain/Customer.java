@@ -10,6 +10,7 @@ import org.salespointframework.useraccount.UserAccount;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 import java.util.TimeZone;
 
 @Entity
@@ -30,6 +31,9 @@ public class Customer{
 
 	public UserAccount getUserAccount() {
 		return userAccount;
+	}
+	public String getEmail() {
+		return this.userAccount.getEmail();
 	}
 
 	public long getId() {
