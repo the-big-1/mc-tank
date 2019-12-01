@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title>Items</title>
+	</head>
+
+	<body>
+		<h1>McTank Sortiment</h1>
+
+		<a href='/newItem'><button>New Item</button></a>
+
+		<h3> McZapf </h3>
+		<div class="ui card" th:each="product : ${McZapf}">
+			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>  <!-- th:href link bei onclick -->
+			<a th:text="${product.price}"> Preis </a>
+		</div>
+
+		<h3> McSit </h3>
+		<div class="ui card" th:each="product : ${McSit}">
+			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>
+			<a th:text="${product.price}"> Preis </a>
+		</div>
+
+		<h3> McDrive </h3>
+		<div class="ui card" th:each="product : ${McDrive}">
+			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>
+			<a th:text="${product.price}"> Preis </a>
+		</div>
+
+		<h3> McWash </h3>
+		<div class="ui card" th:each="product : ${McWash}">
+			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>
+			<a th:text="${product.price}"> Preis </a>
+		</div>
+
+	</body>
+
+</html>
