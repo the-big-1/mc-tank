@@ -37,7 +37,7 @@ public class Customer{
 	}
 
 	public String getRegisterDate() {
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Berlin"));
 		cal.setTime(this.registrationDate);
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;

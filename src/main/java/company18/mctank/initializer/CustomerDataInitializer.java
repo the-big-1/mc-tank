@@ -58,9 +58,9 @@ class CustomerDataInitializer implements DataInitializer {
 
 		UnencryptedPassword password = UnencryptedPassword.of("123");
 		List.of(
-			customerService.createCustomer("boss", UnencryptedPassword.of("123"), Role.of(CustomerRoles.ADMIN.getRole())),
-			customerService.createCustomer("test", UnencryptedPassword.of("test"), Role.of(CustomerRoles.CUSTOMER.getRole())),
-			customerService.createCustomer("manager", UnencryptedPassword.of("123"), Role.of(CustomerRoles.MANAGER.getRole()))
+			customerService.createCustomer("boss", UnencryptedPassword.of("123"), Role.of(CustomerRoles.ADMIN.name())),
+			customerService.createCustomer("test", UnencryptedPassword.of("test"), Role.of(CustomerRoles.CUSTOMER.name())),
+			customerService.createCustomer("manager", UnencryptedPassword.of("123"), Role.of(CustomerRoles.MANAGER.name()))
 
 		).forEach(customerRepository::save);
 

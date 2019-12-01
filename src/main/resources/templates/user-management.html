@@ -60,51 +60,7 @@
       <div class="row">
         <!-- Start col -->
         <div class="col-lg-12">
-          <div class="card m-b-30">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-6">
-                  <h5 class="card-title mb-0">All Users</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-borderless">
-                  <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Name</th>
-                    <th>Register Date</th>
-                    <th>Total</th>
-                    <th>Warehouse</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr th:each=" customer : ${customerList}">
-                    <th scope="row" th:text="'# ' + ${customer.Id}"></th>
-                    <td th:text="${customer.userAccount.Username}">No info</td>
-                    <td>No info</td>
-                    <td th:text="${customer.RegisterDate}">No info</td>
-                    <td>No info</td>
-                    <td>No info</td>
-                    <td><span class="badge badge-danger-inverse">Inactive</span></td>
-                    <td>
-                      <div class="button-list">
-                        <a href="page-order-detail.html" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
-                        <a href="page-order-detail.html" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                        <a href="page-order-detail.html" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                      </div>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+          <div th:insert="components/tables/users :: user-table"></div>
         </div>
         <!-- End col -->
       </div>
