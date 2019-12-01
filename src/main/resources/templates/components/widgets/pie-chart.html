@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+  <meta charset="UTF-8"/>
+  <title>Pie Chart Widget</title>
+</head>
+<body>
+<div th:fragment="pie" class="card m-b-30">
+  <div class="card-header">
+    <div class="row align-items-center">
+      <div class="col-9">
+        <h5 class="card-title mb-0">Sales by McPoint</h5>
+      </div>
+      <div class="col-3">
+        <div class="dropdown">
+          <button class="btn btn-link l-h-20 p-0 font-18 float-right" type="button" id="widgetCategory"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="feather icon-more-horizontal-"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="widgetCategory">
+            <a class="dropdown-item font-13" href="/">Refresh</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="apex-pie-chart" class="my-4"></div>
+  </div>
+  <div class="card-footer py-3 text-center">
+    <div class="row">
+      <div class="col-6 border-right">
+        <p class="mb-1">Total Sale</p>
+        <h4 class="mb-0">250</h4>
+      </div>
+      <div class="col-6">
+        <p class="mb-1">Total Profit</p>
+        <h4 class="mb-0">$495</h4>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

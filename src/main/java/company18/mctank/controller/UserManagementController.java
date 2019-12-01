@@ -17,10 +17,10 @@ class UserManagementController {
 	@Autowired
 	private CustomerService customerService;
 
-	@GetMapping("/customers")
+	@GetMapping("/user-management")
 	String customers(Model model) {
 		model.addAttribute("customerList", customerService.findAll());
-		return "customer-list";
+		return "user-management";
 	}
 
 	@RequestMapping("/customer/disable")

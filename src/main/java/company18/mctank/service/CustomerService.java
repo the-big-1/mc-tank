@@ -40,7 +40,11 @@ public class CustomerService {
 
 		var password = UnencryptedPassword.of(form.getPassword());
 		var userAccount = userAccounts.create(form.getName(), password, CUSTOMER_ROLE);
+		return customers.save(new Customer(userAccount));
+	}
 
+	public Customer createCustomer(String username, UnencryptedPassword password, Role role) {
+		var userAccount = userAccounts.create(username, password, role);
 		return customers.save(new Customer(userAccount));
 	}
 
@@ -78,4 +82,6 @@ public class CustomerService {
 					.equals(role.getRole())
 			 );
 	}
+
+
 }
