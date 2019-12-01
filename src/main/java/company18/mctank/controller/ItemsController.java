@@ -15,6 +15,7 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,11 @@ public class ItemsController {
 	private final String Categories[] = {"McZapf", "McSit", "McDrive", "McWash"}; //Categories are used to sort the Products
 	
 	public ItemsController(Items items, ItemsService service, UniqueInventory<UniqueInventoryItem> inventory) {
+		
+		Assert.notNull(items, "Items can't be Null!");
+		Assert.notNull(service, "Service can't be Null!");
+		Assert.notNull(inventory, "Inventory can't be Null!");
+				
 		this.items = items;
 		this.service = service;
 		this.inventory = inventory;
@@ -42,10 +48,12 @@ public class ItemsController {
 	
 	@RequestMapping("/items")												//Catalog/Items Page
 	public String index(Model model) {
+		model.addAttribute("Categories", Categories);
+		
 		for (String category: Categories) {
 			model.addAttribute(category, items.findByCategory(category));
-			model.addAttribute("Categories", Categories);
 		}
+		
 		return "items";
 	}
 	

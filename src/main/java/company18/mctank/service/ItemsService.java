@@ -8,6 +8,7 @@ import javax.money.MonetaryAmount;
 import org.salespointframework.catalog.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 @Service
 @Transactional
@@ -16,6 +17,8 @@ public class ItemsService{
 	private final Items items;
 	
 	public ItemsService(Items items) {
+		Assert.notNull(items, "Items can't be Null!");
+		
 		this.items = items;
 	}
 	
