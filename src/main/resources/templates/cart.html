@@ -13,13 +13,13 @@
         <table width="100%" border="1">
             <tr>
                 <th>Product</th>
-                <th>Category</th>
+                <!--<th>Category</th>-->
                 <th>Quantity</th>
                 <th>Price</th>
             </tr>
 			<tr th:each="item : ${cart}">
 				<td th:text="${item.productName}">Product</td>
-				<td th:text="${ite.category}">McZapf</td>
+				<!--<td th:text="${item.category}">McZapf</td>-->
 				<td th:text="${item.quantity}">1</td>
 				<td th:text="${item.price}">12.99€</td>
 			</tr> 
