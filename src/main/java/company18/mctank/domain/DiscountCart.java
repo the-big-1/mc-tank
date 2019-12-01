@@ -16,8 +16,8 @@ public class DiscountCart extends Cart{
 	public DiscountCart(){
 	
 		// adds a product to the cart with the given parameters
-		this.addOrUpdateItem(new Product("McZapf", Money.of(12.99, "EUR")),1);
-		this.addOrUpdateItem(new Product("McDrive", Money.of(12.99, "EUR")),1);
+		//this.addOrUpdateItem(new Product("McZapf", Money.of(12.99, "EUR")),1);
+		//this.addOrUpdateItem(new Product("McDrive", Money.of(12.99, "EUR")),1);
 		
 		// counts the number of categories in the cart to calculate discount
 		int[] countCat = new int[4];

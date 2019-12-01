@@ -60,7 +60,7 @@ public class DiscountController {
 
 	@PostMapping(value="/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount,  @ModelAttribute Cart cart) {
-	cart.addOrUpdateItem(product, Quantity.of(amount));
+	cart.addOrUpdateItem(product, Quantity.of(amount));   // quantity.of() can't be compared to metric *Liter* --> error --David-- 
 	/*public String addDiscount(@RequestParam("discountCode") String discountCode){
 		cart.addDiscount(discountCode); */
 		return "redirect:/cart";
