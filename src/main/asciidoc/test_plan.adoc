@@ -49,6 +49,8 @@ Die gesamte Anwendung von McTank bestehend aus
 - Login/Logout <<U5>>
 - Reservierung <<U6>>
 - Bezahlvorgang <<U7>>
+- Items werden vollständig angezeigt <<I1>>
+- User sind korrekt autorisiert <<I2>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -95,4 +97,6 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 |[[U5]]**<<U5>>**  |Login/Logout           |ein authentifizierter Benutzer nutzt das System              |Betätigen des "Ausloggen"-Button       |Ausloggen erfolgreich
 |[[U6]]**<<U6>>**  |Reservierung            |ein Kunde will einen Tisch bei Mcsit reservieren              |Datum, Uhrzeit       |Reservierung erfolgreich
 |[[U7]]**<<U7>>**  |Bezahlvorgang            |ein Kunde will seine Rechnung(45.00€) begleichen              |40.00€       |Fehler, Betrag nicht ausreichend
+|[[I1]]**<<I1>>** |Iteam      | Iteams wird aufgerufen |Click auf Items Seite |vollständiger Katalog der Produkte nach McPoints sortiert 
+|[[I2]]**<<I2>>** | User |Emplyee oder Boss is engeloggt | Click auf Items Seite | Katalog wird angezeigt
 |===
