@@ -29,13 +29,4 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 class MainControllerIntegrationTests {
-	@Autowired
-	MockMvc mvc;
-
-	@Test
-	void showsWelcomeMessage() throws Exception {
-		mvc.perform(get("/")) //
-				.andExpect(status().isOk())
-				.andExpect(content().string(containsString("Welcome!")));
-	}
 }
