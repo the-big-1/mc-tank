@@ -6,10 +6,6 @@ import company18.mctank.service.ItemsService;
 import company18.mctank.forms.NewItemForm;
 import company18.mctank.repository.ItemsRepository;
 
-import javax.validation.Valid;
-
-
-import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
@@ -19,10 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
