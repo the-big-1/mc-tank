@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title>Reservation</title>
+	</head>
+	<body>
+		<h1>Reservierungen</h1>
+		<table width="100%">
+			<td th:unless="${mcsitreservations.empty}">
+				<table>
+					<thead>
+						<tr><th colspan="3">McSit</th></tr>
+						<tr>
+							<th>Name</th>
+							<th colspan="2">Datum</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="reservation : ${mcsitreservations}">
+							<td th:text="${reservation.name}">Name</td> 
+							<td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum</td>
+							<td>
+								<form th:action="@{/delete-reservation/{id}(id=${reservation.id})}" method="POST">
+									<input value="Löschen" type="submit"/>
+								</form>
+							</td>  
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td th:unless="${mcwashreservations.empty}">
+				<table>
+					<thead>
+						<tr><th colspan="3">McWash</th></tr>
+						<tr>
+							<th>Name</th>
+							<th colspan="2">Datum</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="reservation : ${mcwashreservations}">
+							<td th:text="${reservation.name}">Name</td> 
+							<td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy  -  HH:mm')}">Datum</td>
+							<td>
+								<form th:action="@{/delete-reservation/{id}(id=${reservation.id})}" method="POST">
+									<input value="Löschen" type="submit"/>
+								</form>
+							</td>  
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</table>
+		<br/>
+		<br/>
+		<h3>Reservierung hinzufügen</h3>
+		<form method="post" action="#" id="form" th:action="@{/reservation}" th:object="${form}">
+		<div>
+			<input th:field="*{mcPoint}" type="radio" id="mcsit_radio" value="McSit"/>
+			<label for="mcsit_radio">McSit</label>
+			<input th:field="*{mcPoint}" type="radio" id="mcwash_radio" value="McWash"/>
+			<label for="mcwash_radio">McWash</label>
+			<br/>
+			<label for="name">Name</label>
+			<br/>
+			<input th:field="*{name}" type="text" required="required"/>
+			<br/>
+            <label for="date">Datum</label>
+			<br/>
+            <input th:field="*{date}" type="date" required="required"/>
+			<br/>
+			<label for="time">Uhrzeit</label>
+			<br/>
+            <input th:field="*{time}" type="time" required="required"/>
+			<br/>
+			<br/>
+			<input type="submit" value="Hinzufügen"/>
+        </div>
+		</form>
+	</body>
+</html>
