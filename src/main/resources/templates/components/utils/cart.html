@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div th:fragment="cart" class="card m-b-30">
+  <div class="card-body">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-xl-12 p-5">
+        <div class="cart-container">
+          <div class="cart-head">
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <thead>
+                <tr>
+                  <th>Product</th>
+                  <th scope="col">Qty</th>
+                  <th scope="col" class="text-right">Price</th>
+                </tr>
+                </thead>
+                <tbody th:unless="${cart.empty}">
+                <tr th:each="item : ${cart}">
+                  <th th:text="${item.productName}" scope="row"></th>
+                  <td th:text="${item.quantity}" scope="row"></td>
+                  <td th:text="${item.price}" class="text-right"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="cart-body">
+            <div class="row">
+              <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
+                <div class="order-note">
+                  <form>
+                    <div class="form-group">
+                      <form th:action="@{/cart/discount}" method="post">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Coupon Code" name="discountCode" aria-label="Coupon" aria-describedby="button-addonTags">
+                        <div class="input-group-append">
+                          <button class="input-group-text btn-secondary" type="submit" id="button-addonTags">Apply</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
+                <div class="order-total table-responsive ">
+                  <table class="table table-borderless text-right">
+                    <tbody>
+                    <tr>
+                      <td>Discount :</td>
+                      <td>$0.00</td>
+                    </tr>
+                    <tr>
+                      <td class="f-w-7 font-18"><h4>Total :</h4></td>
+                      <td class="f-w-7 font-18"><h4 th:text="${finalprice}">$1180.00</h4></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cart-footer text-right">
+            <form th:action="@{/cart/clear}" th:method="post">
+              <button type="submit" class="btn btn-primary-rgba my-1"><i class="feather icon-delete mr-2"></i>Clear Cart</button>
+            </form>
+            <a href="/checkout" class="btn btn-success-rgba my-1">Proceed to Checkout<i class="feather icon-arrow-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

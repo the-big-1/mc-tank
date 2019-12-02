@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+  <meta charset="UTF-8"/>
+  <title>User table</title>
+</head>
+<body>
+<div th:fragment="user-table" class="card m-b-30">
+  <div class="card-header">
+    <div class="row align-items-center">
+      <div class="col-6">
+        <h5 class="card-title mb-0">All Users</h5>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Register Date</th>
+          <th>Roles</th>
+          <th>E-Mail</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each=" customer : ${customerList}">
+          <th scope="row" th:text="'# ' + ${customer.Id}"></th>
+          <td th:text="${customer.userAccount.Username}">No info</td>
+          <td>No Info</td>
+          <td th:text="${customer.RegisterDate}">No info</td>
+          <td th:each=" role : ${customer.userAccount.Roles}"><span th:text="${role.Name} + ' '"></span></td>
+          <td>No info</td>
+          <td>
+            <span th:if="${customer.userAccount.Enabled == true}"
+                  class="badge badge-success-inverse p-2 font-14">Active</span>
+            <span th:unless="${customer.userAccount.Enabled == true}" class="badge badge-dark-inverse p-2 font-14">Inactive</span>
+          </td>
+          <td>
+            <div class="button-list">
+              <form th:if="${customer.userAccount.Enabled == true}" th:action="@{/customer/disable}">
+                <button th:name="id" th:value="${customer.userAccount.Id}" href="page-order-detail.html"
+                        class="btn btn-warning-rgba">
+                  <i class="feather icon-minus-square m-r-5"></i>
+                  Disable
+                </button>
+              </form>
+              <form th:unless="${customer.userAccount.Enabled == true}" th:action="@{/customer/enable}">
+                <button th:name="id" th:value="${customer.userAccount.Id}" href="page-order-detail.html"
+                        class="btn btn-success-rgba">
+                  <i class="feather icon-plus-square m-r-5"></i>
+                  Enable
+                </button>
+              </form>
+              <button href="page-order-detail.html" class="btn btn-primary-rgba disabled">
+                <i class="feather icon-edit-2 m-r-5"></i>
+                Details
+              </button>
+              <form th:action="@{/customer/delete}">
+                <button th:name="id" th:value="${customer.Id}" href="page-order-detail.html"
+                        class="btn btn-danger-rgba">
+                  <i class="feather icon-trash m-r-5"></i>
+                  Delete
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

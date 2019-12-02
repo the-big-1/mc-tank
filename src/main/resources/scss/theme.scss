@@ -1,0 +1,25 @@
+/*
+---------------------
+	: ToC for CSS :
+---------------------
+1. Variables
+2. General rules
+3. Bootstrap Overrides
+4. Buttons
+*/
+
+@import "variables";
+@import "general";
+@import "bootstrap";
+@import "menu";
+@import "badges";
+@import "helper";
+@import "buttons";
+@import "card";
+@import "charts";
+@import "form/all";
+@import "security";
+@import "widgets";
+@import "dashboard";
+@import "topbar";
+@import "respomsive";

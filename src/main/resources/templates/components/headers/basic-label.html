@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div th:fragment="label-items" class="breadcrumbbar">
+  <div class="row align-items-center">
+    <div class="col-md-8 col-lg-8">
+      <h4 class="page-title">Items list</h4>
+      <div class="breadcrumb-list">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Products</li>
+        </ol>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4">
+      <div class="widgetbar">
+        <div class="sweet-alert" th:if="${role} == 'ADMIN'">
+          <button type="button" id="create-item" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add New Item</button>
+        </div>
+        <a href="/cart" th:if="${role} == 'MANAGER'">
+          <button class="btn btn-primary-rgba">Back to cart<i class="feather icon-arrow-right-circle ml-2"></i></button>
+        </a>
+        <form th:if="${role} == 'MANAGER'" name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:fragment="label-cart" class="breadcrumbbar">
+  <div class="row align-items-center">
+    <div class="col-md-8 col-lg-8">
+      <h4 class="page-title">Cart</h4>
+      <div class="breadcrumb-list">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Cart</li>
+        </ol>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4">
+      <div class="widgetbar">
+        <a href="/reservation">
+          <button class="btn btn-primary-rgba">Reservation<i class="feather icon-calendar ml-2"></i></button>
+        </a>
+        <a href="/items">
+          <button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Select Product</button>
+        </a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

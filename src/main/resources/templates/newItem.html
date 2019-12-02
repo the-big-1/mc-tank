@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title>NewItem</title>
+	</head>
+
+	<body>
+		<h1>Neuen Gegenstand dem Sortiment hinzufügen</h1>
+
+		<div class="ui container">
+
+    		<form th:action="@{/newItem}" method="post" th:object="${form}">
+    			<div class="field">
+    				<label> Name </label>
+    				<input type="text" th:field="*{productName}" required="required" />
+    			</div>
+
+                <div class="field">
+                    <label> Preis </label>
+                    <input th:field="*{price}" type="text" required="required" />
+                </div>
+
+                <div id="Categories" >
+                    <label> Erhältlich bei: </label><br>
+
+                    <div th:each="categorie: ${Categories}">
+                        <input th:value="${categorie}" th:field="*{productCategories}" type="checkbox"/>
+                        <label th:text="${categorie}"> Categorie </label>
+                    </div>
+                </div>
+    			
+                <button type="submit"> OK </button>
+    		</form>
+
+    		<a href='/items'><button>Back to items</button></a>
+		</div>
+	</body>
+
+</html>
