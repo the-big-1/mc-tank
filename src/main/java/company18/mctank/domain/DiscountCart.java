@@ -2,6 +2,7 @@ package company18.mctank.domain;
 
 import javax.money.MonetaryAmount;
 
+
 import org.javamoney.moneta.Money;
 import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
@@ -16,6 +17,7 @@ public class DiscountCart extends Cart{
 	public DiscountCart(){
 	
 		// adds a product to the cart with the given parameters
+		
 		//this.addOrUpdateItem(new Product("McZapf", Money.of(12.99, "EUR")),1);
 		//this.addOrUpdateItem(new Product("McDrive", Money.of(12.99, "EUR")),1);
 		
@@ -64,6 +66,7 @@ public class DiscountCart extends Cart{
 
 	public void addDiscount(String discountCode){
 		// add discount codes to cart as a product
+		// TODO : Rewrite this method (Normal total price update)
 		if("McTen".equals(discountCode) && !this.containsDiscount("McTen"))
 			this.addOrUpdateItem(new Product("McTen", super.getPrice().multiply(0.10).negate()),1);
 	}

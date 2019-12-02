@@ -36,12 +36,14 @@
                 <div class="order-note">
                   <form>
                     <div class="form-group">
+                      <form th:action="@{/cart/discount}" method="post">
                       <div class="input-group">
-                        <input type="search" class="form-control" placeholder="Coupon Code" aria-label="Search" aria-describedby="button-addonTags">
+                        <input type="text" class="form-control" placeholder="Coupon Code" name="discountCode" aria-label="Coupon" aria-describedby="button-addonTags">
                         <div class="input-group-append">
-                          <button class="input-group-text" type="submit" id="button-addonTags">Apply</button>
+                          <button class="input-group-text btn-secondary" type="submit" id="button-addonTags">Apply</button>
                         </div>
                       </div>
+                      </form>
                     </div>
                   </form>
                 </div>
@@ -65,8 +67,10 @@
             </div>
           </div>
           <div class="cart-footer text-right">
-            <button type="button" class="btn btn-primary-rgba my-1"><i class="feather icon-delete mr-2"></i>Clear Cart</button>
-            <a href="/" class="btn btn-success-rgba my-1">Proceed to Checkout<i class="feather icon-arrow-right ml-2"></i></a>
+            <form th:action="@{/cart/clear}" th:method="post">
+              <button type="submit" class="btn btn-primary-rgba my-1"><i class="feather icon-delete mr-2"></i>Clear Cart</button>
+            </form>
+            <a href="/checkout" class="btn btn-success-rgba my-1">Proceed to Checkout<i class="feather icon-arrow-right ml-2"></i></a>
           </div>
         </div>
       </div>

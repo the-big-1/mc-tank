@@ -50,17 +50,16 @@ public class DiscountController {
 	}
 
 	@GetMapping(value = "/cart")
-	public String showPrice(Model model) {
+	public String showPrice(Model model, @ModelAttribute Cart cart) {
 		// price will be shown in cart
 		model.addAttribute("finalprice", cart.getPrice());
 		return "cart";
 	}
 
+
 	@PostMapping(value = "/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @ModelAttribute Cart cart) {
 		cart.addOrUpdateItem(product, Quantity.of(amount));   // quantity.of() can't be compared to metric *Liter* --> error --David--
-	/*public String addDiscount(@RequestParam("discountCode") String discountCode){
-		cart.addDiscount(discountCode); */
 		return "redirect:/cart";
 	}
 
@@ -68,16 +67,20 @@ public class DiscountController {
 	public String pay(Model model) {
 		//show site for checkout
 		//adds attributes for cart
-		model.addAttribute("finalprice", cart.getPrice().toString());
+		model.addAttribute("finalprice", cart.getPrice());
 		return "checkout";
 	}
 
-	@PostMapping(value = "/checkout")
-	public String checkout() {
-		// empty cart
+	@PostMapping("/cart/clear")
+	public String clearCart(Model model, @ModelAttribute Cart cart){
 		cart.clear();
 		return "redirect:/cart";
+	}
 
+	@PostMapping("/cart/discount")
+	public String addDiscount(String discountCode) {
+		cart.addDiscount(discountCode);
+		return "cart";
 
 		// for this part a user has to be logged in 
 		
