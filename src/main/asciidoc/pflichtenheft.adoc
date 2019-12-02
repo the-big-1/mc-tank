@@ -269,6 +269,7 @@ image:models/analysis/Kunde tankt, bezahlt, geht.svg[] +
 === Kann-Kriterien
 - Altersabfrage bei dem Kauf von Zigaretten und Alkohol
 - bei Reservierungen: Tischzahl beachten Überbuchung verhindern
+- Sprachauswahl
 
 == Nicht-Funktionale Anforderungen
 
