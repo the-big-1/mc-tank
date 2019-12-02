@@ -147,7 +147,10 @@ image:models/design/ReservationUML.svg[]
 |=== 
 |Klasse/Enumeration |Description
 |Reservation | repräsentiert eine Reservierung
+|McSitReservation | erbt von Reservation, repräsentiert eine Reservierung bei McSit
+|McWashReservation | erbt von Reservation, repräsentiert eine Reservierung bei McWash
 |ReservationController | Spring Controller, bearbeitet Anfragen wie das Hinzufügen einer neuen Reservierung
+|ReservationService | beinhaltet Funktionalitäten wie speichern, löschen oder sortieren
 |ReservationRepository | Interface (Spring Crudrepository) zum speichern von Reservations
 |ReservationDataInitializer | initialisiert die ReservationRepository
 |ReservationForm | repräsentiert und validiert Eingaben des Nutzers
@@ -175,6 +178,17 @@ image:models/design/InventoryUML.svg[]
 |Klasse/Enumeration |Description
 |InventoryController | Spring Controller, stellt das Inventory für den Nutzer dar
 |InventoryInitializer | initialisiert das Salespoint UniqueInventory
+|===
+
+
+=== Order
+image:models/analysis/Order.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|OrderController | Spring Controller, der den Warenkorb verwaltet
+|Items | Catalog, listet Produkte auf, die in den Warenkorb hinzugefügt werden können
 |===
 
 [options="header"]
