@@ -52,7 +52,7 @@ public class DiscountController {
 	@GetMapping(value = "/cart")
 	public String showPrice(Model model) {
 		// price will be shown in cart
-		model.addAttribute("finalprice", cart.getPrice().toString());
+		model.addAttribute("finalprice", cart.getPrice());
 		return "cart";
 	}
 

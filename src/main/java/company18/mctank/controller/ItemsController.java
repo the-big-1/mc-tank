@@ -1,6 +1,7 @@
 
 package company18.mctank.controller;
 
+import company18.mctank.service.CustomerService;
 import company18.mctank.service.ItemsService;
 import company18.mctank.forms.NewItemForm;
 import company18.mctank.repository.ItemsRepository;
@@ -8,26 +9,30 @@ import company18.mctank.repository.ItemsRepository;
 import javax.validation.Valid;
 
 
+import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
+@PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
 public class ItemsController {
 	@Autowired
 	private ItemsRepository itemsRepository;
 	@Autowired
 	private ItemsService itemsService;
+	@Autowired
+	private CustomerService customerService;
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventory;
 	
@@ -40,24 +45,27 @@ public class ItemsController {
 	@GetMapping("/items")
 	public String index(Model model) {
 		model.addAttribute("assortment", itemsService.makeAssortment(mcPoints));
-		return "items-management";
+		if (customerService.isAdmin()) {
+			model.addAttribute("role", "ADMIN");
+			return "items-management";
+		}
+		else if (customerService.isManager()) {
+			model.addAttribute("role", "MANAGER");
+			return "items";
+		};
+		return "redirect:/";
 	}
 	
-	@RequestMapping("/newItem")												//New Item Page
-	public String newItem(Model model, NewItemForm form){  		//creates new form
+	@RequestMapping("/newItem")
+	public String newItem(Model model, NewItemForm form){
 		model.addAttribute("form", form);
 		model.addAttribute("Categories", mcPoints);
 		return"newItem";
 		
 	}
 		
-	@PostMapping("/newItem")												//called after you submit the values for the new Items
-	public String registerNew(@Valid NewItemForm form, Errors result) {
-
-		if (result.hasErrors()) {
-			return "newItem";
-		}
-
+	@PostMapping("/item/new")
+	public String registerNew(@RequestBody NewItemForm form) {
 		itemsService.createNewProduct(form);
 
 		return "redirect:/items";

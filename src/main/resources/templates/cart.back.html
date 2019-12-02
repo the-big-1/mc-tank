@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+    <title>Cart</title>
+</head>
+<body>
+    <h1> Cart </h1> <br>
+    <p>
+    <div th:unless="${cart.empty}">
+        <table width="100%" border="1">
+            <tr>
+                <th>Product</th>
+                <!--<th>Category</th>             is an error with categories, will deal with it later, --David-- -->      
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+			<tr th:each="item : ${cart}">
+				<td th:text="${item.productName}">Product</td>
+				<!--<td th:text="${item.category}">McZapf</td>-->
+				<td th:text="${item.quantity}">1</td>
+				<td th:text="${item.price}">12.99€</td>
+			</tr> 
+        </table>
+    </div>
+        </p>
+        <p>
+    <form method="post" th:action="@{/cart}">
+        <!--<label> Gutscheincode einlösen:</label><br>-->
+        <!--<input id="discountCode" name="discountCode" type="text"/> <br>-->
+        <!-- <button type="submit"> add discount </button> -->
+    </form>
+    </p>
+    <div>
+  		<a href='/items'><button>add another item</button></a><br>
+        <p>Final price:</p><p th:text="${finalprice}"></p>
+        <a href='/checkout'><button> complete Order</button></a><br>
+    </div>
+</body>
+</html>

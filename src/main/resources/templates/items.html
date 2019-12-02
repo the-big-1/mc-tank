@@ -1,41 +1,73 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<!DOCTYPE html>
+<!--suppress XmlUnusedNamespaceDeclaration -->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="McTank - the best fuel in the world">
+  <meta name="author" content="company18">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <title>McTank | Products</title>
+  <!-- Fevicon -->
+  <link rel="shortcut icon" th:href="@{/images/favicon.png}">
+  <!-- Start css -->
+  <!-- Charts css -->
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/apexcharts.css}">
+  <!-- Slider css -->
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/slick.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/slick-theme.css}">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/bootstrap.min.css}">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-		<title>Items</title>
-	</head>
-
-	<body>
-		<h1>McTank Sortiment</h1>
-
-		<a href='/newItem'><button>New Item</button></a>
-
-		<h3> McZapf </h3>
-		<div class="ui card" th:each="product : ${McZapf}">
-			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>  <!-- th:href link bei onclick -->
-			<a th:text="${product.price}"> Preis </a>
-		</div>
-
-		<h3> McSit </h3>
-		<div class="ui card" th:each="product : ${McSit}">
-			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>
-			<a th:text="${product.price}"> Preis </a>
-		</div>
-
-		<h3> McDrive </h3>
-		<div class="ui card" th:each="product : ${McDrive}">
-			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>
-			<a th:text="${product.price}"> Preis </a>
-		</div>
-
-		<h3> McWash </h3>
-		<div class="ui card" th:each="product : ${McWash}">
-			<a th:text="${product.name}" th:href="@{/items/{id}(id=${product.id})}"> Produktname </a>
-			<a th:text="${product.price}"> Preis </a>
-		</div>
-
-	</body>
-
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/sweetalert2.min.css}">
+  <!-- Icons -->
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/icons.css}">
+  <!-- Theme -->
+  <link rel="stylesheet" type="text/css" th:href="@{/static/css/theme.css}">
+  <!-- End css -->
+</head>
+<body class="vertical-layout">
+<!-- Start Containerbar -->
+<div id="containerbar">
+  <!-- Start Rightbar -->
+  <div class="rightbar center">
+    <!-- Start Topbar Mobile -->
+    <div th:insert="components/utils/mobile-nav :: nav"></div>
+    <!-- Start Breadcrumbbar -->
+    <div th:insert="components/headers/basic-label :: label-items"></div>
+    <!-- End Breadcrumbbar -->
+    <!-- Start Contentbar -->
+    <div class="contentbar">
+      <!-- Start row -->
+      <div class="row">
+        <!-- Start col -->
+        <div class="col-lg-12">
+          <div th:insert="components/tables/items :: items-table"></div>
+        </div>
+        <!-- End col -->
+      </div>
+      <!-- End row -->
+    </div>
+    <!-- End Contentbar -->
+  </div>
+  <!-- End Rightbar -->
+</div>
+<!-- End Containerbar -->
+<!-- Start js -->
+<script th:src="@{/js/vendor/jquery.min.js}"></script>
+<script th:src="@{/js/vendor/popper.min.js}"></script>
+<script th:src="@{/js/vendor/bootstrap.min.js}"></script>
+<script th:src="@{/js/vendor/modernizr.min.js}"></script>
+<script th:src="@{/js/vendor/detect.js}"></script>
+<script th:src="@{/js/vendor/jquery.slimscroll.js}"></script>
+<script th:src="@{/js/sidebar.js}"></script>
+<!-- Charts js -->
+<script th:src="@{/js/vendor/sample-data.js}"></script>
+<script th:src="@{/js/vendor/apexcharts.min.js}"></script>
+<!-- Slick js -->
+<script th:src="@{/js/vendor/slick.min.js}"></script>
+<!-- Core js -->
+<script th:src="@{js/core.js}"></script>
+<!-- End js -->
+</body>
 </html>

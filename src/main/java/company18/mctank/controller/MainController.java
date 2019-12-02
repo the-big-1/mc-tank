@@ -34,16 +34,11 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String index() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal == null) throw new IllegalStateException("Principal can not be null");
-		if (!(principal instanceof UserDetails)) return "redirect:/login";
-
-		UserDetails userDetails = (UserDetails) principal;
-		if (customerService.isAdmin(userDetails))
+		if (customerService.isAdmin())
 			return "redirect:/overview";
-		else if (customerService.isManager(userDetails))
-			return "redirect:/shop-cart";
-		else if (customerService.isCustomer(userDetails))
+		else if (customerService.isManager())
+			return "redirect:/cart";
+		else if (customerService.isCustomer())
 			return "redirect:/account";
 		return "redirect:/login";
 	}

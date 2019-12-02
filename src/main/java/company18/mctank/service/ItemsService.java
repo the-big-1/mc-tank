@@ -5,6 +5,7 @@ import company18.mctank.forms.NewItemForm;
 
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
+
 import org.salespointframework.catalog.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,35 +19,47 @@ import java.util.Objects;
 
 @Service
 @Transactional
-public class ItemsService{
+public class ItemsService {
 	@Autowired
 	private ItemsRepository itemsRepository;
 
-	
-	public Product createNewProduct(NewItemForm form) {  // takes the values from the given form, modifies them and creats a new product
-		var name = form.getProductName();
-		
-		String priceAsString = form.getPrice().replace(",", ".").replace("€", "");   // delete/replace all unwanted chars
-		double priceToDouble = Double.parseDouble(priceAsString);					 // convert to Double
-		MonetaryAmount price = Monetary.getDefaultAmountFactory().setCurrency("EUR").setNumber(priceToDouble).create();  //create MonetaryAmount   .setNumber() requests Double
-		
+
+	public Product createNewProduct(NewItemForm form) {
+		return  createNewProduct(form.getProductName(), form.getPrice(), form.getProductCategories());
+	}
+
+	public Product createNewProduct(String name, String cost, List<String> mcPoints){
+
+		String priceAsString = cost
+			.replace(",", ".")
+			.replace("€", "")
+			.replace(" ", "");
+
+		double priceToDouble = Double.parseDouble(priceAsString);
+		MonetaryAmount price = Monetary.getDefaultAmountFactory()
+			.setCurrency("EUR")
+			.setNumber(priceToDouble)
+			.create();
+
 		var product = new Product(name, price);
-		
-		if(form.getProductCategories() != null) {
-		for (String newCategory: form.getProductCategories()) {
-			product.addCategory(newCategory);
+
+		if (mcPoints != null) {
+			for (String point : mcPoints) {
+				product.addCategory(point);
+			}
 		}
-		}
-		
-		
-		return itemsRepository.save(product);    //save new Product in items
+
+
+		return itemsRepository.save(product);
 	}
 
 	public Map<String, List<Product>> makeAssortment(String[] mcPoints) {
 		Map<String, List<Product>> assortmentMap = new HashMap<>();
-		for (String point : mcPoints){
+
+		for (String point : mcPoints) {
 			assortmentMap.put(point, itemsRepository.findByCategory(point).toList());
 		}
+
 		return assortmentMap;
 	}
 }

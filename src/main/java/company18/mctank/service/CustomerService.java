@@ -2,6 +2,7 @@ package company18.mctank.service;
 
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
+import company18.mctank.exception.UnauthorizedUserException;
 import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;
 import org.salespointframework.useraccount.Role;
@@ -9,11 +10,14 @@ import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -24,12 +28,13 @@ public class CustomerService {
 
 	private final UserAccountManager userAccounts;
 
+	@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 	public CustomerService(CustomerRepository customers, UserAccountManager userAccounts) {
 
 		Assert.notNull(customers, "CustomerRepository must not be null!");
 		Assert.notNull(userAccounts, "UserAccountManager must not be null!");
 
-		this.customers= customers;
+		this.customers = customers;
 		this.userAccounts = userAccounts;
 	}
 
@@ -48,13 +53,15 @@ public class CustomerService {
 		return customers.save(new Customer(userAccount));
 	}
 
-	public void disableCustomer(UserAccountIdentifier id){
+	public void disableCustomer(UserAccountIdentifier id) {
 		userAccounts.disable(id);
 	}
-	public void enableCustomer(UserAccountIdentifier id){
+
+	public void enableCustomer(UserAccountIdentifier id) {
 		userAccounts.enable(id);
 	}
-	public void deleteCustomer(long id){
+
+	public void deleteCustomer(long id) {
 		customers.findById(id).ifPresent(customers::delete);
 	}
 
@@ -62,25 +69,38 @@ public class CustomerService {
 		return customers.findAll();
 	}
 
-	public boolean isAdmin(UserDetails userDetails){
-		return this.checkRole(userDetails, CustomerRoles.ADMIN);
+	public UserDetails getPrincipal() throws UnauthorizedUserException {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal == null) throw new IllegalStateException("Principal can not be null");
+		if (!(principal instanceof UserDetails)) throw new UnauthorizedUserException();
+		return (UserDetails) principal;
 	}
 
-	public boolean isManager(UserDetails userDetails){
-		return this.checkRole(userDetails, CustomerRoles.MANAGER);
+	public boolean isAdmin() {
+		return this.checkRole(CustomerRoles.ADMIN);
 	}
 
-	public boolean isCustomer(UserDetails userDetails){
-		return this.checkRole(userDetails, CustomerRoles.CUSTOMER);
+	public boolean isManager() {
+		return this.checkRole(CustomerRoles.MANAGER);
 	}
 
-	private boolean checkRole(UserDetails userDetails, CustomerRoles role){
-		 return userDetails.getAuthorities()
-			 .stream()
-			 .anyMatch(
-			 	a -> a.getAuthority()
-					.equals(role.getRole())
-			 );
+	public boolean isCustomer() {
+		return this.checkRole(CustomerRoles.CUSTOMER);
+	}
+
+	private boolean checkRole(CustomerRoles role) {
+		UserDetails userDetails = null;
+		try {
+			userDetails = this.getPrincipal();
+			return userDetails.getAuthorities()
+				.stream()
+				.anyMatch(
+					a -> a.getAuthority()
+						.equals(role.getRole())
+				);
+		} catch (UnauthorizedUserException e) {
+			return false;
+		}
 	}
 
 

@@ -18,7 +18,6 @@
       <table class="table table-borderless">
         <thead>
         <tr>
-          <th>ID</th>
           <th>Name</th>
           <th>Stock</th>
           <th>Amount</th>
@@ -29,20 +28,35 @@
         </thead>
         <tbody>
         <tr th:each=" product : ${point.value}">
-          <th scope="row" th:text="'# ' + ${product.Id}"></th>
-          <td th:text="${product.Name}">No info</td>
+          <th th:text="${product.Name}">No info</th>
           <td>No Info</td>
           <td>No Info</td>
           <td th:text="${product.Price}">No info</td>
           <td>No Info</td>
           <td>
             <div class="button-list">
-              <a th:href="@{/items/{id}(id=${product.id})}">
+              <a th:if="${role} == 'ADMIN'" th:href="@{/items/{id}(id=${product.id})}">
                 <button class="btn btn-primary-rgba disabled">
                   <i class="feather icon-align-justify m-r-5"></i>
                   Details
                 </button>
               </a>
+              <div class="input-group mb-0">
+                <form th:if="${role} == 'MANAGER'" method="post" th:action="@{/cart}">
+                  <input type="hidden" name="product-id" th:value="${product.id}"/>
+                  <input  width="1" type="number" name="amount"
+                         class="form-control"
+                         placeholder="1" value="1" min="1" step="1"
+                         aria-label="Recipient's username" aria-describedby="button-addon-group" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-primary-rgba" type="submit" id="button-addon-group">
+                      <i class="feather icon-shopping-cart mr-1"></i> Add to cart
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <!--              <a th:if="${role} == 'MANAGER'" th:href="@{/items/{id}(id=${product.id})}">-->
+              <!--              </a>-->
               <!--              <form th:if="${customer.userAccount.Enabled == true}" th:action="@{/customer/disable}">-->
               <!--                <button th:name="id" th:value="${customer.userAccount.Id}"-->
               <!--                        class="btn btn-warning-rgba">-->

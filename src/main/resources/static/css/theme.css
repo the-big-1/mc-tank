@@ -132,6 +132,11 @@ code {
   transition: all 0.3s ease;
 }
 
+.rightbar.center {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 .contentbar {
   padding: 30px;
   margin-bottom: 30px;

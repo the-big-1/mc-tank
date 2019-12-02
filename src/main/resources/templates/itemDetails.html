@@ -18,7 +18,7 @@
 		</div>
 
 		<form class="ui form" method="post" th:action="@{/cart}" th:if="${orderable}">
-            <input type="hidden" name="product-id" value="0" th:value="${product.id}"/>   <!-- name=""  werden für controller benötigt-->
+            <input type="hidden" name="product-id" value="0" th:value="${product.id}"/>
             <div class="field">
             	<label>Anzahl</label>
                 <input name="amount" type="number" min="1" step="1" required="required"/><br/>

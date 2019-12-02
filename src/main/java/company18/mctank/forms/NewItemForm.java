@@ -40,4 +40,11 @@ public class NewItemForm {
 		this.productCategories = productCategories;
 	}
 
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
 }
