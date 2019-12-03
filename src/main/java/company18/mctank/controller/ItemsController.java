@@ -4,7 +4,6 @@ package company18.mctank.controller;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.ItemsService;
 import company18.mctank.forms.NewItemForm;
-import company18.mctank.repository.ItemsRepository;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.InventoryItem;
@@ -21,8 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
 public class ItemsController {
-	@Autowired
-	private ItemsRepository itemsRepository;
+
 	@Autowired
 	private ItemsService itemsService;
 	@Autowired

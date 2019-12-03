@@ -27,7 +27,6 @@ public class NewItemForm {
 		return productName;
 	}
 
-
 	public String getPrice() {
 		return price;
 	}
