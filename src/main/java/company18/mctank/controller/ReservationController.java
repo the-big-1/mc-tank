@@ -37,13 +37,14 @@ public class ReservationController {
 	@PostMapping(value="/reservation")
 	public String reserve(@Valid ReservationForm form, BindingResult result) {
 		// simply redirect if there is errors for now
-		if (result.hasErrors()) return "redirect:/reservation";
+		if (result.hasErrors()) {
+			return "redirect:/reservation";
+		}
 		
 		// else save and redirect
 		try {
 			reservationService.save(form.getMcPoint(), form.getName(), LocalDateTime.of(form.getDate(), form.getTime()));
-		}
-		catch(IllegalArgumentException e){
+		} catch(IllegalArgumentException e){
 			// LocalDateTime given to save() is before now 
 		}
 		return "redirect:/reservation";

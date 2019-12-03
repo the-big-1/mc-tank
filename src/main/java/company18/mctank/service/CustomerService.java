@@ -75,8 +75,12 @@ public class CustomerService {
 
 	public UserDetails getPrincipal() throws UnauthorizedUserException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal == null) throw new IllegalStateException("Principal can not be null");
-		if (!(principal instanceof UserDetails)) throw new UnauthorizedUserException();
+		if (principal == null){
+			throw new IllegalStateException("Principal can not be null");
+		}
+		if (!(principal instanceof UserDetails)){
+			throw new UnauthorizedUserException();
+		}
 		return (UserDetails) principal;
 	}
 
