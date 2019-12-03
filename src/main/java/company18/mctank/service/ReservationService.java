@@ -27,7 +27,9 @@ public class ReservationService {
 	public Iterable<Reservation> findByClass(Class<?> reservationClass){
 		LinkedList<Reservation> result = new LinkedList<Reservation>();
 		for (Reservation reservation : repo.findAll())
-			if (reservationClass.isInstance(reservation)) result.add(reservation);
+			if (reservationClass.isInstance(reservation)) {
+				result.add(reservation);
+			}
 		return result;
 	}
 	
@@ -35,12 +37,16 @@ public class ReservationService {
 	static public Iterable<Reservation> sortByDate(Iterable<Reservation> reservations){
 		LinkedList<Reservation> result = new LinkedList<Reservation>();
 		Iterator<Reservation> reservationsIterator = reservations.iterator();
-		if (reservationsIterator.hasNext()) result.add(reservationsIterator.next());
+		if (reservationsIterator.hasNext()) {
+			result.add(reservationsIterator.next());
+		}
 		int index;
 		while (reservationsIterator.hasNext()) {
 			Reservation reservation = reservationsIterator.next();
 			for (index = 0; index < result.size(); index++) {
-				if (reservation.getDate().isBefore(result.get(index).getDate())) break;	
+				if (reservation.getDate().isBefore(result.get(index).getDate())) {
+					break;	
+				}
 			}
 			result.add(index, reservation);
 		}
@@ -54,13 +60,16 @@ public class ReservationService {
 	
 	public void save(String mcPoint, String name, LocalDateTime dateAndTime){
 		// test if dateAndTime makes sense
-		if (dateAndTime.isBefore(LocalDateTime.now()))
+		if (dateAndTime.isBefore(LocalDateTime.now())) {
 			throw new IllegalArgumentException();
+		}
 		
 		// save entry as concrete class
-		if (mcPoint.equals("McSit")) 
+		if (mcPoint.equals("McSit")) {
 			repo.save(new McSitReservation(name, dateAndTime));
-		if (mcPoint.equals("McWash")) 
+		}
+		if (mcPoint.equals("McWash")) {
 			repo.save(new McWashReservation(name, dateAndTime));
+		}
 	}
 }

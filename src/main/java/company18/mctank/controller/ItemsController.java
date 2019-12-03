@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
 public class ItemsController {
@@ -40,15 +39,14 @@ public class ItemsController {
 		if (customerService.isAdmin()) {
 			model.addAttribute("role", "ADMIN");
 			return "items-management";
-		}
-		else if (customerService.isManager()) {
+		} else if (customerService.isManager()) {
 			model.addAttribute("role", "MANAGER");
 			return "items";
-		};
+		}
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/newItem")
+	@RequestMapping(value = "/newItem", method = RequestMethod.GET)
 	public String newItem(Model model, NewItemForm form){
 		model.addAttribute("form", form);
 		model.addAttribute("Categories", mcPoints);

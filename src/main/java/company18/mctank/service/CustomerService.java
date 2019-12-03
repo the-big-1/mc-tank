@@ -6,6 +6,7 @@ import company18.mctank.exception.UnauthorizedUserException;
 import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;
 import org.salespointframework.useraccount.Role;
+import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
@@ -62,7 +63,10 @@ public class CustomerService {
 	}
 
 	public void deleteCustomer(long id) {
-		customers.findById(id).ifPresent(customers::delete);
+		Customer customer = customers.findById(id).orElseThrow();
+		UserAccount userAccount = customer.getUserAccount();
+		customers.delete(customer);
+		userAccounts.delete(userAccount);
 	}
 
 	public Iterable<Customer> findAll() {
@@ -71,8 +75,12 @@ public class CustomerService {
 
 	public UserDetails getPrincipal() throws UnauthorizedUserException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal == null) throw new IllegalStateException("Principal can not be null");
-		if (!(principal instanceof UserDetails)) throw new UnauthorizedUserException();
+		if (principal == null){
+			throw new IllegalStateException("Principal can not be null");
+		}
+		if (!(principal instanceof UserDetails)){
+			throw new UnauthorizedUserException();
+		}
 		return (UserDetails) principal;
 	}
 
