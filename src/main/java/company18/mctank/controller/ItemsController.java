@@ -4,12 +4,7 @@ package company18.mctank.controller;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.ItemsService;
 import company18.mctank.forms.NewItemForm;
-import company18.mctank.repository.ItemsRepository;
 
-import javax.validation.Valid;
-
-
-import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
@@ -19,16 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
 public class ItemsController {
-	@Autowired
-	private ItemsRepository itemsRepository;
 	@Autowired
 	private ItemsService itemsService;
 	@Autowired
@@ -48,15 +38,14 @@ public class ItemsController {
 		if (customerService.isAdmin()) {
 			model.addAttribute("role", "ADMIN");
 			return "items-management";
-		}
-		else if (customerService.isManager()) {
+		} else if (customerService.isManager()) {
 			model.addAttribute("role", "MANAGER");
 			return "items";
-		};
+		}
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/newItem")
+	@RequestMapping(value = "/newItem", method = RequestMethod.GET)
 	public String newItem(Model model, NewItemForm form){
 		model.addAttribute("form", form);
 		model.addAttribute("Categories", mcPoints);

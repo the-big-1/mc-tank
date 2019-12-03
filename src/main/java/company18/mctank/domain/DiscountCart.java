@@ -25,25 +25,20 @@ public class DiscountCart extends Cart{
 		int[] countCat = new int[4];
 		float discount = 0;
 		
-		for(CartItem i : this)
-		{
-			if(i.getProductName().toString() == "McZapf" && countCat[0] == 0)
-			{
+		for(CartItem i : this){
+			if(i.getProductName().toString() == "McZapf" && countCat[0] == 0){
 				countCat[0] += 1;
 				discount += 0.05;
 			}
-			if(i.getProductName().toString() == "McDrive" && countCat[1] == 0)
-			{
+			if(i.getProductName().toString() == "McDrive" && countCat[1] == 0){
 				countCat[1] += 1;
 				discount += 0.05;
 			}
-			if(i.getProductName().toString() == "McSit" && countCat[2] == 0)
-			{
+			if(i.getProductName().toString() == "McSit" && countCat[2] == 0){
 				countCat[2] += 1;
 				discount += 0.05;
 			}
-			if(i.getProductName().toString() == "McWash" && countCat[3] == 0)
-			{
+			if(i.getProductName().toString() == "McWash" && countCat[3] == 0){
 				countCat[3] += 1;
 				discount += 0.05;
 			}
@@ -67,15 +62,17 @@ public class DiscountCart extends Cart{
 	public void addDiscount(String discountCode){
 		// add discount codes to cart as a product
 		// TODO : Rewrite this method (Normal total price update)
-		if("McTen".equals(discountCode) && !this.containsDiscount("McTen"))
+		if("McTen".equals(discountCode) && !this.containsDiscount("McTen")){
 			this.addOrUpdateItem(new Product("McTen", super.getPrice().multiply(0.10).negate()),1);
+		}
 	}
 
 	public boolean containsDiscount(String discountCode){
 		// every code can only be used once
 		for (CartItem item: this.toList()){
-			if(discountCode.equals(item.getProductName()))
+			if(discountCode.equals(item.getProductName())){
 				return true;
+			}
 		}
 		return false;
 	}

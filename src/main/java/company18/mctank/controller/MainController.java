@@ -22,6 +22,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
@@ -32,14 +33,15 @@ public class MainController {
 	@Autowired
 	CustomerService customerService;
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
-		if (customerService.isAdmin())
+		if (customerService.isAdmin()) {
 			return "redirect:/overview";
-		else if (customerService.isManager())
+		} else if (customerService.isManager()) {
 			return "redirect:/cart";
-		else if (customerService.isCustomer())
+		} else if (customerService.isCustomer()) {
 			return "redirect:/account";
+		}
 		return "redirect:/login";
 	}
 }
