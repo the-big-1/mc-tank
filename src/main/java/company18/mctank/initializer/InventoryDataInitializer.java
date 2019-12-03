@@ -35,10 +35,10 @@ public class InventoryDataInitializer implements DataInitializer {
 		while (iterator.hasNext()) {
 			Product product = iterator.next();
 			// save new uniqueinventoryitem if product  not in inventory
-			if (inv.findByProduct(product) != null)
+			if (!inv.findByProduct(product).isPresent())
 				inv.save(new UniqueInventoryItem(product, product.createQuantity(100)));
 			// else update quantity to 100
-			else inv.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(100-item.getQuantity().getAmount().doubleValue())));
+			else inv.findByProduct(product).get().increaseQuantity(product.createQuantity(100.0 - inv.findByProduct(product).get().getQuantity().getAmount().doubleValue()));
 		}
 	}
 
