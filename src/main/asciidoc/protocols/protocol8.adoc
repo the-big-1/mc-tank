@@ -25,6 +25,7 @@ __Teilnehmer:__
 Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
 
 Für Abschlusspräsentation: 
+
 - Designentscheidungen
 - Entwicklungsprozess mit Teamvorstellung und Aufgabenverteilung
 - LessonsLearned
