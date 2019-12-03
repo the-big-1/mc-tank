@@ -1,0 +1,62 @@
+= Protokoll Gruppe 18
+
+Treffen am 03.12.2019
+
+Ort:      APB E007 +
+Beginn:   13:00 Uhr +
+Ende:     14:30 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+10.12.2019, 13:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David
+- Christoph
+- Clemens
+- Artem
+- Vivien
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+Für Abschlusspräsentation: 
+- Designentscheidungen
+- Entwicklungsprozess mit Teamvorstellung und Aufgabenverteilung
+- LessonsLearned
+- Use-Case-Diagramm, sonst keine
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/19[20]     |Basisfunktionalität       |fertig      |
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/21[21]    |Testplan       |in Arbeit      |mehr Integrationtests
+
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+- jede HTML-Seite an Design anpassen und jede Funktionalität braucht eine HTML-Seite, auch wenn diese noch nicht implementiert ist = keine Fehlermeldungen bei Seitenaufruf
+- SonarQube Fehler minimieren
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/23[22]     |Muss-Kriterien    |Muss-Kriterien aus dem Pflichtenheft werden implementiert           |alle               |in Arbeit
+|===
