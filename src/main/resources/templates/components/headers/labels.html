@@ -7,7 +7,7 @@
 <body>
 <div th:fragment="label-items" class="breadcrumbbar">
   <div class="row align-items-center">
-    <div class="col-md-8 col-lg-8">
+    <div class="col-md-5 col-lg-5">
       <h4 class="page-title">Items list</h4>
       <div class="breadcrumb-list">
         <ol class="breadcrumb">
@@ -16,7 +16,7 @@
         </ol>
       </div>
     </div>
-    <div class="col-md-4 col-lg-4">
+    <div class="col-md-7 col-lg-7">
       <div class="widgetbar">
         <div class="sweet-alert" th:if="${role} == 'ADMIN'">
           <button type="button" id="create-item" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add New Item</button>
@@ -34,7 +34,7 @@
 
 <div th:fragment="label-cart" class="breadcrumbbar">
   <div class="row align-items-center">
-    <div class="col-md-8 col-lg-8">
+    <div class="col-md-5 col-lg-5">
       <h4 class="page-title">Cart</h4>
       <div class="breadcrumb-list">
         <ol class="breadcrumb">
@@ -43,7 +43,7 @@
         </ol>
       </div>
     </div>
-    <div class="col-md-4 col-lg-4">
+    <div class="col-md-7 col-lg-7">
       <div class="widgetbar">
         <a href="/reservation">
           <button class="btn btn-primary-rgba">Reservation<i class="feather icon-calendar ml-2"></i></button>
@@ -58,5 +58,6 @@
     </div>
   </div>
 </div>
+
 </body>
 </html>

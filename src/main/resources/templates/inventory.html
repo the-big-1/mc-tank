@@ -1,5 +1,5 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
@@ -9,8 +9,10 @@
 		<h1>Inventory</h1>
 		<table>
 			<thead>
+			<tr>
 				<th>Produkt</th>
 				<th>Menge</th>
+			</tr>
 			</thead>
 			<tbody>
 				<tr th:each="item : ${inventory}">

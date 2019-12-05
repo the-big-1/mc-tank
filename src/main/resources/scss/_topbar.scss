@@ -99,7 +99,11 @@
       color: #717C99;
     }
     .input-group-append {
-      margin-left: 0px;
+      input {
+        width: 80px;
+        height: 33px;
+      }
+      margin-left: 0;
     }
     .btn {
       background-color: $secondary-rgba;
@@ -168,7 +172,7 @@
       .live-icon {
         position: absolute;
         top: 3px;
-        margin: 0px 10px;
+        margin: 0 10px;
         width: 10px;
         height: 10px;
         border-radius: 50%;
