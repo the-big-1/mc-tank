@@ -13,14 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import company18.mctank.service.ItemsService;
 
 @SpringBootTest
-class ItemServiceUnitTest{
+public class ItemServiceUnitTest{
 	
 	@Autowired
 	private ItemsService service;
 	
 	
 	@Test
-	void createNewProductTest() {
+	public void createNewProductTest() {
 		
 		List<String> list = new ArrayList<String>();
 		list.add("McZapf");
