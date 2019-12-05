@@ -1,4 +1,4 @@
-package company18.mctank.config;
+package company18.mctank.initializer;
 
 import java.time.LocalDateTime;
 
