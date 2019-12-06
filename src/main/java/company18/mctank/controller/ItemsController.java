@@ -2,6 +2,7 @@
 package company18.mctank.controller;
 
 import company18.mctank.service.CustomerService;
+
 import company18.mctank.service.ItemsService;
 import company18.mctank.forms.NewItemForm;
 
@@ -71,6 +72,6 @@ public class ItemsController {
 		model.addAttribute("quantity", quantity);
 		model.addAttribute("orderable", quantity.isGreaterThan(product.createQuantity(0)));
 		
-		return "itemDetails";
+		return "items-details";
 	}
 }

@@ -2,7 +2,6 @@ package company18.mctank.controller;
 
 import company18.mctank.domain.DiscountCart;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.salespointframework.quantity.Quantity;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
@@ -24,7 +23,6 @@ import org.salespointframework.order.Order;
 import org.salespointframework.payment.Cash;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
-
 
 @Controller
 @SessionAttributes("cart")
@@ -76,15 +74,20 @@ public class DiscountController {
 		cart.clear();
 		return "redirect:/cart";
 	}
+	
+	@GetMapping(value = "/orders")
+	String orders() {
 
-	@PostMapping("/cart/discount")
+		return "orders";
+	}
+
+	/*@PostMapping("/cart/discount")
 	public String addDiscount(String discountCode) {
 		cart.addDiscount(discountCode);
-		return "cart";
+		return "cart"; */
 
-		// for this part a user has to be logged in 
-		
-	/*String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
+	@PostMapping("/cart/pay")
+	String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
 		return userAccount.map(account -> {
 		
 			
@@ -94,8 +97,15 @@ public class DiscountController {
 
 		orderManager.payOrder(order);
 		orderManager.completeOrder(order);
-		 */
-	}
-	//);
-}
+		
+		cart.clear();
+		 
+		return "redirect:/";
+
+		}).orElse("redirect:/cart");	
+		}}
+		
+
+
+
 

@@ -70,7 +70,8 @@
             <form th:action="@{/cart/clear}" th:method="post">
               <button type="submit" class="btn btn-primary-rgba my-1"><i class="feather icon-delete mr-2"></i>Clear Cart</button>
             </form>
-            <a href="/checkout" class="btn btn-success-rgba my-1">Proceed to Checkout<i class="feather icon-arrow-right ml-2"></i></a>
+            <form th:action="@{/cart/pay}" th:method="post">
+            <button class="btn btn-success-rgba my-1">Proceed to Checkout<i class="feather icon-arrow-right ml-2"></i></a>
           </div>
         </div>
       </div>
