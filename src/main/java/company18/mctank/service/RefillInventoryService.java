@@ -23,15 +23,16 @@ public class RefillInventoryService {
 
 
 	public void refillInventoryItem(String prodName, double amount){
-		//Product product = items.
-		//Product product = ((Product) items.findByName(prodName));  //cast on product does not work!!
-		//inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(amount + item.getQuantity().getAmount().doubleValue())));
+		var productObjekt = items.findByName(prodName).stream().findFirst();
+		Product product = productObjekt.get();			//can throw exception
+		inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(amount + item.getQuantity().getAmount().doubleValue())));
 	}
 
 	public void refillInventoryItems(HashMap<String, Double> products){
 		for(Map.Entry<String, Double> entry : products.entrySet()){
-			//Product product = ((Product) items.findByName(entry.getKey()));
-			//inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(entry.getValue() + item.getQuantity().getAmount().doubleValue())));
+			var productObjekt = items.findByName(entry.getKey()).stream().findFirst();
+			Product product = productObjekt.get();			//can throw exception
+			inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(entry.getValue() + item.getQuantity().getAmount().doubleValue())));
 		}
 	}
 }
