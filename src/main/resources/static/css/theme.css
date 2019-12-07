@@ -132,11 +132,6 @@ code {
   transition: all 0.3s ease;
 }
 
-.rightbar.center {
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
 .contentbar {
   padding: 30px;
   margin-bottom: 30px;
@@ -782,6 +777,10 @@ code {
 }
 
 /* -- Margin -- */
+.m-x- {
+  margin: 100px 233px 100px 233px;
+}
+
 .m-t-5 {
   margin-top: 5px;
 }
