@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <!--suppress HtmlRequiredTitleElement  -- Will be inserted with thymeleaf-->
-<head th:insert="core/head :: std(pageName='Reservations')"></head>
+<head th:insert="core/head :: std(pageName='Reservations', headerSweet=true, headerPicker=true)"></head>
 
 <body class="vertical-layout">
 <div id="containerbar">
   <div class="m-x center">
     <div th:insert="components/mobile-nav :: basic"></div>
-    <div th:replace="components/breadcrumb :: std(breadcrumbbarName='Reservations',isCartNavEnabled=true)"></div>
+    <div th:replace="components/breadcrumb :: std(breadcrumbbarName='Reservations',isReservationNavEnabled=true)"></div>
     <div class="contentbar">
       <div class="row">
         <div class="col-lg-12">
@@ -17,6 +17,6 @@
     </div>
   </div>
 </div>
-<div th:replace="core/head :: std(scriptSweetAlert=true)"></div>
+<div th:replace="core/scripts :: std(scriptSweetAlert=true, scriptReservation=true,scriptPicker=true)"></div>
 </body>
 </html>

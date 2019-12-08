@@ -43,11 +43,39 @@
         <button type="button" id="create-item" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add Product</button>
       </div>
     </div>
+    <div th:if="${isProductNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <a href="/reservation">
+          <button class="btn btn-primary-rgba"><i class="feather icon-calendar mr-2"></i>Reservation</button>
+        </a>
+        <a href="/cart">
+          <button class="btn btn-primary-rgba"><i class="feather icon-arrow-left-circle mr-2"></i>Back to Cart</button>
+        </a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
+      </div>
+    </div>
     <div th:if="${isReservationManagmentNavEnabled}" class="col-md-7 col-lg-7">
       <div class="widgetbar">
+        <!--suppress XmlDuplicatedId is resolved by Thymeleaf insertion-->
         <button type="button" id="create-reservation" class="btn btn-primary-rgba">
           <i class="feather icon-plus mr-2"></i>Add Reservation
         </button>
+      </div>
+    </div>
+    <div th:if="${isReservationNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <!--suppress XmlDuplicatedId is resolved by Thymeleaf insertion-->
+        <button type="button" id="create-reservation" class="btn btn-primary-rgba">
+          <i class="feather icon-plus mr-2"></i>Add Reservation
+        </button>
+        <a href="/items">
+          <button class="btn btn-primary-rgba"><i class="feather icon-shopping-cart mr-2"></i>To Cart</button>
+        </a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
       </div>
     </div>
   </div>
