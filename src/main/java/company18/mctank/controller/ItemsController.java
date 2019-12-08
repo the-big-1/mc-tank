@@ -63,7 +63,7 @@ public class ItemsController {
 	public String itemDetails(@PathVariable Product product, Model model) {
 		
 		var quantity = inventory.findByProductIdentifier(product.getId())
-				.map(InventoryItem::getQuantity) //
+				.map(InventoryItem::getQuantity)
 				.orElse(NONE);
 
 		model.addAttribute("product", product);

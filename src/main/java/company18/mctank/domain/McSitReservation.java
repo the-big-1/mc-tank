@@ -11,8 +11,8 @@ public class McSitReservation extends Reservation {
 		super();
 	}
 
-	public McSitReservation(String name, LocalDateTime date) {
-		super(name, date);
+	public McSitReservation(String name, LocalDateTime date, String username) {
+		super(name, date, username);
 	}
 
 }

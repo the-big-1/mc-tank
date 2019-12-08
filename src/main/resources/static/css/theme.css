@@ -2940,6 +2940,339 @@ input[type=range]:focus {
 }
 
 /*
+-----------------------------------------
+    : Form Date Picker css :
+-----------------------------------------
+*/
+.datepicker {
+  font-family: "Muli", sans-serif;
+  background: #ffffff;
+  color: #8A98AC;
+  border: none;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.datepickers-container {
+  z-index: 1937;
+}
+
+.datepicker--day-name {
+  color: #0080ff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.datepicker--cell-day.-other-month- {
+  color: #d4d8de;
+}
+
+.datepicker--cell-year.-other-decade- {
+  color: #d4d8de;
+}
+
+.datepicker--nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+.datepicker--nav .datepicker--nav-title {
+  color: #282828;
+  border-radius: 50px;
+  font-weight: 700;
+}
+.datepicker--nav .datepicker--nav-title i {
+  font-style: normal;
+  color: #282828;
+  margin-left: 5px;
+}
+
+.datepicker--nav-action:hover {
+  background: transparent;
+}
+
+.datepicker--nav-title:hover {
+  background: transparent;
+}
+
+.datepicker--pointer {
+  border-top: none;
+  border-right: none;
+  background: #ffffff;
+}
+
+.datepicker--cell {
+  border-radius: 50px;
+}
+
+.datepicker--cell.-selected- {
+  color: #ffffff;
+  background: #0080ff;
+}
+
+.datepicker--cell.-selected-.-current- {
+  color: #ffffff;
+  background: #0080ff;
+}
+
+.datepicker--cell.-selected-.-focus- {
+  background: #0080ff;
+}
+
+.datepicker--cell.-focus- {
+  background: transparent;
+  color: #282828;
+}
+
+.datepicker--cell.-current- {
+  color: #0080ff;
+}
+
+.datepicker--cell.-range-from- {
+  border: 1px solid #0080ff;
+  background-color: #0080ff;
+  border-radius: 50px 0 0 50px;
+}
+
+.datepicker--cell.-range-to- {
+  border: 1px solid #0080ff;
+  background-color: #0080ff;
+  border-radius: 0 50px 50px 0;
+  color: #ffffff;
+}
+
+.datepicker--cell.-in-range- {
+  background: rgba(0, 128, 255, 0.1);
+  color: #282828;
+  border-radius: 0;
+}
+
+.datepicker--time-current-hours {
+  font-family: "Muli", sans-serif;
+}
+
+.datepicker--time-current-minutes {
+  font-family: "Muli", sans-serif;
+}
+
+.datepicker--buttons {
+  border-top: 1px solid #e2e5e9;
+  padding: 5px;
+}
+
+.datepicker--time {
+  border-top: 1px solid #e2e5e9;
+  padding: 5px;
+}
+
+.-selected-.datepicker--cell-day.-other-month-,
+.-selected-.datepicker--cell-year.-other-decade- {
+  color: #ffffff;
+  background: #99ccff;
+}
+
+.datepicker--time-row {
+  background: linear-gradient(to right, #d4d8de, #d4d8de) left 50%/100% 1px no-repeat;
+}
+.datepicker--time-row input[type=range]:hover::-webkit-slider-thumb {
+  background: #0080ff;
+  border-color: #0080ff;
+}
+.datepicker--time-row input[type=range]:hover::-moz-range-thumb {
+  background: #0080ff;
+  border-color: #0080ff;
+}
+.datepicker--time-row input[type=range]:hover::-ms-thumb {
+  background: #0080ff;
+  border-color: #0080ff;
+}
+.datepicker--time-row input[type=range]:focus::-webkit-slider-thumb {
+  background: #0080ff;
+  border-color: #0080ff;
+}
+.datepicker--time-row input[type=range]:focus::-moz-range-thumb {
+  background: #0080ff;
+  border-color: #0080ff;
+}
+.datepicker--time-row input[type=range]:focus::-ms-thumb {
+  background: #0080ff;
+  border-color: #0080ff;
+}
+.datepicker--time-row input[type=range]::-webkit-slider-thumb {
+  box-sizing: border-box;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  border: 1px solid #0080ff;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.datepicker--time-row input[type=range]::-moz-range-thumb {
+  box-sizing: border-box;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  border: 1px solid #0080ff;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.datepicker--time-row input[type=range]::-ms-thumb {
+  box-sizing: border-box;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  border: 1px solid #0080ff;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.datepicker-inline .datepicker {
+  border-color: transparent;
+  box-shadow: none;
+  position: static;
+  left: auto;
+  right: auto;
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+  width: 100%;
+}
+.datepicker-inline .datepicker .datepicker--day-name {
+  color: #0080ff;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.datepicker-inline .datepicker .datepicker--cell-day {
+  width: 14.28571%;
+  height: 43px;
+}
+.datepicker-inline .datepicker .datepicker--cell.-current- {
+  color: #0080ff;
+  background-color: transparent;
+}
+.datepicker-inline .datepicker .datepicker--nav-title {
+  border-radius: 15px;
+  padding: 4px 15px;
+  font-size: 16px;
+}
+
+/*
+------------------------------------
+    : Custom - Sweet Alert css :
+------------------------------------
+*/
+.swal2-modal {
+  font-family: "Muli", sans-serif;
+  border-radius: 3px;
+  border: none;
+}
+.swal2-modal .swal2-title {
+  font-weight: 400;
+  font-size: 20px;
+  color: #282828;
+}
+.swal2-modal .swal2-content {
+  font-size: 16px;
+  font-weight: 400;
+  color: #8A98AC;
+}
+.swal2-modal .swal2-spacer {
+  margin: 10px 0;
+}
+.swal2-modal .swal2-file, .swal2-modal .swal2-input, .swal2-modal .swal2-textarea {
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  font-size: 16px;
+  box-shadow: none !important;
+  background-color: transparent;
+}
+.swal2-modal .swal2-file:focus, .swal2-modal .swal2-input:focus, .swal2-modal .swal2-textarea:focus {
+  border: 1px solid #0080ff;
+}
+.swal2-modal .swal2-styled {
+  border: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 5px;
+  padding: 6px 12px;
+}
+.swal2-modal .swal2-confirm {
+  background-color: #0080ff !important;
+  border: none;
+}
+.swal2-modal .swal2-confirm.btn-success {
+  background-color: #18d26b !important;
+  box-shadow: none;
+  border: none;
+  border-radius: 3px;
+}
+.swal2-modal .swal2-cancel {
+  background-color: #ff3f3f !important;
+  border: none;
+  border-radius: 3px;
+}
+.swal2-modal .swal2-icon.swal2-error {
+  color: #ff3f3f;
+  border-color: #ffa5a5;
+}
+.swal2-modal .swal2-icon.swal2-question {
+  color: #0080ff;
+  border-color: #66b3ff;
+}
+.swal2-modal .swal2-icon.swal2-warning {
+  color: #ffa800;
+  border-color: #ffcb66;
+}
+.swal2-modal .swal2-icon.swal2-info {
+  color: #00b8d4;
+  border-color: #3be5ff;
+}
+.swal2-modal .swal2-icon.swal2-success {
+  color: #18d26b;
+  border-color: #18d26b;
+}
+.swal2-modal .swal2-icon.swal2-success .line {
+  background-color: #18d26b;
+}
+.swal2-modal .swal2-icon.swal2-success .placeholder {
+  border: 4px solid #91f2bc;
+}
+.swal2-modal .swal2-icon.swal2-success:before {
+  background: transparent;
+}
+.swal2-modal .swal2-icon.swal2-success:after {
+  background: transparent;
+}
+.swal2-modal .swal2-icon.swal2-success .fix {
+  background: transparent;
+}
+.swal2-modal .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep {
+  background: #0080ff;
+}
+.swal2-modal .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep ~ .swal2-progresscircle {
+  background: #66b3ff;
+}
+.swal2-modal .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep ~ .swal2-progressline {
+  background: #66b3ff;
+}
+.swal2-modal .swal2-progresssteps .swal2-progresscircle {
+  background: #0080ff;
+}
+.swal2-modal .swal2-progresssteps .swal2-progressline {
+  background: #0080ff;
+}
+.swal2-modal .swal2-validationerror {
+  background-color: #d4d8de;
+  color: #8A98AC;
+  font-weight: 400;
+}
+.swal2-modal .swal2-validationerror:before {
+  background-color: #ff3f3f;
+}
+
+/*
 ---------------------------------------
     : Component for Security Pages :
 ---------------------------------------
