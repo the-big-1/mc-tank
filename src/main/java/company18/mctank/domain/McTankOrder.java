@@ -6,23 +6,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.salespointframework.order.Order;
+import org.salespointframework.useraccount.UserAccount;
+
 @Entity
-public class Order {
-	@Id @GeneratedValue
-	private long id;
+public class McTankOrder extends Order{
 	
 	private LocalDateTime orderdate;
 	
-	public Order(LocalDateTime orderdate) {
-		this.orderdate = orderdate;
+	public McTankOrder(UserAccount account) {
+		super(account);
 	}
 	
 	public LocalDateTime getDate() {
 		return this.orderdate;
-	}
-	
-	public long getId() {
-		return id;
 	}
 
 }

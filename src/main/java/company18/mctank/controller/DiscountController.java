@@ -1,9 +1,8 @@
 package company18.mctank.controller;
 
 import company18.mctank.domain.DiscountCart;
+import company18.mctank.domain.McTankOrder;
 
-
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -20,8 +19,6 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
-import org.salespointframework.order.Order;
-import org.salespointframework.payment.Cash;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 
@@ -34,10 +31,10 @@ public class DiscountController {
 		this.cart = cart;
 	}
 
-	OrderManager<Order> orderManager;
+	OrderManager<McTankOrder> orderManager;
 
 
-	void OrderController(OrderManager<Order> orderManager) {
+	void OrderController(OrderManager<McTankOrder> orderManager) {
 		Assert.notNull(orderManager, "OrderManager must not be null!");
 		this.orderManager = orderManager;
 	}
@@ -90,22 +87,28 @@ public class DiscountController {
 
 	@PostMapping("/cart/pay")	
 	String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
-		return userAccount.map(account -> {	
-		var order = new Order(account, Cash.CASH);
+		
+		// creating new order attached to userAccount
+		McTankOrder order;
+		if (userAccount.isPresent())
+			order = new McTankOrder(userAccount.get());
+		else return "redirect:/";
+		
+		// add items to order, pay order, set orders state to completed, clear cart
 		cart.addItemsTo(order);
 		orderManager.payOrder(order);
 		orderManager.completeOrder(order);	
 		cart.clear();
 		return "redirect:/";
-	}).orElse("redirect:/cart");
 	}
 	
+	/*
 	@GetMapping("/orders")
 	@PreAuthorize("hasRole('BOSS')")
 	String orders(Model model) {
 		model.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
 		return "orders";
-	}
+	}*/
 }
 
 
