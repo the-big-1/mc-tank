@@ -11,14 +11,14 @@ public class Order {
 	@Id @GeneratedValue
 	private long id;
 	
-	private LocalDateTime date;
+	private LocalDateTime orderdate;
 	
-	public Order(LocalDateTime date) {
-		this.date = date;
+	public Order(LocalDateTime orderdate) {
+		this.orderdate = orderdate;
 	}
 	
 	public LocalDateTime getDate() {
-		return this.date;
+		return this.orderdate;
 	}
 	
 	public long getId() {
