@@ -56,7 +56,6 @@ public class ItemsController {
 	@PostMapping("/item/new")
 	public String registerNew(@RequestBody NewItemForm form) {
 		itemsService.createNewProduct(form);
-
 		return "redirect:/items";
 	}
 	

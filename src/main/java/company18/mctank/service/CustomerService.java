@@ -103,7 +103,7 @@ public class CustomerService {
 				.stream()
 				.anyMatch(
 					a -> a.getAuthority()
-						.equals(role.getName())
+						.contains(role.getName())
 				);
 		} catch (UnauthorizedUserException e) {
 			return false;

@@ -24,6 +24,6 @@
   </div>
 </div>
 
-<div th:fragment="basic" th:insert="components/nav :: base"></div>
-<div th:fragment="extended" th:insert="components/nav :: base(mobileNavExtended=true)"></div>
+<div th:fragment="basic" th:insert="components/mobile-nav :: std"></div>
+<div th:fragment="extended" th:insert="components/mobile-nav :: std(mobileNavExtended=true)"></div>
 </html>

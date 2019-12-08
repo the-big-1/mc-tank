@@ -11,7 +11,7 @@
         </ol>
       </div>
     </div>
-    <div th:if="${isCartNavEnabled}" class="col-md-4 col-lg-4">
+    <div th:if="${isCartNavEnabled}" class="col-md-7 col-lg-7">
       <div class="widgetbar">
         <a href="/reservation">
           <button class="btn btn-primary-rgba"><i class="feather icon-calendar mr-2"></i>Reservation</button>
@@ -24,6 +24,26 @@
         </form>
       </div>
     </div>
+    <div th:if="${isOverviewNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <a  class="ham btn btn-secondary-rgba d-lg-inline-block d-sm-none" href="javascript:void(0);">
+          <i class="feather icon-aperture"></i>
+          <span id="compact">Compact Mode</span>
+        </a>
+        <a href="/" class="btn btn-primary-rgba"><i class="feather icon-refresh-ccw mr-2"></i>Update</a>
+      </div>
+    </div>
+    <div th:if="${isUserManagmentNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <button type="button" id="create-user" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add User</button>
+      </div>
+    </div>
   </div>
 </div>
+
+<div th:fragment="admin"
+     th:insert="components/breadcrumb :: std(breadcrumbbarName='Overview', isOverviewNavEnabled=true)"></div>
+
+<div th:fragment="user-managment"
+     th:insert="components/breadcrumb :: std(breadcrumbbarName='User managment', isUserManagmentNavEnabled=true)"></div>
 </html>

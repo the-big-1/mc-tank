@@ -6,8 +6,8 @@
 <body class="vertical-layout">
 <div id="containerbar">
   <div class="center m-x">
-    <div th:replace="components/nav :: basic"></div>
-    <div th:replace="components/breadcrumb :: std(isCartNavEnabled=true)"></div>
+    <div th:replace="components/mobile-nav :: basic"></div>
+    <div th:replace="components/breadcrumb :: std(breadcrumbbarName='Cart',isCartNavEnabled=true)"></div>
     <div class="contentbar">
       <div class="row">
         <div class="col-lg-12">
