@@ -18,7 +18,6 @@ import java.util.Optional;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.OrderManager;
-import org.salespointframework.order.OrderStatus;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 

@@ -33,23 +33,19 @@ public class InventoryDataInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 		for (Product product : this.itemsRepository.findAll()) {
-			if (inventoryRepository.findByProduct(product).isPresent()) {
+			if (!inventoryRepository.findByProduct(product).isPresent()) {
 				Quantity amount = product.createQuantity(100);
 				UniqueInventoryItem item = new UniqueInventoryItem(product, amount);
 				inventoryRepository.save(item);
 			}
 			else {
-				inventoryRepository.findByProduct(product)
-					.map(
-						(item) -> item.increaseQuantity(
-							product.createQuantity(
-								100 - item
-									.getQuantity()
-									.getAmount()
-									.doubleValue()
-							)
-						)
-					);
+				UniqueInventoryItem item = inventoryRepository.findByProduct(product).get();
+				item.increaseQuantity(
+						product.createQuantity(
+								100 - 
+								item.getQuantity()
+								.getAmount()
+								.doubleValue()));
 			}
 		}
 	}
