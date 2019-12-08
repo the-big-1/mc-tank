@@ -2,6 +2,7 @@ package company18.mctank.service;
 
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
+import company18.mctank.exception.ExistedUserException;
 import company18.mctank.exception.UnauthorizedUserException;
 import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;
@@ -10,20 +11,13 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.Optional;
-
 @Service
 public class CustomerService {
-
-	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
 
 	private final CustomerRepository customers;
 
@@ -40,17 +34,22 @@ public class CustomerService {
 	}
 
 
-	public Customer createCustomer(RegistrationForm form) {
+	public Customer createCustomer(RegistrationForm form) throws ExistedUserException {
 
 		Assert.notNull(form, "Registration form must not be null!");
-
-		var password = UnencryptedPassword.of(form.getPassword());
-		var userAccount = userAccounts.create(form.getName(), password, CUSTOMER_ROLE);
-		return customers.save(new Customer(userAccount));
+		UnencryptedPassword password = UnencryptedPassword.of(form.getPassword());
+		return this.createCustomer(form.getName(), password, CustomerRoles.CUSTOMER);
 	}
 
-	public Customer createCustomer(String username, UnencryptedPassword password, Role role) {
-		var userAccount = userAccounts.create(username, password, role);
+	public Customer createCustomer(String username,
+								   UnencryptedPassword password,
+								   Role role) throws ExistedUserException {
+		UserAccount userAccount = null;
+		try {
+			userAccount = userAccounts.create(username, password, role);
+		} catch (IllegalArgumentException e) {
+			throw new ExistedUserException();
+		}
 		return customers.save(new Customer(userAccount));
 	}
 
@@ -73,7 +72,7 @@ public class CustomerService {
 		return customers.findAll();
 	}
 
-	public UserDetails getPrincipal() throws UnauthorizedUserException {
+	private UserDetails getPrincipal() throws UnauthorizedUserException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal == null){
 			throw new IllegalStateException("Principal can not be null");
@@ -96,7 +95,7 @@ public class CustomerService {
 		return this.checkRole(CustomerRoles.CUSTOMER);
 	}
 
-	private boolean checkRole(CustomerRoles role) {
+	private boolean checkRole(Role role) {
 		UserDetails userDetails = null;
 		try {
 			userDetails = this.getPrincipal();
@@ -104,7 +103,7 @@ public class CustomerService {
 				.stream()
 				.anyMatch(
 					a -> a.getAuthority()
-						.equals(role.getRole())
+						.equals(role.getName())
 				);
 		} catch (UnauthorizedUserException e) {
 			return false;

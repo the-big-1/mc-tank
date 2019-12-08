@@ -1,4 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
+<div th:fragment="std" class="breadcrumbbar">
+  <div class="row align-items-center">
+    <div class="col-md-5 col-lg-5">
+      <h4 class="page-title" th:text="${breadcrumbbarName}">Cart</h4>
+      <div class="breadcrumb-list">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page" th:text="${breadcrumbbarName}">Cart</li>
+        </ol>
+      </div>
+    </div>
+    <div th:if="${isCartNavEnabled}" class="col-md-4 col-lg-4">
+      <div class="widgetbar">
+        <a href="/reservation">
+          <button class="btn btn-primary-rgba"><i class="feather icon-calendar mr-2"></i>Reservation</button>
+        </a>
+        <a href="/items">
+          <button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Select Product</button>
+        </a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 </html>

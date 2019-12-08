@@ -2,6 +2,7 @@ package company18.mctank.initializer;
 
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
+import company18.mctank.exception.ExistedUserException;
 import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;
 import company18.mctank.service.CustomerService;
@@ -57,12 +58,16 @@ class CustomerDataInitializer implements DataInitializer {
 		LOG.info("Creating default users and customers.");
 
 		UnencryptedPassword password = UnencryptedPassword.of("123");
-		List.of(
-			customerService.createCustomer("boss", UnencryptedPassword.of("123"), Role.of(CustomerRoles.ADMIN.name())),
-			customerService.createCustomer("test", UnencryptedPassword.of("test"), Role.of(CustomerRoles.CUSTOMER.name())),
-			customerService.createCustomer("manager", UnencryptedPassword.of("123"), Role.of(CustomerRoles.MANAGER.name()))
+		try {
+			List.of(
+				customerService.createCustomer("boss", UnencryptedPassword.of("123"), CustomerRoles.ADMIN),
+				customerService.createCustomer("test", UnencryptedPassword.of("test"), CustomerRoles.CUSTOMER),
+				customerService.createCustomer("manager", UnencryptedPassword.of("123"), CustomerRoles.MANAGER)
 
-		).forEach(customerRepository::save);
+			).forEach(customerRepository::save);
+		} catch (ExistedUserException e) {
+			LOG.error("FAILED Create test users.");
+		}
 
 		LOG.info("Created all default user accounts");
 

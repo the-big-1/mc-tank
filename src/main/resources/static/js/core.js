@@ -10,7 +10,7 @@ $(document).ready(function() {
     $.sidebarMenu($('.vertical-menu'));
     $(function() {
         for (var a = window.location, abc = $(".vertical-menu a").filter(function() {
-            return this.href == a;
+            return this.href === a;
         }).addClass("active").parent().addClass("active"); ;) {
             if (!abc.is("li")) break;
             abc = abc.parent().addClass("in").parent().addClass("active");

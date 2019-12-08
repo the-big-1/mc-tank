@@ -777,7 +777,7 @@ code {
 }
 
 /* -- Margin -- */
-.m-x- {
+.m-x {
   margin: 100px 233px 100px 233px;
 }
 
@@ -4032,7 +4032,12 @@ input[type=range]:focus {
     display: block;
     position: fixed;
     width: 100%;
+    top: 0;
     z-index: 1;
+  }
+
+  .m-x {
+    margin: 0;
   }
 
   .topbar {
@@ -4068,7 +4073,7 @@ input[type=range]:focus {
   }
 
   .breadcrumbbar {
-    margin: 100px 0 0 0;
+    margin: 125px 0 0 0;
     padding: 20px 0 20px 0;
   }
   .breadcrumbbar .page-title {
