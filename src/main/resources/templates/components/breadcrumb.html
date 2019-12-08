@@ -38,6 +38,11 @@
         <button type="button" id="create-user" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add User</button>
       </div>
     </div>
+    <div th:if="${isProductManagmentNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <button type="button" id="create-item" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add Product</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -45,5 +50,14 @@
      th:insert="components/breadcrumb :: std(breadcrumbbarName='Overview', isOverviewNavEnabled=true)"></div>
 
 <div th:fragment="user-managment"
-     th:insert="components/breadcrumb :: std(breadcrumbbarName='User managment', isUserManagmentNavEnabled=true)"></div>
+     th:insert="components/breadcrumb :: std(
+       breadcrumbbarName='User managment',
+       isUserManagmentNavEnabled=true
+     )"></div>
+
+<div th:fragment="product-managment"
+     th:insert="components/breadcrumb :: std(
+       breadcrumbbarName='Product managment',
+       isProductManagmentNavEnabled=true
+     )"></div>
 </html>
