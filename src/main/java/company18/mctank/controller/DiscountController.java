@@ -68,11 +68,6 @@ public class DiscountController {
 		return "redirect:/cart";
 	}
 	
-	@GetMapping(value = "/orders")
-	String orders() {
-
-		return "orders";
-	}
 
 	/* @PostMapping("/cart/discount")
 	public String addDiscount(String discountCode) {
@@ -106,14 +101,6 @@ public class DiscountController {
 		cart.clear();
 		return "redirect:/";
 	}
-	
-	/*
-	@GetMapping("/orders")
-	@PreAuthorize("hasRole('BOSS')")
-	String orders(Model model) {
-		model.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
-		return "orders";
-	}*/
 }
 
 
