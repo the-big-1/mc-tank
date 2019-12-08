@@ -2,6 +2,8 @@ package company18.mctank.controller;
 
 import company18.mctank.domain.DiscountCart;
 
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -16,7 +18,6 @@ import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
-import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.order.Order;
@@ -81,31 +82,30 @@ public class DiscountController {
 		return "orders";
 	}
 
-	/*@PostMapping("/cart/discount")
+	/* @PostMapping("/cart/discount")
 	public String addDiscount(String discountCode) {
 		cart.addDiscount(discountCode);
 		return "cart"; */
 
-	@PostMapping("/cart/pay")
+
+	@PostMapping("/cart/pay")	
 	String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
-		return userAccount.map(account -> {
-		
-			
+		return userAccount.map(account -> {	
 		var order = new Order(account, Cash.CASH);
-
 		cart.addItemsTo(order);
-
 		orderManager.payOrder(order);
-		orderManager.completeOrder(order);
-		
+		orderManager.completeOrder(order);	
 		cart.clear();
-		 
 		return "redirect:/";
-
-		}).orElse("redirect:/cart");	
-		}}
-		
-
-
+	}).orElse("redirect:/cart");
+	}
+	
+	@GetMapping("/orders")
+	@PreAuthorize("hasRole('BOSS')")
+	String orders(Model model) {
+		model.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+		return "orders";
+	}
+}
 
 
