@@ -5,6 +5,8 @@ import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Quantity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,7 @@ import company18.mctank.repository.ItemsRepository;
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class InventoryDataInitializer implements DataInitializer {
+	private static final Logger LOG = LoggerFactory.getLogger(InventoryDataInitializer.class);
 
 	private final UniqueInventory<UniqueInventoryItem> inventoryRepository;
 
@@ -48,6 +51,7 @@ public class InventoryDataInitializer implements DataInitializer {
 								.doubleValue()));
 			}
 		}
+		LOG.info("Inventory initialized.");
 	}
 
 }

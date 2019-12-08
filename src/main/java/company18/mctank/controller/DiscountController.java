@@ -18,6 +18,7 @@ import java.util.Optional;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.OrderManager;
+import org.salespointframework.payment.Cash;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 
@@ -25,20 +26,15 @@ import org.salespointframework.useraccount.web.LoggedIn;
 @SessionAttributes("cart")
 public class DiscountController {
 	private DiscountCart cart;
-
-	DiscountController(DiscountCart cart) {
-		this.cart = cart;
-	}
-
 	OrderManager<McTankOrder> orderManager;
 
-
-	void OrderController(OrderManager<McTankOrder> orderManager) {
+	DiscountController(DiscountCart cart, OrderManager<McTankOrder> orderManager) {
+		this.cart = cart;
 		Assert.notNull(orderManager, "OrderManager must not be null!");
 		this.orderManager = orderManager;
 	}
 
-
+	
 	@ModelAttribute("cart")
 	Cart initializeCart() {
 		return new Cart();
@@ -93,10 +89,20 @@ public class DiscountController {
 			order = new McTankOrder(userAccount.get());
 		else return "redirect:/";
 		
-		// add items to order, pay order, set orders state to completed, clear cart
-		cart.addItemsTo(order);
+		// add items to order
+	    cart.addItemsTo(order);
+		
+		// set paymentmethod to cash and pay
+		order.setPaymentMethod(Cash.CASH);
 		orderManager.payOrder(order);
+		
+		// set order state to completed
 		orderManager.completeOrder(order);	
+		
+		//save order
+		orderManager.save(order);
+		
+		// clear cart and redirect
 		cart.clear();
 		return "redirect:/";
 	}
