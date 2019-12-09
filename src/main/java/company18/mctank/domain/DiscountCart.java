@@ -1,34 +1,26 @@
 package company18.mctank.domain;
 
-import java.util.List;
-
 import javax.money.MonetaryAmount;
 
-
-import org.javamoney.moneta.Money;
 import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
 import org.springframework.stereotype.Component;
 
-import company18.mctank.forms.NewItemForm;
-
 
 
 @Component
 public class DiscountCart extends Cart{
 
-
-
-	/*public DiscountCart(){
+	public DiscountCart(){
 
 		
 		// counts the number of categories in the cart to calculate discount
 		int[] countCat = new int[4];
 		float discount = 0;
 		
-		for(CartItem i : this){
+		for(CartItem i: this){
 			if(i.getProductName().toString() == "McZapf" && countCat[0] == 0){
 				countCat[0] += 1;
 				discount += 0.05;
@@ -51,7 +43,7 @@ public class DiscountCart extends Cart{
 			this.addOrUpdateItem(new Product("McTest", super.getPrice().multiply(discount).negate()),1);
 
 
-	}*/
+	}
 	
 	
 	// rounds Carts getPrice()
@@ -61,12 +53,11 @@ public class DiscountCart extends Cart{
 	}
 
 	   
-
 	public void addDiscount(String discountCode){
-		// add discount codes to cart as a product
 		// TODO : Rewrite this method (Normal total price update)
-		if("McTen".equals(discountCode) && !this.containsDiscount("McTen")){
-			this.addOrUpdateItem(new Product("McTen", super.getPrice().multiply(0.10).negate()),1);
+		//if("McTen".equals(discountCode) && !this.containsDiscount("McTen")){
+		if("McTen".equals(discountCode)){
+			super.getPrice().multiply(0.9).negate();
 		}
 	}
 

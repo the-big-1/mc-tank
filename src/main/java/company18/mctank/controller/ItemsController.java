@@ -67,7 +67,7 @@ public class ItemsController {
 		var quantity = inventory.findByProductIdentifier(product.getId())
 				.map(InventoryItem::getQuantity) //
 				.orElse(NONE);
-
+		model.addAttribute("category", mcPoints);
 		model.addAttribute("product", product);
 		model.addAttribute("quantity", quantity);
 		model.addAttribute("orderable", quantity.isGreaterThan(product.createQuantity(0)));

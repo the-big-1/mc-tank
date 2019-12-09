@@ -1,6 +1,7 @@
 package company18.mctank.initializer;
 
 import org.javamoney.moneta.Money;
+
 import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.quantity.Metric;

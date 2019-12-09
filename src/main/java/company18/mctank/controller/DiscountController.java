@@ -54,14 +54,6 @@ public class DiscountController {
 		return "redirect:/cart";
 	}
 
-	@GetMapping(value = "/checkout")
-	public String pay(Model model) {
-		//show site for checkout
-		//adds attributes for cart
-		model.addAttribute("finalprice", cart.getPrice());
-		return "checkout";
-	}
-
 	@PostMapping("/cart/clear")
 	public String clearCart(Model model, @ModelAttribute Cart cart){
 		cart.clear();
@@ -69,10 +61,11 @@ public class DiscountController {
 	}
 	
 
-	/* @PostMapping("/cart/discount")
+	@PostMapping("/cart/discount")
 	public String addDiscount(String discountCode) {
-		cart.addDiscount(discountCode);
-		return "cart"; */
+			cart.addDiscount(discountCode);
+		return "redirect:/cart";
+	}	
 
 
 	@PostMapping("/cart/pay")	

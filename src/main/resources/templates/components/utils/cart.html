@@ -34,7 +34,7 @@
             <div class="row">
               <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
                 <div class="order-note">
-                  <form>
+                  <!--<form>
                     <div class="form-group">
                       <form th:action="@{/cart/discount}" method="post">
                       <div class="input-group">
@@ -45,7 +45,10 @@
                       </div>
                       </form>
                     </div>
-                  </form>
+                  </form>-->
+                  <form th:action="@{/cart/discount}" method="post">
+                  <input id="discountCode" name="discountCode" type="text"/>
+                  <button type="submit">Apply</button>
                 </div>
               </div>
               <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
