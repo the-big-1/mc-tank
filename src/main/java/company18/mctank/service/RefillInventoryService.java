@@ -24,16 +24,19 @@ public class RefillInventoryService {
 	private UniqueInventory<UniqueInventoryItem> inventory;
 
 
-	public void refillInventoryItem(String prodName, double amount){
+	public boolean refillInventoryItem(String prodName, double amount){
 		var productObjekt = items.findByName(prodName)
 				 				 .stream()
 								 .findFirst();
-
-		Product product = productObjekt.get();			//can throw exception
-
-		inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(amount + item.getQuantity()
-																													     .getAmount()
-																														 .doubleValue())));
+		
+		if(productObjekt.isEmpty()) return false;
+		Product product = productObjekt.get();
+		
+		if(inventory.findByProduct(product).isEmpty()) return false;
+		UniqueInventoryItem item = inventory.findByProduct(product).get();
+		
+		item.increaseQuantity(product.createQuantity(amount));
+		return true;
 	}
 
 	public void refillFuel(String prodName, double amount) throws FuelStorageFullException{
