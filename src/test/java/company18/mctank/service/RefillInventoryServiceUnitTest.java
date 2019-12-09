@@ -1,8 +1,10 @@
 package company18.mctank.service;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Product;
@@ -28,7 +30,7 @@ public class RefillInventoryServiceUnitTest {
 	private RefillInventoryService service;
 
 	@Test
-	public void refillInventoryTest(){
+	public void refillInventoryItemTest(){
 		MonetaryAmount price = Monetary.getDefaultAmountFactory()
 									   .setCurrency("EUR")
 									   .setNumber(1.33)
@@ -46,7 +48,7 @@ public class RefillInventoryServiceUnitTest {
 		Quantity quantity = inventory.findByProduct(product1).get().getQuantity(); // just for debug
 
 
-		//assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
+		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
 
 		UniqueInventoryItem item = inventory.findByProduct(product1).get();
 		item.increaseQuantity(product1.createQuantity(testAmount));
@@ -55,6 +57,30 @@ public class RefillInventoryServiceUnitTest {
 
 		assertTrue(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == 25000);
 		// kann das sein das Autowired versch. inventories und catalogs erzeugt???
+
+	}
+
+	@Test
+	public void refillFuelTest(){
+		MonetaryAmount price = Monetary.getDefaultAmountFactory()
+				.setCurrency("EUR")
+				.setNumber(1.33)
+				.create();
+
+		double failAmount = 50000;
+
+		Product product1 = new Product("Benzin", price);
+
+		items.save(product1);
+
+		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(15000)));
+
+		try {
+			service.refillFuel(product1.getName(), failAmount);
+		}
+		catch (FuelStorageFullException e){
+			assertThat(e.getClass().equals(new FuelStorageFullException()));
+		}
 
 	}
 }

@@ -23,14 +23,14 @@ public class RefillInventoryService {
 
 
 	public boolean refillInventoryItem(String prodName, double amount){
-		var productObjekt = items.findByName(prodName)
+		var productObj = items.findByName(prodName)
 				 				 .stream()
 								 .findFirst();
 		
-		if(productObjekt.isEmpty()) {
+		if(productObj.isEmpty()) {
 			return false;
 		}
-		Product product = productObjekt.get();
+		Product product = productObj.get();
 		
 		if(inventory.findByProduct(product).isEmpty()) {
 			return false;
@@ -44,12 +44,19 @@ public class RefillInventoryService {
 	}
 
 
-	/*public void refillFuel(String prodName, double amount) throws FuelStorageFullException{
+	public boolean refillFuel(String prodName, double amount) throws FuelStorageFullException{
 		var productObj = items.findByName(prodName)
 							  .stream()
 							  .findFirst();
 
+		if (productObj.isEmpty()){
+			return false;
+		}
 		Product product = productObj.get();			//can throw exception
+
+		if(inventory.findByProduct(product).isEmpty()) {
+			return false;
+		}
 
 		var inventoryItem = inventory.findByProduct(product)
 									 .stream()
@@ -68,8 +75,8 @@ public class RefillInventoryService {
 		item.increaseQuantity(product.createQuantity(amount + item.getQuantity()
 				                                                          .getAmount()
 																		  .doubleValue()));
+		return true;
 	}
-	*/
 
 	/*public void refillInventoryItems(HashMap<String, Double> products){
 		for(Map.Entry<String, Double> entry : products.entrySet()){
