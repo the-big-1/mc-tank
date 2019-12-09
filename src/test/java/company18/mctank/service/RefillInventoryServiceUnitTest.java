@@ -35,29 +35,16 @@ public class RefillInventoryServiceUnitTest {
 									   .create();
 
 		double testAmount = 10000;
-		//double failAmount = 50000;
 
 		Product product1 = new Product("Benzin", price);
-		//var product2 = new Product("Diesel", price);
-
-		//var exceptionProd = new Product("E10", price);
 
 		items.save(product1);
-		//items.save(product2);
-		//items.save(exceptionProd);
-
 
 		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(15000)));
-		//inventory.save(new UniqueInventoryItem(product2, product2.createQuantity(10000)));
-		//inventory.save(new UniqueInventoryItem(exceptionProd, exceptionProd.createQuantity(10000)));
 
-
-		
 		
 		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
 		Quantity quantity = inventory.findByProduct(product1).get().getQuantity();
-	//	assertThat(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == 25000);  //is true but 10000 != 20000
-
 
 		//does not work, dont know why
 
