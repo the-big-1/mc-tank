@@ -44,17 +44,27 @@ public class RefillInventoryServiceUnitTest {
 		items.save(product2);
 		items.save(exceptionProd);
 
-		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(15000)));
-		inventory.save(new UniqueInventoryItem(product2, product2.createQuantity(10000)));
-		inventory.save(new UniqueInventoryItem(exceptionProd, exceptionProd.createQuantity(10000)));
+		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(15000d)));
+		inventory.save(new UniqueInventoryItem(product2, product2.createQuantity(10000d)));
+		inventory.save(new UniqueInventoryItem(exceptionProd, exceptionProd.createQuantity(10000d)));
 
 
-		service.refillInventoryItem(product1.getName(), testAmount);
+		service.refillInventoryItem(product1.getName(), testAmount); //bug
+		//service.refillInventoryItem(product2.getName(), testAmount); //bug
 
-		assertThat(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == 25000);
-		assertThat(inventory.findByProduct(product2).get().getQuantity().getAmount().doubleValue() == 20000);  //is true but 10000 != 20000
+
+
+		assertThat(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == 25000d);
+		assertThat(inventory.findByProduct(product2).get().getQuantity().getAmount().doubleValue() == 20000d);  //is true but 10000 != 20000
 
 		//does not work, dont know why
 
+		/* This is a value-based class;
+		* use of identity-sensitive operations (including reference equality (==),
+		* identity hash code, or synchronization) on instances of Optional may have unpredictable results
+		* and should be avoided. (https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
+		*
+		* that's why it does not work.
+		 */
 	}
 }
