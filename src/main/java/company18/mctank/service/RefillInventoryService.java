@@ -7,12 +7,10 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class RefillInventoryService {
@@ -29,15 +27,22 @@ public class RefillInventoryService {
 				 				 .stream()
 								 .findFirst();
 		
-		if(productObjekt.isEmpty()) return false;
+		if(productObjekt.isEmpty()) {
+			return false;
+		}
 		Product product = productObjekt.get();
 		
-		if(inventory.findByProduct(product).isEmpty()) return false;
+		if(inventory.findByProduct(product).isEmpty()) {
+			return false;
+		}
+
 		UniqueInventoryItem item = inventory.findByProduct(product).get();
-		
+
 		item.increaseQuantity(product.createQuantity(amount));
+
 		return true;
 	}
+
 
 	/*public void refillFuel(String prodName, double amount) throws FuelStorageFullException{
 		var productObj = items.findByName(prodName)

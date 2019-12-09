@@ -42,18 +42,19 @@ public class RefillInventoryServiceUnitTest {
 
 		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(15000)));
 
-		
-		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
-		Quantity quantity = inventory.findByProduct(product1).get().getQuantity();
 
-		//does not work, dont know why
+		Quantity quantity = inventory.findByProduct(product1).get().getQuantity(); // just for debug
 
-		/* This is a value-based class;
-		* use of identity-sensitive operations (including reference equality (==),
-		* identity hash code, or synchronization) on instances of Optional may have unpredictable results
-		* and should be avoided. (https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
-		*
-		* that's why it does not work.
-		 */
+
+		//assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
+
+		UniqueInventoryItem item = inventory.findByProduct(product1).get();
+		item.increaseQuantity(product1.createQuantity(testAmount));
+		inventory.save(item);
+
+
+		assertTrue(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == 25000);
+		// kann das sein das Autowired versch. inventories und catalogs erzeugt???
+
 	}
 }
