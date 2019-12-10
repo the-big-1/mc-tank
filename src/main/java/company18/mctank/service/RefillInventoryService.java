@@ -44,43 +44,89 @@ public class RefillInventoryService {
 	}
 
 
-	public boolean refillFuel(String prodName, double amount) throws FuelStorageFullException{
-		var productObj = items.findByName(prodName)
+	public boolean refillFuels(double amountBenzin, double amountDiesel) throws FuelStorageFullException{
+		var benzinObj = items.findByName("Super Benzin")
 							  .stream()
 							  .findFirst();
 
-		if (productObj.isEmpty()){
+		var dieselObj = items.findByName("Diesel")
+				.stream()
+				.findFirst();
+
+		if (benzinObj.isEmpty() || dieselObj.isEmpty()){
 			return false;
 		}
-		Product product = productObj.get();
+		Product benzin = benzinObj.get();
+		Product diesel = dieselObj.get();
 
-		if(inventory.findByProduct(product).isEmpty()) {
-			return false;
-		}
-
-		var inventoryItem = inventory.findByProduct(product)
+		var benzinOpt = inventory.findByProduct(benzin)
 									 .stream()
 									 .findFirst();
 
-		UniqueInventoryItem item = inventoryItem.get();
+		var dieselOtp = inventory.findByProduct(diesel)
+				.stream()
+				.findFirst();
 
-		double currentamount = item.getQuantity()
-								   .getAmount()
-								   .doubleValue();
+		UniqueInventoryItem benzinItem = benzinOpt.get();
+		UniqueInventoryItem dieselItem = dieselOtp.get();
 
-		if (amount + currentamount > 50000){
+
+		double currentamountBenzin = benzinItem.getQuantity()
+								   		 .getAmount()
+								   		 .doubleValue();
+
+		double currentamountDiesel = dieselItem.getQuantity()
+				.getAmount()
+				.doubleValue();
+
+		if (amountBenzin + currentamountBenzin > 50000 || amountDiesel + currentamountDiesel > 50000){
 			throw new FuelStorageFullException();
 		}
 
-		item.increaseQuantity(product.createQuantity(amount));
+		benzinItem.increaseQuantity(benzin.createQuantity(amountBenzin));
+		dieselItem.increaseQuantity(diesel.createQuantity(amountDiesel));
+
 		return true;
 	}
 
-	/*public void refillInventoryItems(HashMap<String, Double> products){
-		for(Map.Entry<String, Double> entry : products.entrySet()){
-			var productObjekt = items.findByName(entry.getKey()).stream().findFirst();
-			Product product = productObjekt.get();			//can throw exception
-			inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(entry.getValue())));
-		}
-	}*/
+
+	public double getFuelAmountBenzin(){
+		var benzinObj = items.findByName("Super Benzin")
+							 .stream()
+							 .findFirst();
+
+		Product benzin = benzinObj.get();
+
+		var benzinOpt = inventory.findByProduct(benzin)
+								 .stream()
+								 .findFirst();
+
+		UniqueInventoryItem benzinItem = benzinOpt.get();
+
+		double currentamountBenzin = benzinItem.getQuantity()
+				.getAmount()
+				.doubleValue();
+
+		return currentamountBenzin;
+	}
+
+	public double getFuelAmountDiesel(){
+		var dieselObj = items.findByName("Diesel")
+							 .stream()
+							 .findFirst();
+
+		Product diesel = dieselObj.get();
+
+		var dieselOpt = inventory.findByProduct(diesel)
+								 .stream()
+								 .findFirst();
+
+		UniqueInventoryItem dieselItem = dieselOpt.get();
+
+		double currentamountDiesel = dieselItem.getQuantity()
+				.getAmount()
+				.doubleValue();
+
+		return currentamountDiesel;
+	}
 }

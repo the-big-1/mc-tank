@@ -28,13 +28,14 @@ public class RefillInventoryServiceUnitTest {
 	private RefillInventoryService service;
 
 	@Test
-	public void refillInventoryItemTest(){
+	public void refillInventoryItemTest(){  // wird noch umgebaut
 		MonetaryAmount price = Monetary.getDefaultAmountFactory()
 									   .setCurrency("EUR")
 									   .setNumber(1.33)
 									   .create();
 
 		double testAmount = 10000;
+		double expectedAmount = 25000;
 
 		Product product1 = new Product("Super Benzin Test", price);
 
@@ -50,10 +51,9 @@ public class RefillInventoryServiceUnitTest {
 		item.increaseQuantity(product1.createQuantity(testAmount));
 		inventory.save(item);
 
+		assertTrue(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == expectedAmount);
 
-		assertTrue(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == 25000);
-
-		assertFalse(service.refillInventoryItem("Snickers", testAmount)); // Item not in Inventory/Catalog
+		assertFalse(service.refillInventoryItem("Snickers Test", testAmount)); // Item not in Inventory/Catalog
 
 
 		// kann das sein das Autowired versch. inventories und catalogs erzeugt???
@@ -70,8 +70,8 @@ public class RefillInventoryServiceUnitTest {
 		double failAmount = 50000;
 		double failAmount2 = 35000;
 
-		Product product3 = new Product("Benzin", price);
-		Product product4 = new Product("Diesel", price);
+		Product product3 = new Product("Benzin Super Plus Test", price);
+		Product product4 = new Product("Diesel Test", price);
 
 
 		items.save(product3);
