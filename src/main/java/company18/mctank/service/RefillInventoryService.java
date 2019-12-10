@@ -52,7 +52,7 @@ public class RefillInventoryService {
 		if (productObj.isEmpty()){
 			return false;
 		}
-		Product product = productObj.get();			//can throw exception
+		Product product = productObj.get();
 
 		if(inventory.findByProduct(product).isEmpty()) {
 			return false;
@@ -62,7 +62,7 @@ public class RefillInventoryService {
 									 .stream()
 									 .findFirst();
 
-		UniqueInventoryItem item = inventoryItem.get(); // can throw exception
+		UniqueInventoryItem item = inventoryItem.get();
 
 		double currentamount = item.getQuantity()
 								   .getAmount()
@@ -72,9 +72,7 @@ public class RefillInventoryService {
 			throw new FuelStorageFullException();
 		}
 
-		item.increaseQuantity(product.createQuantity(amount + item.getQuantity()
-				                                                          .getAmount()
-																		  .doubleValue()));
+		item.increaseQuantity(product.createQuantity(amount));
 		return true;
 	}
 
@@ -82,7 +80,7 @@ public class RefillInventoryService {
 		for(Map.Entry<String, Double> entry : products.entrySet()){
 			var productObjekt = items.findByName(entry.getKey()).stream().findFirst();
 			Product product = productObjekt.get();			//can throw exception
-			inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(entry.getValue() + item.getQuantity().getAmount().doubleValue())));
+			inventory.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(entry.getValue())));
 		}
 	}*/
 }
