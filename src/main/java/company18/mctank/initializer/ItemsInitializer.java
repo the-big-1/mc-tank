@@ -48,14 +48,5 @@ class ItemsInitializer implements DataInitializer {
 		itemsRepository.save(prod2);
 		itemsRepository.save(prod3);
 		itemsRepository.save(prod4);
-
-		var fuel_1 = new Product("Super Benzin", Money.of(1.33, "EUR"), Metric.LITER);
-		var fuel_2 = new Product("Diesel", Money.of(1.29, "EUR"), Metric.LITER);
-
-		fuel_1.addCategory("McZapf");
-		fuel_2.addCategory("McZapf");
-
-		itemsRepository.save(fuel_1);
-		itemsRepository.save(fuel_2);
 	}
 }

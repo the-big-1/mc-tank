@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -72,7 +73,19 @@ public class RefillInventoryServiceUnitTest {
 		double failAmount = 50000;
 		double failAmount2 = 49000;
 
-		// Benzin/Diesel in DataInitializer created with 1000 Liter amount
+		// Benzin/Diesel should be created in DataInitializer with 1000 Liter amount
+
+		var fuel_1 = new Product("Super Benzin", price, Metric.LITER);
+		var fuel_2 = new Product("Diesel", price, Metric.LITER);
+
+		fuel_1.addCategory("McZapf");
+		fuel_2.addCategory("McZapf");
+
+		items.save(fuel_1);
+		items.save(fuel_2);
+
+		inventory.save(new UniqueInventoryItem(fuel_1, fuel_1.createQuantity(1000)));
+		inventory.save(new UniqueInventoryItem(fuel_2, fuel_2.createQuantity(1000)));
 
 		try {
 			assertTrue(service.refillFuels(testAmount, testAmount));
