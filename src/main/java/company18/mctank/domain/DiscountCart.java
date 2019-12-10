@@ -52,13 +52,11 @@ public class DiscountCart extends Cart{
 		return super.getPrice().with(MonetaryOperators.rounding());
 	}
 
-	   
+	  
 	public void addDiscount(String discountCode){
 		// TODO : Rewrite this method (Normal total price update)
-		//if("McTen".equals(discountCode) && !this.containsDiscount("McTen")){
-		if("McTen".equals(discountCode)){
-			super.getPrice().multiply(0.9).negate();
-		}
+		if ("McTen".contentEquals(discountCode)  && !this.containsDiscount("McTen"))
+			super.getPrice().multiply(0.10).negate();
 	}
 
 	public boolean containsDiscount(String discountCode){
