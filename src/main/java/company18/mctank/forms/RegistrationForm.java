@@ -11,7 +11,6 @@ public class RegistrationForm {
 	private final String password;
 
 	public RegistrationForm(String username, String password) {
-
 		this.username = username;
 		this.password = password;
 	}

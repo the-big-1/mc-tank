@@ -1,11 +1,10 @@
 package company18.mctank.initializer;
 
-import java.util.Iterator;
-
 import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -17,28 +16,41 @@ import company18.mctank.repository.ItemsRepository;
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class InventoryDataInitializer implements DataInitializer {
 
-	private final UniqueInventory<UniqueInventoryItem> inv;
-	
+	private final UniqueInventory<UniqueInventoryItem> inventoryRepository;
+
 	private final ItemsRepository itemsRepository;
-	
-	public InventoryDataInitializer(UniqueInventory<UniqueInventoryItem> inv, ItemsRepository itemsRepository) {
-		Assert.notNull(inv, "Inventory must not be null");
+
+	public InventoryDataInitializer(UniqueInventory<UniqueInventoryItem> inventoryRepository,
+									ItemsRepository itemsRepository) {
+
+		Assert.notNull(inventoryRepository, "Inventory must not be null");
 		Assert.notNull(itemsRepository, "Items must not be null");
-		
-		this.inv = inv;
+
+		this.inventoryRepository = inventoryRepository;
 		this.itemsRepository = itemsRepository;
 	}
-	
+
 	@Override
 	public void initialize() {
-		Iterator<Product> iterator = this.itemsRepository.findAll().iterator();
-		while (iterator.hasNext()) {
-			Product product = iterator.next();
-			// save new uniqueinventoryitem if product  not in inventory
-			if (inv.findByProduct(product) == null)
-				inv.save(new UniqueInventoryItem(product, product.createQuantity(100)));
-			// else update quantity to 100
-			else inv.findByProduct(product).map((item) -> item.increaseQuantity(product.createQuantity(100-item.getQuantity().getAmount().doubleValue())));
+		for (Product product : this.itemsRepository.findAll()) {
+			if (inventoryRepository.findByProduct(product).isPresent()) {
+				Quantity amount = product.createQuantity(100);
+				UniqueInventoryItem item = new UniqueInventoryItem(product, amount);
+				inventoryRepository.save(item);
+			}
+			else {
+				inventoryRepository.findByProduct(product)
+					.map(
+						(item) -> item.increaseQuantity(
+							product.createQuantity(
+								100 - item
+									.getQuantity()
+									.getAmount()
+									.doubleValue()
+							)
+						)
+					);
+			}
 		}
 	}
 
