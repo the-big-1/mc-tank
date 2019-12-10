@@ -2,8 +2,8 @@ package company18.mctank.domain;
 
 import javax.money.MonetaryAmount;
 
+
 import org.javamoney.moneta.function.MonetaryOperators;
-import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
 import org.springframework.stereotype.Component;
@@ -20,39 +20,38 @@ public class DiscountCart extends Cart{
 		int[] countCat = new int[4];
 		float discount = 0;
 		
-		for(CartItem i: this){
-			if(i.getProductName().toString() == "McZapf" && countCat[0] == 0){
+		for(CartItem i: this ){
+			if(i.getProduct().getCategories().toString() == "McZapf" && countCat[0] == 0){
 				countCat[0] += 1;
 				discount += 0.05;
 			}
-			if(i.getProductName().toString() == "McDrive" && countCat[1] == 0){
+			if(i.getProduct().getCategories().toString() == "McDrive" && countCat[1] == 0){
 				countCat[1] += 1;
 				discount += 0.05;
 			}
-			if(i.getProductName().toString() == "McSit" && countCat[2] == 0){
+			if(i.getProduct().getCategories().toString() == "McSit" && countCat[2] == 0){
 				countCat[2] += 1;
 				discount += 0.05;
 			}
-			if(i.getProductName().toString() == "McWash" && countCat[3] == 0){
+			if(i.getProduct().getCategories().toString() == "McWash" && countCat[3] == 0){
 				countCat[3] += 1;
 				discount += 0.05;
 			}
 		}
 		
 
-			this.addOrUpdateItem(new Product("McTest", super.getPrice().multiply(discount).negate()),1);
+			super.getPrice().multiply(discount).negate();
 
 
 	}
-	
-	
+
 	// rounds Carts getPrice()
 	@Override
 	public MonetaryAmount getPrice() {
 		return super.getPrice().with(MonetaryOperators.rounding());
 	}
 
-	  
+
 	public void addDiscount(String discountCode){
 		// TODO : Rewrite this method (Normal total price update)
 		if ("McTen".contentEquals(discountCode)  && !this.containsDiscount("McTen"))
@@ -68,8 +67,6 @@ public class DiscountCart extends Cart{
 		}
 		return false;
 	}
-	
-
 
 }
 

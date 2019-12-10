@@ -55,7 +55,7 @@ public class DiscountController {
 	}
 
 	@PostMapping("/cart/clear")
-	public String clearCart(Model model, @ModelAttribute Cart cart){
+	public String clearCart(@ModelAttribute Cart cart){
 		cart.clear();
 		return "redirect:/cart";
 	}
@@ -92,7 +92,7 @@ public class DiscountController {
 		
 		// clear cart and redirect
 		cart.clear();
-		return "redirect:/";
+		return "redirect:/cart";
 	}
 }
 
