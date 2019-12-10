@@ -50,8 +50,13 @@ public class RefillInventoryServiceUnitTest {
 		/*UniqueInventoryItem item = inventory.findByProduct(product1).get();
 		item.increaseQuantity(product1.createQuantity(testAmount));
 		inventory.save(item);
+
 		assertTrue(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == expectedAmount);
+
+		does not work properly
+
 		*/
+
 		assertFalse(service.refillInventoryItem("Snickers Test", testAmount)); // Item not in Inventory/Catalog
 
 	}
@@ -67,7 +72,7 @@ public class RefillInventoryServiceUnitTest {
 		double failAmount = 50000;
 		double failAmount2 = 49000;
 
-		// Benzin/Diesel in DataInizializer created with 100 Liter amount
+		// Benzin/Diesel in DataInitializer created with 1000 Liter amount
 
 		try {
 			assertTrue(service.refillFuels(testAmount, testAmount));
