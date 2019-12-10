@@ -34,7 +34,7 @@ Cross-Testing vorbereiten
 [option="headers"]
 |===
 |Issue |Aufgabe |Status |Bemerkung
-||https://github.com/st-tu-dresden-praktikum/swt19w18/issues/23[22]  |Muss-Kriterien aus dem Pflichtenheft werden implementiert           |in Arbeit              |
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/23[22]  |Muss-Kriterien aus dem Pflichtenheft werden implementiert           |in Arbeit              |
 |===
 
 
