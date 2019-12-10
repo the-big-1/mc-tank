@@ -14,9 +14,9 @@ public class RefillInventoryController {
 	@Autowired
 	private RefillInventoryService service;
 
-	public String refillFuel(String name, double amount){
+	public String refillFuels(double amountBenzin, double amountDiesel){
 		try {
-			service.refillFuel(name, amount);
+			service.refillFuels(amountBenzin, amountDiesel);
 		}
 		catch (FuelStorageFullException e){
 			//send message that order is to large

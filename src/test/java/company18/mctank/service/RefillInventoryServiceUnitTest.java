@@ -28,69 +28,63 @@ public class RefillInventoryServiceUnitTest {
 	private RefillInventoryService service;
 
 	@Test
-	public void refillInventoryItemTest(){  // wird noch umgebaut
+	public void refillInventoryItemTest(){
 		MonetaryAmount price = Monetary.getDefaultAmountFactory()
 									   .setCurrency("EUR")
 									   .setNumber(1.33)
 									   .create();
 
-		double testAmount = 10000;
-		double expectedAmount = 25000;
+		double testAmount = 1000;
+		double expectedAmount = 2500;
 
-		Product product1 = new Product("Super Benzin Test", price);
+		Product product1 = new Product("Cola Test", price);
 
 		items.save(product1);
 
-		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(15000)));
+		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(1500)));
 
 
 
 		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
 
-		UniqueInventoryItem item = inventory.findByProduct(product1).get();
+		/*UniqueInventoryItem item = inventory.findByProduct(product1).get();
 		item.increaseQuantity(product1.createQuantity(testAmount));
 		inventory.save(item);
-
 		assertTrue(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == expectedAmount);
-
+		*/
 		assertFalse(service.refillInventoryItem("Snickers Test", testAmount)); // Item not in Inventory/Catalog
-
-
-		// kann das sein das Autowired versch. inventories und catalogs erzeugt???
 
 	}
 
 	@Test
-	public void refillFuelTest(){
+	public void refillFuelsTest(){
 		MonetaryAmount price = Monetary.getDefaultAmountFactory()
 				.setCurrency("EUR")
 				.setNumber(1.33)
 				.create();
 
+		double testAmount = 2500;
 		double failAmount = 50000;
-		double failAmount2 = 35000;
+		double failAmount2 = 49000;
 
-		Product product3 = new Product("Benzin Super Plus Test", price);
-		Product product4 = new Product("Diesel Test", price);
-
-
-		items.save(product3);
-		items.save(product4);
-
-
-		inventory.save(new UniqueInventoryItem(product3, product3.createQuantity(15000)));
-		inventory.save(new UniqueInventoryItem(product4, product4.createQuantity(15000)));
-
+		// Benzin/Diesel in DataInizializer created with 100 Liter amount
 
 		try {
-			service.refillFuel(product3.getName(), failAmount);
+			assertTrue(service.refillFuels(testAmount, testAmount));
+		}
+		catch (FuelStorageFullException e){
+			fail();
+		}
+
+		try {
+			service.refillFuels(failAmount, failAmount);
 		}
 		catch (FuelStorageFullException e){
 			assertThat(e.getClass().equals(new FuelStorageFullException()));
 		}
 
 		try {
-			service.refillFuel(product4.getName(), failAmount2);
+			service.refillFuels(failAmount2, failAmount2);
 		}
 		catch (FuelStorageFullException e){
 			assertThat(e.getClass().equals(new FuelStorageFullException()));
