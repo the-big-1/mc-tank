@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
@@ -12,6 +15,7 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.quantity.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.event.annotation.BeforeTestClass;
 
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
@@ -27,6 +31,26 @@ public class RefillInventoryServiceUnitTest {
 
 	@Autowired
 	private RefillInventoryService service;
+
+	@BeforeEach
+	public void init(){
+		MonetaryAmount price = Monetary.getDefaultAmountFactory()
+									   .setCurrency("EUR")
+									   .setNumber(1.33)
+									   .create();
+
+		var fuel_1 = new Product("Super Benzin", price, Metric.LITER);
+		var fuel_2 = new Product("Diesel", price, Metric.LITER);
+
+		fuel_1.addCategory("McZapf");
+		fuel_2.addCategory("McZapf");
+
+		items.save(fuel_1);
+		items.save(fuel_2);
+
+		inventory.save(new UniqueInventoryItem(fuel_1, fuel_1.createQuantity(1000)));
+		inventory.save(new UniqueInventoryItem(fuel_2, fuel_2.createQuantity(1000)));
+	}
 
 	@Test
 	public void refillInventoryItemTest(){
@@ -64,28 +88,12 @@ public class RefillInventoryServiceUnitTest {
 
 	@Test
 	public void refillFuelsTest(){
-		MonetaryAmount price = Monetary.getDefaultAmountFactory()
-				.setCurrency("EUR")
-				.setNumber(1.33)
-				.create();
 
 		double testAmount = 2500;
 		double failAmount = 50000;
 		double failAmount2 = 49000;
 
 		// Benzin/Diesel should be created in DataInitializer with 1000 Liter amount
-
-		var fuel_1 = new Product("Super Benzin", price, Metric.LITER);
-		var fuel_2 = new Product("Diesel", price, Metric.LITER);
-
-		fuel_1.addCategory("McZapf");
-		fuel_2.addCategory("McZapf");
-
-		items.save(fuel_1);
-		items.save(fuel_2);
-
-		inventory.save(new UniqueInventoryItem(fuel_1, fuel_1.createQuantity(1000)));
-		inventory.save(new UniqueInventoryItem(fuel_2, fuel_2.createQuantity(1000)));
 
 		try {
 			assertTrue(service.refillFuels(testAmount, testAmount));
@@ -107,6 +115,20 @@ public class RefillInventoryServiceUnitTest {
 		catch (FuelStorageFullException e){
 			assertThat(e.getClass().equals(new FuelStorageFullException()));
 		}
+
+	}
+
+	@Test
+	void getFuelAmountBenzin() {
+		double expectedAmount = 1000;
+
+		assertTrue(service.getFuelAmountBenzin() == expectedAmount);
+	}
+
+	@Test
+	void getFuelAmountDiesel() {
+		double expectedAmount = 1000;
+		assertTrue(service.getFuelAmountDiesel() == expectedAmount);
 
 	}
 }
