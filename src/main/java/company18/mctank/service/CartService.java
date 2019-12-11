@@ -3,10 +3,6 @@ package company18.mctank.service;
 import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
-import org.salespointframework.inventory.UniqueInventory;
-import org.salespointframework.inventory.UniqueInventoryItem;
-import org.salespointframework.order.ChargeLine;
-import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.PaymentMethod;
 import org.salespointframework.useraccount.UserAccount;
