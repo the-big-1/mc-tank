@@ -46,11 +46,10 @@ public class CartService {
 		return true;
 	}
 	
-	public void addOrUpdateItem(McTankCart cart, Product product, int amount) {
-		if (amount == 0) return;
-		else if (amount < 0) {
+	public void addOrUpdateItem(McTankCart cart, Product product, int amount, boolean claim) {
+		if (claim) {
 			Product negatedProduct = new Product(product.getName().concat(" REKLAMATION"), product.getPrice().negate());
-			cart.addOrUpdateItem(negatedProduct, -amount);
+			cart.addOrUpdateItem(negatedProduct, amount);
 		}
 		else cart.addOrUpdateItem(product, amount);
 	}

@@ -46,8 +46,8 @@ import org.salespointframework.useraccount.web.LoggedIn;
 
 
 	@PostMapping(value = "/cart")
-	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount) {
-		this.cartService.addOrUpdateItem(this.cart ,product, amount);
+	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @RequestParam("claim") Optional<Boolean> claim) {
+		this.cartService.addOrUpdateItem(this.cart ,product, amount, claim.isPresent());
 		return "redirect:/cart";
 	}
 

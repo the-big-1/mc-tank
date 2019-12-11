@@ -6,7 +6,6 @@ import javax.money.MonetaryAmount;
 import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
