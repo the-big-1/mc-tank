@@ -1,5 +1,6 @@
 package company18.mctank.domain;
 
+
 import javax.money.MonetaryAmount;
 
 
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class McTankCart extends Cart{
-
 	public McTankCart(){
-
 		
 		// counts the number of categories in the cart to calculate discount
 		int[] countCat = new int[4];
@@ -67,7 +66,6 @@ public class McTankCart extends Cart{
 		}
 		return false;
 	}
-
 }
 
 

@@ -3,6 +3,10 @@ package company18.mctank.service;
 import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
+import org.salespointframework.inventory.UniqueInventory;
+import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.order.ChargeLine;
+import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.PaymentMethod;
 import org.salespointframework.useraccount.UserAccount;
@@ -21,7 +25,6 @@ public class CartService {
 	
 	public boolean buy(McTankCart cart, Optional<UserAccount> userAccount, PaymentMethod payMethod) {
 		McTankOrder order;
-		
 		// check for userAccount
 		if (userAccount.isPresent())
 			//creating new Order attached to account
@@ -36,7 +39,7 @@ public class CartService {
 		this.orderManager.payOrder(order);
 		
 		// set order state to completed
-		this.orderManager.completeOrder(order);	
+		this.orderManager.completeOrder(order);
 		
 		//save order
 		this.orderManager.save(order);
