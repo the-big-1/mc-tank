@@ -3,7 +3,9 @@ package company18.mctank.domain;
 import javax.money.MonetaryAmount;
 
 
+
 import org.javamoney.moneta.function.MonetaryOperators;
+import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
 import org.springframework.context.annotation.Scope;
@@ -39,8 +41,6 @@ public class McTankCart extends Cart{
 				discount += 0.05;
 			}
 		}
-		
-
 			super.getPrice().multiply(discount).negate();
 
 
@@ -54,10 +54,11 @@ public class McTankCart extends Cart{
 
 
 	public void addDiscount(String discountCode){
-		// TODO : Rewrite this method (Normal total price update)
-		if ("McTen".contentEquals(discountCode)  && !this.containsDiscount("McTen"))
-			super.getPrice().multiply(0.10).negate();
-	}
+		if ("McTen".equals(discountCode)  && !this.containsDiscount("Registration Bonus")) {
+			//super.getPrice().multiply(0.10).negate();
+			this.addOrUpdateItem(new Product("Registration Bonus", super.getPrice().multiply(0.10).negate()), 1);
+
+	}}
 
 	public boolean containsDiscount(String discountCode){
 		// every code can only be used once
