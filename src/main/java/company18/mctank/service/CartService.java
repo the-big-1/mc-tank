@@ -12,7 +12,7 @@ import company18.mctank.domain.McTankOrder;
 
 @Service
 public class CartService {
-	OrderManager<McTankOrder> orderManager;
+	private OrderManager<McTankOrder> orderManager;
 	
 	public CartService(OrderManager<McTankOrder> orderManager) {
 		this.orderManager = orderManager;
@@ -30,7 +30,7 @@ public class CartService {
 		// add items to order
 	    cart.addItemsTo(order);
 		
-		// set paymentmethod to cash and pay
+		// set paymentmethod
 		order.setPaymentMethod(payMethod);
 		orderManager.payOrder(order);
 		
