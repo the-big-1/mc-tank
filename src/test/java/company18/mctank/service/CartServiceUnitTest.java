@@ -60,5 +60,4 @@ public class CartServiceUnitTest {
 		inv.findAll().forEach((UniqueInventoryItem item) -> 
 				assertTrue(item.getQuantity().isZeroOrNegative() && !item.getQuantity().isNegative()));
 	}
-
 }

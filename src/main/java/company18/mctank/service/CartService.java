@@ -2,6 +2,7 @@ package company18.mctank.service;
 
 import java.util.Optional;
 
+import org.salespointframework.catalog.Product;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.PaymentMethod;
 import org.salespointframework.useraccount.UserAccount;
@@ -32,16 +33,25 @@ public class CartService {
 		
 		// set paymentmethod
 		order.setPaymentMethod(payMethod);
-		orderManager.payOrder(order);
+		this.orderManager.payOrder(order);
 		
 		// set order state to completed
-		orderManager.completeOrder(order);	
+		this.orderManager.completeOrder(order);	
 		
 		//save order
-		orderManager.save(order);
+		this.orderManager.save(order);
 		
 		// clear cart and redirect
 		cart.clear();
 		return true;
+	}
+	
+	public void addOrUpdateItem(McTankCart cart, Product product, int amount) {
+		if (amount == 0) return;
+		else if (amount < 0) {
+			Product negatedProduct = new Product(product.getName().concat(" REKLAMATION"), product.getPrice().negate());
+			cart.addOrUpdateItem(negatedProduct, -amount);
+		}
+		else cart.addOrUpdateItem(product, amount);
 	}
 }

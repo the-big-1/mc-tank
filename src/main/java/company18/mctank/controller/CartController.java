@@ -47,7 +47,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 
 	@PostMapping(value = "/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount) {
-		this.cart.addOrUpdateItem(product, product.createQuantity(amount));
+		this.cartService.addOrUpdateItem(this.cart ,product, amount);
 		return "redirect:/cart";
 	}
 
@@ -67,7 +67,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 
 	@PostMapping("/cart/pay")	
 	String buy(@LoggedIn Optional<UserAccount> userAccount) {
-		 if (cartService.buy(this.cart, userAccount, Cash.CASH))  // paymentMethod set to cash for now
+		 if (this.cartService.buy(this.cart, userAccount, Cash.CASH))  // paymentMethod set to cash for now
 			 return "redirect:/";			// successful
 		 else return "redirect:/cart";		// or not
 	}
