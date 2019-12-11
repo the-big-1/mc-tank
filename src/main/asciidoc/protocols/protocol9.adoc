@@ -46,6 +46,7 @@ Dokumenten.
 - Rabattcodes bei Erstregistrierung sollen per E-Mail versendet werden
 - Layout anpassen
 - für jede Funktionalität soll es eine HTML-Seite geben
+- im Catalog soll man nach McPoints sortieren können
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
