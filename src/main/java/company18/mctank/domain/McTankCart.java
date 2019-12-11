@@ -1,5 +1,6 @@
 package company18.mctank.domain;
 
+
 import javax.money.MonetaryAmount;
 
 
@@ -8,16 +9,13 @@ import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
 
 @Component
 public class McTankCart extends Cart{
-
 	public McTankCart(){
-
 		
 		// counts the number of categories in the cart to calculate discount
 		int[] countCat = new int[4];
@@ -69,7 +67,6 @@ public class McTankCart extends Cart{
 		}
 		return false;
 	}
-
 }
 
 
