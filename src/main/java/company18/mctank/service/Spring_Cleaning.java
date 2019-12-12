@@ -5,6 +5,7 @@ import static java.util.concurrent.TimeUnit.*;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.BusinessTime;
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -16,16 +17,19 @@ import company18.mctank.repository.CustomerRepository;
 
 class Spring_Cleaning {
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-	private final OrderManager orderManager;
-	
+	private final OrderManager<McTankOrder> orderManager;
+	private LocalDateTime newYear = LocalDateTime.parse("2020-1-1T0:0:0");
+	private long initialDelay = LocalDateTime.now().until(newYear,ChronoUnit.MINUTES);
+	 
 	public void springCleaning() {
 		final Runnable cleaning = new Runnable() { 
 			public void run() {
+				newYear.until(newYear,ChronoUnit.MINUTES);
 				// TODO needs OrderManager findAll with Iterable
 				// needs to be forEach instead of if
 				//findAll needs pageable
 				for(McTankOrder s:orderManager.findAll(pageable)) {
-					if(s.getDateCreated().until(newYear,DAYS)>=100) {
+					if(s.getDateCreated().until(newYear,ChronoUnit.DAYS)>=100) {
 							orderManager.delete(s);
 						}
 					}
@@ -36,9 +40,9 @@ class Spring_Cleaning {
 					}
 				}
 			};
+			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleaning,initialDelay, 525600, MINUTES);
 		};
-		final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleaning,initialDelay, 525600, MINUTES);
 	}
-}
-// LocalDateTime newYear is January 1 .0:00 next year 
+
+
 // initialDelay= now().until(newYear,MINUTES) parsed to long
