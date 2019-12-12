@@ -14,6 +14,7 @@ import company18.mctank.domain.Customer;
 import company18.mctank.domain.McTankOrder;
 import company18.mctank.repository.CustomerRepository;
 //Names are subject to change
+//TODO calling of method at start of apllication
 
 class Spring_Cleaning {
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -26,7 +27,6 @@ class Spring_Cleaning {
 			public void run() {
 				newYear.until(newYear,ChronoUnit.MINUTES);
 				// TODO needs OrderManager findAll with Iterable
-				// needs to be forEach instead of if
 				//findAll needs pageable
 				for(McTankOrder s:orderManager.findAll(pageable)) {
 					if(s.getDateCreated().until(newYear,ChronoUnit.DAYS)>=100) {
@@ -35,14 +35,12 @@ class Spring_Cleaning {
 					}
 				CustomerRepository customers;
 				for(Customer c:customers.findAll()) {
-						// registrationDate (Customers) needs parse to local date time
-						//if(c.getRegisterDate().until(oneYearLater,DAYS)>=365){customerService.delete(c);}
+						//TODO implement lastOrderDate in Customer and updating in controller
+						//if(c.getlastOrderDate().until(newYear,DAYS)>=365){customerService.delete(c);}
 					}
+				//TODO update of newYear each iteration (newYear.plusYear())
 				}
 			};
 			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleaning,initialDelay, 525600, MINUTES);
 		};
 	}
-
-
-// initialDelay= now().until(newYear,MINUTES) parsed to long
