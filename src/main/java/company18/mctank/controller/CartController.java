@@ -3,6 +3,7 @@ package company18.mctank.controller;
 import company18.mctank.domain.McTankCart;
 
 import company18.mctank.service.CartService;
+import company18.mctank.service.GasPumpService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,13 +28,15 @@ import org.salespointframework.useraccount.web.LoggedIn;
 	public class CartController {
 	private McTankCart cart;
 	private CartService cartService;
+	private GasPumpService pumpService;
 	
 	
-	CartController(CartService cartService, @ModelAttribute McTankCart cart) {
+	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService) {
 		Assert.notNull(cart, "Cart must not be null!");
 		this.cart = cart;
 		Assert.notNull(cartService, "CartService must not be null!");
 		this.cartService = cartService;
+		this.pumpService = pumpService;
 	}
 	
 	@ModelAttribute("cart")
@@ -51,14 +54,25 @@ import org.salespointframework.useraccount.web.LoggedIn;
 	@PostMapping(value = "/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @RequestParam("claim") Optional<Boolean> claim) {
 		this.cartService.addOrUpdateItem(this.cart, product, amount, claim.isPresent());
-		cart.McPointBonus();
+		this.cart.mcPointBonus();
 		return "redirect:/cart";
 	}
 	
 	@PostMapping(value = "/cart/pump")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") float amount, @RequestParam("pump-number") int number) {
 		this.cartService.addOrUpdateItem(this.cart, product, Quantity.of(amount, Metric.LITER));
-		cart.McPointBonus();
+		this.cart.mcPointBonus();
+		return "redirect:/cart";
+	}
+	
+	@PostMapping(value = "/cart/pump/direct")
+	public String addItem(@RequestParam("pump-number") int number) {
+		this.pumpService.setPump(number);
+		if (this.pumpService.isInValid())
+			return "redirect:/";
+		else
+			this.cartService.addOrUpdateItem(this.cart, pumpService.getFuel(), Quantity.of(pumpService.getFuelQuantity(), Metric.LITER));
+		this.cart.mcPointBonus();
 		return "redirect:/cart";
 	}
 
@@ -71,7 +85,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 
 	@PostMapping("/cart/discount")
 	public String addDiscount(String discountCode) {
-		cart.addDiscount(discountCode);
+		this.cart.addDiscount(discountCode);
 		return "redirect:/cart";
 	}	
 

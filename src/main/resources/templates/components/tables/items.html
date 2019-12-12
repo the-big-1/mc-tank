@@ -68,6 +68,12 @@
                  					 Details
                 			</button>
              		 	</a>
+						<div class="input-group mb-0">
+               				<form th:if="${role} == 'MANAGER'" method="post" th:action="@{/cart/pump/direct}">
+                		  		<input type="hidden" name="pump-number" th:value="${pump.value}"/>
+                     			<button class="btn btn-primary-rgba" type="submit">Add to cart</button>
+              				</form>
+             			</div>
 					</div>
 				</td>
 			</tr>

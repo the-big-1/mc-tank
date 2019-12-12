@@ -25,7 +25,7 @@ public class McTankCart extends Cart{
 
 	
 
-public void McPointBonus(){
+public void mcPointBonus(){
 	
 	// deletes old bonus if existing
 	String mcPointBonusStr = "McPoint Bonus";

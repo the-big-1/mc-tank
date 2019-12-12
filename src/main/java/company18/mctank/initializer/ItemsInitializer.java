@@ -9,10 +9,8 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-import org.springframework.web.client.RestTemplate;
 
 
-import company18.mctank.domain.GasPump;
 import company18.mctank.repository.ItemsRepository;
 
 
@@ -44,8 +42,8 @@ class ItemsInitializer implements DataInitializer {
 		prod2.addCategory("McDrive");
 		prod3.addCategory("McZapf");
 		prod4.addCategory("McZapf");
-		prod4.addCategory("McSit");
-		prod5.addCategory("McWash");
+		prod5.addCategory("McSit");
+		prod6.addCategory("McWash");
 		
 		itemsRepository.save(prod1);
 		itemsRepository.save(prod2);
