@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
 public class ItemsController {
+
 	@Autowired
 	private ItemsService itemsService;
 	@Autowired
@@ -28,7 +29,7 @@ public class ItemsController {
 	
 	private static final Quantity NONE = Quantity.of(0);
 	
-	private final String mcPoints[] = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
+	private final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
 
 	
 	

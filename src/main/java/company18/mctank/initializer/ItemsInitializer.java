@@ -33,22 +33,20 @@ class ItemsInitializer implements DataInitializer {
 	
 	@Override
 	public void initialize() {
+
 		var prod1 = new Product("Cola 0,5L", Money.of(3.00, "EUR"));
 		var prod2 = new Product("Cola 0,2L", Money.of(1.50, "EUR"));
-		var prod3 = new Product("Super Benzin", Money.of(100, "EUR"), Metric.LITER);
-		var prod4 = new Product("McBig", Money.of(5.00, "EUR"));
-		var prod5 = new Product("Basiswäsche", Money.of(4.50, "EUR"));
-		
+		var prod3 = new Product("McBig", Money.of(5.00, "EUR"));
+		var prod4 = new Product("Basiswäsche", Money.of(4.50, "EUR"));
+
 		prod1.addCategory("McSit");
 		prod2.addCategory("McDrive");
-		prod3.addCategory("McZapf");
-		prod4.addCategory("McSit");
-		prod5.addCategory("McWash");
-		
+		prod3.addCategory("McSit");
+		prod4.addCategory("McWash");
+
 		itemsRepository.save(prod1);
 		itemsRepository.save(prod2);
 		itemsRepository.save(prod3);
 		itemsRepository.save(prod4);
-		itemsRepository.save(prod5);
 	}
 }

@@ -1,7 +1,6 @@
 package company18.mctank.forms;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
@@ -27,7 +26,6 @@ public class NewItemForm {
 	public String getProductName() {
 		return productName;
 	}
-
 
 	public String getPrice() {
 		return price;
