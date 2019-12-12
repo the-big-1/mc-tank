@@ -1,6 +1,7 @@
 package company18.mctank.initializer;
 
 import company18.mctank.domain.Customer;
+
 import company18.mctank.domain.CustomerRoles;
 import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;

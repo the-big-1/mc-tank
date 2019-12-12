@@ -1,6 +1,8 @@
 package company18.mctank.service;
 
 import company18.mctank.repository.ItemsRepository;
+
+
 import company18.mctank.forms.NewItemForm;
 
 import javax.money.Monetary;
@@ -20,7 +22,6 @@ import java.util.Map;
 public class ItemsService {
 	@Autowired
 	private ItemsRepository itemsRepository;
-
 
 	public Product createNewProduct(NewItemForm form) {
 		return  createNewProduct(form.getProductName(), form.getPrice(), form.getProductCategories());
