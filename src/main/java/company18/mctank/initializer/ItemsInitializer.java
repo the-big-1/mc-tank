@@ -9,12 +9,11 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.web.client.RestTemplate;
 
+
+import company18.mctank.domain.GasPump;
 import company18.mctank.repository.ItemsRepository;
-
-
-
-
 
 
 @Component
