@@ -1,6 +1,11 @@
 package company18.mctank.domain;
 
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import javax.money.MonetaryAmount;
 
 
@@ -9,6 +14,7 @@ import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
 
@@ -21,29 +27,27 @@ public class McTankCart extends Cart{
 
 public void McPointBonus(){
 	
-	// counts the number of categories in the cart to calculate discount
-	int[] countCat = new int[4];
-	float discount = 0;
-	
-	for(CartItem i: this ){
-		if(i.getProduct().getCategories().toString() == "McZapf" && countCat[0] == 0){
-			countCat[0] += 1;
-			discount += 0.05;
-		}
-		if(i.getProduct().getCategories().toString() == "McDrive" && countCat[1] == 0){
-			countCat[1] += 1;
-			discount += 0.05;
-		}
-		if(i.getProduct().getCategories().toString() == "McSit" && countCat[2] == 0){
-			countCat[2] += 1;
-			discount += 0.05;
-		}
-		if(i.getProduct().getCategories().toString() == "McWash" && countCat[3] == 0){
-			countCat[3] += 1;
-			discount += 0.05;
+	// deletes old bonus if existing
+	String mcPointBonusStr = "McPoint Bonus";
+	if (this.containsDiscount(mcPointBonusStr)) {
+		for (CartItem item : this.toList()) {
+			if (item.getProductName().equals(mcPointBonusStr))
+				this.removeItem(item.getId());
 		}
 	}
-		this.addOrUpdateItem(new Product("McPoint Bonus", super.getPrice().multiply(discount).negate()), 1);
+	
+	// counts the number of categories in the cart to calculate discount
+	List<String> listedCategories = new LinkedList<String>();
+	Streamable<String> currentCategories;
+	for(CartItem i: this){
+		currentCategories= i.getProduct().getCategories();
+		for(String cat : currentCategories) {
+			if (!listedCategories.contains(cat))
+				listedCategories.add(cat);
+		}
+	}
+	
+	this.addOrUpdateItem(new Product(mcPointBonusStr, this.getPrice().multiply(listedCategories.size()*0.05).negate()), 1);
 		//super.getPrice().multiply(discount).negate();
 }
 	// rounds Carts getPrice()
@@ -54,11 +58,17 @@ public void McPointBonus(){
 
 
 	public void addDiscount(String discountCode){
-		if ("McTen".equals(discountCode)  && !this.containsDiscount("Registration Bonus")) {
-			//super.getPrice().multiply(0.10).negate();
-			this.addOrUpdateItem(new Product("Registration Bonus", super.getPrice().multiply(0.10).negate()), 1);
-
-	}}
+		Map<String, Integer> discountCodes = new HashMap<String, Integer>();
+		discountCodes.put("McTen", 10);
+		discountCodes.put("McFive", 5);
+		discountCodes.put("Registration Bonus", 10);
+		
+		for (Map.Entry<String, Integer> entry : discountCodes.entrySet()) {
+			if (entry.getKey().equals(discountCode)  && !this.containsDiscount(entry.getKey())) {
+				this.addOrUpdateItem(new Product(entry.getKey(), this.getPrice().multiply(entry.getValue()/100.0).negate()), 1);
+			}
+		}
+	}
 
 	public boolean containsDiscount(String discountCode){
 		// every code can only be used once
