@@ -18,13 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class ItemsService {
 	@Autowired
 	private ItemsRepository itemsRepository;
-
 
 	public Product createNewProduct(NewItemForm form) {
 		return  createNewProduct(form.getProductName(), form.getPrice(), form.getProductCategories());

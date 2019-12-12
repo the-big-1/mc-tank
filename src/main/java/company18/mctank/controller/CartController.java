@@ -17,6 +17,8 @@ import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.payment.Cash;
+import org.salespointframework.quantity.Metric;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 
@@ -48,7 +50,14 @@ import org.salespointframework.useraccount.web.LoggedIn;
 
 	@PostMapping(value = "/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @RequestParam("claim") Optional<Boolean> claim) {
-		this.cartService.addOrUpdateItem(this.cart ,product, amount, claim.isPresent());
+		this.cartService.addOrUpdateItem(this.cart, product, amount, claim.isPresent());
+		cart.McPointBonus();
+		return "redirect:/cart";
+	}
+	
+	@PostMapping(value = "/cart/pump")
+	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") float amount, @RequestParam("pump-number") int number) {
+		this.cartService.addOrUpdateItem(this.cart, product, Quantity.of(amount, Metric.LITER));
 		cart.McPointBonus();
 		return "redirect:/cart";
 	}

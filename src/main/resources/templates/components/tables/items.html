@@ -58,6 +58,19 @@
             </div>
           </td>
         </tr>
+			<tr th:if="${point.key} == 'McZapf'" th:each="pump : ${pumps}">
+				<td th:text="${pump.key}" colspan="5">Zapfsäule</td>
+				<td>
+					<div class="button-list">
+             			<a th:if="${role} == 'ADMIN'" th:href="@{/pump/{id}(id=${pump.value})}">
+               		 		<button class="btn btn-primary-rgba disabled">
+                  				<i class="feather icon-align-justify m-r-5"></i>
+                 					 Details
+                			</button>
+             		 	</a>
+					</div>
+				</td>
+			</tr>
         </tbody>
       </table>
     </div>

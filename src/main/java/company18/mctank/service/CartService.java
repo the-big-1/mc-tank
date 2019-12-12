@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.PaymentMethod;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +53,9 @@ public class CartService {
 			cart.addOrUpdateItem(negatedProduct, amount);
 		}
 		else cart.addOrUpdateItem(product, amount);
+	}
+	
+	public void addOrUpdateItem(McTankCart cart, Product product, Quantity amount) {
+		 cart.addOrUpdateItem(product, amount);
 	}
 }
