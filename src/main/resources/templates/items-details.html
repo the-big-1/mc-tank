@@ -23,7 +23,7 @@
 				<label>Reklamation</label>
 				<input name="claim" type="checkbox" th:valuetype="boolean" value="true"/><br/>
             	<label>Anzahl</label>
-                <input name="amount" type="number" value="1" min="1" step="1" required="required"/><br/>
+                <input name="amount" type="number" value="1" min="1" th:attr="max=${quantity.getAmount().intValue()}" step="1" required="required"/><br/>
             </div>
             <button type="submit">Zur Rechnung hinzufügen</button>
         </form>

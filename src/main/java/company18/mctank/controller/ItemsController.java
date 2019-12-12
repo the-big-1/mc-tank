@@ -64,9 +64,7 @@ public class ItemsController {
 	@GetMapping("/items/{product}")											//itemDetails Page for adding a Product to the Bill/Order
 	public String itemDetails(@PathVariable Product product, Model model) {
 		
-		var quantity = inventory.findByProductIdentifier(product.getId())
-				.map(InventoryItem::getQuantity) //
-				.orElse(NONE);
+		Quantity quantity = inventory.findByProductIdentifier(product.getId()).get().getQuantity();
 		model.addAttribute("category", mcPoints);
 		model.addAttribute("product", product);
 		model.addAttribute("quantity", quantity);

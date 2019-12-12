@@ -1,7 +1,6 @@
 package company18.mctank.controller;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.stream.Stream;
 
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
@@ -22,9 +21,8 @@ public class OrderHistoryController {
 	
 	@GetMapping("/orders")
 	String orders(Model model) {
-		List<McTankOrder> orders = this.orderManager.findBy(OrderStatus.COMPLETED).toList();
-		Collections.reverse(orders);
-		model.addAttribute("orders", orders);
+		Stream<McTankOrder> orders =  this.orderManager.findBy(OrderStatus.COMPLETED).get().sorted();
+		model.addAttribute("orders", (Iterable<McTankOrder>) orders::iterator);
 		return "orderhistory";
 	}
 }
