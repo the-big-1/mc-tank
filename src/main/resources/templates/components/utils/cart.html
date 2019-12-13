@@ -34,7 +34,7 @@
             <div class="row">
               <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
                 <div class="order-note">
-                  <form>
+                  <!--<form>
                     <div class="form-group">
                       <form th:action="@{/cart/discount}" method="post">
                       <div class="input-group">
@@ -45,7 +45,10 @@
                       </div>
                       </form>
                     </div>
-                  </form>
+                  </form>-->
+                  <form th:action="@{/cart/discount}" method="post">
+                  <input id="discountCode" name="discountCode" type="text"/>
+                  <button type="submit">Apply</button>
                 </div>
               </div>
               <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
@@ -58,7 +61,7 @@
                     </tr>
                     <tr>
                       <td class="f-w-7 font-18"><h4>Total :</h4></td>
-                      <td class="f-w-7 font-18"><h4 th:text="${finalprice}">$1180.00</h4></td>
+                      <td class="f-w-7 font-18"><h4 th:text="${cart.price}">$1180.00</h4></td>
                     </tr>
                     </tbody>
                   </table>
@@ -70,7 +73,8 @@
             <form th:action="@{/cart/clear}" th:method="post">
               <button type="submit" class="btn btn-primary-rgba my-1"><i class="feather icon-delete mr-2"></i>Clear Cart</button>
             </form>
-            <a href="/checkout" class="btn btn-success-rgba my-1">Proceed to Checkout<i class="feather icon-arrow-right ml-2"></i></a>
+            <form th:action="@{/cart/pay}" th:method="post">
+            <button class="btn btn-success-rgba my-1">Proceed to Checkout<i class="feather icon-arrow-right ml-2"></i></a>
           </div>
         </div>
       </div>

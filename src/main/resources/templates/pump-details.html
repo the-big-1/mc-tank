@@ -1,0 +1,32 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title>Item Details</title>
+	</head>
+	<body>
+		<h1 th:text="${'Zapfsäule ' + number}">Pump Details</h1>
+		<div th:unless="${invalid}">
+			<span>Kraftstoff:</span>
+			<span th:text="${fuelproduct.name}"></span><br>
+		
+			<span>Menge:</span>
+			<span th:text="${quantity + ' Liter'}"></span><br>
+			
+			<span>Preis:</span>
+			<span th:text="${price}"></span><br>
+		</div>
+		<div th:if="${invalid}">
+			<p>Keine Daten verfügbar</p>
+		</div>
+		
+		<form class="ui form" method="post" th:action="@{/cart/pump}" th:if="${orderable}">
+			<input type="hidden" name="product-id" value="0" th:value="${fuelproduct.id}"/>
+			<input type="hidden" name="amount" value="0" th:value="${quantity}"/>
+			<input type="hidden" name="pump-number" value="0" th:value="${number}"/>
+            <button type="submit">Zur Rechnung hinzufügen</button>
+        </form>
+	</body>
+</html>
