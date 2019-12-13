@@ -56,12 +56,8 @@
                   <table class="table table-borderless text-right">
                     <tbody>
                     <tr>
-                      <td>Discount :</td>
-                      <td>$0.00</td>
-                    </tr>
-                    <tr>
                       <td class="f-w-7 font-18"><h4>Total :</h4></td>
-                      <td class="f-w-7 font-18"><h4 th:text="${cart.price}">$1180.00</h4></td>
+                      <td class="f-w-7 font-18"><h4 th:text="${'EUR ' + #numbers.formatDecimal(cart.price.number, 1, 2)}">$1180.00</h4></td>
                     </tr>
                     </tbody>
                   </table>
