@@ -1,8 +1,6 @@
 package company18.mctank.service;
 
 import company18.mctank.domain.FuelWarningEvent;
-import org.salespointframework.inventory.UniqueInventory;
-import org.salespointframework.inventory.UniqueInventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -22,8 +20,12 @@ public class FuelWarningEventPublisher {
 	}
 
 	public void checkStock(){
-		if (service.getFuelAmountBenzin() < 10.000 || service.getFuelAmountDiesel() < 10.000){
-			publishWarning("Low Stock warning");
+
+		try {
+			service.getFuelAmountBenzin();
+		} catch (NullPointerException e){
+			System.out.println("Mau");
 		}
+
 	}
 }

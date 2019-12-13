@@ -10,5 +10,6 @@ public class FuelWarningEventListener implements ApplicationListener<FuelWarning
 	@Override
 	public void onApplicationEvent(FuelWarningEvent event){
 		//do stuff
+		//call the controller and view a sweetallert with the fuelwarning
 	}
 }
