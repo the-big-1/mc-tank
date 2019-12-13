@@ -24,7 +24,7 @@
                 <tr th:each="item : ${cart}">
                   <th th:text="${item.productName}" scope="row"></th>
                   <td th:text="${item.quantity}" scope="row"></td>
-                  <td th:text="${item.price}" class="text-right"></td>
+                  <td th:text="${'EUR ' + #numbers.formatDecimal(item.price.number, 1, 2)}" class="text-right"></td>
                 </tr>
                 </tbody>
               </table>
