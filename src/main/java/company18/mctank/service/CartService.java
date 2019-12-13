@@ -16,6 +16,7 @@ import company18.mctank.domain.McTankOrder;
 @Service
 public class CartService {
 	private OrderManager<McTankOrder> orderManager;
+	private FuelWarningEventPublisher fuelWarning;
 	
 	public CartService(OrderManager<McTankOrder> orderManager) {
 		this.orderManager = orderManager;
@@ -44,6 +45,10 @@ public class CartService {
 		
 		// clear cart and redirect
 		cart.clear();
+
+		//EventPublisher checks the stock and publishes a warning if needed
+		fuelWarning.checkStock();
+
 		return true;
 	}
 	
