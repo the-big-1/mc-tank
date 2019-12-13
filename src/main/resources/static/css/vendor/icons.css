@@ -17241,7 +17241,6 @@
 }
 
 /* Typcn Icon */
-@charset "UTF-8";
 /* @FONT-FACE loads font into browser */
 @font-face {
   font-family: 'typicons';
@@ -17255,6 +17254,7 @@
 }
 
 /* :before psuedo-selector inserts and styles icon */
+/*noinspection ALL*/
 .typcn:before {
   font-family: 'typicons';
   font-style: normal;

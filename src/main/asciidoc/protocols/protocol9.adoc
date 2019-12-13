@@ -1,0 +1,59 @@
+= Protokoll Gruppe 18
+
+Treffen am 10.12.2019
+
+Ort:      APB E006 +
+Beginn:   13:00 Uhr +
+Ende:     14:30 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+17.12.2019, 13:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David
+- Christoph
+- Artem
+- Clemens
+- Vivien
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen +
+
+Cross-Testing vorbereiten
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/23[22]  |Muss-Kriterien aus dem Pflichtenheft werden implementiert           |in Arbeit              |
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+- mehr Tests und bestehende Tests vervollständigen
+- Rabattcodes bei Erstregistrierung sollen per E-Mail versendet werden
+- Layout anpassen
+- für jede Funktionalität soll es eine HTML-Seite geben
+- im Catalog soll man nach McPoints sortieren können
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|…     |…     |…            |…                |…
+|===

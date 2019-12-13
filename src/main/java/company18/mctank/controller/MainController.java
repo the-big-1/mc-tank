@@ -20,8 +20,6 @@ import company18.mctank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
@@ -32,15 +30,15 @@ public class MainController {
 	@Autowired
 	CustomerService customerService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public String index() {
-		if (customerService.isAdmin()) {
-			return "redirect:/overview";
-		} else if (customerService.isManager()) {
-			return "redirect:/cart";
-		} else if (customerService.isCustomer()) {
-			return "redirect:/account";
-		}
-		return "redirect:/login";
+		String view = "login";
+		if (customerService.isAdmin())
+			view = "overview";
+		else if (customerService.isManager())
+			view = "cart";
+		else if (customerService.isCustomer())
+			view = "account";
+		return "redirect:/" + view;
 	}
 }

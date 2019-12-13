@@ -28,10 +28,11 @@ public class ReservationService {
 	// finds reservations by class (Reservation, McSitReservation or McWashReservation [.class] possible)
 	public List<Reservation> findByClass(Class<?> reservationClass){
 		LinkedList<Reservation> result = new LinkedList<Reservation>();
-		for (Reservation reservation : reservationRepository.findAll())
+		for (Reservation reservation : reservationRepository.findAll()){
 			if (reservationClass.isInstance(reservation)) {
 				result.add(reservation);
 			}
+		}
 		return result;
 	}
 
