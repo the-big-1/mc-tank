@@ -32,26 +32,6 @@ public class RefillInventoryServiceUnitTest {
 	@Autowired
 	private RefillInventoryService service;
 
-	@BeforeEach
-	public void init(){
-		MonetaryAmount price = Monetary.getDefaultAmountFactory()
-									   .setCurrency("EUR")
-									   .setNumber(1.33)
-									   .create();
-
-		var fuel_1 = new Product("Super Benzin", price, Metric.LITER);
-		var fuel_2 = new Product("Diesel", price, Metric.LITER);
-
-		fuel_1.addCategory("McZapf");
-		fuel_2.addCategory("McZapf");
-
-		items.save(fuel_1);
-		items.save(fuel_2);
-
-		inventory.save(new UniqueInventoryItem(fuel_1, fuel_1.createQuantity(1000)));
-		inventory.save(new UniqueInventoryItem(fuel_2, fuel_2.createQuantity(1000)));
-	}
-
 	@Test
 	public void refillInventoryItemTest(){
 		MonetaryAmount price = Monetary.getDefaultAmountFactory()
@@ -68,22 +48,9 @@ public class RefillInventoryServiceUnitTest {
 
 		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(1500)));
 
-
-
 		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
 
-		/*UniqueInventoryItem item = inventory.findByProduct(product1).get();
-		item.increaseQuantity(product1.createQuantity(testAmount));
-		inventory.save(item);
-
-		assertTrue(inventory.findByProduct(product1).get().getQuantity().getAmount().doubleValue() == expectedAmount);
-
-		does not work properly
-
-		*/
-
 		assertFalse(service.refillInventoryItem("Snickers Test", testAmount)); // Item not in Inventory/Catalog
-
 	}
 
 	@Test
@@ -93,7 +60,7 @@ public class RefillInventoryServiceUnitTest {
 		double failAmount = 50000;
 		double failAmount2 = 49000;
 
-		// Benzin/Diesel should be created in DataInitializer with 1000 Liter amount
+		// Benzin/Diesel created in DataInitializer with 100 Liter amount
 
 		try {
 			assertTrue(service.refillFuels(testAmount, testAmount));
@@ -120,14 +87,14 @@ public class RefillInventoryServiceUnitTest {
 
 	@Test
 	void getFuelAmountBenzin() {
-		double expectedAmount = 1000;
+		double expectedAmount = 100;
 
 		assertTrue(service.getFuelAmountBenzin() == expectedAmount);
 	}
 
 	@Test
 	void getFuelAmountDiesel() {
-		double expectedAmount = 1000;
+		double expectedAmount = 100;
 		assertTrue(service.getFuelAmountDiesel() == expectedAmount);
 
 	}
