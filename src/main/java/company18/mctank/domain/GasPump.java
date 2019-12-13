@@ -13,8 +13,6 @@ public class GasPump {
 	
 	@XmlElement(name="fuelquantity")
 	private float fuelQuantity;
-	
-	public GasPump() {}
 
 	public int getNumber() {
 		return this.number;
@@ -28,5 +26,3 @@ public class GasPump {
 		return this.fuelQuantity;
 	}
 }
-// Get  Pump:     GasPump pump = new RestTemplate().getForObject("https://jannusch.xyz/gasoline_pump/"+number, GasPump.class);
-

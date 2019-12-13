@@ -51,8 +51,7 @@ public class CartService {
 		if (claim) {
 			Product negatedProduct = new Product(product.getName().concat(" REKLAMATION"), product.getPrice().negate());
 			cart.addOrUpdateItem(negatedProduct, amount);
-		}
-		else cart.addOrUpdateItem(product, amount);
+		} else cart.addOrUpdateItem(product, amount);
 	}
 	
 	public void addOrUpdateItem(McTankCart cart, Product product, Quantity amount) {

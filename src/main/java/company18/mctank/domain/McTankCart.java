@@ -23,9 +23,7 @@ import org.springframework.stereotype.Component;
 public class McTankCart extends Cart{
 	public McTankCart(){}
 
-	
-
-public void mcPointBonus(){
+	public void mcPointBonus(){
 	
 	// deletes old bonus if existing
 	String mcPointBonusStr = "McPoint Bonus";
@@ -49,7 +47,9 @@ public void mcPointBonus(){
 	
 	this.addOrUpdateItem(new Product(mcPointBonusStr, this.getPrice().multiply(listedCategories.size()*0.05).negate()), 1);
 		//super.getPrice().multiply(discount).negate();
-}
+	}
+	
+	
 	// rounds Carts getPrice()
 	@Override
 	public MonetaryAmount getPrice() {
@@ -73,7 +73,7 @@ public void mcPointBonus(){
 	public boolean containsDiscount(String discountCode){
 		// every code can only be used once
 		for (CartItem item: this.toList()){
-			if(discountCode.equals(item.getProductName())){
+			if (discountCode.equals(item.getProductName())){
 				return true;
 			}
 		}

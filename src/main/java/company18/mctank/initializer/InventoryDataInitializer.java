@@ -41,8 +41,7 @@ public class InventoryDataInitializer implements DataInitializer {
 				Quantity amount = product.createQuantity(100);
 				UniqueInventoryItem item = new UniqueInventoryItem(product, amount);
 				inventoryRepository.save(item);
-			}
-			else {
+			} else {
 				UniqueInventoryItem item = inventoryRepository.findByProduct(product).get();
 				item.increaseQuantity(
 						product.createQuantity(
