@@ -781,6 +781,10 @@ code {
   margin: 100px 233px 100px 233px;
 }
 
+.m-xr {
+  margin: 100px 70px 0 70px;
+}
+
 .m-t-5 {
   margin-top: 5px;
 }
@@ -4217,6 +4221,140 @@ input[type=range]:focus {
   margin-right: 0;
 }
 
+/*
+-------------------------------
+    :  User Account component :
+-------------------------------
+*/
+.ecom-dashboard-widget i {
+  font-size: 40px;
+  margin-right: 20px;
+}
+.ecom-dashboard-widget h5 {
+  font-size: 18px;
+  color: #282828;
+  margin-bottom: 5px;
+}
+.ecom-dashboard-widget p {
+  margin-bottom: 0;
+}
+.ecom-dashboard-widget:hover {
+  color: #0080ff;
+}
+.ecom-dashboard-widget:hover h5 {
+  color: #0080ff;
+}
+
+.order-box .card-header h5 {
+  margin-bottom: 0;
+}
+.order-box .card-header h6 {
+  text-align: right;
+}
+.order-box .card-footer h5 {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+.order-box .card-footer h6 {
+  text-align: right;
+}
+
+.wallet-box {
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 15px;
+  margin-top: 60px;
+  border-radius: 3px;
+}
+.wallet-box h4 {
+  margin-bottom: 0;
+}
+.wallet-box p {
+  text-align: right;
+}
+
+.ecom-notification-box .media {
+  padding: 15px;
+}
+.ecom-notification-box .media:hover {
+  background-color: rgba(188, 196, 220, 0.1);
+}
+.ecom-notification-box .media .action-icon {
+  width: 46px;
+  height: 46px;
+  line-height: 38px;
+  font-weight: 600;
+  border-radius: 50%;
+  font-size: 18px;
+  text-align: center;
+}
+.ecom-notification-box .media h5 {
+  font-size: 16px;
+  color: #282828;
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+.ecom-notification-box .media p {
+  margin-bottom: 0;
+}
+.ecom-notification-box .media p span {
+  margin-right: 8px;
+}
+
+@media (max-width: 1199px) {
+  .ecommerce-sortby .button-list {
+    margin-top: 15px;
+    text-align: left;
+  }
+
+  .ecommerce-pagination p {
+    margin-bottom: 15px;
+  }
+  .ecommerce-pagination .pagination {
+    float: none;
+  }
+}
+@media (max-width: 767px) {
+  .profilebox img {
+    width: 100px;
+  }
+
+  .cart-container {
+    padding: 10px;
+  }
+}
+@media (max-width: 575px) {
+  .order-box .card-header h5 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .order-box .card-header h6 {
+    text-align: center;
+  }
+  .order-box .card-footer h5 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .order-box .card-footer h6 {
+    text-align: center;
+  }
+
+  .wallet-box h4 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .wallet-box p {
+    text-align: center;
+  }
+
+  .forgot-psw-link {
+    text-align: left;
+  }
+}
+@media (max-width: 420px) {
+  .jp-card {
+    left: -80px;
+  }
+}
 /*
 -----------------------------------
     : Responsive css :

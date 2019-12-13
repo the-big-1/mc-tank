@@ -3,7 +3,7 @@ package company18.mctank.service;
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
 import company18.mctank.exception.ExistedUserException;
-import company18.mctank.exception.UnauthorizedUserException;
+import company18.mctank.exception.AnonymusUserException;
 import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;
 import org.salespointframework.useraccount.Role;
@@ -72,13 +72,13 @@ public class CustomerService {
 		return customers.findAll();
 	}
 
-	private UserDetails getPrincipal() throws UnauthorizedUserException {
+	private UserDetails getPrincipal() throws AnonymusUserException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal == null){
 			throw new IllegalStateException("Principal can not be null");
 		}
 		if (!(principal instanceof UserDetails)){
-			throw new UnauthorizedUserException();
+			throw new AnonymusUserException();
 		}
 		return (UserDetails) principal;
 	}
@@ -105,7 +105,7 @@ public class CustomerService {
 					a -> a.getAuthority()
 						.contains(role.getName())
 				);
-		} catch (UnauthorizedUserException e) {
+		} catch (AnonymusUserException e) {
 			return false;
 		}
 	}

@@ -101,4 +101,12 @@
        breadcrumbbarName='Reservation managment',
        isReservationManagmentNavEnabled=true
      )"></div>
+
+<div th:fragment="user-account"
+     th:insert="components/breadcrumb :: std(
+       breadcrumbbarName='User Account',
+       isAccount=true
+     )"></div>
+
+
 </html>
