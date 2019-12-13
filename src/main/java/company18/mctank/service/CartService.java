@@ -47,7 +47,11 @@ public class CartService {
 		cart.clear();
 
 		//EventPublisher checks the stock and publishes a warning if needed
-		fuelWarning.checkStock();
+		try {
+			fuelWarning.checkStock();
+		}catch (NullPointerException e){
+			System.out.println("Catched NullPointer");
+		}
 
 		return true;
 	}

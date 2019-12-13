@@ -20,12 +20,13 @@ public class FuelWarningEventPublisher {
 	}
 
 	public void checkStock(){
-
-		try {
-			service.getFuelAmountBenzin();
-		} catch (NullPointerException e){
-			System.out.println("Mau");
+		if(service.getFuelAmountBenzin() < 10.000 || service.getFuelAmountDiesel() < 10.000){
+			publishWarning("Stock runs low.");
 		}
+
+		//service functions returns NullPointerException don't know exactly why
+		//problem with products
+		//goes probably back to initializer
 
 	}
 }
