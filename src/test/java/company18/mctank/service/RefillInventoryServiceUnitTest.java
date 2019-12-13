@@ -85,6 +85,7 @@ public class RefillInventoryServiceUnitTest {
 
 	}
 
+	/*
 	@Test
 	void getFuelAmountBenzin() {
 		double expectedAmount = 100;
@@ -98,4 +99,6 @@ public class RefillInventoryServiceUnitTest {
 		assertTrue(service.getFuelAmountDiesel() == expectedAmount);
 
 	}
+	
+	 */
 }
