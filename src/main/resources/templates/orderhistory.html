@@ -1,0 +1,31 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+    <title>Orders</title>
+</head>
+<body>
+    <h1> Orders </h1>
+        <table width="100%" border="1">
+            <tr>
+                <th>Order</th>
+            </tr>
+			<tr th:each="order : ${orders}">
+				<td>
+					<table>
+						<tr>
+							<th>Produktname</th>
+							<th>Menge</th>
+						</tr>
+						<tr th:each="orderline : ${order.orderLines}">
+							<td th:text="${orderline.productName}">Name</td>
+							<td th:text="${orderline.quantity}">Menge</td>
+						</tr>
+					</table>
+				</td>	
+			</tr>
+        </table>
+</body>
+</html>
