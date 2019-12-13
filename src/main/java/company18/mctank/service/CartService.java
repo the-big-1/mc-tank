@@ -35,7 +35,12 @@ public class CartService {
 		this.orderManager.payOrder(order);
 		
 		// set order state to completed
-		this.orderManager.completeOrder(order);
+		try {
+			this.orderManager.completeOrder(order);
+		} catch (Exception e) {
+			this.orderManager.cancelOrder(order);
+			return false;
+		}
 		
 		//save order
 		this.orderManager.save(order);
