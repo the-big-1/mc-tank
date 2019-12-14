@@ -24,7 +24,7 @@ public class FuelWarningEventPublisher {
 			publishWarning("Stock runs low.");
 		}
 
-		//service functions returns NullPointerException don't know exactly why
+		//service functions returns NullPointerException don't know exactly why because tests work
 		//problem with products
 		//goes probably back to initializer
 
