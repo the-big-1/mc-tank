@@ -29,6 +29,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 	private McTankCart cart;
 	private CartService cartService;
 	private GasPumpService pumpService;
+	private boolean fuelWarning = false;
 	
 	
 	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService) {
@@ -47,6 +48,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 	@GetMapping(value = "/cart")
 	public String showCart(Model model) {
 		model.addAttribute("cart", this.cart);
+		model.addAttribute("warning", fuelWarning); //idea: if true display warning
 		return "cart";
 	}
 
@@ -95,6 +97,10 @@ import org.salespointframework.useraccount.web.LoggedIn;
 		 if (this.cartService.buy(this.cart, userAccount, Cash.CASH))  // paymentMethod set to cash for now
 			 return "redirect:/";			// successful
 		 else return "redirect:/cart";		// or not
+	}
+
+	public void setFuelWarning(boolean fuelWarning) {
+		this.fuelWarning = fuelWarning;
 	}
 }
 

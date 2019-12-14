@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @PreAuthorize("hasRole('ADMIN')")
 public class OverviewController {
 
+	private boolean fuelWarning = false;
+
 	@GetMapping("/overview")
 	String showOverviewPage() {
 		return "overview";
+	}
+
+	public void setFuelWarning(boolean fuelWarning) {
+		this.fuelWarning = fuelWarning;
 	}
 }
