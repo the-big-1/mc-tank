@@ -24,6 +24,11 @@ public class ReservationController {
 		this.reservationService = reservationService;
 	}
 	
+	/**
+	 * Adds all reservations sorted by McPoint and date to template.
+	 * @param model
+	 * @return views name
+	 */
 	@GetMapping(value="/reservation")
 	public String reservations(Model model) {
 		Iterable<Reservation> reservs = ReservationService.sortByDate(reservationService.findByClass(McSitReservation.class));
@@ -34,6 +39,12 @@ public class ReservationController {
 		return "reservation";
 	}
 	
+	/**
+	 * Saves reservation if date is after now.
+	 * @param form The {@link ReservationForm} containing reservations data
+	 * @param result {@link BindingResult} to check for validation errors
+	 * @return views name
+	 */
 	@PostMapping(value="/reservation")
 	public String reserve(@Valid ReservationForm form, BindingResult result) {
 		// simply redirect if there is errors for now
@@ -50,6 +61,11 @@ public class ReservationController {
 		return "redirect:/reservation";
 	}
 	
+	/**
+	 * Deletes reservations by id.
+	 * @param id of reservation to be deleted
+	 * @return views name
+	 */
 	@PostMapping(value="/delete-reservation/{id}")
 	public String delete(@PathVariable long id) {
 		reservationService.deleteById(id);

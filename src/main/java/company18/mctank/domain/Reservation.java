@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Entity representing a reservation at McTank.
+ * @author CS
+ *
+ */
 @Entity
 public class Reservation {
 	@Id @GeneratedValue

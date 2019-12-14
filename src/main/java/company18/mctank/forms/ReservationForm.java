@@ -9,6 +9,11 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * Form containing information about entered reservation.
+ * @author CS
+ *
+ */
 public class ReservationForm {
 	@NotEmpty
 	@Size(min=3)

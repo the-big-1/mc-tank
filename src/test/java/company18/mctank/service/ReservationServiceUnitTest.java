@@ -34,25 +34,32 @@ public class ReservationServiceUnitTest {
 		return counter;
 	}
 	
-	// saving tests
+	// saving tests (+findAll(), deleteById())
 	@Test
 	void savingTests(){
 		// clearing repository
 		repo.deleteAll();
 		
+		// test findAll()
+		assertEquals(this.service.findAll(), this.repo.findAll());
+		
 		// save with incorrect mcPoint
-		service.save("McPoint", "abc", LocalDateTime.now().plusDays(10));
-		assertEquals(this.getIterableSize(service.findAll()), 0);
+		this.service.save("McPoint", "abc", LocalDateTime.now().plusDays(10));
+		assertEquals(this.getIterableSize(this.service.findAll()), 0);
 			
 		// McSit Reservation
 		service.save("McSit", "sit", LocalDateTime.now().plusDays(10));
-		System.out.println(service.findAll());
-		int j = this.getIterableSize(service.findAll());
+		System.out.println(this.service.findAll());
 		assertEquals(this.getIterableSize(service.findAll()), 1);
 			
 		// McWash Reservation
 		service.save("McWash", "wash", LocalDateTime.now().plusDays(10));
-		assertEquals(this.getIterableSize(service.findAll()), 2);
+		assertEquals(this.getIterableSize(this.service.findAll()), 2);
+		
+		// delete
+		service.deleteById(this.service.findAll().iterator().next().getId());
+		assertTrue(this.service.findAll().iterator().next().getName().equals("wash"));
+		
 	}
 	
 	// findByClass() tests
@@ -66,6 +73,14 @@ public class ReservationServiceUnitTest {
 		service.save("McSit", "sit1", LocalDateTime.now().plusDays(10));
 		service.save("McSit", "sit2", LocalDateTime.now().plusDays(10));
 		service.save("McWash", "wash", LocalDateTime.now().plusDays(10));
+		
+		// test with reservations date before now, expecting IllegalArgumentException
+		try {
+			service.save("McSit", "string", LocalDateTime.now().minusDays(3));
+		} catch (Exception e){
+			assertEquals(e.getClass(), IllegalArgumentException.class);
+		}
+		
 		
 		// testing for Reservation class
 		assertEquals(this.getIterableSize(service.findByClass(Reservation.class)), 4);

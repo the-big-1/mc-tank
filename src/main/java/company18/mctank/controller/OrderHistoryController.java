@@ -18,7 +18,11 @@ public class OrderHistoryController {
 	OrderHistoryController(OrderManager<McTankOrder> orderManager){
 		this.orderManager = orderManager;
 	}
-	
+	/**
+	 * Adds all completed {@link McTankOrder}s to model.
+	 * @param model
+	 * @return templates name
+	 */
 	@GetMapping("/orders")
 	String orders(Model model) {
 		Stream<McTankOrder> orders =  this.orderManager.findBy(OrderStatus.COMPLETED).get().sorted();
