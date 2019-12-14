@@ -14,9 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Optional;
 
+import javax.money.MonetaryAmount;
+
+import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.order.CartItem;
 import org.salespointframework.payment.Cash;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
@@ -49,7 +55,6 @@ import org.salespointframework.useraccount.web.LoggedIn;
 		model.addAttribute("cart", this.cart);
 		return "cart";
 	}
-
 
 	@PostMapping(value = "/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @RequestParam("claim") Optional<Boolean> claim) {

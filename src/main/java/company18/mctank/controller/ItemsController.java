@@ -60,7 +60,7 @@ public class ItemsController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/newItem", method = RequestMethod.GET)
+	@GetMapping("/newItem")
 	public String newItem(Model model, NewItemForm form){
 		model.addAttribute("form", form);
 		model.addAttribute("Categories", mcPoints);
