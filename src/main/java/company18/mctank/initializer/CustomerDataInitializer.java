@@ -1,22 +1,17 @@
 package company18.mctank.initializer;
 
-import company18.mctank.domain.Customer;
-
 import company18.mctank.domain.CustomerRoles;
 import company18.mctank.exception.ExistedUserException;
-import company18.mctank.forms.RegistrationForm;
 import company18.mctank.repository.CustomerRepository;
 import company18.mctank.service.CustomerService;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
-import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -61,9 +56,9 @@ class CustomerDataInitializer implements DataInitializer {
 		UnencryptedPassword password = UnencryptedPassword.of("123");
 		try {
 			List.of(
-				customerService.createCustomer("boss", UnencryptedPassword.of("123"), CustomerRoles.ADMIN),
-				customerService.createCustomer("test", UnencryptedPassword.of("test"), CustomerRoles.CUSTOMER),
-				customerService.createCustomer("manager", UnencryptedPassword.of("123"), CustomerRoles.MANAGER)
+				customerService.createCustomer("boss", "test1@mctank.com", UnencryptedPassword.of("123"),  CustomerRoles.ADMIN),
+				customerService.createCustomer("test", "test2@mctank.com", UnencryptedPassword.of("test"),  CustomerRoles.CUSTOMER),
+				customerService.createCustomer("manager", "test3@mctank.com", UnencryptedPassword.of("123"), CustomerRoles.MANAGER)
 
 			).forEach(customerRepository::save);
 		} catch (ExistedUserException e) {

@@ -1,7 +1,7 @@
 package company18.mctank.controller;
 
 import company18.mctank.exception.ExistedUserException;
-import company18.mctank.forms.RegistrationForm;
+import company18.mctank.forms.SignUpForm;
 import company18.mctank.service.CustomerService;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ class UserManagementController {
 	}
 
 	@PostMapping("/customer/new")
-	public String registerNew(@RequestBody RegistrationForm form) {
+	public String registerNew(@RequestBody SignUpForm form) {
 		try {
 			customerService.createCustomer(form);
 		} catch (ExistedUserException e) {

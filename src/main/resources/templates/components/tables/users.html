@@ -57,10 +57,6 @@
                   Enable
                 </button>
               </form>
-              <button href="page-order-detail.html" class="btn btn-primary-rgba disabled">
-                <i class="feather icon-edit-2 m-r-5"></i>
-                Details
-              </button>
               <form th:action="@{/customer/delete}">
                 <button th:name="id" th:value="${customer.Id}" href="page-order-detail.html"
                         class="btn btn-danger-rgba">

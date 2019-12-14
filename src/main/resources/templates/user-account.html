@@ -66,14 +66,16 @@
                   <div class="profilebox py-4 text-center">
                     <img src="/images/svg/profile.svg" class="img-fluid mb-3" alt="profile">
                     <div class="profilename  my-3">
-                      <h5>John Doe</h5>
+                      <h5 th:text="${customer.getFullName()}">John Doe</h5>
                     </div>
                     <div class="m-b-40">
-                      <h6>JohnDoe123</h6>
+                      <h6 th:text="${customer.getUsername()}">JohnDoe123</h6>
                     </div>
                     <div class="button-list">
-                      <a href="#" class="btn btn-info-rgba font-18"><i class="feather icon-phone-call mr-2"></i>Make
-                        reservation</a>
+                      <a href="#" class="btn btn-info-rgba font-18">
+                        <i class="feather icon-phone-call mr-2"></i>
+                        Make reservation
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -234,8 +236,10 @@
                             <tbody>
                             <tr>
                               <th scope="row">1</th>
-                              <td><img src="assets/images/ecommerce/product_01.svg" class="img-fluid" width="35"
-                                       alt="product"></td>
+                              <td>
+                                <img src="assets/images/ecommerce/product_01.svg" class="img-fluid" width="35"
+                                       alt="product">
+                              </td>
                               <td>Apple iPad</td>
                               <td>1</td>
                               <td>$100</td>
@@ -270,7 +274,7 @@
                  aria-labelledby="v-pills-reservations-tab">
               <div class="card m-b-30">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">My Addresses</h5>
+                  <h5 class="card-title mb-0">My Coupons</h5>
                 </div>
                 <div class="card-body">
                   <div class="row justify-content-center">
@@ -422,54 +426,54 @@
                   <h5 class="card-title mb-0">Edit Profile Informations</h5>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="/account/update" method="post" th:object="${form}">
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name">
+                        <label for="firstname">First name</label>
+                        <input th:value="${customer.getFirstname()}" th:placeholder="${customer.getFirstname()}"
+                               name="firstname" type="text" class="form-control" id="firstname" minlength="1">
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="surname">Surname</label>
-                        <input type="text" class="form-control" id="surname">
+                        <label for="lastName">Last Name</label>
+                        <input th:value="${customer.getLastname()}" th:placeholder="${customer.getLastname()}"
+                               name="lastname" type="text" class="form-control" id="lastName" minlength="1">
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username">
+                        <label for="email">E-mail</label>
+                        <input th:value="${customer.getEmail()}" th:placeholder="${customer.getEmail()}"
+                               name="email" type="email" class="form-control" id="email" minlength="1">
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="useremail">Email</label>
-                        <input type="email" class="form-control" id="useremail">
+                        <label for="mobile">Mobile Number</label>
+                        <input th:value="${customer.getMobile()}" th:placeholder="${customer.getMobile()}"
+                               name="mobile" type="text" class="form-control" id="mobile" minlength="5">
                       </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="usermobile">Mobile Number</label>
-                        <input type="text" class="form-control" id="usermobile">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="userbirthdate">Date of Birth</label>
-                        <input type="date" class="form-control" id="userbirthdate">
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="password">New Password</label>
-                        <input type="password" class="form-control" id="password">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <div class="custom-control custom-radio custom-control-inline m-t-35">
-                          <input type="radio" id="usermale" name="usergender" class="custom-control-input" checked>
-                          <label class="custom-control-label" for="usermale">Male</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline m-t-35">
-                          <input type="radio" id="userfemale" name="usergender" class="custom-control-input">
-                          <label class="custom-control-label" for="userfemale">Female</label>
-                        </div>
-                      </div>
+                      <input type="hidden" th:name="id" th:value="${customer.getId()}">
                     </div>
                     <button type="submit" class="btn btn-primary-rgba font-16">
                       <i class="feather icon-save mr-2"></i>
-                      Update
+                      Save updated info
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="card m-b-30">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">Change password</h5>
+                </div>
+                <div class="card-body">
+                  <form action="/account/new-password" method="post" th:object="${form}">
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="password">New Password</label>
+                        <input type="password" class="form-control" id="password" minlength="1"
+                               name="password" placeholder="Enter new password here">
+                      </div>
+                      <input type="hidden" th:name="id" th:value="${customer.getId()}">
+                    </div>
+                    <button type="submit" class="btn btn-primary-rgba font-16">
+                      <i class="feather icon-unlock mr-2"></i>
+                      Change Password
                     </button>
                   </form>
                 </div>
