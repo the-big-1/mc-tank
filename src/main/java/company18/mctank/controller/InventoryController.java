@@ -16,7 +16,7 @@ public class InventoryController {
 	
 	/**
 	 * Adds all {@link UniqueInventoryItem}s to the model.
-	 * @param model
+	 * @param model model
 	 * @return views name
 	 */
 	@GetMapping("/inventory")

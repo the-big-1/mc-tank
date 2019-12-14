@@ -26,7 +26,7 @@ public class ReservationController {
 	
 	/**
 	 * Adds all reservations sorted by McPoint and date to template.
-	 * @param model
+	 * @param model model
 	 * @return views name
 	 */
 	@GetMapping(value="/reservation")

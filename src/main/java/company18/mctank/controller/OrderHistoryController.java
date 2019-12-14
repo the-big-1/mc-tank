@@ -20,7 +20,7 @@ public class OrderHistoryController {
 	}
 	/**
 	 * Adds all completed {@link McTankOrder}s to model.
-	 * @param model
+	 * @param model model
 	 * @return templates name
 	 */
 	@GetMapping("/orders")
