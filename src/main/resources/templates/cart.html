@@ -44,7 +44,7 @@
                               <div class="form-group">
                                 <form th:action="@{/cart/discount}" method="post">
                                   <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Coupon Code"
+                                    <input id="discountCode" type="text" class="form-control" placeholder="Coupon Code"
                                            name="discountCode" aria-label="Coupon" aria-describedby="button-addonTags">
                                     <div class="input-group-append">
                                       <button class="input-group-text btn-secondary" type="submit"
@@ -67,7 +67,7 @@
                               </tr>
                               <tr>
                                 <td class="f-w-7 font-18"><h4>Total :</h4></td>
-                                <td class="f-w-7 font-18"><h4 th:text="${finalprice}">$1180.00</h4></td>
+                                <td class="f-w-7 font-18"><h4 th:text="${cart.getPrice()}">$1180.00</h4></td>
                               </tr>
                               </tbody>
                             </table>

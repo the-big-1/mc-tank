@@ -92,9 +92,10 @@ import org.salespointframework.useraccount.web.LoggedIn;
 
 	@PostMapping("/cart/pay")	
 	String buy(@LoggedIn Optional<UserAccount> userAccount) {
-		 if (this.cartService.buy(this.cart, userAccount, Cash.CASH))  // paymentMethod set to cash for now
-			 return "redirect:/";			// successful
-		 else return "redirect:/cart";		// or not
+		 if (this.cartService.buy(this.cart, userAccount, Cash.CASH)) {
+			 return "redirect:/";
+		 }
+		 else return "redirect:/cart";
 	}
 }
 
