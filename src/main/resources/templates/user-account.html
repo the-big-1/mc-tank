@@ -274,7 +274,7 @@
                  aria-labelledby="v-pills-reservations-tab">
               <div class="card m-b-30">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">My Coupons</h5>
+                  <h5 class="card-title mb-0">My Reservations</h5>
                 </div>
                 <div class="card-body">
                   <div class="row justify-content-center">
@@ -294,43 +294,28 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-12 col-xl-6">
+                    <div th:each="reservation : ${reservations}" class="col-lg-12 col-xl-6">
                       <div class="address-box">
                         <div class="card border m-b-30">
                           <div class="card-header">
-                            <h5 class="mb-0">Amy Adams</h5>
+                            <h5 class="mb-0" th:text="${reservation.getName()}">Amy Adams</h5>
                           </div>
                           <div class="card-body">
-                            <p><b>Point:</b>McWash</p>
-                            <p class="mb-0"><b>Description:</b>I want to celebrate my birthday</p>
+                            <p><b>Point: </b> <span th:text="${reservation.getMcPoint()}">McWash</span></p>
+                            <p><b>Date: </b> <span th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy')}">McWash</span></p>
+                            <p><b>Time: </b> <span th:text="${#temporals.format(reservation.date, 'hh:mm a')}">11:11 am</span></p>
+                            <p class="mb-0"><b>User:</b><span th:text="${reservation.getUsername()}">No Info</span></p>
                           </div>
                           <div class="card-footer">
                             <div class="button-list">
-                              <button type="button" class="btn btn-danger-rgba mb-1">
-                                <i class="feather icon-trash mr-2"></i>
-                                Delete this event
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-12 col-xl-6">
-                      <div class="address-box">
-                        <div class="card border m-b-30">
-                          <div class="card-header">
-                            <h5 class="mb-0">Amy Adams</h5>
-                          </div>
-                          <div class="card-body">
-                            <p><b>Point:</b>McWash</p>
-                            <p class="mb-0"><b>Description:</b>I want to celebrate my birthday</p>
-                          </div>
-                          <div class="card-footer">
-                            <div class="button-list">
-                              <button type="button" class="btn btn-danger-rgba mb-1">
-                                <i class="feather icon-trash mr-2"></i>
-                                Delete this event
-                              </button>
+                              <form action="/account/reservation/delete" method="post">
+                                <input type="hidden" th:name="reservationId" th:value="${reservation.getId()}">
+                                <button type="submit" class="btn btn-danger-rgba mb-1">
+                                  <i class="feather icon-trash mr-2"></i>
+                                  Delete this event
+                                </button>
+                              </form>
+
                             </div>
                           </div>
                         </div>

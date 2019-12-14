@@ -4,8 +4,12 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import com.mysema.commons.lang.Assert;
+import company18.mctank.exception.AnonymusUserException;
 import company18.mctank.forms.ReservationForm;
 import org.salespointframework.catalog.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import company18.mctank.domain.McSitReservation;
@@ -15,11 +19,13 @@ import company18.mctank.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
-	private final ReservationRepository reservationRepository;
-	
-	public ReservationService(ReservationRepository reservationRepository) {
-		this.reservationRepository = reservationRepository;
-	}
+	private static final Logger LOG = LoggerFactory.getLogger(ReservationService.class);
+
+	@Autowired
+	private ReservationRepository reservationRepository;
+
+	@Autowired
+	private CustomerService customerService;
 	
 	public Iterable<Reservation> findAll(){
 		return reservationRepository.findAll();
@@ -74,5 +80,15 @@ public class ReservationService {
 		if (mcPoint.equals("McWash")) {
 			reservationRepository.save(new McWashReservation(name, dateAndTime, username));
 		}
+	}
+
+	public List<Reservation> getAllEventsForCustomer() {
+		String currentUsername = null;
+		try {
+			currentUsername = customerService.getCurrentUserAccount().getUsername();
+		} catch (AnonymusUserException e) {
+			LOG.error("Cannot get reservations for Customer. Cause: " + e.getMessage());
+		}
+		return reservationRepository.findAllByUsername(currentUsername);
 	}
 }

@@ -38,4 +38,6 @@ public abstract class Reservation {
 	public String getUsername() {
 		return username;
 	}
+
+	public abstract String getMcPoint();
 }

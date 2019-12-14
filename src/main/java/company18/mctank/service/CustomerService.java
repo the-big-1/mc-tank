@@ -158,7 +158,7 @@ public class CustomerService {
 		return customer;
 	}
 
-	private UserAccount getCurrentUserAccount() throws AnonymusUserException {
+	public UserAccount getCurrentUserAccount() throws AnonymusUserException {
 		UserDetails userDetails = this.getPrincipal();
 		String username = userDetails.getUsername();
 		UserAccount userAccount = this.userAccountManager.findByUsername(username).orElse(null);

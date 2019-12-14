@@ -15,4 +15,9 @@ public class McWashReservation extends Reservation {
 		super(name, date, username);
 	}
 
+	@Override
+	public String getMcPoint() {
+		return "McWash";
+	}
+
 }
