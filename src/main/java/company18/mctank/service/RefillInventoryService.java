@@ -15,6 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service for refilling the {@link Product}s in the {@link UniqueInventory}.
+ * Especially for the Fuels.
+ *
+ * @autor David Leistner
+ */
+
 @Service
 public class RefillInventoryService {
 
@@ -30,6 +37,14 @@ public class RefillInventoryService {
 	@Autowired
 	private OverviewController overview;
 
+	/**
+	 * Refills the stock of fuels.
+	 *
+	 * @param amountBenzin which should be added to the current amount of Benzine.
+	 * @param amountDiesel which should be added to the current amount of Diesel.
+	 *
+	 * @throws FuelStorageFullException if the amount is bigger than the size of the Inventory.
+	 */
 
 	public boolean refillFuels(double amountBenzin, double amountDiesel) throws FuelStorageFullException{
 		var benzinObj = items.findByName("Super Benzin")
@@ -79,6 +94,12 @@ public class RefillInventoryService {
 		return true;
 	}
 
+	/**
+	 * Refills the stock for any offered Item, except Fuel.
+	 * @param prodName of the Items to add.
+	 * @param amount of which the stock should be refilled with.
+	 */
+
 	public boolean refillInventoryItem(String prodName, double amount){
 		var productObj = items.findByName(prodName)
 				.stream()
@@ -100,6 +121,10 @@ public class RefillInventoryService {
 		return true;
 	}
 
+	/**
+	 * @return Current amount of Benzine.
+	 */
+
 	public double getFuelAmountBenzin(){
 		var benzinObj = items.findByName("Super Benzin")
 							 .stream()
@@ -119,6 +144,10 @@ public class RefillInventoryService {
 
 		return currentamountBenzin;
 	}
+
+	/**
+	 * @return Current amount of diesel fuel.
+	 */
 
 	public double getFuelAmountDiesel(){
 		var dieselObj = items.findByName("Diesel")
