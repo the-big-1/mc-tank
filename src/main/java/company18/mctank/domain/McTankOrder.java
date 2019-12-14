@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import org.salespointframework.order.Order;
 import org.salespointframework.useraccount.UserAccount;
 
+/**
+ * Entity representing an order at McTank. Extends {@link Order}.
+ * Implements {@link Comparable} for sorting from latest to earliest.
+ * @author CS
+ */
 @Entity
 public class McTankOrder extends Order implements Comparable<McTankOrder>{
 	
@@ -16,8 +21,6 @@ public class McTankOrder extends Order implements Comparable<McTankOrder>{
 		super(account);
 	}
 
-	
-	// sorting from latest to earliest
 	@Override
 	public int compareTo(McTankOrder o) {
 		if (this.getDateCreated().isAfter(o.getDateCreated()))

@@ -3,6 +3,10 @@ package company18.mctank.domain;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Object to parse gas pump data into.
+ * @author CS
+ */
 @XmlRootElement(name="gasoline-pump")
 public class GasPump {
 	@XmlElement(name="number")
