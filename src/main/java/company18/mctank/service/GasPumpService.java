@@ -41,13 +41,14 @@ public class GasPumpService {
 	
 	/**
 	 * Checks if pump is invalid.
+	 * @return true if pump is invalid
 	 */
 	public boolean isInValid() {
 		return this.pump == null;
 	}
 	
 	/**
-	 * Gets first {@link Product} from {@link ItemRepository} with matching name.
+	 * Gets first {@link Product} from {@link ItemsRepository} with matching name.
 	 * @return Fuel as {@link Product} 
 	 */
 	public Product getFuel() {
