@@ -1,5 +1,7 @@
 package company18.mctank.service;
 
+import company18.mctank.controller.CartController;
+import company18.mctank.controller.OverviewController;
 import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
 
@@ -9,6 +11,7 @@ import org.salespointframework.inventory.UniqueInventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +23,12 @@ public class RefillInventoryService {
 
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventory;
+
+	@Autowired
+	private CartController cart;
+
+	@Autowired
+	private OverviewController overview;
 
 
 	public boolean refillFuels(double amountBenzin, double amountDiesel) throws FuelStorageFullException{
@@ -54,8 +63,14 @@ public class RefillInventoryService {
 											   .getAmount()
 											   .doubleValue();
 
-		if (amountBenzin + currentamountBenzin > 50000 || amountDiesel + currentamountDiesel > 50000){
+		if (amountBenzin + currentamountBenzin > 50.000 || amountDiesel + currentamountDiesel > 50.000){
 			throw new FuelStorageFullException();
+		}
+
+		if (amountBenzin + currentamountBenzin > 10.000 && amountDiesel + currentamountDiesel > 10.000){
+			//reset FuelWarning to false if Depot holds more than 10.000 Liter each
+			cart.setFuelWarning(false);
+			overview.setFuelWarning(false);
 		}
 
 		benzinItem.increaseQuantity(benzin.createQuantity(amountBenzin));
