@@ -35,4 +35,10 @@ public class AccountController {
 		customerService.updatePassword(password, id);
 		return "redirect:/account";
 	}
+
+	@PostMapping("/account/delete")
+	public String deleteAccount(@RequestParam @NotEmpty long id){
+		customerService.deleteCustomer(id);
+		return "redirect:/logout";
+	}
 }

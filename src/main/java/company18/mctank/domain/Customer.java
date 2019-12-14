@@ -6,11 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.UserAccount;
-import org.springframework.security.core.userdetails.User;
 
-import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -25,7 +22,7 @@ public class Customer {
 
 	private String mobile;
 
-	private Date registrationDate;
+	private Date lastActivityDate;
 
 	@SuppressWarnings("unused")
 	private Customer() {
@@ -33,7 +30,7 @@ public class Customer {
 
 	public Customer(UserAccount useraccount) {
 		this.userAccount = useraccount;
-		this.registrationDate = new Date();
+		this.lastActivityDate = new Date();
 		this.userAccount.setFirstname("No Info");
 		this.userAccount.setLastname("No Info");
 		this.setMobile("Mobile number");
@@ -94,13 +91,17 @@ public class Customer {
 		this.mobile = mobile;
 	}
 
-	public String getRegisterDate() {
+	public String getLastActivityDate() {
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Berlin"));
-		cal.setTime(this.registrationDate);
+		cal.setTime(this.lastActivityDate);
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		return day + " / " + month + " / " + year;
+	}
+
+	public void updateLastActivityDate(){
+
 	}
 
 }

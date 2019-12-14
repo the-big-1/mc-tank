@@ -238,7 +238,7 @@
                               <th scope="row">1</th>
                               <td>
                                 <img src="assets/images/ecommerce/product_01.svg" class="img-fluid" width="35"
-                                       alt="product">
+                                     alt="product">
                               </td>
                               <td>Apple iPad</td>
                               <td>1</td>
@@ -457,25 +457,56 @@
                   </form>
                 </div>
               </div>
-              <div class="card m-b-30">
-                <div class="card-header">
-                  <h5 class="card-title mb-0">Change password</h5>
-                </div>
-                <div class="card-body">
-                  <form action="/account/new-password" method="post" th:object="${form}">
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="password">New Password</label>
-                        <input type="password" class="form-control" id="password" minlength="1"
-                               name="password" placeholder="Enter new password here">
-                      </div>
-                      <input type="hidden" th:name="id" th:value="${customer.getId()}">
+              <div class="row">
+                <div class="col-lg-7 col-md-12">
+                  <div class="card m-b-30 ">
+                    <div class="card-header">
+                      <h5 class="card-title mb-0">Change password</h5>
                     </div>
-                    <button type="submit" class="btn btn-primary-rgba font-16">
-                      <i class="feather icon-unlock mr-2"></i>
-                      Change Password
-                    </button>
-                  </form>
+                    <div class="card-body">
+                      <h5 class="card-title font-18">Here you can change your password anytime you want.</h5>
+                      <p class="card-text mb-4">
+                        Just enter new password in the field below and press the "Change password" button.
+                        That's simple.
+                      </p>
+                      <form action="/account/new-password" method="post" th:object="${form}">
+                        <div class="form-row m-b-15">
+                          <div class="form-group col-md-6">
+                            <label for="password">New Password</label>
+                            <input type="password" class="form-control" id="password" minlength="1"
+                                   name="password" placeholder="Enter new password here">
+                          </div>
+                          <input type="hidden" th:name="id" th:value="${customer.getId()}">
+                        </div>
+                        <button type="submit" class="btn btn-primary-rgba font-16">
+                          <i class="feather icon-unlock mr-2"></i>
+                          Change Password
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                  <div class="card m-b-30">
+                    <div class="card-header mb-1">
+                      <h5 class="card-title mb-0">Delete Account</h5>
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-4 font-19"><span class="badge badge-danger text-uppercase">DANGER ZONE</span></p>
+                      <h5 class="card-title font-18 mb-3">This button will complete delete your account from McTank.</h5>
+                      <p class="card-text mb-4">
+                        You can not restore or export your data after deletion. All your personal data will be lost.
+                      </p>
+
+                      <form action="/account/delete" method="post" th:object="${form}">
+                        <input type="hidden" th:name="id" th:value="${customer.getId()}">
+                        <button type="submit" class="btn btn-danger-rgba font-16">
+                          <i class="feather icon-user-minus mr-2"></i>
+                          Delete my Account
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

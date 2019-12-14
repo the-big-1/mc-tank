@@ -88,7 +88,6 @@ public class CustomerService {
 							   String email,
 							   String mobile,
 							   long id) {
-		// TODO: check of no such user.
 		Customer customer = this.getCustomer(id);
 		LOG.info("User with" + id + "found" + customer.getUsername());
 		customer.setFirstName(firstname);
