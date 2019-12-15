@@ -11,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Service for refilling the {@link Product}s in the {@link UniqueInventory}.
  * Especially for the Fuels.
@@ -75,11 +71,11 @@ public class RefillInventoryService {
 											   .getAmount()
 											   .doubleValue();
 
-		if (amountBenzine + currentamountBenzine > 50.000 || amountDiesel + currentamountDiesel > 50.000){
+		if (amountBenzine + currentamountBenzine > 50000.0 || amountDiesel + currentamountDiesel > 50000.0){
 			throw new FuelStorageFullException();
 		}
 
-		if (amountBenzine + currentamountBenzine > 10.000 && amountDiesel + currentamountDiesel > 10.000){
+		if (amountBenzine + currentamountBenzine > 10000.0 && amountDiesel + currentamountDiesel > 10000.0){
 
 			//reset warning to false
 			publishEvent(false);
@@ -122,7 +118,7 @@ public class RefillInventoryService {
 	 * @return Current amount of Benzine.
 	 */
 
-	public double getFuelAmountBenzin(){
+	public double getFuelAmountBenzine(){
 		var benzineObj = items.findByName("Super Benzin")
 							 .stream()
 							 .findFirst();
@@ -172,7 +168,7 @@ public class RefillInventoryService {
 	}
 
 	public void checkStock(){
-		if(getFuelAmountBenzin() < 10.000 || getFuelAmountDiesel() < 10.000){
+		if(getFuelAmountBenzine() < 10000.0 || getFuelAmountDiesel() < 10000.0){
 			publishEvent(true);
 		}
 	}
