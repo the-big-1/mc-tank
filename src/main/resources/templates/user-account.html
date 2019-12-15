@@ -358,23 +358,19 @@
                           <th scope="col">Name</th>
                           <th scope="col">Percent(%)</th>
                           <th scope="col">Status</th>
-                          <th scope="col">Used by (McPoint)</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>McTen</td>
-                          <td>10%</td>
-                          <td><span class="badge badge-success-inverse">Available</span></td>
-                          <td>Not used yet</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>McTen</td>
-                          <td>10%</td>
-                          <td><span class="badge badge-danger-inverse">Used</span></td>
-                          <td>McWash</td>
+                        <tr th:each="coupon : ${customer.getDiscounts()}">
+                          <th scope="row" th:text="${coupon.getShortId()}">1</th>
+                          <td th:text="${coupon.getName()}">McTen</td>
+                          <td th:text="${coupon.getDiscount()*100} + '%'">10%</td>
+                          <td>
+                            <span class="badge"
+                                  th:classappend="${coupon.getStatus().toString()} == 'AVAILABLE'?'badge-success-inverse':'badge-danger-inverse'"
+                                  th:text="${coupon.getStatus()}">Available
+                            </span>
+                          </td>
                         </tr>
                         </tbody>
                       </table>

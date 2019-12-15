@@ -45,10 +45,12 @@
                   <input type="hidden" name="product-id" th:value="${product.id}"/>
                   <div class="input-group">
                       <select
+                              required
                               class="form-control col-3"
                               th:id="'pump-select-' + ${#strings.replace(product.Name,' ','-')}"
                               onChange="changeInputMaxValue(this, this.options[this.selectedIndex].value)"
                               th:if="${point.key} == 'McZapf'">
+                          <option value="" selected disabled>pump №</option>
                           <div th:each="pump : ${pumps}">
                               <option th:if="${pump != null && pump.getFuelType() == product.Name}" th:value="${pump.fuelQuantity}" th:text="${pump.number}"></option>
                           </div>

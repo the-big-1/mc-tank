@@ -1,8 +1,12 @@
 package company18.mctank.controller;
 
+import company18.mctank.domain.Customer;
+import company18.mctank.domain.Discount;
 import company18.mctank.domain.McTankCart;
 
+import company18.mctank.factory.DiscountFactory;
 import company18.mctank.service.CartService;
+import company18.mctank.service.CustomerService;
 import company18.mctank.service.GasPumpService;
 
 import org.salespointframework.payment.*;
@@ -14,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
@@ -28,15 +33,15 @@ public class CartController {
 	private McTankCart cart;
 	private CartService cartService;
 	private GasPumpService pumpService;
-	private UserAccountManager userAccountManager;
+	private CustomerService customerService;
 
-	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService, UserAccountManager userAccountManager) {
+	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService, CustomerService customerService) {
 		Assert.notNull(cart, "Cart must not be null!");
 		this.cart = cart;
 		Assert.notNull(cartService, "CartService must not be null!");
 		this.cartService = cartService;
 		this.pumpService = pumpService;
-		this.userAccountManager = userAccountManager;
+		this.customerService = customerService;
 	}
 	
 	@ModelAttribute("cart")
@@ -53,22 +58,20 @@ public class CartController {
 	@PostMapping(value = "/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @RequestParam("claim") Optional<Boolean> claim) {
 		this.cartService.addOrUpdateItem(this.cart, product, amount, claim.isPresent());
-		this.cart.mcPointBonus();
 		return "redirect:/cart";
 	}
 
 	@PostMapping("/cart/username")
 	public String saveUsername(String username) {
-		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
-		cart.setOwner(userAccount);
-		cartService.load(cart, userAccount);
+		Customer customer = customerService.getCustomer(username);
+		cart.setCustomer(customer);
+		cartService.load(cart, customer.getUserAccount());
 		return "redirect:/cart";
 	}
 	
 	@PostMapping(value = "/cart/pump")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") float amount, @RequestParam("pump-number") int number) {
 		this.cartService.addOrUpdateItem(this.cart, product, Quantity.of(amount, Metric.LITER));
-		this.cart.mcPointBonus();
 		return "redirect:/cart";
 	}
 	
@@ -78,7 +81,6 @@ public class CartController {
 			return "redirect:/";
 		else
 			this.cartService.addOrUpdateItem(this.cart, pumpService.getFuel(number), Quantity.of(pumpService.getFuelQuantity(number), Metric.LITER));
-		this.cart.mcPointBonus();
 		return "redirect:/cart";
 	}
 
@@ -101,19 +103,47 @@ public class CartController {
 		return "redirect:/cart";
 	}	
 
-
 	@PostMapping("/cart/checkout")
-	public ResponseEntity<?> checkout(@LoggedIn Optional<UserAccount> userAccount) {
-		 if (this.cartService.buy(this.cart, userAccount, Cash.CASH)) {
-			 return ResponseEntity
+	public ResponseEntity<?> checkout() {
+		if (this.cartService.buy(this.cart, Cash.CASH)) {
+			this.handleDiscount();
+			this.cart.clear();
+			return ResponseEntity
 					 .ok()
 					 .build();
-		 }
-		 else
-		 	return ResponseEntity
+		}
+		else
+			return ResponseEntity
 					.status(HttpStatus.NOT_IMPLEMENTED)
 					.build();
 	}
+
+	private void handleDiscount() {
+		this.removeDiscounts();
+		this.addDiscounts();
+		this.updateDiscounts();
+	}
+
+	private void removeDiscounts () {
+		this.cart.get().forEach(cartItem -> {
+			if (cartItem.getPrice().isNegative()) {
+				cart.getCustomer().removeDiscount(cartItem.getProductName());
+			}
+		});
+	}
+
+	private void addDiscounts () {
+		this.cart.getCustomer()
+				.addDiscount(DiscountFactory.create(this.cart.getMcPointBonus()));
+	}
+
+	private void updateDiscounts () {
+		this.customerService.updateCustomersDiscounts(
+				this.cart.getCustomer().getDiscounts(),
+				this.cart.getCustomer().getId()
+		);
+	}
+
 }
 
 
