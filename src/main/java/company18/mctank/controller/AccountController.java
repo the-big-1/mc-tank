@@ -1,7 +1,9 @@
 package company18.mctank.controller;
 
+import company18.mctank.domain.McTankOrder;
 import company18.mctank.forms.CustomerInfoUpdateForm;
 import company18.mctank.service.CustomerService;
+import company18.mctank.service.OrdersService;
 import company18.mctank.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +23,14 @@ public class AccountController {
 	CustomerService customerService;
 
 	@Autowired
+	OrdersService ordersService;
+
+	@Autowired
 	ReservationService reservationService;
 
 	@GetMapping("/account")
 	public String index(Model model) {
+		model.addAttribute("orders", ordersService.getAllOrdersForCustomer());
 		model.addAttribute("reservations", reservationService.getAllEventsForCustomer());
 		model.addAttribute("customer", customerService.getCurrentCustomer());
 		return "user-account";

@@ -31,7 +31,9 @@
           <td th:text="${quantityMap.get(product.getId().getIdentifier())}">No Info</td>
           <td th:text="${product.Price}">No info</td>
           <td th:with="order=${orderMap.get(product.getId().getIdentifier())}"
-              th:text="${order == null} ? 'No Info' : ${order}">No Info</td>
+              th:text="${order == null} ? 'No Info' : ${order}">
+            No Info
+          </td>
           <td>
             <div class="button-list">
               <a th:if="${role} == 'ADMIN'" th:href="@{/items/{id}(id=${product.id})}">
@@ -44,20 +46,20 @@
                 <form th:if="${role} == 'MANAGER'" method="post" th:action="@{/cart}">
                   <input type="hidden" name="product-id" th:value="${product.id}"/>
                   <div class="input-group">
-                      <select
-                              class="form-control col-3"
-                              th:id="'pump-select-' + ${#strings.replace(product.Name,' ','-')}"
-                              onChange="changeInputMaxValue(this, this.options[this.selectedIndex].value)"
-                              th:if="${point.key} == 'McZapf'">
-                          <div th:each="pump : ${pumps}">
-                              <option th:if="${pump != null && pump.getFuelType() == product.Name}" th:value="${pump.fuelQuantity}" th:text="${pump.number}"></option>
-                          </div>
-                      </select>
-                    <input  width="1" type="number" name="amount"
-                            class="form-control col-4"
-                            th:classappend="${point.key} == 'McZapf'? 'pump-input-' + ${#strings.replace(product.Name,' ','-')}"
-                            placeholder="1" value="1" min="1" step="1"
-                            aria-label="Recipient's username" aria-describedby="button-addon-group" required>
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <select class="form-control col-3"
+                            th:id="'pump-select-' + ${#strings.replace(product.Name,' ','-')}"
+                            onChange="changeInputMaxValue(this, this.options[this.selectedIndex].value)"
+                            th:if="${point.key} == 'McZapf'">
+                      <option th:each="pump : ${pumps}"
+                              th:if="${pump != null && pump.getFuelType() == product.Name}"
+                              th:value="${pump.fuelQuantity}" th:text="${pump.number}"></option>
+                    </select>
+                    <input width="1" type="number" name="amount"
+                           class="form-control col-4"
+                           th:classappend="${point.key} == 'McZapf'? 'pump-input-' + ${#strings.replace(product.Name,' ','-')} : ''"
+                           placeholder="1" value="1" min="1" step="1"
+                           aria-label="Recipient's username" aria-describedby="button-addon-group" required>
                     <div class="input-group-append">
                       <button class="btn btn-primary-rgba" type="submit" id="add-to-cart">Add to cart</button>
                     </div>
@@ -72,16 +74,16 @@
     </div>
   </div>
   <script>
-    function changeInputMaxValue(selectObject, value) {
-      let input = document.getElementsByClassName(selectObject.id.replace('select', 'input'))[0];
-      input.setAttribute("max",value); // set a new value;
-      Array.from(selectObject.options).forEach(el => {
-        if (el.value === value)
-          el.setAttribute("selected", true);
-        else
-          el.removeAttribute("selected")
-      });
-    }
+      function changeInputMaxValue(selectObject, value) {
+          let input = document.getElementsByClassName(selectObject.id.replace('select', 'input'))[0];
+          input.setAttribute("max", value); // set a new value;
+          Array.from(selectObject.options).forEach(el => {
+              if (el.value === value)
+                  el.setAttribute("selected", true);
+              else
+                  el.removeAttribute("selected")
+          });
+      }
   </script>
 </div>
 </body>

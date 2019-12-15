@@ -51,7 +51,7 @@ class CustomerDataInitializer implements DataInitializer {
 			return;
 		}
 
-		LOG.info("Creating default users and customers.");
+		LOG.info("Initializing: users and customer");
 
 		UnencryptedPassword password = UnencryptedPassword.of("123");
 		try {
@@ -59,13 +59,12 @@ class CustomerDataInitializer implements DataInitializer {
 				customerService.createCustomer("boss", "test1@mctank.com", UnencryptedPassword.of("123"),  CustomerRoles.ADMIN),
 				customerService.createCustomer("test", "test2@mctank.com", UnencryptedPassword.of("test"),  CustomerRoles.CUSTOMER),
 				customerService.createCustomer("manager", "test3@mctank.com", UnencryptedPassword.of("123"), CustomerRoles.MANAGER)
-
 			).forEach(customerRepository::save);
 		} catch (ExistedUserException e) {
-			LOG.error("FAILED Create test users.");
+			LOG.error("Initializing : users and customer. Failed: User exist");
 		}
 
-		LOG.info("Created all default user accounts");
+		LOG.info("Initializing: users and customer. Done.");
 
 
 	}

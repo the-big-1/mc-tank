@@ -89,12 +89,12 @@ public class CustomerService {
 							   String mobile,
 							   long id) {
 		Customer customer = this.getCustomer(id);
-		LOG.info("User with" + id + "found" + customer.getUsername());
 		customer.setFirstName(firstname);
 		customer.setLastName(lastname);
 		customer.setEmail(email);
 		customer.setMobile(mobile);
 		customerRepository.save(customer);
+		LOG.info("Request:  Update User's Info. Done: User " + customer.getUsername() +" was updated");
 	}
 
 	public void updatePassword(String newPassword, long id) {
@@ -153,7 +153,7 @@ public class CustomerService {
 			UserAccount userAccount = this.getCurrentUserAccount();
 			customer = customerRepository.findCustomerByUserAccount(userAccount);
 		} catch (AnonymusUserException e) {
-			LOG.error("Anonymous User trying to access user data");
+			LOG.warn("Request: Get Current Customer. Failed: User is Anonymous");
 		}
 		return customer;
 	}
