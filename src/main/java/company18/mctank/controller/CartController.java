@@ -39,10 +39,9 @@ public class CartController {
 	private McTankCart cart;
 	private CartService cartService;
 	private GasPumpService pumpService;
-
-	private boolean fuelWarning = false;
-
 	private CustomerService customerService;
+
+	private boolean fuelWarning = false;  // add to model and call warning if true
 	
 /**
  * 
