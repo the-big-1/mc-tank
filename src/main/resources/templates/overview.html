@@ -191,33 +191,14 @@
           </div>
         </div>
       </div>
+      <div th:if="${fuelWarning}">
+        <script>
+          window.alert(FuelWarning);
+        </script>
+      </div>
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-<!-- End Containerbar -->
-<!-- Start js -->
-<script th:src="@{/js/vendor/jquery.min.js}"></script>
-<script th:src="@{/js/vendor/popper.min.js}"></script>
-<script th:src="@{/js/vendor/bootstrap.min.js}"></script>
-<script th:src="@{/js/vendor/modernizr.min.js}"></script>
-<script th:src="@{/js/vendor/detect.js}"></script>
-<script th:src="@{/js/vendor/jquery.slimscroll.js}"></script>
-<script th:src="@{/js/sidebar.js}"></script>
-<!-- Charts js -->
-<script th:src="@{/js/vendor/sample-data.js}"></script>
-<script th:src="@{/js/vendor/apexcharts.min.js}"></script>
-<!-- Slick js -->
-<script th:src="@{/js/vendor/slick.min.js}"></script>
-<!-- Dashboard js -->
-<script th:src="@{/js/overview.js}"></script>
-<!-- Core js -->
-<script th:src="@{js/core.js}"></script>
-<!-- Fuel js-->
-<script th:src="@{js/warnig.js}"></script>
-<!-- End js -->
-=======
 <div th:replace="core/scripts :: std(scriptCharts=true, scriptSlider=true, scriptOverview=true)"></div>
->>>>>>> origin
 </body>
 </html>
