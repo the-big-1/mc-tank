@@ -130,17 +130,23 @@ public class RefillInventoryService {
 							 .stream()
 							 .findFirst();
 
+		System.out.println("b1: " + benzinObj);
+
 		Product benzin = benzinObj.get();
 
 		var benzinOpt = inventory.findByProduct(benzin)
 								 .stream()
 								 .findFirst();
 
+		System.out.println("b1: " + benzinOpt);
+
 		UniqueInventoryItem benzinItem = benzinOpt.get();
 
 		double currentamountBenzin = benzinItem.getQuantity()
 				.getAmount()
 				.doubleValue();
+
+		System.out.println("b3: " + currentamountBenzin);
 
 		return currentamountBenzin;
 	}
@@ -154,17 +160,23 @@ public class RefillInventoryService {
 							 .stream()
 							 .findFirst();
 
+		System.out.println("d1: " + dieselObj);
+
 		Product diesel = dieselObj.get();
 
 		var dieselOpt = inventory.findByProduct(diesel)
 								 .stream()
 								 .findFirst();
 
+		System.out.println("d2: " + dieselOpt);
+
 		UniqueInventoryItem dieselItem = dieselOpt.get();
 
 		double currentamountDiesel = dieselItem.getQuantity()
 				.getAmount()
 				.doubleValue();
+
+		System.out.println("d3: " + currentamountDiesel);
 
 		return currentamountDiesel;
 	}

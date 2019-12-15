@@ -21,9 +21,10 @@ public class CartService {
 	private FuelWarningEventPublisher fuelWarning;
 
 
-	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService) {
+	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService, FuelWarningEventPublisher fuelWarning) {
 		this.orderManager = orderManager;
 		this.itemsService = itemsService;
+		this.fuelWarning = fuelWarning;
 	}
 	
 	public boolean buy(McTankCart cart, Optional<UserAccount> userAccount, PaymentMethod payMethod) {

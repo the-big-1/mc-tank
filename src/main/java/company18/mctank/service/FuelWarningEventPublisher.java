@@ -20,6 +20,9 @@ public class FuelWarningEventPublisher {
 	}
 
 	public void checkStock(){
+		System.out.println("B: " + service.getFuelAmountBenzin());
+		System.out.println("D: " + service.getFuelAmountDiesel());
+
 		if(service.getFuelAmountBenzin() < 10.000 || service.getFuelAmountDiesel() < 10.000){
 			publishWarning("Stock runs low.");
 		}
