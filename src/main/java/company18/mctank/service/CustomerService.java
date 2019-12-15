@@ -42,6 +42,8 @@ import java.util.List;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 import java.util.Optional;
@@ -64,8 +66,9 @@ public class CustomerService {
 	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	private final OrderManager<McTankOrder> orderManager;
-	private LocalDateTime newYear = LocalDateTime.parse("2020-1-1T0:0:0");
-	private long initialDelay = LocalDateTime.now().until(newYear,ChronoUnit.MINUTES);
+	private ZoneId localZone = ZoneId.of("EUROPE/Berlin");
+	private ZonedDateTime newYear = ZonedDateTime.of(2020,1,1,0,0,0,0,localZone);
+	private long initialDelay = ZonedDateTime.now(localZone).until(newYear,ChronoUnit.MINUTES);
 	private final CustomerRepository customers;
 
 
@@ -252,7 +255,7 @@ public class CustomerService {
 						}
 					}
 				for(Customer c:customers.findAll()) {
-						if(c.getLastOrderDate().until(newYear, ChronoUnit.DAYS)>=365) {
+						if(c.getLastOrderDate().atZone(localZone).until(newYear, ChronoUnit.DAYS)>=365) {
 							customers.delete(c);	
 						}
 					}
