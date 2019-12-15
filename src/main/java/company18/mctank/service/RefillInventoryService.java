@@ -83,8 +83,8 @@ public class RefillInventoryService {
 
 		if (amountBenzin + currentamountBenzin > 10.000 && amountDiesel + currentamountDiesel > 10.000){
 
-			//publish event if warning was true event set warning to false
-			publishEvent();
+			//reset warning to false
+			publishEvent(false);
 		}
 
 		benzinItem.increaseQuantity(benzin.createQuantity(amountBenzin));
@@ -129,23 +129,17 @@ public class RefillInventoryService {
 							 .stream()
 							 .findFirst();
 
-		System.out.println("b1: " + benzinObj);
-
 		Product benzin = benzinObj.get();
 
 		var benzinOpt = inventory.findByProduct(benzin)
 								 .stream()
 								 .findFirst();
 
-		System.out.println("b1: " + benzinOpt);
-
 		UniqueInventoryItem benzinItem = benzinOpt.get();
 
 		double currentamountBenzin = benzinItem.getQuantity()
 				.getAmount()
 				.doubleValue();
-
-		System.out.println("b3: " + currentamountBenzin);
 
 		return currentamountBenzin;
 	}
@@ -159,15 +153,11 @@ public class RefillInventoryService {
 							 .stream()
 							 .findFirst();
 
-		System.out.println("d1: " + dieselObj);
-
 		Product diesel = dieselObj.get();
 
 		var dieselOpt = inventory.findByProduct(diesel)
 								 .stream()
 								 .findFirst();
-
-		System.out.println("d2: " + dieselOpt);
 
 		UniqueInventoryItem dieselItem = dieselOpt.get();
 
@@ -175,13 +165,11 @@ public class RefillInventoryService {
 				.getAmount()
 				.doubleValue();
 
-		System.out.println("d3: " + currentamountDiesel);
-
 		return currentamountDiesel;
 	}
 
-	public void publishEvent(){
-		FuelWarningEvent event = new FuelWarningEvent(this);
+	public void publishEvent(boolean fuelWarning){
+		FuelWarningEvent event = new FuelWarningEvent(this, fuelWarning);
 		publisher.publishEvent(event);
 	}
 
@@ -190,14 +178,7 @@ public class RefillInventoryService {
 		System.out.println("D: " + getFuelAmountDiesel());
 
 		if(getFuelAmountBenzin() < 10.000 || getFuelAmountDiesel() < 10.000){
-			publishEvent();
+			publishEvent(false);
 		}
-
-		//service functions returns NullPointerException don't know exactly why because tests work
-		//problem with products
-		//goes probably back to initializer
-
-		//ring dependency
-
 	}
 }

@@ -18,20 +18,12 @@ public class FuelWarningEventListener implements ApplicationListener<FuelWarning
 
 	@Override
 	public void onApplicationEvent(FuelWarningEvent event){
-		if (cart.getFuelWarning() == false) {
-			cart.setFuelWarning(true);
-		}
-		else{
-			cart.setFuelWarning(false);
-		}
-
-
-		//overview.setFuelWarning(true);
-
-
+		cart.setFuelWarning(event.getFuelWarning());
+		overview.setFuelWarning(event.getFuelWarning());
+		
 		//call the controller and view a sweetallert with the fuelwarning
 		//use the boolean
 		//both on manager overview and cart
-		//important: reset bool to false after refilling the fuel depot !!!!!
+		//
 	}
 }
