@@ -40,7 +40,8 @@ public class CartServiceUnitTest {
 		cart.addOrUpdateItem(inv.findAll().iterator().next().getProduct(), inv.findAll().iterator().next().getQuantity().getAmount().doubleValue() + 1);
 		
 		// check if buying fails (with first account of customerrepo)
-		assertFalse(this.service.buy(cart, Optional.of(customerRepository.findAll().iterator().next().getUserAccount()), Cash.CASH));
+		cart.setCustomer(customerRepository.findAll().iterator().next());
+		assertFalse(this.service.buy(cart, Cash.CASH));
 		
 		cart.clear();
 		
@@ -50,8 +51,8 @@ public class CartServiceUnitTest {
 		}
 		
 		// check for buying with no account
-		Optional<UserAccount> acc = Optional.empty();
-		assertFalse(service.buy(cart, acc, Cash.CASH));
+		cart.setCustomer(null);
+		assertFalse(service.buy(cart, Cash.CASH));
 		
 		// check for correct quantities
 		// salespoints isEqualTo() doesnt exist here for some reason
@@ -61,8 +62,9 @@ public class CartServiceUnitTest {
 						&& !item.getQuantity().isGreaterThan(inv.findByProduct(item.getProduct()).get().getQuantity())));
 		
 		// buying with first account from customerrepository (should be boss)
-		acc = Optional.of(customerRepository.findAll().iterator().next().getUserAccount());
-		assertTrue(service.buy(cart, acc, Cash.CASH));
+		Optional<UserAccount> acc = Optional.of(customerRepository.findAll().iterator().next().getUserAccount());
+		cart.setCustomer(customerRepository.findCustomerByUserAccount(acc.get()));
+		assertTrue(service.buy(cart, Cash.CASH));
 		
 		// check if cart is empty
 		assertTrue(cart.isEmpty());
