@@ -270,6 +270,7 @@ image:models/analysis/Kunde tankt, bezahlt, geht.svg[] +
 - Altersabfrage bei dem Kauf von Zigaretten und Alkohol
 - bei Reservierungen: Tischzahl beachten Überbuchung verhindern
 - Sprachauswahl
+- Filterfunktion für Catalog nach McPoints
 
 == Nicht-Funktionale Anforderungen
 
@@ -283,7 +284,7 @@ image:models/analysis/Kunde tankt, bezahlt, geht.svg[] +
 | Skalierbarkeit: 4
 | Verlässlichkeit: 5
 | Performance: 5
-| Sicherheit: 2
+| Sicherheit: 4
 |===
 
 1 = niedrige Priorität,  5 = hohe Priorität
@@ -483,4 +484,3 @@ Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumen
 |===
 
 == Offene Punkte
-- konkrete Nicht-Funktionale Anforderungen

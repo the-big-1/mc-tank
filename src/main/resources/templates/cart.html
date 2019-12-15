@@ -41,7 +41,7 @@
                         <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
                           <div class="order-note">
                               <div class="form-group">
-                                <form th:action="@{/cart/username}" method="post" th:if="${cart.owner == null}">
+                                <form th:action="@{/cart/username}" method="post" th:if="${cart.customer == null}">
                                   <div class="input-group">
                                     <input id="username" type="text" class="form-control" placeholder="Username"
                                            name="username" aria-label="Username" aria-describedby="button-addonTags">
@@ -52,7 +52,7 @@
                                     </div>
                                   </div>
                                 </form>
-                                <form th:action="@{/cart/discount}" method="post" th:if="${cart.owner != null}">
+                                <form th:action="@{/cart/discount}" method="post" th:if="${cart.customer != null}">
                                   <div class="input-group">
                                     <input id="discountCode" type="text" class="form-control" placeholder="Coupon Code"
                                            name="discountCode" aria-label="Coupon" aria-describedby="button-addonTags">

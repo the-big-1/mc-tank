@@ -1,16 +1,11 @@
 package company18.mctank.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import org.salespointframework.useraccount.UserAccount;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.*;
 
 @Entity
 public class Customer {
@@ -23,6 +18,9 @@ public class Customer {
 	private String mobile;
 
 	private Date lastActivityDate;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Discount> discounts;
 
 	@SuppressWarnings("unused")
 	private Customer() {
@@ -102,6 +100,29 @@ public class Customer {
 
 	public void updateLastActivityDate(){
 
+	}
+
+	public List<Discount> getDiscounts() {
+		return discounts;
+	}
+
+	public void setDiscounts(List<Discount> discounts) {
+		this.discounts = discounts;
+	}
+
+	public void addDiscount(Discount discount) {
+		if (this.discounts == null)
+			this.discounts = new LinkedList<>();
+		this.discounts.add(discount);
+	}
+
+	public void removeDiscount(String discountProductName) {
+		final String discountShortProductName = discountProductName.substring(0, Discount.VALID_DISCOUNT_LENGTH);
+		getDiscounts().stream()
+				.filter(discount -> discount.getShortId().equals(discountShortProductName))
+				.findFirst()
+				.get()
+				.setStatus(Discount.DiscountStatus.USED);
 	}
 
 }

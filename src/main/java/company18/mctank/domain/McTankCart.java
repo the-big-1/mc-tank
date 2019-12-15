@@ -1,57 +1,47 @@
 package company18.mctank.domain;
 
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import javax.money.MonetaryAmount;
-
 
 
 import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
-import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * McTankCart as a component of Cart in Salespoint.
+ * @author vivien
+ *
+ */
 
 @Component
 public class McTankCart extends Cart{
-	public McTankCart(){}
 
-	private UserAccount owner;
+	private Customer customer;
 
-	public void mcPointBonus(){
-	
-	// deletes old bonus if existing
-	String mcPointBonusStr = "McPoint Bonus";
-	if (this.containsDiscount(mcPointBonusStr)) {
-		for (CartItem item : this.toList()) {
-			if (item.getProductName().equals(mcPointBonusStr))
-				this.removeItem(item.getId());
+	public int getMcPointBonus() {
+		
+		// counts the number of categories in the cart to calculate discount
+		List<String> listedCategories = new LinkedList<>();
+		Streamable<String> currentCategories;
+		for(CartItem i: this) {
+			currentCategories= i.getProduct().getCategories();
+			for(String cat : currentCategories) {
+				if (!listedCategories.contains(cat))
+					listedCategories.add(cat);
+			}
 		}
+
+		return listedCategories.size();
+
 	}
-	
-	// counts the number of categories in the cart to calculate discount
-	List<String> listedCategories = new LinkedList<String>();
-	Streamable<String> currentCategories;
-	for(CartItem i: this){
-		currentCategories= i.getProduct().getCategories();
-		for(String cat : currentCategories) {
-			if (!listedCategories.contains(cat))
-				listedCategories.add(cat);
-		}
-	}
-	
-	this.addOrUpdateItem(new Product(mcPointBonusStr, this.getPrice().multiply(listedCategories.size()*0.05).negate().with(MonetaryOperators.rounding())), 1);
-		//super.getPrice().multiply(discount).negate();
-	}
-	
+
 	
 	// rounds Carts getPrice()
 	@Override
@@ -60,25 +50,35 @@ public class McTankCart extends Cart{
 	}
 
 
+	/**
+	 * 
+	 * @param discountCode each user gets a certain discount code once when registrated
+	 */
 	public void addDiscount(String discountCode){
-		// TODO individual for user
-		Map<String, Integer> discountCodes = new HashMap<String, Integer>();
-		discountCodes.put("McTen", 10);
-		discountCodes.put("McFive", 5);
-		discountCodes.put("Registration Bonus", 10);
-		
-		for (Map.Entry<String, Integer> entry : discountCodes.entrySet()) {
-			if (entry.getKey().equals(discountCode)  && !this.containsDiscount(entry.getKey())) {
-				this.addOrUpdateItem(new Product(entry.getKey(),
-												this.getPrice().multiply(entry.getValue()/100.0).negate().with(MonetaryOperators.rounding())), 1);
+		if (discountCode.length() < Discount.VALID_DISCOUNT_LENGTH)
+			return;
+
+		for (Discount discount: this.customer.getDiscounts()) {
+			if (discount.getStatus() == Discount.DiscountStatus.AVAILABLE &&
+					discount.getId().toString().startsWith(discountCode) &&
+					!this.containsDiscount(discount)) {
+				Product product = new Product(discount.getDiscountProductName(),
+												discount.getDiscountPrice(this.getPrice()));
+				this.addOrUpdateItem(product, 1);
 			}
 		}
 	}
 
-	public boolean containsDiscount(String discountCode){
+	/**
+	 * 
+	 * @param discount 
+	 * @return if the code has already been used.
+	 */
+	public boolean containsDiscount(Discount discount){
 		// every code can only be used once
-		for (CartItem item: this.toList()){
-			if (discountCode.equals(item.getProductName())){
+		String discountName = discount.getDiscountProductName();
+		for (CartItem item: this.toList()) {
+			if (discountName.equals(item.getProductName())) {
 				return true;
 			}
 		}
@@ -88,16 +88,18 @@ public class McTankCart extends Cart{
 	@Override
 	public void clear() {
 		super.clear();
-		this.owner = null;
+		this.customer = null;
 	}
 
-	public UserAccount getOwner() {
-		return owner;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setOwner(UserAccount owner) {
-		this.owner = owner;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
+
+
 }
 
 
