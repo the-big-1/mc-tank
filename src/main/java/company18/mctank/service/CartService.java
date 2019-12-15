@@ -20,6 +20,11 @@ import org.springframework.stereotype.Service;
 import company18.mctank.domain.McTankCart;
 import company18.mctank.domain.McTankOrder;
 
+/**
+ * Service to turn the session of a cart into an order and handle pay function.
+ * @author vivien
+ *
+ */
 @Service
 public class CartService {
 
@@ -33,6 +38,12 @@ public class CartService {
 		this.itemsService = itemsService;
 	}
 	
+	/**
+	 * 
+	 * @param cart can only be paid if there is a user account and pay method.
+	 * @param payMethod
+	 * @return whether the cart can be turned to an order.
+	 */
 	public boolean buy(McTankCart cart, PaymentMethod payMethod) {
 		if (cart.getCustomer() == null)
 			return false;

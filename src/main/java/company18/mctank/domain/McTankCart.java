@@ -14,16 +14,19 @@ import org.salespointframework.order.CartItem;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * McTankCart as a component of Cart in Salespoint.
+ * @author vivien
+ *
+ */
 
 @Component
 public class McTankCart extends Cart{
 
-	public McTankCart(){}
-
 	private Customer customer;
 
 	public int getMcPointBonus() {
+		
 		// counts the number of categories in the cart to calculate discount
 		List<String> listedCategories = new LinkedList<>();
 		Streamable<String> currentCategories;
@@ -47,6 +50,10 @@ public class McTankCart extends Cart{
 	}
 
 
+	/**
+	 * 
+	 * @param discountCode each user gets a certain discount code once when registrated
+	 */
 	public void addDiscount(String discountCode){
 		if (discountCode.length() < Discount.VALID_DISCOUNT_LENGTH)
 			return;
@@ -62,6 +69,11 @@ public class McTankCart extends Cart{
 		}
 	}
 
+	/**
+	 * 
+	 * @param discount 
+	 * @return if the code has already been used.
+	 */
 	public boolean containsDiscount(Discount discount){
 		// every code can only be used once
 		String discountName = discount.getDiscountProductName();
