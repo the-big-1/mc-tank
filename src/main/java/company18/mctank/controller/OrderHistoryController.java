@@ -8,6 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import company18.mctank.domain.McTankOrder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.constraints.NotEmpty;
 
 @Controller
 public class OrderHistoryController {
@@ -24,5 +28,11 @@ public class OrderHistoryController {
 	String orders(Model model) {
 		model.addAttribute("orders", ordersService.findAll());
 		return "orderhistory";
+	}
+
+	@PostMapping("/order/delete")
+	public String deleteOrder(@RequestParam @NotEmpty String id){
+		ordersService.deleteOrderBy(id);
+		return "redirect:/";
 	}
 }

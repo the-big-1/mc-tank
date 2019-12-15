@@ -59,4 +59,5 @@ public class AccountController {
 		reservationService.deleteById(reservationId);
 		return "redirect:/account";
 	}
+
 }

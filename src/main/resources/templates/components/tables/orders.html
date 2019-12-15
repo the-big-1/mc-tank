@@ -65,10 +65,13 @@
             </div>
             <div class="col-sm-6" th:if="${role} == 'Customer'">
               <h6 class="mb-0">
-                <button class="btn btn-success-rgba font-16">
-                  <i class="feather icon-file mr-2"></i>
-                  Request Invoice
-                </button>
+                <form action="/order/delete" method="post">
+                  <button type="submit" th:name="id" th:value="${order.getIdString()}"
+                          class="btn btn-danger-rgba font-16">
+                    <i class="feather icon-rewind mr-2"></i>
+                    Request Refund
+                  </button>
+                </form>
               </h6>
             </div>
           </div>

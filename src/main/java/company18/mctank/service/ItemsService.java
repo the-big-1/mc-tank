@@ -11,10 +11,10 @@ import javax.money.MonetaryAmount;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.OrderManager;
-import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -31,7 +31,7 @@ public class ItemsService {
 	@Autowired
 	private OrderManager<McTankOrder> orderManager;
 	@Autowired
-	private UniqueInventory<UniqueInventoryItem> inventory;
+	private UniqueInventory<UniqueInventoryItem> inventoryRepository;
 
 	public Product createNewProduct(NewItemForm form) {
 		return  createNewProduct(form.getProductName(), form.getPrice(), form.getProductCategories());
@@ -93,14 +93,29 @@ public class ItemsService {
 
 	public Map<String, Integer> getQuantityMap() {
 		Map<String, Integer> quantityMap = new HashMap<>();
-		for (UniqueInventoryItem item : inventory.findAll()) {
-			quantityMap.put(Objects.requireNonNull(item.getProduct().getId()).getIdentifier(), item.getQuantity().getAmount().intValue());
+		for (UniqueInventoryItem item : inventoryRepository.findAll()) {
+			String id = Objects.requireNonNull(item.getProduct().getId()).getIdentifier();
+			Integer amount = item.getQuantity().getAmount().intValue();
+			quantityMap.put(id, amount);
 		}
 		return quantityMap;
 	}
 
+
+	public Optional<UniqueInventoryItem> findProduct(Product product){
+		return inventoryRepository.findByProduct(product);
+	}
+
+	public Optional<UniqueInventoryItem> findProduct(ProductIdentifier productId){
+		return inventoryRepository.findByProductIdentifier(productId);
+	}
+
 	public Quantity getProductQuantity(Product product) {
-		return inventory.findByProductIdentifier(product.getId()).get().getQuantity();
+		return this.findProduct(product).map(InventoryItem::getQuantity).orElse(null);
+	}
+
+	public void updateProductQuantity(ProductIdentifier productId, Quantity q){
+		this.findProduct(productId).map(p -> p.increaseQuantity(q));
 	}
 
 }
