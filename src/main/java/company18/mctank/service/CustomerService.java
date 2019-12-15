@@ -9,36 +9,81 @@ import company18.mctank.exception.UserNotFoundException;
 import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
 import company18.mctank.forms.SignUpForm;
+import company18.mctank.domain.McTankOrder;
+import company18.mctank.exception.UnauthorizedUserException;
+import company18.mctank.forms.RegistrationForm;
+
 import company18.mctank.repository.CustomerRepository;
+
 import org.salespointframework.useraccount.*;
+
+
+import org.salespointframework.order.OrderManager;
+import org.salespointframework.useraccount.Role;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.UserAccountIdentifier;
+import org.salespointframework.useraccount.UserAccountManager;
+
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Repository;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+
 import java.util.List;
+
+import static java.util.concurrent.TimeUnit.MINUTES;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import java.util.Optional;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 
 
 @Service
 public class CustomerService {
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
 
+
 	private final CustomerRepository customerRepository;
 
 	private final UserAccountManager userAccountManager;
 
+	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
+	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	private final OrderManager<McTankOrder> orderManager;
+	private LocalDateTime newYear = LocalDateTime.parse("2020-1-1T0:0:0");
+	private long initialDelay = LocalDateTime.now().until(newYear,ChronoUnit.MINUTES);
+	private final CustomerRepository customers;
+
+	private final UserAccountManager userAccounts;
+
+
 	@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-	public CustomerService(CustomerRepository customers, UserAccountManager userAccounts) {
+	public CustomerService(CustomerRepository customers, UserAccountManager userAccounts,OrderManager<McTankOrder> orderManager) {
 
 		Assert.notNull(customers, "CustomerRepository must not be null!");
 		Assert.notNull(userAccounts, "UserAccountManager must not be null!");
 
+
 		this.customerRepository = customers;
 		this.userAccountManager = userAccounts;
+
+		this.customers = customers;
+		this.userAccounts = userAccounts;
+		this.orderManager = orderManager;
+
 	}
 
 
@@ -147,6 +192,7 @@ public class CustomerService {
 		}
 	}
 
+
 	private UserDetails getPrincipal() throws AnonymusUserException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal == null) {
@@ -198,5 +244,26 @@ public class CustomerService {
 		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
 		return customerRepository.findCustomerByUserAccount(userAccount);
 	}
+
+	public void springCleaning() {
+		//TODO updating lastOrderDate when creating new order
+		final Runnable cleaning = new Runnable() { 
+			public void run() {
+				for(McTankOrder s:orderManager.findAll(PageRequest.of(0,10))) {
+					if(s.getDateCreated().until(newYear,ChronoUnit.DAYS)>=100) {
+							orderManager.delete(s);
+						}
+					}
+				for(Customer c:customers.findAll()) {
+						if(c.getLastOrderDate().until(newYear, ChronoUnit.DAYS)>=365) {
+							customers.delete(c);	
+						}
+					}
+				newYear.plusYears(1);
+				}
+			};
+			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleaning,initialDelay, 525600,MINUTES);
+		};
+
 
 }
