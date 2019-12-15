@@ -23,7 +23,7 @@ public class GasPump {
 	}
 
 	public String getFuelType() {
-		return this.fuelType;
+		return "diesel fuel".equals(this.fuelType) ? "Diesel" : "Super Benzin";
 	}
 
 	public float getFuelQuantity() {

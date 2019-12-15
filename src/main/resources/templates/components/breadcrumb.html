@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="std" class="breadcrumbbar">
+  <div class="row align-items-center">
+    <div class="col-md-5 col-lg-5">
+      <h4 class="page-title" th:text="${breadcrumbbarName}">Cart</h4>
+      <div class="breadcrumb-list">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page" th:text="${breadcrumbbarName}">Cart</li>
+        </ol>
+      </div>
+    </div>
+    <div th:if="${isCartNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <a href="/reservation">
+          <button class="btn btn-primary-rgba"><i class="feather icon-calendar mr-2"></i>Reservation</button>
+        </a>
+        <a href="/items">
+          <button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Select Product</button>
+        </a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
+      </div>
+    </div>
+    <div th:if="${isOverviewNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <a  class="ham btn btn-secondary-rgba d-lg-inline-block d-sm-none" href="javascript:void(0);">
+          <i class="feather icon-aperture"></i>
+          <span id="compact">Compact Mode</span>
+        </a>
+        <a href="/" class="btn btn-primary-rgba"><i class="feather icon-refresh-ccw mr-2"></i>Update</a>
+      </div>
+    </div>
+    <div th:if="${isUserManagmentNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <button type="button" id="create-user" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add User</button>
+      </div>
+    </div>
+    <div th:if="${isProductManagmentNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <button type="button" id="create-item" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add Product</button>
+      </div>
+    </div>
+    <div th:if="${isProductNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <a href="/reservation">
+          <button class="btn btn-primary-rgba"><i class="feather icon-calendar mr-2"></i>Reservation</button>
+        </a>
+        <a href="/cart">
+          <button class="btn btn-primary-rgba"><i class="feather icon-arrow-left-circle mr-2"></i>Back to Cart</button>
+        </a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
+      </div>
+    </div>
+    <div th:if="${isReservationManagmentNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <!--suppress XmlDuplicatedId is resolved by Thymeleaf insertion-->
+        <button type="button" id="create-reservation" class="btn btn-primary-rgba">
+          <i class="feather icon-plus mr-2"></i>Add Reservation
+        </button>
+      </div>
+    </div>
+    <div th:if="${isReservationNavEnabled}" class="col-md-7 col-lg-7">
+      <div class="widgetbar">
+        <!--suppress XmlDuplicatedId is resolved by Thymeleaf insertion-->
+        <button type="button" id="create-reservation" class="btn btn-primary-rgba">
+          <i class="feather icon-plus mr-2"></i>Add Reservation
+        </button>
+        <a href="/items">
+          <button class="btn btn-primary-rgba"><i class="feather icon-shopping-cart mr-2"></i>To Cart</button>
+        </a>
+        <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true" class="d-inline-block">
+          <button class="btn btn-danger-rgba" type="submit">Logout<i class="feather icon-log-out ml-2"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:fragment="admin"
+     th:insert="components/breadcrumb :: std(breadcrumbbarName='Overview', isOverviewNavEnabled=true)"></div>
+
+<div th:fragment="user-managment"
+     th:insert="components/breadcrumb :: std(
+       breadcrumbbarName='User managment',
+       isUserManagmentNavEnabled=true
+     )"></div>
+
+<div th:fragment="product-managment"
+     th:insert="components/breadcrumb :: std(
+       breadcrumbbarName='Product managment',
+       isProductManagmentNavEnabled=true
+     )"></div>
+
+<div th:fragment="reservation-managment"
+     th:insert="components/breadcrumb :: std(
+       breadcrumbbarName='Reservation managment',
+       isReservationManagmentNavEnabled=true
+     )"></div>
+
+<div th:fragment="user-account"
+     th:insert="components/breadcrumb :: std(
+       breadcrumbbarName='User Account',
+       isAccount=true
+     )"></div>
+
+
+</html>

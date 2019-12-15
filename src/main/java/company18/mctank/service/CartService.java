@@ -1,8 +1,11 @@
 package company18.mctank.service;
 
 import java.util.Optional;
+import java.util.function.Predicate;
+
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.OrderManager;
+import org.salespointframework.order.OrderStatus;
 import org.salespointframework.payment.PaymentMethod;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
@@ -14,21 +17,17 @@ import company18.mctank.domain.McTankOrder;
 @Service
 public class CartService {
 	private OrderManager<McTankOrder> orderManager;
-	
-	public CartService(OrderManager<McTankOrder> orderManager) {
+	private ItemsService itemsService;
+
+	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService) {
 		this.orderManager = orderManager;
+		this.itemsService = itemsService;
 	}
 	
 	public boolean buy(McTankCart cart, Optional<UserAccount> userAccount, PaymentMethod payMethod) {
-		McTankOrder order;
-		// check for userAccount
-		if (userAccount.isPresent())
-			//creating new Order attached to account
-			order = new McTankOrder(userAccount.get());
-		else return false;
-		
-		// add items to order
-	    cart.addItemsTo(order);
+		McTankOrder order = getOrder(cart, userAccount);
+		if (order == null)
+			return false;
 		
 		// set paymentmethod
 		order.setPaymentMethod(payMethod);
@@ -49,6 +48,47 @@ public class CartService {
 		cart.clear();
 		return true;
 	}
+
+	public boolean save(McTankCart cart) {
+		McTankOrder order = getOrder(cart, Optional.of(cart.getOwner()));
+		if (order == null)
+			return false;
+
+		//save order
+		this.orderManager.save(order);;
+		return true;
+	}
+
+	public boolean load(McTankCart cart, UserAccount userAccount) {
+		McTankOrder openOrder = this.orderManager.findBy(userAccount)
+				.stream()
+				.filter(mcTankOrder ->
+						mcTankOrder.getOrderStatus() == OrderStatus.OPEN)
+				.findFirst()
+				.orElse(null);
+		if (openOrder == null)
+			return false;
+		openOrder.getOrderLines()
+				.forEach(orderLine ->
+						itemsService.getProduct(orderLine.getProductIdentifier())
+							.ifPresent(product -> cart.addOrUpdateItem(product, orderLine.getQuantity())));
+		return true;
+	}
+
+	private McTankOrder getOrder(McTankCart cart, Optional<UserAccount> userAccount) {
+		McTankOrder order;
+		// check for userAccount
+		if (!userAccount.isPresent())
+			return null;
+
+		//creating new Order attached to account
+		order = new McTankOrder(userAccount.get());
+
+		// add items to order
+		cart.addItemsTo(order);
+		return order;
+	}
+
 	
 	public void addOrUpdateItem(McTankCart cart, Product product, int amount, boolean claim) {
 		if (claim) {

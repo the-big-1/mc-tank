@@ -1,6 +1,7 @@
 package company18.mctank.controller;
 
-import company18.mctank.forms.RegistrationForm;
+import company18.mctank.exception.ExistedUserException;
+import company18.mctank.forms.SignUpForm;
 import company18.mctank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,15 @@ public class SignUpController {
 	private CustomerService customerService;
 
 	@PostMapping("/sign-up")
-	String registerNew(@Valid RegistrationForm form, Errors result) {
-
+	String registerNew(@Valid SignUpForm form, Errors result) {
 		if (result.hasErrors()) {
 			return "sign-up";
 		}
-		customerService.createCustomer(form);
+		try {
+			customerService.createCustomer(form);
+		} catch (ExistedUserException e) {
+			return "redirect:/sign-up?error";
+		}
 		return "redirect:/";
 	}
 

@@ -11,10 +11,10 @@
         <!-- Start Logobar -->
         <div class="logobar">
           <a href="/" class="logo logo-large">
-            <img src="/images/logo.png" class="img-fluid" alt="logo">
+            <img src="/static/images/logo.png" class="img-fluid" alt="logo">
           </a>
           <a href="/" class="logo logo-small">
-            <img src="/images/favicon.png" class="img-fluid" alt="logo">
+            <img src="/static/images/favicon.png" class="img-fluid" alt="logo">
           </a>
         </div>
         <!-- End Logobar -->
@@ -23,25 +23,31 @@
           <ul class="vertical-menu">
             <li>
               <a th:href="@{/overview}">
-                <img src="/images/svg/icons/dashboard.svg" class="img-fluid" alt="dashboard">
+                <img src="/static/images/svg/icons/dashboard.svg" class="img-fluid" alt="Dashboard">
                 <span>Dashboard test</span>
               </a>
             </li>
             <li>
               <a th:href="@{/user-management}">
-                <img src="/images/svg/icons/user.svg" class="img-fluid" alt="dashboard">
+                <img src="/static/images/svg/icons/user.svg" class="img-fluid" alt="User">
                 <span>User management</span>
               </a>
             </li>
             <li>
               <a th:href="@{/items}">
-                <img src="/images/svg/icons/ecommerce.svg" class="img-fluid" alt="dashboard">
-                <span>Product catalog</span>
+                <img src="/static/images/svg/icons/ecommerce.svg" class="img-fluid" alt="Product">
+                <span>Product management</span>
+              </a>
+            </li>
+            <li>
+              <a th:href="@{/reservation}">
+                <img src="/static/images/svg/icons/advanced.svg" class="img-fluid" alt="Reservation">
+                <span>Reservations</span>
               </a>
             </li>
             <li>
               <a href="javascript: document.logoutForm.submit()">
-                <img src="/images/svg/icons/logout.svg" class="img-fluid" alt="dashboard">
+                <img src="/static/images/svg/icons/logout.svg" class="img-fluid" alt="dashboard">
                 <span>Logout</span>
                 <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                   <input hidden type="submit" value="Sign Out"/>

@@ -4,6 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import company18.mctank.domain.Reservation;
 
+
+import java.util.List;
+
+
 /**
  * Repository containing {@link Reservation}s.
  * Extends {@link CrudRepository}.
@@ -12,4 +16,5 @@ import company18.mctank.domain.Reservation;
  */
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
+	List<Reservation> findAllByUsername(String username);
 }

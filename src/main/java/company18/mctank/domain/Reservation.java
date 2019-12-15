@@ -12,18 +12,20 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class Reservation {
+public abstract class Reservation {
 	@Id @GeneratedValue
 	private long id;
 	
 	private String name;
+	private String username;
 	private LocalDateTime date;
 	
 	public Reservation() {}
 	
-	public Reservation(String name, LocalDateTime date) {
+	public Reservation(String name, LocalDateTime date, String username) {
 		this.name = name;
 		this.date = date;
+		this.username = username;
 	}
 	
 	public String getName() {
@@ -37,4 +39,10 @@ public class Reservation {
 	public long getId() {
 		return id;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public abstract String getMcPoint();
 }

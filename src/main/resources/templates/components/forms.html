@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<form th:fragment="std">
+  <div class="form-head">
+    <a href="/" class="logo"><img src="/images/logo.png" class="img-fluid" alt="logo"></a>
+  </div>
+  <h4 class="text-primary my-4" th:text="${formHeader}">Sign Up.</h4>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" th:text="${errorText}" th:if="${param.error}">
+    <strong>Oh no!</strong> Login or Password is incorrect.
+  </div>
+  <div class="form-group">
+    <label class="d-none" for="username"></label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+  </div>
+  <div th:if="${withEmail}" class="form-group mb-3">
+    <label class="d-none" for="email"></label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" required>
+  </div>
+  <div class="form-group mb-3">
+    <label class="d-none" for="password"></label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-success btn-lg btn-block font-18" th:text="${formHeader}">Sign Up</button>
+</form>
+
+<form th:fragment="sign-up" th:object="${form}"
+      th:insert="components/forms :: std(
+        formHeader='Sign Up',
+        errorText='User already exists',
+        withEmail=true
+      )" th:action="@{/sign-up}" method="post"></form>
+
+<form th:fragment="login"
+      th:insert="components/forms :: std(
+        formHeader='Log In',
+        errorText='Invalid password or username.'
+      )" th:action="@{/login}"  method="post">
+</form>
+</html>

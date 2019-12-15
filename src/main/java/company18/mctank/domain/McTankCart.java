@@ -14,6 +14,7 @@ import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class McTankCart extends Cart{
 	public McTankCart(){}
+
+	private UserAccount owner;
 
 	public void mcPointBonus(){
 	
@@ -58,6 +61,7 @@ public class McTankCart extends Cart{
 
 
 	public void addDiscount(String discountCode){
+		// TODO individual for user
 		Map<String, Integer> discountCodes = new HashMap<String, Integer>();
 		discountCodes.put("McTen", 10);
 		discountCodes.put("McFive", 5);
@@ -79,6 +83,20 @@ public class McTankCart extends Cart{
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void clear() {
+		super.clear();
+		this.owner = null;
+	}
+
+	public UserAccount getOwner() {
+		return owner;
+	}
+
+	public void setOwner(UserAccount owner) {
+		this.owner = owner;
 	}
 }
 

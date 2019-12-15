@@ -1,17 +1,13 @@
 package company18.mctank.domain;
 
-public enum CustomerRoles {
-	CUSTOMER("CUSTOMER"),
-	MANAGER("MANAGER"),
-	ADMIN("ADMIN");
+import org.salespointframework.useraccount.Role;
 
-	String role;
+public class CustomerRoles {
 
-	CustomerRoles(String role) {
-		this.role = role;
-	}
+	public static final Role CUSTOMER = Role.of("CUSTOMER");
+	public static final Role MANAGER = Role.of("MANAGER");
+	public static final Role ADMIN = Role.of("ADMIN");
 
-	public String getRole(){
-		return "ROLE_" + this.role;
-	}
+	private CustomerRoles(){}
+
 }
