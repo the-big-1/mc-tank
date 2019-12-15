@@ -1,9 +1,8 @@
 package company18.mctank.controller;
 
-import java.util.stream.Stream;
-
+import company18.mctank.service.OrdersService;
 import org.salespointframework.order.OrderManager;
-import org.salespointframework.order.OrderStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +12,9 @@ import company18.mctank.domain.McTankOrder;
 @Controller
 public class OrderHistoryController {
 	
-	OrderManager<McTankOrder> orderManager;
-	
-	OrderHistoryController(OrderManager<McTankOrder> orderManager){
-		this.orderManager = orderManager;
-	}
+	@Autowired
+	OrdersService ordersService;
+
 	/**
 	 * Adds all completed {@link McTankOrder}s to model.
 	 * @param model model
@@ -25,8 +22,7 @@ public class OrderHistoryController {
 	 */
 	@GetMapping("/orders")
 	String orders(Model model) {
-		Stream<McTankOrder> orders =  this.orderManager.findBy(OrderStatus.COMPLETED).get().sorted();
-		model.addAttribute("orders", (Iterable<McTankOrder>) orders::iterator);
+		model.addAttribute("orders", ordersService.findAll());
 		return "orderhistory";
 	}
 }
