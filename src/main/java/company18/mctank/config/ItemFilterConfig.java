@@ -7,10 +7,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ItemFilterConfig {
 
-	
+	/**
+	 * Filters products with negative prices to not have their quantities reducted in the inventory (claims or discounts).
+	 * @return false if items quantity is not supposed to be reduced in inventory
+	*/
 	@Bean
 	LineItemFilter filter() {
-		// filters products with negative prices to not have their quantities reducted in the inventory (claims or discounts)
 		return item -> !item.getPrice().isNegative();
 	}
 }

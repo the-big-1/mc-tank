@@ -14,6 +14,7 @@ import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.CartItem;
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +24,9 @@ import org.springframework.stereotype.Component;
 public class McTankCart extends Cart{
 	public McTankCart(){}
 
-	
+	private UserAccount owner;
 
-public void mcPointBonus(){
+	public void mcPointBonus(){
 	
 	// deletes old bonus if existing
 	String mcPointBonusStr = "McPoint Bonus";
@@ -47,9 +48,11 @@ public void mcPointBonus(){
 		}
 	}
 	
-	this.addOrUpdateItem(new Product(mcPointBonusStr, this.getPrice().multiply(listedCategories.size()*0.05).negate()), 1);
+	this.addOrUpdateItem(new Product(mcPointBonusStr, this.getPrice().multiply(listedCategories.size()*0.05).negate().with(MonetaryOperators.rounding())), 1);
 		//super.getPrice().multiply(discount).negate();
-}
+	}
+	
+	
 	// rounds Carts getPrice()
 	@Override
 	public MonetaryAmount getPrice() {
@@ -58,6 +61,7 @@ public void mcPointBonus(){
 
 
 	public void addDiscount(String discountCode){
+		// TODO individual for user
 		Map<String, Integer> discountCodes = new HashMap<String, Integer>();
 		discountCodes.put("McTen", 10);
 		discountCodes.put("McFive", 5);
@@ -65,7 +69,8 @@ public void mcPointBonus(){
 		
 		for (Map.Entry<String, Integer> entry : discountCodes.entrySet()) {
 			if (entry.getKey().equals(discountCode)  && !this.containsDiscount(entry.getKey())) {
-				this.addOrUpdateItem(new Product(entry.getKey(), this.getPrice().multiply(entry.getValue()/100.0).negate()), 1);
+				this.addOrUpdateItem(new Product(entry.getKey(),
+												this.getPrice().multiply(entry.getValue()/100.0).negate().with(MonetaryOperators.rounding())), 1);
 			}
 		}
 	}
@@ -73,11 +78,25 @@ public void mcPointBonus(){
 	public boolean containsDiscount(String discountCode){
 		// every code can only be used once
 		for (CartItem item: this.toList()){
-			if(discountCode.equals(item.getProductName())){
+			if (discountCode.equals(item.getProductName())){
 				return true;
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void clear() {
+		super.clear();
+		this.owner = null;
+	}
+
+	public UserAccount getOwner() {
+		return owner;
+	}
+
+	public void setOwner(UserAccount owner) {
+		this.owner = owner;
 	}
 }
 

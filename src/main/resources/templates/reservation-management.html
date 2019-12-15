@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!--suppress HtmlRequiredTitleElement  -- Will be inserted with thymeleaf-->
+<head th:insert="core/head :: all(pageName='Reservation', headerSweet=true, headerPicker=true)"></head>
+<body class="vertical-layout">
+<div id="containerbar">
+  <div th:insert="components/admin-nav :: nav "></div>
+  <div class="rightbar">
+    <div th:insert="components/mobile-nav :: extended"></div>
+    <div th:insert="components/breadcrumb :: reservation-managment"></div>
+    <div class="contentbar">
+      <div class="row">
+        <div class="col-lg-12">
+          <div th:insert="components/tables/reservation :: table"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="core/scripts :: std(scriptReservation=true, scriptSweetAlert=true, scriptPicker=true)"></div>
+</body>
+</html>

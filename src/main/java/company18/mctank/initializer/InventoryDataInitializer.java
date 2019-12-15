@@ -14,6 +14,12 @@ import org.springframework.util.Assert;
 
 import company18.mctank.repository.ItemsRepository;
 
+/**
+ * Initializer for inventory.
+ * Implements {@link DataInitializer}.
+ * @author CS
+ *
+ */
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class InventoryDataInitializer implements DataInitializer {
@@ -33,16 +39,22 @@ public class InventoryDataInitializer implements DataInitializer {
 		this.itemsRepository = itemsRepository;
 	}
 
+	/**
+	 * Initializes inventory. 
+	 * Every {@link Product} out of {@link ItemsRepository} gets a {@link Quantity} of 100 depending on products metric unit. 
+	 */
 	@Override
 	@Order(Ordered.LOWEST_PRECEDENCE)
 	public void initialize() {
 		for (Product product : this.itemsRepository.findAll()) {
+			
 			if (!inventoryRepository.findByProduct(product).isPresent()) {
+				// if product is not present create new inventory entry with quantity 100
 				Quantity amount = product.createQuantity(100);
 				UniqueInventoryItem item = new UniqueInventoryItem(product, amount);
 				inventoryRepository.save(item);
-			}
-			else {
+			} else {
+				// else update existing quantity to 100
 				UniqueInventoryItem item = inventoryRepository.findByProduct(product).get();
 				item.increaseQuantity(
 						product.createQuantity(

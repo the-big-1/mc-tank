@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 
+/**
+ * Entity representing McSit reservation. Extends {@link Reservation}.
+ * @author CS
+ */
 @Entity
 public class McSitReservation extends Reservation {
 	@SuppressWarnings("unused")
@@ -11,8 +15,12 @@ public class McSitReservation extends Reservation {
 		super();
 	}
 
-	public McSitReservation(String name, LocalDateTime date) {
-		super(name, date);
+	public McSitReservation(String name, LocalDateTime date, String username) {
+		super(name, date, username);
 	}
 
+	@Override
+	public String getMcPoint() {
+		return "McSit";
+	}
 }

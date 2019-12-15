@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"> lang="en">
+<head th:fragment="std">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="McTank - the best fuel in the world">
+  <meta name="author" content="company18">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <title th:text="'McTank | ' + ${pageName}">McTank</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" th:href="@{/images/favicon.png}">
+  <!-- Charts css -->
+  <link th:if="${headerCharts}" rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/apexcharts.css}">
+  <link th:if="${headerSlider}" rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/slick.css}">
+  <link th:if="${headerSlider}" rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/slick-theme.css}">
+  <link th:if="${headerSweet}" rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/sweetalert2.min.css}">
+  <link th:if="${headerPicker}" rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/datepicker.min.css}">
+  <!-- Start css -->
+  <link th:href="@{/css/vendor/bootstrap.min.css}"  rel="stylesheet" type="text/css">
+  <link th:href="@{/css/vendor/icons.css}"          rel="stylesheet" type="text/css">
+  <link th:href="@{/css/theme.css}"                 rel="stylesheet" type="text/css">
+  <!-- End css -->
+</head>
+
+<head th:fragment="all" th:insert="core/head :: std(headerCharts=true, headerSlider=true)"><title></title></head>
+</html>

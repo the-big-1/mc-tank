@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<div th:fragment="table" class="card m-b-30" th:each="point : ${reservations}">
+  <div class="card-header">
+    <div class="row align-items-center">
+      <div class="col-6">
+        <h5 class="card-title mb-0" th:text="${point.key}">No Data provided</h5>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Username</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each=" reservation : ${point.value}">
+          <th th:text="${reservation.name}">No Info</th>
+          <td th:text="${#temporals.format(reservation.date, 'dd.MM.yyyy')}">No Info</td>
+          <td th:text="${#temporals.format(reservation.date, 'hh:mm a')}">No info</td>
+          <td th:text="${reservation.username}">No Info</td>
+          <td>
+            <div class="button-list">
+              <form th:action="@{/reservation/delete/{id}(id=${reservation.id})}" method="post">
+                <button th:name="id" href="page-order-detail.html" class="btn btn-danger-rgba">
+                  <i class="feather icon-trash m-r-5"></i>
+                  Delete
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

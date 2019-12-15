@@ -2,7 +2,7 @@ package company18.mctank.forms;
 
 import javax.validation.constraints.NotEmpty;
 
-public class RegistrationForm {
+public class SignUpForm {
 
 	@NotEmpty(message = "{RegistrationForm.username.NotEmpty}")
 	private final String username;
@@ -10,8 +10,12 @@ public class RegistrationForm {
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
 	private final String password;
 
-	public RegistrationForm(String username, String password) {
+	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
+	private final String email;
+
+	public SignUpForm(String username, String email, String password) {
 		this.username = username;
+		this.email = email;
 		this.password = password;
 	}
 
@@ -21,6 +25,10 @@ public class RegistrationForm {
 
 	public String getName() {
 		return username;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 }

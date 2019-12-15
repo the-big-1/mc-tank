@@ -1,77 +1,21 @@
 <!DOCTYPE html>
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="McTank - the best fuel in the world">
-  <meta name="author" content="company18">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <title>McTank | Overview</title>
-  <!-- Fevicon -->
-  <link rel="shortcut icon" th:href="@{/images/favicon.png}">
-  <!-- Start css -->
-  <!-- Charts css -->
-  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/apexcharts.css}">
-  <!-- Slider css -->
-  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/slick.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/slick-theme.css}">
-  <!-- Bootstrap -->
-  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/bootstrap.min.css}">
-  <!-- Icons -->
-  <link rel="stylesheet" type="text/css" th:href="@{/static/css/vendor/icons.css}">
-  <!-- Theme -->
-  <link rel="stylesheet" type="text/css" th:href="@{/static/css/theme.css}">
-  <!-- End css -->
-</head>
+<!--suppress HtmlRequiredTitleElement  -- Will be inserted with thymeleaf-->
+<head th:insert="core/head :: all(pageName='Overview')"></head>
 <body class="vertical-layout">
-<!-- Start Containerbar -->
 <div id="containerbar">
-  <!-- Start Leftbar -->
-  <div th:insert="components/navigation/admin-nav :: nav "></div>
-  <!-- End Leftbar -->
-  <!-- Start Rightbar -->
+  <div th:insert="components/admin-nav :: nav "></div>
   <div class="rightbar">
-    <!-- Start Topbar Mobile -->
-    <div th:insert="components/utils/mobile-nav :: nav "></div>
-    <!-- Start Breadcrumbbar -->
-    <div class="breadcrumbbar">
-      <div class="row align-items-center">
-        <div class="col-md-8 col-lg-8">
-          <h4 class="page-title">Overview</h4>
-          <div class="breadcrumb-list">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Overview</li>
-            </ol>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-4">
-          <div class="widgetbar">
-            <a  class="ham btn btn-secondary-rgba d-lg-inline-block d-sm-none" href="javascript:void(0);">
-              <i class="feather icon-aperture"></i>
-              <span id="compact">Compact Mode</span>
-            </a>
-            <a href="/" class="btn btn-primary-rgba"><i class="feather icon-refresh-ccw mr-2"></i>Update</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Breadcrumbbar -->
-    <!-- Start Contentbar -->
+    <div th:insert="components/mobile-nav :: extended"></div>
+    <div th:insert="components/breadcrumb :: admin"></div>
     <div class="contentbar">
-      <!-- Start row -->
       <div class="row">
-        <!-- Start col -->
         <div class="col-lg-12 col-xl-4">
-          <!-- Start row -->
           <div class="row">
-            <!-- Start col -->
             <div class="col-lg-12">
-              <div th:insert="components/widgets/pie-chart :: pie"></div>
+              <div th:insert="components/charts/pie-chart :: pie"></div>
             </div>
-            <!-- End col -->
-            <!-- Start col -->
             <div class="col-lg-12">
               <div class="card m-b-30">
                 <div class="card-body">
@@ -86,38 +30,22 @@
                 </div>
               </div>
             </div>
-            <!-- End col -->
           </div>
-          <!-- End row -->
         </div>
-        <!-- End col -->
-        <!-- Start col -->
         <div class="col-lg-12 col-xl-8">
-          <!-- Start row -->
           <div class="row">
-            <!-- Start col -->
             <div class="col-lg-12">
-              <div th:insert="components/widgets/stack-chart :: stack"></div>
+              <div th:insert="components/charts/stack-chart :: stack"></div>
             </div>
-            <!-- End col -->
-            <!-- Start col -->
             <div class="col-lg-12">
-              <div th:insert="components/widgets/stats-chart :: stats"></div>
+              <div th:insert="components/charts/stats-chart :: stats"></div>
             </div>
-            <!-- End col -->
           </div>
-          <!-- End row -->
         </div>
-        <!-- End col -->
       </div>
-      <!-- End row -->
-      <!-- Start row -->
       <div class="row">
-        <!-- Start col -->
         <div class="col-lg-6 col-xl-4">
-          <!-- Start row -->
           <div class="row">
-            <!-- Start col -->
             <div class="col-lg-6">
               <div class="card text-center m-b-30">
                 <div class="card-header">
@@ -128,14 +56,12 @@
                   <h4 class="mb-3">79</h4>
                   <p>60% Target</p>
                   <div class="progress" style="height: 5px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60"
-                         aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%"
+                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- End col -->
-            <!-- Start col -->
             <div class="col-lg-6">
               <div class="card text-center m-b-30">
                 <div class="card-header">
@@ -146,18 +72,14 @@
                   <h4 class="mb-3">125</h4>
                   <p>80% Target</p>
                   <div class="progress" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                         aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: 80%"
+                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- End col -->
           </div>
-          <!-- End row -->
         </div>
-        <!-- End col -->
-        <!-- Start col -->
         <div class="col-lg-4">
           <div class="card m-b-30">
             <div class="card-header">
@@ -192,8 +114,6 @@
             </div>
           </div>
         </div>
-        <!-- End col -->
-        <!-- Start col -->
         <div class="col-lg-4">
           <div class="card m-b-30">
             <div class="card-header">
@@ -270,15 +190,11 @@
             </div>
           </div>
         </div>
-        <!-- End col -->
-
       </div>
-      <!-- End row -->
     </div>
-    <!-- End Contentbar -->
   </div>
-  <!-- End Rightbar -->
 </div>
+<<<<<<< HEAD
 <!-- End Containerbar -->
 <!-- Start js -->
 <script th:src="@{/js/vendor/jquery.min.js}"></script>
@@ -300,5 +216,8 @@
 <!-- Fuel js-->
 <script th:src="@{js/warnig.js}"></script>
 <!-- End js -->
+=======
+<div th:replace="core/scripts :: std(scriptCharts=true, scriptSlider=true, scriptOverview=true)"></div>
+>>>>>>> origin
 </body>
 </html>

@@ -10,7 +10,7 @@ $(document).ready(function() {
     $.sidebarMenu($('.vertical-menu'));
     $(function() {
         for (var a = window.location, abc = $(".vertical-menu a").filter(function() {
-            return this.href == a;
+            return this.href === a;
         }).addClass("active").parent().addClass("active"); ;) {
             if (!abc.is("li")) break;
             abc = abc.parent().addClass("in").parent().addClass("active");
@@ -45,10 +45,24 @@ $(document).ready(function() {
             $(".ham img.menu-hamburger-collapse").show();
         }
     }
+
     mediaSize();
     window.addEventListener('resize', mediaSize, false);
     /* -- Bootstrap Popover -- */
     $('[data-toggle="popover"]').popover();
     /* -- Bootstrap Tooltip -- */
     $('[data-toggle="tooltip"]').tooltip();
+
+    $.fn.datepicker.language['en'] = {
+        days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        daysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        months: ['January','February','March','April','May','June', 'July','August','September','October','November','December'],
+        monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        today: 'Today',
+        clear: 'Clear',
+        dateFormat: 'yyyy/mm/dd',
+        timeFormat: 'hh:ii aa',
+        firstDay: 0
+    };
 });
