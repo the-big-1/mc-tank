@@ -10,6 +10,12 @@ import org.springframework.util.Assert;
 
 import company18.mctank.service.ReservationService;
 
+/**
+ * Initializes reservations.
+ * Implements {@link DataInitializer}.
+ * @author CS
+ *
+ */
 @Component
 public class ReservationDataInitializer implements DataInitializer {
 	private ReservationService service;
@@ -21,6 +27,9 @@ public class ReservationDataInitializer implements DataInitializer {
 		this.service = service;
 	}
 
+	/**
+	 * Initializes some reservations.
+	 */
 	@Override
 	public void initialize() {
 		LOG.info("Reservation data Initializing");

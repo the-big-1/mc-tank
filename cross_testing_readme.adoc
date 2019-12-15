@@ -1,0 +1,8 @@
+== cross testing readme
+
+Logins for the application:
+
+|===
+|username |password
+|boss     |123
+|manager  |123

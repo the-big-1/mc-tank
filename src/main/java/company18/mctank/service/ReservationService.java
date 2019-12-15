@@ -17,6 +17,10 @@ import company18.mctank.domain.McWashReservation;
 import company18.mctank.domain.Reservation;
 import company18.mctank.repository.ReservationRepository;
 
+/**
+ * Service for {@link Reservation} management.
+ * @author CS
+ */
 @Service
 public class ReservationService {
 	private static final Logger LOG = LoggerFactory.getLogger(ReservationService.class);
@@ -27,11 +31,19 @@ public class ReservationService {
 	@Autowired
 	private CustomerService customerService;
 	
+	/**
+	 * Finds all reservations in {@link ReservationRepository}.
+	 * @return reservations
+	 */
 	public Iterable<Reservation> findAll(){
 		return reservationRepository.findAll();
 	}
-	
-	// finds reservations by class (Reservation, McSitReservation or McWashReservation [.class] possible)
+
+	/**
+	 * Finds reservations by class.
+	 * @param reservationClass class of reservations to be found
+	 * @return reservations with matching class
+	 */
 	public List<Reservation> findByClass(Class<?> reservationClass){
 		LinkedList<Reservation> result = new LinkedList<Reservation>();
 		for (Reservation reservation : reservationRepository.findAll()){
@@ -50,14 +62,22 @@ public class ReservationService {
 			);
 		return reservations;
 	}
-	
-	// sorts reservations by date
+
+	/**
+	 * Sorts reservations by date.
+	 * @param reservations List of reservations to be sorted
+	 * @return sorted reservations
+	 */
 	public List<Reservation> sortByDate(List<Reservation> reservations){
 		List<Reservation> sorted = new ArrayList<>(reservations);
 		sorted.sort(Comparator.comparing(Reservation::getDate));
 		return sorted;
 	}
 	
+	/**
+	 * Deletes reservation with given id from {@link ReservationRepository}.
+	 * @param id reservation to be deleted
+	 */
 	public void deleteById(long id) {
 		reservationRepository.deleteById(id);
 	}
@@ -66,7 +86,15 @@ public class ReservationService {
 		LocalDateTime time = LocalDateTime.of(form.getDate(), form.getTime());
 		this.save(form.getMcPoint(), form.getName(), time, form.getUsername());
 	}
-	
+
+	/**
+	 * Saves reservation as {@link McSitReservation} or {@link McWashReservation}.
+	 * Throws {@link IllegalArgumentException} if reservations date is before now.
+	 * @param mcPoint name of McPoint the reservation belongs to
+	 * @param name reservations name
+	 * @param dateAndTime date and time of reservation
+	 * @param username username of owner of this reservation
+	 */
 	public void save(String mcPoint, String name, LocalDateTime dateAndTime, String username){
 		// test if dateAndTime makes sense
 		if (dateAndTime.isBefore(LocalDateTime.now())) {

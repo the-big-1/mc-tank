@@ -14,6 +14,11 @@ public class InventoryController {
 		this.inv = inv;
 	}
 	
+	/**
+	 * Adds all {@link UniqueInventoryItem}s to the model.
+	 * @param model model
+	 * @return views name
+	 */
 	@GetMapping("/inventory")
 	String inventory(Model model) {
 		model.addAttribute("inventory", inv.findAll());
