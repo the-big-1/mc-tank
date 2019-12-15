@@ -67,6 +67,7 @@ public class CartServiceUnitTest {
 		assertTrue(service.buy(cart, Cash.CASH));
 		
 		// check if cart is empty
+		cart.clear();
 		assertTrue(cart.isEmpty());
 
 		// check if inventory is empty
