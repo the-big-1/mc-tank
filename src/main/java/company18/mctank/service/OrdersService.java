@@ -25,6 +25,11 @@ public class OrdersService {
 	OrderManager<McTankOrder> orderManager;
 
 
+	/**
+	 * Returns all orders for customer
+	 *
+	 * @return list of orders for current customer.
+	 */
 	public List<McTankOrder> getAllOrdersForCustomer() {
 		try {
 			UserAccount currentAccount = customerService.getCurrentUserAccount();
@@ -35,6 +40,12 @@ public class OrdersService {
 		return null;
 	}
 
+	/**
+	 * Returns orders for user account.
+	 *
+	 * @param currentAccount user account
+	 * @return list of orders
+	 */
 	private List<McTankOrder> findOrdersForUserAccount(UserAccount currentAccount) {
 		List<McTankOrder> orders = orderManager.findBy(currentAccount).toList();
 		LOG.info("Request: Get all orders for current user. Done: Found orders for "

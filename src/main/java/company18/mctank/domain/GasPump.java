@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name="gasoline-pump")
 public class GasPump {
+	public static final String DIESEL = "Diesel";
+	public static final String SUPER_BENZIN = "Super Benzin";
 	@XmlElement(name="number")
 	private int number;
 	
@@ -23,7 +25,7 @@ public class GasPump {
 	}
 
 	public String getFuelType() {
-		return "diesel fuel".equals(this.fuelType) ? "Diesel" : "Super Benzin";
+		return "diesel fuel".equals(this.fuelType) ? DIESEL : SUPER_BENZIN;
 	}
 
 	public float getFuelQuantity() {

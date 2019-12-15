@@ -1,6 +1,5 @@
 package company18.mctank.controller;
 
-import company18.mctank.domain.McTankOrder;
 import company18.mctank.forms.CustomerInfoUpdateForm;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.OrdersService;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
-import java.sql.ResultSet;
 
 @Controller
 public class AccountController {

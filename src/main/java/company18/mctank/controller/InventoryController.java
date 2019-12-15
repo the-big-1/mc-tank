@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Controller for getting inventory.
+ */
 @Controller
 public class InventoryController {
 	private final UniqueInventory<UniqueInventoryItem> inv;

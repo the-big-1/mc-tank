@@ -19,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +28,7 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
+	private static final long USER_MAXIMUM_INACTIVITY_TIME_IN_MS = 1000 * 60 * 60 * 24 * 120L; // 120 days
 
 	private final CustomerRepository customerRepository;
 
@@ -88,7 +91,6 @@ public class CustomerService {
 			form.getId());
 	}
 
-
 	public void updateCustomer(String firstname,
 							   String lastname,
 							   String email,
@@ -107,6 +109,14 @@ public class CustomerService {
 		Customer customer = getCustomer(customerId);
 		customer.setDiscounts(discounts);
 		customerRepository.save(customer);
+	}
+
+	public void updateCurrentCustomerLastActivityDate () {
+		Customer customer = this.getCurrentCustomer();
+		if (customer != null) {
+			customer.updateLastActivityDate();
+			this.customerRepository.save(customer);
+		}
 	}
 
 	public void updatePassword(String newPassword, long id) {
@@ -197,6 +207,13 @@ public class CustomerService {
 	public Customer getCustomer(String username) {
 		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
 		return customerRepository.findCustomerByUserAccount(userAccount);
+	}
+
+	@Transactional
+	public void deleteLongInactiveUsers () {
+		final Date lastPossibleDate = new Date(System.currentTimeMillis() - USER_MAXIMUM_INACTIVITY_TIME_IN_MS);
+		Integer deletedUsers = this.customerRepository.deleteAllByLastActivityDateBefore(lastPossibleDate);
+		LOG.info("Users Deleted: {}", deletedUsers);
 	}
 
 }

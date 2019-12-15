@@ -110,7 +110,7 @@
                           <i class="feather icon-award"></i>
                           <div class="media-body">
                             <h5>My Coupons</h5>
-                            <p>7 Point(s)</p>
+                            <p th:text="${customer.getDiscounts().size()} + ' Coupon(s)'">7 Coupon(s)</p>
                           </div>
                         </div>
                       </div>

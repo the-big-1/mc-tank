@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import company18.mctank.domain.McTankOrder;
 
+/**
+ * Order history controller.
+ * Add orders to model.
+ */
 @Controller
 public class OrderHistoryController {
 	
