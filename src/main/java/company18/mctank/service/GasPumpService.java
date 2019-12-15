@@ -30,6 +30,9 @@ public class GasPumpService {
 		this.itemsRepository = itemsRepository;
 	}
 
+	/**
+	 * Inits pump with API after bean init.
+	 */
 	@PostConstruct
 	public void pumpsInit() {
 		for (int i=0; i<TOTAL_GAS_STATIONS; ++i) {
@@ -41,6 +44,11 @@ public class GasPumpService {
 		}
 	}
 
+	/**
+	 * Returns list of pumps.
+	 *
+	 * @return list of pumps
+	 */
 	public GasPump[] getPumps() {
 		return this.pumps;
 	}

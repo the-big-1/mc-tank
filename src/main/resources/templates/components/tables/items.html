@@ -64,6 +64,7 @@
                            class="form-control col-4"
                            th:classappend="${point.key} == 'McZapf' ?
                               'pump-input-' + ${#strings.replace(product.Name,' ','-')} : ''"
+                           th:max="${quantityMap.get(product.getId().getIdentifier())}"
                            placeholder="1" value="1" min="1" step="1"
                            aria-label="Recipient's username" aria-describedby="button-addon-group" required>
                     <div class="input-group-append">

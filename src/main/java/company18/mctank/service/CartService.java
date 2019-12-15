@@ -1,13 +1,9 @@
 package company18.mctank.service;
 
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.function.Predicate;
-
-import company18.mctank.domain.Discount;
-import company18.mctank.factory.DiscountFactory;
+import company18.mctank.domain.Customer;
+import company18.mctank.domain.McTankCart;
+import company18.mctank.domain.McTankOrder;
 import org.salespointframework.catalog.Product;
-import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.payment.PaymentMethod;
@@ -16,9 +12,6 @@ import org.salespointframework.useraccount.UserAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import company18.mctank.domain.McTankCart;
-import company18.mctank.domain.McTankOrder;
 
 @Service
 public class CartService {
@@ -34,13 +27,10 @@ public class CartService {
 	}
 	
 	public boolean buy(McTankCart cart, PaymentMethod payMethod) {
-		if (cart.getCustomer() == null)
+		if (cart.getCustomer() == null || cart.get().count() == 0)
 			return false;
 
-		McTankOrder order = getOrder(cart,
-				Optional.of(cart.getCustomer().getUserAccount()));
-		if (order == null)
-			return false;
+		McTankOrder order = getOrder(cart);
 		
 		// set paymentmethod
 		order.setPaymentMethod(payMethod);
@@ -62,9 +52,7 @@ public class CartService {
 	}
 
 	public boolean save(McTankCart cart) {
-		McTankOrder order = getOrder(cart, Optional.of(cart.getCustomer().getUserAccount()));
-		if (order == null)
-			return false;
+		McTankOrder order = getOrder(cart);
 
 		//save order
 		this.orderManager.save(order);;
@@ -72,12 +60,7 @@ public class CartService {
 	}
 
 	public boolean load(McTankCart cart, UserAccount userAccount) {
-		McTankOrder openOrder = this.orderManager.findBy(userAccount)
-				.stream()
-				.filter(mcTankOrder ->
-						mcTankOrder.getOrderStatus() == OrderStatus.OPEN)
-				.findFirst()
-				.orElse(null);
+		McTankOrder openOrder = getOpenOrder(userAccount);
 		if (openOrder == null)
 			return false;
 		openOrder.getOrderLines()
@@ -87,18 +70,22 @@ public class CartService {
 		return true;
 	}
 
-	private McTankOrder getOrder(McTankCart cart, Optional<UserAccount> userAccount) {
-		McTankOrder order;
-		// check for userAccount
-		if (!userAccount.isPresent())
-			return null;
+	private McTankOrder getOrder(McTankCart cart) {
+		Customer customer = cart.getCustomer();
+		final McTankOrder openOrder = getOpenOrder(customer.getUserAccount());
 
-		//creating new Order attached to account
-		order = new McTankOrder(userAccount.get());
-
-		// add items to order
-		cart.addItemsTo(order);
-		return order;
+		if (openOrder == null) { //creating new Order attached to account
+			McTankOrder newOrder = new McTankOrder(customer.getUserAccount());
+			cart.addItemsTo(newOrder);
+			return newOrder;
+		} else {
+			cart.get().forEach(cartItem -> {
+				if (openOrder.getOrderLines().filter(orderLine -> orderLine.getProductIdentifier().equals(cartItem.getProduct().getId())).isEmpty()) {
+					openOrder.addOrderLine(cartItem.getProduct(), cartItem.getQuantity());
+				}
+			});
+			return openOrder;
+		}
 	}
 
 	
@@ -111,6 +98,16 @@ public class CartService {
 	
 	public void addOrUpdateItem(McTankCart cart, Product product, Quantity amount) {
 		 cart.addOrUpdateItem(product, amount);
+	}
+
+
+	private McTankOrder getOpenOrder(UserAccount userAccount) {
+		return this.orderManager.findBy(userAccount)
+				.stream()
+				.filter(mcTankOrder ->
+						mcTankOrder.getOrderStatus() == OrderStatus.OPEN)
+				.findFirst()
+				.orElse(null);
 	}
 
 }

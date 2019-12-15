@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Discount entity class
+ */
 @Entity
 public class Discount {
 
@@ -90,6 +93,10 @@ public class Discount {
 		return discount;
 	}
 
+	/**
+	 * Status can not be more then 0.2f
+	 * @param discount discount
+	 */
 	public void setDiscount(float discount) {
 		if (discount > 0.2f)
 			throw new IllegalArgumentException("discount can not be more than 20%");

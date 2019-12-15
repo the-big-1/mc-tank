@@ -71,8 +71,8 @@
                             <table class="table table-borderless text-right">
                               <tbody>
                               <tr>
-                                <td></td>
-                                <td></td>
+                                <td th:text="${cart.customer} ? 'Username' : ''"></td>
+                                <td th:text="${cart.customer} ? ${cart.customer.getUsername()} : ''"></td>
                               </tr>
                               <tr>
                                 <td class="f-w-7 font-18"><h4>Total :</h4></td>

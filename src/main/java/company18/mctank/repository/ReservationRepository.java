@@ -16,5 +16,11 @@ import java.util.List;
  */
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
+	/**
+	 * Fina all reservations for user.
+	 *
+	 * @param username username of the user
+	 * @return list of reservations
+	 */
 	List<Reservation> findAllByUsername(String username);
 }

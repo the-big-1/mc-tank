@@ -1,5 +1,7 @@
 package company18.mctank.initializer;
 
+import company18.mctank.domain.GasPump;
+import company18.mctank.service.GasPumpService;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.UniqueInventory;
@@ -26,17 +28,18 @@ public class InventoryDataInitializer implements DataInitializer {
 	private static final Logger LOG = LoggerFactory.getLogger(InventoryDataInitializer.class);
 
 	private final UniqueInventory<UniqueInventoryItem> inventoryRepository;
-
 	private final ItemsRepository itemsRepository;
+	private final GasPumpService gasPumpService;
 
 	public InventoryDataInitializer(UniqueInventory<UniqueInventoryItem> inventoryRepository,
-									ItemsRepository itemsRepository) {
+									ItemsRepository itemsRepository, GasPumpService gasPumpService) {
 
 		Assert.notNull(inventoryRepository, "Inventory must not be null");
 		Assert.notNull(itemsRepository, "Items must not be null");
 
 		this.inventoryRepository = inventoryRepository;
 		this.itemsRepository = itemsRepository;
+		this.gasPumpService = gasPumpService;
 	}
 
 	/**
@@ -46,12 +49,26 @@ public class InventoryDataInitializer implements DataInitializer {
 	@Override
 	@Order(Ordered.LOWEST_PRECEDENCE)
 	public void initialize() {
+		float dieselLiters = 0, benzinLiters = 0;
+		for (GasPump gasPump : gasPumpService.getPumps()) {
+			if (gasPump != null) {
+				if (gasPump.getFuelType().equals(GasPump.DIESEL))
+					dieselLiters += gasPump.getFuelQuantity();
+				else
+					benzinLiters += gasPump.getFuelQuantity();
+			}
+		}
 		LOG.info("Initializing: Inventory");
 		for (Product product : this.itemsRepository.findAll()) {
-			
-			if (!inventoryRepository.findByProduct(product).isPresent()) {
+			if (inventoryRepository.findByProduct(product).isEmpty()) {
 				// if product is not present create new inventory entry with quantity 100
-				Quantity amount = product.createQuantity(100);
+				Quantity amount;
+				if (product.getName().equals(GasPump.DIESEL))
+					amount = product.createQuantity(dieselLiters);
+				else if (product.getName().equals(GasPump.SUPER_BENZIN))
+					amount = product.createQuantity(benzinLiters);
+				else
+					amount = product.createQuantity(100);
 				UniqueInventoryItem item = new UniqueInventoryItem(product, amount);
 				inventoryRepository.save(item);
 			} else {

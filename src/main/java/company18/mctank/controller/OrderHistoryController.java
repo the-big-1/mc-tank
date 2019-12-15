@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * Order history controller.
+ * Add orders to model.
+ */
 @Controller
 public class OrderHistoryController {
 	

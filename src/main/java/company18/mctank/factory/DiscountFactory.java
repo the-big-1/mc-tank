@@ -2,6 +2,11 @@ package company18.mctank.factory;
 
 import company18.mctank.domain.Discount;
 
+/**
+ * Factory for {@link Discount}
+ *
+ * @author ArtemSer
+ */
 public class DiscountFactory {
 
 	public enum DiscountType {
@@ -12,6 +17,12 @@ public class DiscountFactory {
 		LEGENDARY // legendary 20% discount
 	}
 
+	/**
+	 * Create discount from {@link DiscountFactory.DiscountType}.
+	 *
+	 * @param type discount type
+	 * @return Discount
+	 */
 	public static Discount create(DiscountType type) {
 		switch (type) {
 			case REGISTRATION:
@@ -29,6 +40,12 @@ public class DiscountFactory {
 		}
 	}
 
+	/**
+	 * Create discount from {@link DiscountFactory.DiscountType}.
+	 *
+	 * @param mcPoints points from your order
+	 * @return Discount
+	 */
 	public static Discount create(int mcPoints) {
 		if (mcPoints <=0 || mcPoints > 4)
 			throw new IllegalArgumentException("McPoints can not be less or equal than 0 and more then 4");
