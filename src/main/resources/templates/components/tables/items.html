@@ -22,7 +22,6 @@
           <th>Available</th>
           <th>Price</th>
           <th>Orders</th>
-          <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -36,12 +35,6 @@
           </td>
           <td>
             <div class="button-list">
-              <a th:if="${role} == 'ADMIN'" th:href="@{/items/{id}(id=${product.id})}">
-                <button class="btn btn-primary-rgba disabled">
-                  <i class="feather icon-align-justify m-r-5"></i>
-                  Details
-                </button>
-              </a>
               <div class="input-group mb-0">
                 <form th:if="${role} == 'MANAGER'" method="post" th:action="@{/cart}">
                   <input type="hidden" name="product-id" th:value="${product.id}"/>
