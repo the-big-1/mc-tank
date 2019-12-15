@@ -1,5 +1,6 @@
 package company18.mctank.service;
 
+import javax.annotation.PostConstruct;
 import javax.money.MonetaryAmount;
 
 import org.javamoney.moneta.function.MonetaryOperators;
@@ -12,41 +13,53 @@ import company18.mctank.repository.ItemsRepository;
 
 @Service
 public class GasPumpService {
-	private GasPump pump;
-	
+	private static final int TOTAL_GAS_STATIONS = 12;
+	public static final String API_URL = "https://jannusch.xyz/gasoline_pump/";
+
+	private GasPump[] pumps = new GasPump[TOTAL_GAS_STATIONS];
+
 	private ItemsRepository itemsRepository;
 	
 	public GasPumpService(ItemsRepository itemsRepository) {
 		this.itemsRepository = itemsRepository;	
 	}
-	
-	public void setPump(int number) {
-		try {
-			this.pump = new RestTemplate().getForObject("https://jannusch.xyz/gasoline_pump/"+number, GasPump.class);
-		} catch (Exception e) {
-			this.pump = null;
+
+	@PostConstruct
+	public void pumpsInit() {
+		for (int i=0; i<TOTAL_GAS_STATIONS; ++i) {
+			try {
+				this.pumps[i] = new RestTemplate().getForObject(API_URL + i, GasPump.class);
+			} catch (Exception e) {
+				this.pumps[i] = null;
+			}
 		}
 	}
-	
-	public boolean isInValid() {
-		return this.pump == null;
+
+	public GasPump[] getPumps() {
+		return this.pumps;
+	}
+
+	public boolean isInValid(int pumpNumber) {
+		return this.pumps[pumpNumber] == null;
 	}
 	
-	public Product getFuel() {
-		String productName;
-		if (this.pump.getFuelType().equals("diesel fuel"))
-			productName = "Diesel";
-		else productName = "Super Benzin";
-		return this.itemsRepository.findByName(productName).get().findFirst().get();
+	public Product getFuel(int pumpNumber) {
+		if (this.pumps[pumpNumber] == null)
+			return null;
+		String productName = this.pumps[pumpNumber].getFuelType();
+		return this.itemsRepository.findByName(productName).get()
+				.findFirst().get();
 	}
 	
-	public float getFuelQuantity() {
-		return (float)(((int)(this.pump.getFuelQuantity()*100))/100.0);
+	public float getFuelQuantity(int pumpNumber) {
+		if (this.pumps[pumpNumber] == null)
+			return 0f;
+		return this.pumps[pumpNumber].getFuelQuantity();
 	}
 	
-	public MonetaryAmount getPrice() {
-		return this.getFuel().getPrice()
-				.multiply(this.getFuelQuantity())
+	public MonetaryAmount getPrice(int pumpNumber) {
+		return this.getFuel(pumpNumber).getPrice()
+				.multiply(this.getFuelQuantity(pumpNumber))
 				.with(MonetaryOperators.rounding());
 	}
 }

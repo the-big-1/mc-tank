@@ -5,25 +5,18 @@ import company18.mctank.domain.McTankCart;
 import company18.mctank.service.CartService;
 import company18.mctank.service.GasPumpService;
 
+import org.salespointframework.payment.*;
+import org.salespointframework.useraccount.UserAccountManager;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Optional;
 
-import javax.money.MonetaryAmount;
-
-import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
-import org.salespointframework.order.CartItem;
-import org.salespointframework.payment.Cash;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
@@ -31,18 +24,19 @@ import org.salespointframework.useraccount.web.LoggedIn;
 
 @Controller
 @SessionAttributes("cart")
-	public class CartController {
+public class CartController {
 	private McTankCart cart;
 	private CartService cartService;
 	private GasPumpService pumpService;
-	
-	
-	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService) {
+	private UserAccountManager userAccountManager;
+
+	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService, UserAccountManager userAccountManager) {
 		Assert.notNull(cart, "Cart must not be null!");
 		this.cart = cart;
 		Assert.notNull(cartService, "CartService must not be null!");
 		this.cartService = cartService;
 		this.pumpService = pumpService;
+		this.userAccountManager = userAccountManager;
 	}
 	
 	@ModelAttribute("cart")
@@ -62,6 +56,14 @@ import org.salespointframework.useraccount.web.LoggedIn;
 		this.cart.mcPointBonus();
 		return "redirect:/cart";
 	}
+
+	@PostMapping("/cart/username")
+	public String saveUsername(String username) {
+		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
+		cart.setOwner(userAccount);
+		cartService.load(cart, userAccount);
+		return "redirect:/cart";
+	}
 	
 	@PostMapping(value = "/cart/pump")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") float amount, @RequestParam("pump-number") int number) {
@@ -72,11 +74,10 @@ import org.salespointframework.useraccount.web.LoggedIn;
 	
 	@PostMapping(value = "/cart/pump/direct")
 	public String addItem(@RequestParam("pump-number") int number) {
-		this.pumpService.setPump(number);
-		if (this.pumpService.isInValid())
+		if (this.pumpService.isInValid(number))
 			return "redirect:/";
 		else
-			this.cartService.addOrUpdateItem(this.cart, pumpService.getFuel(), Quantity.of(pumpService.getFuelQuantity(), Metric.LITER));
+			this.cartService.addOrUpdateItem(this.cart, pumpService.getFuel(number), Quantity.of(pumpService.getFuelQuantity(number), Metric.LITER));
 		this.cart.mcPointBonus();
 		return "redirect:/cart";
 	}
@@ -84,6 +85,12 @@ import org.salespointframework.useraccount.web.LoggedIn;
 	@PostMapping("/cart/clear")
 	public String clearCart(){
 		this.cart.clear();
+		return "redirect:/cart";
+	}
+
+	@PostMapping("/cart/save")
+	public String saveCart(){
+		this.cartService.save(cart);
 		return "redirect:/cart";
 	}
 	
@@ -95,12 +102,17 @@ import org.salespointframework.useraccount.web.LoggedIn;
 	}	
 
 
-	@PostMapping("/cart/pay")	
-	String buy(@LoggedIn Optional<UserAccount> userAccount) {
+	@PostMapping("/cart/checkout")
+	public ResponseEntity<?> checkout(@LoggedIn Optional<UserAccount> userAccount) {
 		 if (this.cartService.buy(this.cart, userAccount, Cash.CASH)) {
-			 return "redirect:/";
+			 return ResponseEntity
+					 .ok()
+					 .build();
 		 }
-		 else return "redirect:/cart";
+		 else
+		 	return ResponseEntity
+					.status(HttpStatus.NOT_IMPLEMENTED)
+					.build();
 	}
 }
 
