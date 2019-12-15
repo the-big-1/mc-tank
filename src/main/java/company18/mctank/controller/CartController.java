@@ -40,6 +40,8 @@ public class CartController {
 	private CartService cartService;
 	private GasPumpService pumpService;
 	private CustomerService customerService;
+
+	private boolean fuelWarning = false;  // add to model and call warning if true
 	
 /**
  * 
@@ -69,6 +71,7 @@ public class CartController {
 	@GetMapping(value = "/cart")
 	public String showCart(Model model) {
 		model.addAttribute("cart", this.cart);
+		model.addAttribute("warning", fuelWarning); //idea: if true display warning
 		return "cart";
 	}
 	
@@ -166,6 +169,14 @@ public class CartController {
 					.status(HttpStatus.NOT_IMPLEMENTED)
 					.build();
 	}
+	
+	public boolean getFuelWarning(){
+		return fuelWarning;
+	}
+
+	public void setFuelWarning(boolean fuelWarning) {
+		this.fuelWarning = fuelWarning;
+	}
 
 	private void handleDiscount() {
 		this.removeDiscounts();
@@ -192,7 +203,6 @@ public class CartController {
 				this.cart.getCustomer().getId()
 		);
 	}
-
 }
 
 

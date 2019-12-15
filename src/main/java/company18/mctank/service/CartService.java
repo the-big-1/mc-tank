@@ -32,10 +32,13 @@ public class CartService {
 
 	private OrderManager<McTankOrder> orderManager;
 	private ItemsService itemsService;
+	private RefillInventoryService refillService;
 
-	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService) {
+
+	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService, RefillInventoryService refillService) {
 		this.orderManager = orderManager;
 		this.itemsService = itemsService;
+		this.refillService = refillService;
 	}
 	
 	/**
@@ -68,6 +71,12 @@ public class CartService {
 
 		//save order
 		this.orderManager.save(order);
+		
+		// clear cart and redirect
+		cart.clear();
+
+		//RefillService checks the stock and publishes a warning if needed
+		refillService.checkStock();
 
 		return true;
 	}

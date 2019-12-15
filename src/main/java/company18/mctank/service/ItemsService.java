@@ -23,6 +23,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+/**
+ * Service for handling Items which are {@link Product}s from SalesPointFramework.
+ *
+ * The Items are stored in a {@link ItemsRepository}.
+ *
+ * @author David Leistner
+ * @author Artem Sierikov
+ */
+
 @Service
 @Transactional
 public class ItemsService {
@@ -33,9 +42,25 @@ public class ItemsService {
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventory;
 
+
+	/**
+	 * Get's the values from the form.
+	 *
+	 * @param form must not be {@literal null}
+	 * @return calls the actual method
+	 */
+
 	public Product createNewProduct(NewItemForm form) {
 		return  createNewProduct(form.getProductName(), form.getPrice(), form.getProductCategories());
 	}
+
+	/**
+	 * Creates new {@link Product}s and saves them in the {@link ItemsRepository}.
+	 *
+	 * @param name must not be {@literal null}. The name of the new {@link Product}.
+	 * @param cost must not be {@literal null}. The price of the new {@link Product}.
+	 * @param mcPoints must not be {@literal null}. The McPoints where the new {@link Product} is available.
+	 */
 
 	public Product createNewProduct(String name, String cost, List<String> mcPoints){
 
