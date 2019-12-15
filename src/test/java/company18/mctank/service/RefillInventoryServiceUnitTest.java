@@ -84,10 +84,7 @@ public class RefillInventoryServiceUnitTest {
 		}
 
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> origin
 	/*
 	@Test
 	void getFuelAmountBenzin() {
@@ -104,8 +101,6 @@ public class RefillInventoryServiceUnitTest {
 	}
 <<<<<<< HEAD
 	these tests worked lokal but not in Jenkins
-=======
-	
->>>>>>> origin
+
 	 */
 }

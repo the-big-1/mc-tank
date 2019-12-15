@@ -19,7 +19,7 @@ import java.util.Map;
  * Service for refilling the {@link Product}s in the {@link UniqueInventory}.
  * Especially for the Fuels.
  *
- * @autor David Leistner
+ * @author David Leistner
  */
 
 @Service

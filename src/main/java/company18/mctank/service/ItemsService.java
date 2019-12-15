@@ -28,7 +28,7 @@ import java.util.*;
  *
  * The Items are stored in a {@link ItemsRepository}.
  *
- * @autor David Leistner
+ * @author David Leistner
  * @author Artem Sierikov
  */
 
