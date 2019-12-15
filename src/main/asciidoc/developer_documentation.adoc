@@ -38,7 +38,7 @@ Sicherheit: wie sicher soll die Software/die enthaltenen Daten sein
 | Skalierbarkeit           | 4
 | Verlässlichkeit          | 5
 | Performance              | 5
-| Sicherheit               | 2
+| Sicherheit               | 4
 |===
 
 1 = niedrige Priorität,  5 = hohe Priorität
