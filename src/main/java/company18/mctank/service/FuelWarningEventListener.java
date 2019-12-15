@@ -19,11 +19,8 @@ public class FuelWarningEventListener implements ApplicationListener<FuelWarning
 	@Override
 	public void onApplicationEvent(FuelWarningEvent event){
 		cart.setFuelWarning(event.getFuelWarning());
-		overview.setFuelWarning(event.getFuelWarning());
-		
-		//call the controller and view a sweetallert with the fuelwarning
-		//use the boolean
-		//both on manager overview and cart
-		//
+		//overview.setFuelWarning(event.getFuelWarning());
+
+		System.out.println(cart.getFuelWarning());
 	}
 }

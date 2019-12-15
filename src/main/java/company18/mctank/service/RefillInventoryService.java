@@ -1,7 +1,5 @@
 package company18.mctank.service;
 
-import company18.mctank.controller.CartController;
-import company18.mctank.controller.OverviewController;
 import company18.mctank.domain.FuelWarningEvent;
 import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
@@ -39,55 +37,55 @@ public class RefillInventoryService {
 	/**
 	 * Refills the stock of fuels.
 	 *
-	 * @param amountBenzin which should be added to the current amount of Benzine.
+	 * @param amountBenzine which should be added to the current amount of Benzine.
 	 * @param amountDiesel which should be added to the current amount of Diesel.
 	 *
 	 * @throws FuelStorageFullException if the amount is bigger than the size of the Inventory.
 	 */
 
-	public boolean refillFuels(double amountBenzin, double amountDiesel) throws FuelStorageFullException{
-		var benzinObj = items.findByName("Super Benzin")
+	public boolean refillFuels(double amountBenzine, double amountDiesel) throws FuelStorageFullException{
+		var benzineObj = items.findByName("Super Benzin")
 							  .stream()
 							  .findFirst();
 		var dieselObj = items.findByName("Diesel")
 				.stream()
 				.findFirst();
 
-		if (benzinObj.isEmpty() || dieselObj.isEmpty()){
+		if (benzineObj.isEmpty() || dieselObj.isEmpty()){
 			return false;
 		}
 
-		Product benzin = benzinObj.get();
+		Product benzine = benzineObj.get();
 		Product diesel = dieselObj.get();
 
-		var benzinOpt = inventory.findByProduct(benzin)
+		var benzineOpt = inventory.findByProduct(benzine)
 									 .stream()
 									 .findFirst();
 		var dieselOtp = inventory.findByProduct(diesel)
 							     .stream()
 								 .findFirst();
 
-		UniqueInventoryItem benzinItem = benzinOpt.get();
+		UniqueInventoryItem benzinItem = benzineOpt.get();
 		UniqueInventoryItem dieselItem = dieselOtp.get();
 
-		double currentamountBenzin = benzinItem.getQuantity()
+		double currentamountBenzine = benzinItem.getQuantity()
 											   .getAmount()
 								   		       .doubleValue();
 		double currentamountDiesel = dieselItem.getQuantity()
 											   .getAmount()
 											   .doubleValue();
 
-		if (amountBenzin + currentamountBenzin > 50.000 || amountDiesel + currentamountDiesel > 50.000){
+		if (amountBenzine + currentamountBenzine > 50.000 || amountDiesel + currentamountDiesel > 50.000){
 			throw new FuelStorageFullException();
 		}
 
-		if (amountBenzin + currentamountBenzin > 10.000 && amountDiesel + currentamountDiesel > 10.000){
+		if (amountBenzine + currentamountBenzine > 10.000 && amountDiesel + currentamountDiesel > 10.000){
 
 			//reset warning to false
 			publishEvent(false);
 		}
 
-		benzinItem.increaseQuantity(benzin.createQuantity(amountBenzin));
+		benzinItem.increaseQuantity(benzine.createQuantity(amountBenzine));
 		dieselItem.increaseQuantity(diesel.createQuantity(amountDiesel));
 
 		return true;
@@ -125,23 +123,23 @@ public class RefillInventoryService {
 	 */
 
 	public double getFuelAmountBenzin(){
-		var benzinObj = items.findByName("Super Benzin")
+		var benzineObj = items.findByName("Super Benzin")
 							 .stream()
 							 .findFirst();
 
-		Product benzin = benzinObj.get();
+		Product benzine = benzineObj.get();
 
-		var benzinOpt = inventory.findByProduct(benzin)
+		var benzineOpt = inventory.findByProduct(benzine)
 								 .stream()
 								 .findFirst();
 
-		UniqueInventoryItem benzinItem = benzinOpt.get();
+		UniqueInventoryItem benzineItem = benzineOpt.get();
 
-		double currentamountBenzin = benzinItem.getQuantity()
+		double currentamountBenzine = benzineItem.getQuantity()
 				.getAmount()
 				.doubleValue();
 
-		return currentamountBenzin;
+		return currentamountBenzine;
 	}
 
 	/**
@@ -174,11 +172,8 @@ public class RefillInventoryService {
 	}
 
 	public void checkStock(){
-		System.out.println("B: " + getFuelAmountBenzin());
-		System.out.println("D: " + getFuelAmountDiesel());
-
 		if(getFuelAmountBenzin() < 10.000 || getFuelAmountDiesel() < 10.000){
-			publishEvent(false);
+			publishEvent(true);
 		}
 	}
 }
