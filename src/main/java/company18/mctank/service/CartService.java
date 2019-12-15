@@ -1,14 +1,20 @@
 package company18.mctank.service;
 
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import company18.mctank.domain.Discount;
+import company18.mctank.factory.DiscountFactory;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.payment.PaymentMethod;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import company18.mctank.domain.McTankCart;
@@ -16,6 +22,9 @@ import company18.mctank.domain.McTankOrder;
 
 @Service
 public class CartService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(CartService.class);
+
 	private OrderManager<McTankOrder> orderManager;
 	private ItemsService itemsService;
 
@@ -24,8 +33,12 @@ public class CartService {
 		this.itemsService = itemsService;
 	}
 	
-	public boolean buy(McTankCart cart, Optional<UserAccount> userAccount, PaymentMethod payMethod) {
-		McTankOrder order = getOrder(cart, userAccount);
+	public boolean buy(McTankCart cart, PaymentMethod payMethod) {
+		if (cart.getCustomer() == null)
+			return false;
+
+		McTankOrder order = getOrder(cart,
+				Optional.of(cart.getCustomer().getUserAccount()));
 		if (order == null)
 			return false;
 		
@@ -38,19 +51,18 @@ public class CartService {
 			this.orderManager.completeOrder(order);
 		} catch (Exception e) {
 			this.orderManager.cancelOrder(order);
+			LOGGER.error(e.getMessage());
 			return false;
 		}
-		
+
 		//save order
 		this.orderManager.save(order);
-		
-		// clear cart and redirect
-		cart.clear();
+
 		return true;
 	}
 
 	public boolean save(McTankCart cart) {
-		McTankOrder order = getOrder(cart, Optional.of(cart.getOwner()));
+		McTankOrder order = getOrder(cart, Optional.of(cart.getCustomer().getUserAccount()));
 		if (order == null)
 			return false;
 
@@ -100,4 +112,5 @@ public class CartService {
 	public void addOrUpdateItem(McTankCart cart, Product product, Quantity amount) {
 		 cart.addOrUpdateItem(product, amount);
 	}
+
 }

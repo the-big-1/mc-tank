@@ -2,9 +2,11 @@ package company18.mctank.service;
 
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
+import company18.mctank.domain.Discount;
 import company18.mctank.exception.ExistedUserException;
 import company18.mctank.exception.AnonymusUserException;
 import company18.mctank.exception.UserNotFoundException;
+import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
 import company18.mctank.forms.SignUpForm;
 import company18.mctank.repository.CustomerRepository;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -56,7 +59,10 @@ public class CustomerService {
 		} catch (IllegalArgumentException e) {
 			throw new ExistedUserException();
 		}
-		return customerRepository.save(new Customer(userAccount));
+		Customer customer = new Customer(userAccount);
+		Discount discount = DiscountFactory.create(DiscountFactory.DiscountType.REGISTRATION);
+		customer.addDiscount(discount);
+		return customerRepository.save(customer);
 	}
 
 	public void disableCustomer(UserAccountIdentifier id) {
@@ -89,11 +95,17 @@ public class CustomerService {
 							   String mobile,
 							   long id) {
 		Customer customer = this.getCustomer(id);
-		LOG.info("User with" + id + "found" + customer.getUsername());
 		customer.setFirstName(firstname);
 		customer.setLastName(lastname);
 		customer.setEmail(email);
 		customer.setMobile(mobile);
+		customerRepository.save(customer);
+		LOG.info("Request:  Update User's Info. Done: User " + customer.getUsername() +" was updated");
+	}
+
+	public void updateCustomersDiscounts(List<Discount> discounts, long customerId) {
+		Customer customer = getCustomer(customerId);
+		customer.setDiscounts(discounts);
 		customerRepository.save(customer);
 	}
 
@@ -153,7 +165,7 @@ public class CustomerService {
 			UserAccount userAccount = this.getCurrentUserAccount();
 			customer = customerRepository.findCustomerByUserAccount(userAccount);
 		} catch (AnonymusUserException e) {
-			LOG.error("Anonymous User trying to access user data");
+			LOG.warn("Request: Get Current Customer. Failed: User is Anonymous");
 		}
 		return customer;
 	}
@@ -180,6 +192,11 @@ public class CustomerService {
 
 	public UserAccount getUserAccount(long customerId) {
 		return this.getCustomer(customerId).getUserAccount();
+	}
+
+	public Customer getCustomer(String username) {
+		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
+		return customerRepository.findCustomerByUserAccount(userAccount);
 	}
 
 }
