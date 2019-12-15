@@ -32,16 +32,15 @@ public class ReservationDataInitializer implements DataInitializer {
 	 */
 	@Override
 	public void initialize() {
-		LOG.info("Reservation data Initializing");
+		LOG.info("Initializing: Reservation data");
 		service.save("McSit", "Party 01", LocalDateTime.now().plusDays(1).plusHours(5), "boss");
 		service.save("McSit", "Birthday 01", LocalDateTime.now().plusDays(2).plusHours(4), "boss");
 		service.save("McSit", "Birthday 10", LocalDateTime.now().plusDays(3).plusHours(3), "boss");
 		service.save("McSit", "Birthday 05", LocalDateTime.now().plusDays(4).plusHours(2), "boss");
 		service.save("McSit", "Party 23", LocalDateTime.now().plusDays(5).plusHours(1), "boss");
-		
 		service.save("McWash", "Tank", LocalDateTime.now().plusDays(5).plusHours(1), "boss");
 		service.save("McWash", "Car", LocalDateTime.now().plusDays(4).plusHours(2), "boss");
 		service.save("McWash", "Bike", LocalDateTime.now().plusDays(3).plusHours(3), "boss");
-		LOG.info("Initializing Reservation data");
+		LOG.info("Initializing: Reservation data. Done");
 	}
 }

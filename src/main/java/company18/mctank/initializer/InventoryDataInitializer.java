@@ -46,6 +46,7 @@ public class InventoryDataInitializer implements DataInitializer {
 	@Override
 	@Order(Ordered.LOWEST_PRECEDENCE)
 	public void initialize() {
+		LOG.info("Initializing: Inventory");
 		for (Product product : this.itemsRepository.findAll()) {
 			
 			if (!inventoryRepository.findByProduct(product).isPresent()) {
@@ -64,7 +65,7 @@ public class InventoryDataInitializer implements DataInitializer {
 								.doubleValue()));
 			}
 		}
-		LOG.info("Inventory initialized.");
+		LOG.info("Initializing: Inventory. Done.");
 	}
 
 }

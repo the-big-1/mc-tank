@@ -91,7 +91,9 @@
                           <i class="feather icon-package"></i>
                           <div class="media-body">
                             <h5>My Orders</h5>
-                            <p>3 Completed</p>
+                            <p th:text="${orders.size()} == 0 ?
+                              'No orders availible' : ${orders.size() + ' orders made'}">
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -105,9 +107,9 @@
                     <div class="card-body">
                       <div class="ecom-dashboard-widget">
                         <div class="media">
-                          <i class="feather icon-heart"></i>
+                          <i class="feather icon-award"></i>
                           <div class="media-body">
-                            <h5>My McPoints</h5>
+                            <h5>My Coupons</h5>
                             <p>7 Point(s)</p>
                           </div>
                         </div>
@@ -125,7 +127,9 @@
                           <i class="feather icon-credit-card"></i>
                           <div class="media-body">
                             <h5>Reservation</h5>
-                            <p>No reservations</p>
+                            <p th:with="reservationAmount=${reservations.size()}"
+                               th:text="${reservationAmount == 0} ?
+                               'No reservations' : ${reservationAmount} + 'active reservation(s)'"></p>
                           </div>
                         </div>
                       </div>
@@ -144,15 +148,30 @@
                   <h5 class="card-title mb-0">My Orders</h5>
                 </div>
                 <div class="card-body">
-                  <div class="order-box">
+                  <div class="row justify-content-center">
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                      <img src="/images/svg/orders.svg" class="img-fluid" alt="wallet">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card m-b-30" th:unless="${orders.isEmpty()}">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">Orders list</h5>
+                </div>
+                <div class="card-body">
+                  <div class="order-box" th:each="order : ${orders}">
                     <div class="card border m-b-30">
                       <div class="card-header">
                         <div class="row align-items-center">
                           <div class="col-sm-6">
-                            <h5>ID : #26598</h5>
+                            <h5>ID : #<span th:text="${order.getIdString()}"></span></h5>
                           </div>
                           <div class="col-sm-6">
-                            <h6 class="mb-0">Total : <strong>$500</strong></h6>
+                            <h6 class="mb-0">Total :
+                              <strong th:text="${order.getTotalString()}">
+                              </strong>
+                            </h6>
                           </div>
                         </div>
                       </div>
@@ -161,32 +180,18 @@
                           <table class="table table-borderless">
                             <thead>
                             <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Photo</th>
-                              <th scope="col">Product</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Identifier</th>
                               <th scope="col">Qty</th>
-                              <th scope="col">Price</th>
                               <th scope="col" class="text-right">Total</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td><img src="assets/images/ecommerce/product_01.svg" class="img-fluid" width="35"
-                                       alt="product"></td>
-                              <td>Apple Watch</td>
-                              <td>1</td>
-                              <td>$100</td>
-                              <td class="text-right">$100</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td><img src="assets/images/ecommerce/product_02.svg" class="img-fluid" width="35"
-                                       alt="product"></td>
-                              <td>Apple iPhone</td>
-                              <td>2</td>
-                              <td>$200</td>
-                              <td class="text-right">$400</td>
+                            <tr th:each="line : ${order.getOrderLines()}">
+                              <th scope="row" th:text="${line.getProductName()}">1</th>
+                              <td th:text="${line.getId()}">Apple Watch</td>
+                              <td th:text="${line.getQuantity()}">1</td>
+                              <td th:text="${line.getPrice()}" class="text-right">$100</td>
                             </tr>
                             </tbody>
                           </table>
@@ -195,12 +200,20 @@
                       <div class="card-footer">
                         <div class="row align-items-center">
                           <div class="col-sm-6">
-                            <h5>Status : <span class="badge badge-warning-inverse font-14">Open</span></h5>
+                            <h5>Status :
+                              <span th:if="${order.isOpen()}"
+                                  class="badge badge-warning-inverse font-14">Open</span>
+                              <span th:if="${order.isPaid()}"
+                                  class="badge badge-success-inverse font-14">Paid</span>
+                              <span th:if="${order.isCompleted()}"
+                                    class="badge badge-success-inverse font-14">Completed</span>
+                            </h5>
                           </div>
                           <div class="col-sm-6">
                             <h6 class="mb-0">
-                              <button class="btn btn-success-rgba font-16"><i class="feather icon-file mr-2"></i>Request
-                                Invoice
+                              <button class="btn btn-success-rgba font-16">
+                                <i class="feather icon-file mr-2"></i>
+                                Request Invoice
                               </button>
                             </h6>
                           </div>
@@ -208,63 +221,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="order-box">
-                    <div class="card border m-b-30">
-                      <div class="card-header">
-                        <div class="row align-items-center">
-                          <div class="col-sm-6">
-                            <h5>ID : #26597</h5>
-                          </div>
-                          <div class="col-sm-6">
-                            <h6 class="mb-0">Total : <strong>$100</strong></h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="table-responsive">
-                          <table class="table table-borderless">
-                            <thead>
-                            <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Photo</th>
-                              <th scope="col">Product</th>
-                              <th scope="col">Qty</th>
-                              <th scope="col">Price</th>
-                              <th scope="col" class="text-right">Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>
-                                <img src="assets/images/ecommerce/product_01.svg" class="img-fluid" width="35"
-                                     alt="product">
-                              </td>
-                              <td>Apple iPad</td>
-                              <td>1</td>
-                              <td>$100</td>
-                              <td class="text-right">$100</td>
-                            </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="card-footer">
-                        <div class="row align-items-center">
-                          <div class="col-sm-6">
-                            <h5>Status : <span class="badge badge-primary-inverse font-14">Paid</span></h5>
-                          </div>
-                          <div class="col-sm-6">
-                            <h6 class="mb-0">
-                              <button class="btn btn-success-rgba font-16"><i class="feather icon-file mr-2"></i>Request
-                                Invoice
-                              </button>
-                            </h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -358,23 +315,19 @@
                           <th scope="col">Name</th>
                           <th scope="col">Percent(%)</th>
                           <th scope="col">Status</th>
-                          <th scope="col">Used by (McPoint)</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>McTen</td>
-                          <td>10%</td>
-                          <td><span class="badge badge-success-inverse">Available</span></td>
-                          <td>Not used yet</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>McTen</td>
-                          <td>10%</td>
-                          <td><span class="badge badge-danger-inverse">Used</span></td>
-                          <td>McWash</td>
+                        <tr th:each="coupon : ${customer.getDiscounts()}">
+                          <th scope="row" th:text="${coupon.getShortId()}">1</th>
+                          <td th:text="${coupon.getName()}">McTen</td>
+                          <td th:text="${coupon.getDiscount()*100} + '%'">10%</td>
+                          <td>
+                            <span class="badge"
+                                  th:classappend="${coupon.getStatus().toString()} == 'AVAILABLE'?'badge-success-inverse':'badge-danger-inverse'"
+                                  th:text="${coupon.getStatus()}">Available
+                            </span>
+                          </td>
                         </tr>
                         </tbody>
                       </table>

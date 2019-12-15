@@ -32,8 +32,9 @@ class UserManagementController {
 		try {
 			customerService.createCustomer(form);
 		} catch (ExistedUserException e) {
-			LOG.error("Creating of existing user handled. Creation canceled.");
+			LOG.error("Request: New user. Failed: Username exists.");
 		}
+		LOG.error("Request: New user. Done: New user was created");
 		return "redirect:/user-management";
 	}
 
