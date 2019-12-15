@@ -117,6 +117,10 @@ public class CartController {
 					.build();
 	}
 
+	public boolean getFuelWarning(){
+		return fuelWarning;
+	}
+
 	public void setFuelWarning(boolean fuelWarning) {
 		this.fuelWarning = fuelWarning;
 	}

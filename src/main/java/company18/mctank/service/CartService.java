@@ -18,13 +18,13 @@ import company18.mctank.domain.McTankOrder;
 public class CartService {
 	private OrderManager<McTankOrder> orderManager;
 	private ItemsService itemsService;
-	private FuelWarningEventPublisher fuelWarning;
+	private RefillInventoryService refillService;
 
 
-	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService, FuelWarningEventPublisher fuelWarning) {
+	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService, RefillInventoryService refillService) {
 		this.orderManager = orderManager;
 		this.itemsService = itemsService;
-		this.fuelWarning = fuelWarning;
+		this.refillService = refillService;
 	}
 	
 	public boolean buy(McTankCart cart, Optional<UserAccount> userAccount, PaymentMethod payMethod) {
@@ -52,7 +52,7 @@ public class CartService {
 
 		//EventPublisher checks the stock and publishes a warning if needed
 		try {
-			fuelWarning.checkStock();
+			refillService.checkStock();
 		}catch (NullPointerException e){
 			System.out.println("Catched NullPointer");
 		}

@@ -2,6 +2,7 @@ package company18.mctank.service;
 
 import company18.mctank.controller.CartController;
 import company18.mctank.controller.OverviewController;
+import company18.mctank.domain.FuelWarningEvent;
 import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
 
@@ -9,6 +10,7 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,10 +34,7 @@ public class RefillInventoryService {
 	private UniqueInventory<UniqueInventoryItem> inventory;
 
 	@Autowired
-	private CartController cart;
-
-	@Autowired
-	private OverviewController overview;
+	private ApplicationEventPublisher publisher;
 
 	/**
 	 * Refills the stock of fuels.
@@ -83,9 +82,9 @@ public class RefillInventoryService {
 		}
 
 		if (amountBenzin + currentamountBenzin > 10.000 && amountDiesel + currentamountDiesel > 10.000){
-			//reset FuelWarning to false if Depot holds more than 10.000 Liter each
-			cart.setFuelWarning(false);
-			overview.setFuelWarning(false);
+
+			//publish event if warning was true event set warning to false
+			publishEvent();
 		}
 
 		benzinItem.increaseQuantity(benzin.createQuantity(amountBenzin));
@@ -179,5 +178,26 @@ public class RefillInventoryService {
 		System.out.println("d3: " + currentamountDiesel);
 
 		return currentamountDiesel;
+	}
+
+	public void publishEvent(){
+		FuelWarningEvent event = new FuelWarningEvent(this);
+		publisher.publishEvent(event);
+	}
+
+	public void checkStock(){
+		System.out.println("B: " + getFuelAmountBenzin());
+		System.out.println("D: " + getFuelAmountDiesel());
+
+		if(getFuelAmountBenzin() < 10.000 || getFuelAmountDiesel() < 10.000){
+			publishEvent();
+		}
+
+		//service functions returns NullPointerException don't know exactly why because tests work
+		//problem with products
+		//goes probably back to initializer
+
+		//ring dependency
+
 	}
 }
