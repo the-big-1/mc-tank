@@ -66,7 +66,7 @@ public class CustomerService {
 	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	private final OrderManager<McTankOrder> orderManager;
-	private ZoneId localZone = ZoneId.of("EUROPE/Berlin");
+	private ZoneId localZone = ZoneId.of("Europe/Berlin");
 	private ZonedDateTime newYear = ZonedDateTime.of(2020,1,1,0,0,0,0,localZone);
 	private long initialDelay = ZonedDateTime.now(localZone).until(newYear,ChronoUnit.MINUTES);
 	private final CustomerRepository customers;
