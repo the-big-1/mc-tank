@@ -28,6 +28,14 @@ public class Customer {
 	private Customer() {
 	}
 
+	public LocalDateTime getLastOrderDate() {
+		return lastOrderDate;
+	}
+
+	public void setLastOrderDate(LocalDateTime lastOrderDate) {
+		this.lastOrderDate = lastOrderDate;
+	}
+
 	public Customer(UserAccount useraccount) {
 		this.userAccount = useraccount;
 		this.lastActivityDate = new Date();

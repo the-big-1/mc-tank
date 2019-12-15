@@ -10,8 +10,7 @@ import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
 import company18.mctank.forms.SignUpForm;
 import company18.mctank.domain.McTankOrder;
-import company18.mctank.exception.UnauthorizedUserException;
-import company18.mctank.forms.RegistrationForm;
+
 
 import company18.mctank.repository.CustomerRepository;
 
@@ -50,6 +49,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
+import javax.annotation.PostConstruct;
+
 
 @Service
 public class CustomerService {
@@ -67,8 +68,6 @@ public class CustomerService {
 	private long initialDelay = LocalDateTime.now().until(newYear,ChronoUnit.MINUTES);
 	private final CustomerRepository customers;
 
-	private final UserAccountManager userAccounts;
-
 
 	@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 	public CustomerService(CustomerRepository customers, UserAccountManager userAccounts,OrderManager<McTankOrder> orderManager) {
@@ -81,7 +80,6 @@ public class CustomerService {
 		this.userAccountManager = userAccounts;
 
 		this.customers = customers;
-		this.userAccounts = userAccounts;
 		this.orderManager = orderManager;
 
 	}
@@ -244,10 +242,9 @@ public class CustomerService {
 		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
 		return customerRepository.findCustomerByUserAccount(userAccount);
 	}
-
-	public void springCleaning() {
-		//TODO updating lastOrderDate when creating new order
-		final Runnable cleaning = new Runnable() { 
+	@PostConstruct
+	public void customerCleanup() {
+		final Runnable cleanup = new Runnable() { 
 			public void run() {
 				for(McTankOrder s:orderManager.findAll(PageRequest.of(0,10))) {
 					if(s.getDateCreated().until(newYear,ChronoUnit.DAYS)>=100) {
@@ -262,7 +259,7 @@ public class CustomerService {
 				newYear.plusYears(1);
 				}
 			};
-			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleaning,initialDelay, 525600,MINUTES);
+			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleanup,initialDelay, 525600,MINUTES);
 		};
 
 

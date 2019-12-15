@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,6 +109,7 @@ public class CartController {
 		if (this.cartService.buy(this.cart, Cash.CASH)) {
 			this.handleDiscount();
 			this.cart.clear();
+			customerService.getCurrentCustomer().setLastOrderDate(LocalDateTime.now());
 			return ResponseEntity
 					 .ok()
 					 .build();
