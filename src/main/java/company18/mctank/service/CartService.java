@@ -50,7 +50,7 @@ public class CartService {
 		// clear cart and redirect
 		cart.clear();
 
-		//EventPublisher checks the stock and publishes a warning if needed
+		//RefillService checks the stock and publishes a warning if needed
 		refillService.checkStock();
 
 		return true;
