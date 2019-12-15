@@ -61,10 +61,10 @@ public class RefillInventoryService {
 							     .stream()
 								 .findFirst();
 
-		UniqueInventoryItem benzinItem = benzineOpt.get();
+		UniqueInventoryItem benzineItem = benzineOpt.get();
 		UniqueInventoryItem dieselItem = dieselOtp.get();
 
-		double currentamountBenzine = benzinItem.getQuantity()
+		double currentamountBenzine = benzineItem.getQuantity()
 											   .getAmount()
 								   		       .doubleValue();
 		double currentamountDiesel = dieselItem.getQuantity()
@@ -81,7 +81,7 @@ public class RefillInventoryService {
 			publishEvent(false);
 		}
 
-		benzinItem.increaseQuantity(benzine.createQuantity(amountBenzine));
+		benzineItem.increaseQuantity(benzine.createQuantity(amountBenzine));
 		dieselItem.increaseQuantity(diesel.createQuantity(amountDiesel));
 
 		return true;
