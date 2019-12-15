@@ -13,6 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service to turn the session of a cart into an order and handle pay function.
+ *
+ * @author vivien
+ * @author ArtemSer
+ */
 @Service
 public class CartService {
 
@@ -20,12 +26,21 @@ public class CartService {
 
 	private OrderManager<McTankOrder> orderManager;
 	private ItemsService itemsService;
+	private RefillInventoryService refillService;
 
-	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService) {
+
+	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService, RefillInventoryService refillService) {
 		this.orderManager = orderManager;
 		this.itemsService = itemsService;
+		this.refillService = refillService;
 	}
 	
+	/**
+	 * 
+	 * @param cart can only be paid if there is a user account and pay method.
+	 * @param payMethod
+	 * @return whether the cart can be turned to an order.
+	 */
 	public boolean buy(McTankCart cart, PaymentMethod payMethod) {
 		if (cart.getCustomer() == null || cart.get().count() == 0)
 			return false;
@@ -47,6 +62,12 @@ public class CartService {
 
 		//save order
 		this.orderManager.save(order);
+		
+		// clear cart and redirect
+		cart.clear();
+
+		//RefillService checks the stock and publishes a warning if needed
+		refillService.checkStock();
 
 		return true;
 	}

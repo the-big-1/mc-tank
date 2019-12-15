@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.money.MonetaryAmount;
+import javax.validation.constraints.NotNull;
 
 import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
@@ -13,10 +14,14 @@ import org.salespointframework.order.CartItem;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
 
+/**
+ * McTankCart as a component of Cart in Salespoint.
+ *
+ * @author vivien
+ * @author ArtemSer
+ */
 @Component
 public class McTankCart extends Cart{
-
-	public McTankCart(){}
 
 	private Customer customer;
 
@@ -28,6 +33,7 @@ public class McTankCart extends Cart{
 	 * @return count of mcPoints
 	 */
 	public int getMcPointBonus() {
+		
 		// counts the number of categories in the cart to calculate discount
 		List<String> listedCategories = new LinkedList<>();
 		Streamable<String> currentCategories;
@@ -55,7 +61,7 @@ public class McTankCart extends Cart{
 	 * Add discount to cart.
 	 * It is amount depends on total price in cart.
 	 *
-	 * @param discountCode discount code
+	 * @param discountCode each user gets a certain discount code once when registrated
 	 */
 	public void addDiscount(String discountCode){
 		if (discountCode.length() < Discount.VALID_DISCOUNT_LENGTH)

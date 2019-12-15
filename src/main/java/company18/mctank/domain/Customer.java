@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 import org.salespointframework.useraccount.UserAccount;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -24,9 +25,18 @@ public class Customer {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Discount> discounts;
+	private LocalDateTime lastOrderDate;
 
 	@SuppressWarnings("unused")
 	private Customer() {
+	}
+
+	public LocalDateTime getLastOrderDate() {
+		return lastOrderDate;
+	}
+
+	public void setLastOrderDate(LocalDateTime lastOrderDate) {
+		this.lastOrderDate = lastOrderDate;
 	}
 
 	public Customer(UserAccount useraccount) {
@@ -34,6 +44,7 @@ public class Customer {
 		this.userAccount.setFirstname("No Info");
 		this.userAccount.setLastname("No Info");
 		this.setMobile("Mobile number");
+		this.lastOrderDate = LocalDateTime.now();
 	}
 
 	public UserAccount getUserAccount() {

@@ -20,6 +20,7 @@
       <div class="widgetbar">
         <div class="sweet-alert" th:if="${role} == 'ADMIN'">
           <button type="button" id="create-item" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add New Item</button>
+          <button type="button" id="order-fuel" class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Order Fuel</button>
         </div>
         <a href="/cart" th:if="${role} == 'MANAGER'">
           <button class="btn btn-primary-rgba">Back to cart<i class="feather icon-arrow-right-circle ml-2"></i></button>

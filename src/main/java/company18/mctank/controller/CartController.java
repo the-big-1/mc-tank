@@ -1,6 +1,7 @@
 package company18.mctank.controller;
 
 import company18.mctank.domain.Customer;
+
 import company18.mctank.domain.Discount;
 import company18.mctank.domain.McTankCart;
 
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +29,11 @@ import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 
+/**
+ * A controller to manage the Cart.
+ * @author vivien
+ *
+ */
 @Controller
 @SessionAttributes("cart")
 public class CartController {
@@ -35,6 +42,15 @@ public class CartController {
 	private GasPumpService pumpService;
 	private CustomerService customerService;
 
+	private boolean fuelWarning = false;  // add to model and call warning if true
+	
+/**
+ * 
+ * @param cartService
+ * @param cart must not be null.
+ * @param pumpService
+ * @param customerService to handle a Cart session for each user.
+ */
 	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService, CustomerService customerService) {
 		Assert.notNull(cart, "Cart must not be null!");
 		this.cart = cart;
@@ -44,6 +60,10 @@ public class CartController {
 		this.customerService = customerService;
 	}
 	
+	/**
+	 * Creates a new cart session to be stored in the session for each user.
+	 * @return a new cart instance
+	 */
 	@ModelAttribute("cart")
 	public McTankCart initialize() {
 		return new McTankCart();
@@ -52,15 +72,28 @@ public class CartController {
 	@GetMapping(value = "/cart")
 	public String showCart(Model model) {
 		model.addAttribute("cart", this.cart);
+		model.addAttribute("warning", fuelWarning); //idea: if true display warning
 		return "cart";
 	}
-
+	
+	/**
+	 * 
+	 * @param product adds a product to the cart.
+	 * @param amount the amount of a product in the cart.
+	 * @param claim 
+	 * @return the view name.
+	 */
 	@PostMapping(value = "/cart")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @RequestParam("claim") Optional<Boolean> claim) {
 		this.cartService.addOrUpdateItem(this.cart, product, amount, claim.isPresent());
 		return "redirect:/cart";
 	}
 
+	/**
+	 * 
+	 * @param username each cart session belongs to a certain user.
+	 * @return the view name.
+	 */
 	@PostMapping("/cart/username")
 	public String saveUsername(String username) {
 		Customer customer = customerService.getCustomer(username);
@@ -69,6 +102,13 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
+	/**
+	 * 
+	 * @param product here it is a certain gas pump whose values will be added to the cart.
+	 * @param amount amount of litres.
+	 * @param number each gas pump has a certain number.
+	 * @return the view name.
+	 */
 	@PostMapping(value = "/cart/pump")
 	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") float amount, @RequestParam("pump-number") int number) {
 		this.cartService.addOrUpdateItem(this.cart, product, Quantity.of(amount, Metric.LITER));
@@ -84,12 +124,20 @@ public class CartController {
 		return "redirect:/cart";
 	}
 
+	/**
+	 * Deletes all products in the cart.
+	 * @return the cart view.
+	 */
 	@PostMapping("/cart/clear")
 	public String clearCart(){
 		this.cart.clear();
 		return "redirect:/cart";
 	}
 
+	/**
+	 * The cart is saved for later use.
+	 * @return to cart.
+	 */
 	@PostMapping("/cart/save")
 	public String saveCart(){
 		this.cartService.save(cart);
@@ -97,6 +145,11 @@ public class CartController {
 	}
 	
 
+	/**
+	 * 
+	 * @param discountCode each user has a certain discount code.
+	 * @return the cart view.
+	 */
 	@PostMapping("/cart/discount")
 	public String addDiscount(String discountCode) {
 		this.cart.addDiscount(discountCode);
@@ -108,6 +161,7 @@ public class CartController {
 		if (this.cartService.buy(this.cart, Cash.CASH)) {
 			this.handleDiscount();
 			this.cart.clear();
+			customerService.getCurrentCustomer().setLastOrderDate(LocalDateTime.now());
 			return ResponseEntity
 					 .ok()
 					 .build();
@@ -116,6 +170,14 @@ public class CartController {
 			return ResponseEntity
 					.status(HttpStatus.NOT_IMPLEMENTED)
 					.build();
+	}
+	
+	public boolean getFuelWarning(){
+		return fuelWarning;
+	}
+
+	public void setFuelWarning(boolean fuelWarning) {
+		this.fuelWarning = fuelWarning;
 	}
 
 	private void handleDiscount() {
@@ -143,7 +205,6 @@ public class CartController {
 				this.cart.getCustomer().getId()
 		);
 	}
-
 }
 
 

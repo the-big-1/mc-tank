@@ -60,7 +60,7 @@ public class RefillInventoryServiceUnitTest {
 		double failAmount = 50000;
 		double failAmount2 = 49000;
 
-		// Benzin/Diesel created in DataInitializer with 100 Liter amount
+		// Benzine/Diesel created in DataInitializer with 100 Liter amount
 
 		try {
 			assertTrue(service.refillFuels(testAmount, testAmount));
@@ -85,12 +85,11 @@ public class RefillInventoryServiceUnitTest {
 
 	}
 
-	/*
 	@Test
-	void getFuelAmountBenzin() {
+	void getFuelAmountBenzine() {
 		double expectedAmount = 100;
 
-		assertTrue(service.getFuelAmountBenzin() == expectedAmount);
+		assertTrue(service.getFuelAmountBenzine() == expectedAmount);
 	}
 
 	@Test
@@ -99,6 +98,4 @@ public class RefillInventoryServiceUnitTest {
 		assertTrue(service.getFuelAmountDiesel() == expectedAmount);
 
 	}
-	
-	 */
 }

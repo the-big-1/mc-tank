@@ -6,6 +6,7 @@ import company18.mctank.service.RefillInventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 /**
@@ -20,13 +21,14 @@ public class RefillInventoryController {
 	/**
 	 * Refill fuels.
 	 *
-	 * @param amountBenzin binzin amount
+	 * @param amountBenzine benzine amount
 	 * @param amountDiesel diesel amount
 	 * @return string
 	 */
-	public String refillFuels(double amountBenzin, double amountDiesel){
+	@GetMapping("/orderfuel")
+	public String refillFuels(double amountBenzine, double amountDiesel){
 		try {
-			service.refillFuels(amountBenzin, amountDiesel);
+			service.refillFuels(amountBenzine, amountDiesel);
 		}
 		catch (FuelStorageFullException e){
 			//send message that order is to large

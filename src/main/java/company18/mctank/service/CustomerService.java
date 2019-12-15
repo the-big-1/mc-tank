@@ -3,8 +3,8 @@ package company18.mctank.service;
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
 import company18.mctank.domain.Discount;
-import company18.mctank.exception.ExistedUserException;
 import company18.mctank.exception.AnonymusUserException;
+import company18.mctank.exception.ExistedUserException;
 import company18.mctank.exception.UserNotFoundException;
 import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
@@ -45,17 +45,17 @@ public class CustomerService {
 	}
 
 
-	public Customer createCustomer(SignUpForm form) throws ExistedUserException {
+	public void createCustomer(SignUpForm form) throws ExistedUserException {
 		Assert.notNull(form, "Registration form must not be null!");
 		UnencryptedPassword password = UnencryptedPassword.of(form.getPassword());
-		return this.createCustomer(form.getName(), form.getEmail(), password, CustomerRoles.CUSTOMER);
+		this.createCustomer(form.getName(), form.getEmail(), password, CustomerRoles.CUSTOMER);
 	}
 
 	public Customer createCustomer(String username,
 								   String email,
 								   UnencryptedPassword password,
 								   Role role) throws ExistedUserException {
-		UserAccount userAccount = null;
+		UserAccount userAccount;
 		try {
 			userAccount = userAccountManager.create(username, password, role);
 			userAccount.setEmail(email);
@@ -143,7 +143,7 @@ public class CustomerService {
 	}
 
 	private boolean checkRole(Role role) {
-		UserDetails userDetails = null;
+		UserDetails userDetails;
 		try {
 			userDetails = this.getPrincipal();
 			return userDetails.getAuthorities()
