@@ -26,7 +26,7 @@ class OrdersServiceTest {
     void findAll() {
     	List<McTankOrder> orders = ordersService.findAll();
 		assertNotNull(orders);
-		assertTrue(orders.isEmpty());
+		assertFalse(orders.isEmpty());
     }
 
     @Test
