@@ -8,6 +8,7 @@ import company18.mctank.exception.AnonymusUserException;
 import company18.mctank.exception.UserNotFoundException;
 import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
+import company18.mctank.forms.LicensePlateForm;
 import company18.mctank.forms.SignUpForm;
 import company18.mctank.domain.McTankOrder;
 
@@ -52,6 +53,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 
 
 @Service
@@ -66,9 +68,9 @@ public class CustomerService {
 	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	private final OrderManager<McTankOrder> orderManager;
-	private ZoneId localZone = ZoneId.of("Europe/Berlin");
+	private final ZoneId localZone = ZoneId.of("Europe/Berlin");
 	private ZonedDateTime newYear = ZonedDateTime.of(2020,1,1,0,0,0,0,localZone);
-	private long initialDelay = ZonedDateTime.now(localZone).until(newYear,ChronoUnit.MINUTES);
+	private final long initialDelay = ZonedDateTime.now(localZone).until(newYear,ChronoUnit.MINUTES);
 	private final CustomerRepository customers;
 
 
@@ -263,7 +265,11 @@ public class CustomerService {
 				}
 			};
 			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleanup,initialDelay, 525600,MINUTES);
-		};
+		}
 
 
+	public void updateLicensePlate(LicensePlateForm form) {
+			Customer customer = getCustomer(form.getId());
+			customer.setLicensePlate(form.getLicensePlate());
+		}
 }
