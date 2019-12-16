@@ -48,7 +48,6 @@ public class OverviewController {
 	 */
 	@GetMapping("/overview")
 	public String showOverviewPage(Model model) {
-		model.addAttribute("bestProducts", itemsService.findBestProducts());
 		this.addUserAndOrders(model);
 		this.addFuelStats(model);
 		return "overview";
@@ -60,6 +59,7 @@ public class OverviewController {
 		model.addAttribute("activeUserPercent", customerService.findAllActivePercent());
 		model.addAttribute("completedOrdersPercent", ordersService.findAllCompletedPercent());
 		model.addAttribute("averageProfitPerOrder", ordersService.findAverageProfitPerOrder());
+		model.addAttribute("bestProducts", itemsService.findBestProducts());
 	}
 
 

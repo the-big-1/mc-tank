@@ -2,6 +2,10 @@ package company18.mctank.service;
 
 import company18.mctank.domain.McTankOrder;
 import company18.mctank.exception.AnonymusUserException;
+import company18.mctank.forms.DataStacked;
+import company18.mctank.repository.ItemsRepository;
+import org.salespointframework.catalog.Product;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.Interval;
@@ -13,11 +17,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.money.MonetaryAmount;
+import javax.sql.DataSource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +40,9 @@ public class OrdersService {
 
 	@Autowired
 	private ItemsService itemsService;
+
+	@Autowired
+	private ItemsRepository itemsRepository;
 
 
 	/**
@@ -128,6 +138,23 @@ public class OrdersService {
 			.stream()
 			.mapToDouble(o -> o.getTotal().getNumber().doubleValue())
 			.sum();
-		return "EUR " + (rawAmount / findAll().size());
+		return String.format( "EUR %.1f", rawAmount / findAll().size());
+	}
+
+	public DataStacked stackData() {
+		LocalDateTime end = LocalDateTime.now();
+		LocalDateTime start = LocalDateTime.now().minusDays(6);
+		Interval interval = Interval.from(start).to(end);
+		List<McTankOrder> orders = this.orderService
+			.findBy(interval)
+			.get()
+			.sorted()
+			.collect(Collectors.toList());
+		Map<ProductIdentifier, Product> products = new HashMap<>();
+		for(Product product : itemsRepository.findAll()){
+			products.put(product.getId(), product);
+		}
+		return new DataStacked(orders, products);
+
 	}
 }
