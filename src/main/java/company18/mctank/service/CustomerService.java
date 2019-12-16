@@ -8,6 +8,7 @@ import company18.mctank.exception.AnonymusUserException;
 import company18.mctank.exception.UserNotFoundException;
 import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
+import company18.mctank.forms.LicensePlateForm;
 import company18.mctank.forms.SignUpForm;
 import company18.mctank.domain.McTankOrder;
 
@@ -52,6 +53,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 
 
 @Service
@@ -263,7 +265,11 @@ public class CustomerService {
 				}
 			};
 			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleanup,initialDelay, 525600,MINUTES);
-		};
+		}
 
 
+	public void updateLicensePlate(String licenseplate,long id) {
+		Customer customer = getCustomer(id);
+		customer.setLicensePlate(licenseplate);
+		}
 }
