@@ -1,5 +1,6 @@
 package company18.mctank.service;
 
+import company18.mctank.domain.McProduct;
 import company18.mctank.domain.McTankOrder;
 import company18.mctank.repository.ItemsRepository;
 
@@ -41,6 +42,8 @@ public class ItemsService {
 	private OrderManager<McTankOrder> orderManager;
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventoryRepository;
+	@Autowired
+	private OrdersService ordersService;
 
 
 	/**
@@ -147,4 +150,34 @@ public class ItemsService {
 		return itemsRepository.findByCategory(category).toList();
 	}
 
+	public Map<String, McProduct> findBestProducts() {
+		String[] p = {"McZapf", "McSit", "McDrive"};
+		Map<String, McProduct> result = new HashMap<>();
+		Map<String, List<Product>> points = this.makeAssortment(p);
+		Map<String, Integer> orderMap = this.getOrderMap();
+		if(!orderMap.isEmpty()) {
+			for (Map.Entry<String, List<Product>> point : points.entrySet()) {
+				McProduct bestProduct = this.findBest(orderMap, point.getValue());
+				result.put(point.getKey(), bestProduct);
+			}
+		}
+		return result;
+	}
+
+	private McProduct findBest(Map<String, Integer> orderMap, List<Product> products) {
+		String tmpId;
+		int orders = 0, tmpOrders = 0;
+		Product prod = null;
+		for (Product product : products){
+			tmpId = Objects.requireNonNull(product.getId()).getIdentifier();
+			if (orderMap.containsKey(tmpId))
+				tmpOrders = orderMap.get(tmpId);
+			if (tmpOrders > orders){
+				orders = tmpOrders;
+				prod = product;
+			}
+		}
+		return new McProduct(prod, this.getProductQuantity(prod), orders);
+
+	}
 }

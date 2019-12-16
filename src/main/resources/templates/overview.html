@@ -21,10 +21,10 @@
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-5">
-                      <h5 class="card-title mb-0">Average <br/>Profit</h5>
+                      <h5 class="card-title mb-0">Average Profit<br/>per Order</h5>
                     </div>
                     <div class="col-7 text-right">
-                      <h4 class="mb-0">$2075 <span class="badge badge-secondary-inverse font-14 v-a-m">+23</span></h4>
+                      <h4 class="mb-0" th:text="${averageProfitPerOrder}">$2075 </h4>
                     </div>
                   </div>
                 </div>
@@ -53,11 +53,11 @@
                 </div>
                 <div class="card-body px-0 pb-0">
                   <p class="dash-analytic-icon"><i class="feather icon-shopping-bag success-rgba text-success"></i></p>
-                  <h4 class="mb-3">79</h4>
-                  <p>60% Target</p>
+                  <h4 class="mb-3" th:text="${ordersAmount}">79</h4>
+                  <p><span th:text="${completedOrdersPercent}"></span>% Completed</p>
                   <div class="progress" style="height: 5px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%"
-                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" th:style="'width: ' + ${completedOrdersPercent} + '%'"
+                         th:aria-valuenow="${completedOrdersPercent}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -123,72 +123,29 @@
               <h5 class="card-title mb-0">Best Selling Product</h5>
             </div>
             <div class="card-body">
-              <div class="best-product-slider">
-                <div class="best-product-slider-item">
+              <div class="best-product-slider" th:unless="${bestProducts.isEmpty()}">
+                <div th:each="point : ${bestProducts}" class="best-product-slider-item">
                   <div class="row">
                     <div class="col-4">
-                      <img src="https://retohercules.com/images/snickers-png-6.png" class="img-fluid" alt="product">
+                      <img th:src="'/images/svg/icons/'+ ${point.key}+'.svg'" class="img-fluid" alt="product">
                     </div>
                     <div class="col-8">
-                      <span class="font-12 text-uppercase">McSit</span>
-                      <h5 class="mt-2 mb-4 font-16">Snickers</h5>
+                      <span class="font-12 text-uppercase" th:text="${point.key}">McSit</span>
+                      <h5 class="mt-2 mb-4 font-16" th:text="${point.value.getProduct().getName()}">Snickers</h5>
                       <ul class="list-inline mb-0">
                         <li class="list-inline-item pr-2 border-right">
-                          <h4 class="mb-0">205</h4>
+                          <h4 class="mb-0" th:text="${point.value.getOrders()}">205</h4>
                           <p class="mb-0">Sold</p>
                         </li>
                         <li class="list-inline-item">
-                          <h4 class="mb-0">52</h4>
+                          <h4 class="mb-0" th:text="${point.value.getQuantity()}">52</h4>
                           <p class="mb-0">In Stock</p>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="best-product-slider-item">
-                  <div class="row">
-                    <div class="col-4">
-                      <img src="https://www.stickpng.com/assets/images/58d2a6b0dc164e9dd9e668f2.png" class="img-fluid"
-                           alt="product">
-                    </div>
-                    <div class="col-8">
-                      <span class="font-12 text-uppercase">McTank</span>
-                      <h5 class="mt-2 mb-4 font-16">Kitkat std.</h5>
-                      <ul class="list-inline mb-0">
-                        <li class="list-inline-item pr-3 border-right">
-                          <h4 class="mb-0">121</h4>
-                          <p class="mb-0">Sold</p>
-                        </li>
-                        <li class="list-inline-item">
-                          <h4 class="mb-0">35</h4>
-                          <p class="mb-0">In Stock</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="best-product-slider-item">
-                  <div class="row">
-                    <div class="col-4">
-<!--                      <img src="https://www.evochem.gr/images/stories/virtuemart/product/ANTIFREEZE.png"-->
-<!--                           class="img-fluid" alt="product">-->
-                    </div>
-                    <div class="col-8">
-                      <span class="font-12 text-uppercase">McWash</span>
-                      <h5 class="mt-2 mb-4 font-16">Antifreeze</h5>
-                      <ul class="list-inline mb-0">
-                        <li class="list-inline-item pr-3 border-right">
-                          <h4 class="mb-0">55</h4>
-                          <p class="mb-0">Sold</p>
-                        </li>
-                        <li class="list-inline-item">
-                          <h4 class="mb-0">31</h4>
-                          <p class="mb-0">In Stock</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>

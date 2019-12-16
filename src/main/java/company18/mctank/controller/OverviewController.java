@@ -4,6 +4,7 @@ import company18.mctank.domain.GasPump;
 import company18.mctank.repository.CustomerRepository;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.ItemsService;
+import company18.mctank.service.OrdersService;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
@@ -36,6 +37,10 @@ public class OverviewController {
 	@Autowired
 	private CustomerService customerService;
 
+	@Autowired
+	private OrdersService ordersService;
+
+
 	/**
 	 * Overview page.
 	 *
@@ -43,10 +48,18 @@ public class OverviewController {
 	 */
 	@GetMapping("/overview")
 	public String showOverviewPage(Model model) {
-		model.addAttribute("activeUserAmount", customerService.findAll().size());
-		model.addAttribute("activeUserPercent", customerService.findAllActivePercent());
+		model.addAttribute("bestProducts", itemsService.findBestProducts());
+		this.addUserAndOrders(model);
 		this.addFuelStats(model);
 		return "overview";
+	}
+
+	private void addUserAndOrders(Model model) {
+		model.addAttribute("activeUserAmount", customerService.findAll().size());
+		model.addAttribute("ordersAmount", ordersService.findAll().size());
+		model.addAttribute("activeUserPercent", customerService.findAllActivePercent());
+		model.addAttribute("completedOrdersPercent", ordersService.findAllCompletedPercent());
+		model.addAttribute("averageProfitPerOrder", ordersService.findAverageProfitPerOrder());
 	}
 
 

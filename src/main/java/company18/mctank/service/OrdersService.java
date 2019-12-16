@@ -2,6 +2,7 @@ package company18.mctank.service;
 
 import company18.mctank.domain.McTankOrder;
 import company18.mctank.exception.AnonymusUserException;
+import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.time.Interval;
 import org.salespointframework.useraccount.UserAccount;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.money.MonetaryAmount;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -63,7 +65,7 @@ public class OrdersService {
 	}
 
 	private LocalDateTime convertToLocalDateViaInstant(String date) {
-		SimpleDateFormat formatter =  new SimpleDateFormat( "yyyy/MM/dd");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		try {
 			return formatter.parse(date).toInstant()
 				.atZone(ZoneId.systemDefault())
@@ -109,5 +111,23 @@ public class OrdersService {
 		return orders.stream()
 			.filter(order -> order.getIdString().equals(orderId))
 			.findFirst().get();
+	}
+
+	private int findAllActiveOrdersAmount() {
+		return (int) findAll().stream().filter(Order::isCompleted).count();
+	}
+
+	public String findAllCompletedPercent() {
+		float rawPercent = ((float) this.findAllActiveOrdersAmount() / this.findAll().size()) * 100f;
+		return String.format("%.1f", rawPercent).replace(",", ".");
+	}
+
+
+	public String findAverageProfitPerOrder() {
+		double rawAmount = this.findAll()
+			.stream()
+			.mapToDouble(o -> o.getTotal().getNumber().doubleValue())
+			.sum();
+		return "EUR " + (rawAmount / findAll().size());
 	}
 }
