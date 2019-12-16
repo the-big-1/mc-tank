@@ -1,6 +1,7 @@
 package company18.mctank.controller;
 
 import company18.mctank.forms.CustomerInfoUpdateForm;
+import company18.mctank.forms.LicensePlateForm;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.OrdersService;
 import company18.mctank.service.ReservationService;
@@ -58,6 +59,12 @@ public class AccountController {
 	@PostMapping("/account/update")
 	public String updateInfo(@Valid CustomerInfoUpdateForm form){
 		customerService.updateCustomer(form);
+		return "redirect:/account";
+	}
+	
+	@PostMapping("/account/licenseplate")
+	public String updateLicensePlate(@Valid LicensePlateForm form) {
+		customerService.updateLicensePlate(form);
 		return "redirect:/account";
 	}
 

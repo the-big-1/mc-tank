@@ -8,6 +8,7 @@ import company18.mctank.exception.ExistedUserException;
 import company18.mctank.exception.UserNotFoundException;
 import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
+import company18.mctank.forms.LicensePlateForm;
 import company18.mctank.forms.SignUpForm;
 import company18.mctank.repository.CustomerRepository;
 import org.salespointframework.useraccount.*;
@@ -24,7 +25,11 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+
+import javax.annotation.PostConstruct;
 
 
 @Service
@@ -104,7 +109,7 @@ public class CustomerService {
 		customer.setEmail(email);
 		customer.setMobile(mobile);
 		customerRepository.save(customer);
-		LOG.info("Request:  Update User's Info. Done: User " + customer.getUsername() +" was updated");
+		LOG.info("Request:  Update User's Info. Done: User " + customer.getUsername() + " was updated");
 	}
 
 	public void updateCustomersDiscounts(List<Discount> discounts, long customerId) {
@@ -113,7 +118,7 @@ public class CustomerService {
 		customerRepository.save(customer);
 	}
 
-	public void updateCurrentCustomerLastActivityDate () {
+	public void updateCurrentCustomerLastActivityDate() {
 		Customer customer = this.getCurrentCustomer();
 		if (customer != null) {
 			customer.updateLastActivityDate();
@@ -212,7 +217,7 @@ public class CustomerService {
 	}
 
 	@Transactional
-	public void deleteLongInactiveUsers () {
+	public void deleteLongInactiveUsers() {
 		final Date lastPossibleDate = new Date(System.currentTimeMillis() - USER_MAXIMUM_INACTIVITY_TIME_IN_MS);
 		Integer deletedUsers = this.customerRepository.deleteAllByLastActivityDateBefore(lastPossibleDate);
 		LOG.info("Users Deleted: {}", deletedUsers);
@@ -224,6 +229,11 @@ public class CustomerService {
 
 	public String findAllActivePercent() {
 		float rawPercent = ((float) this.findAllActiveUsersAmount() / this.findAll().size()) * 100f;
-		return String.format("%.1f",rawPercent).replace(",", ".");
+		return String.format("%.1f", rawPercent).replace(",", ".");
+	}
+
+	public void updateLicensePlate(LicensePlateForm form) {
+		Customer customer = getCustomer(form.getId());
+		customer.setLicensePlate(form.getLicensePlate());
 	}
 }
