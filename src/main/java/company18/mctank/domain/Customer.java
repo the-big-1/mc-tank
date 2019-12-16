@@ -83,6 +83,10 @@ public class Customer {
 	public long getId() {
 		return this.id;
 	}
+	
+	public String getLicensePlate(){
+		return this.licenseplate;
+	}
 
 	public void setFirstName(String firstName) {
 		this.userAccount.setFirstname(firstName);
