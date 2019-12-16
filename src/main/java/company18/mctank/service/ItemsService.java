@@ -180,4 +180,10 @@ public class ItemsService {
 		return new McProduct(prod, this.getProductQuantity(prod), orders);
 
 	}
+
+	public String getFuelFuture(Product benzine, Product diesel) {
+		int b =this.getProductQuantity(benzine).getAmount().intValue();
+		int d = this.getProductQuantity(diesel).getAmount().intValue();
+		return String.format( "%.1f", (float)(b * 2 - 23 / d * 2 - 13));
+	}
 }
