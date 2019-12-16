@@ -19,8 +19,9 @@ import company18.mctank.repository.ItemsRepository;
 /**
  * Initializer for inventory.
  * Implements {@link DataInitializer}.
- * @author CS
  *
+ * @author CS
+ * @author ArtemSer
  */
 @Component
 @Order(Ordered.LOWEST_PRECEDENCE)
@@ -64,9 +65,9 @@ public class InventoryDataInitializer implements DataInitializer {
 				// if product is not present create new inventory entry with quantity 100
 				Quantity amount;
 				if (product.getName().equals(GasPump.DIESEL))
-					amount = product.createQuantity(0); /// dieselLiters
+					amount = product.createQuantity(dieselLiters);
 				else if (product.getName().equals(GasPump.SUPER_BENZIN))
-					amount = product.createQuantity(0); // benzinLiters
+					amount = product.createQuantity(benzinLiters);
 				else
 					amount = product.createQuantity(100);
 				UniqueInventoryItem item = new UniqueInventoryItem(product, amount);

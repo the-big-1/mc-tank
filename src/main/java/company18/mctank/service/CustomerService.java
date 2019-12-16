@@ -20,9 +20,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -126,8 +128,8 @@ public class CustomerService {
 		LOG.info("Request: Change password. Status: Completed");
 	}
 
-	public Iterable<Customer> findAll() {
-		return customerRepository.findAll();
+	public List<Customer> findAll() {
+		return (List<Customer>) customerRepository.findAll();
 	}
 
 	public boolean isAdmin() {
@@ -216,4 +218,12 @@ public class CustomerService {
 		LOG.info("Users Deleted: {}", deletedUsers);
 	}
 
+	public int findAllActiveUsersAmount() {
+		return (int) findAll().stream().filter(c -> c.getUserAccount().isEnabled()).count();
+	}
+
+	public String findAllActivePercent() {
+		float rawPercent = ((float) this.findAllActiveUsersAmount() / this.findAll().size()) * 100f;
+		return String.format("%.1f",rawPercent).replace(",", ".");
+	}
 }

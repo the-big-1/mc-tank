@@ -1,6 +1,8 @@
 package company18.mctank.controller;
 
 import company18.mctank.domain.GasPump;
+import company18.mctank.repository.CustomerRepository;
+import company18.mctank.service.CustomerService;
 import company18.mctank.service.ItemsService;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
@@ -31,6 +33,9 @@ public class OverviewController {
 	@Autowired
 	private ItemsService itemsService;
 
+	@Autowired
+	private CustomerService customerService;
+
 	/**
 	 * Overview page.
 	 *
@@ -38,17 +43,23 @@ public class OverviewController {
 	 */
 	@GetMapping("/overview")
 	public String showOverviewPage(Model model) {
+		model.addAttribute("activeUserAmount", customerService.findAll().size());
+		model.addAttribute("activeUserPercent", customerService.findAllActivePercent());
+		this.addFuelStats(model);
+		return "overview";
+	}
+
+
+	private void addFuelStats(Model model){
 		List<Product> productList = itemsService.findByCategory("McZapf");
 		Product benzine = getProductByName(productList, GasPump.SUPER_BENZIN);
 		Product diesel = getProductByName(productList, GasPump.DIESEL);
-
 		boolean isBenzineFinishing = isFuelFinishing(benzine);
 		boolean isDieselFinishing = isFuelFinishing(diesel);
 		model.addAttribute("fuelBenzineWarning", isBenzineFinishing);
 		model.addAttribute("fuelDieselWarning", isDieselFinishing);
 		model.addAttribute("benzineTotal", itemsService.getProductQuantity(benzine));
 		model.addAttribute("dieselTotal", itemsService.getProductQuantity(diesel));
-		return "overview";
 	}
 
 	public Product getProductByName(List<Product> productList, String name) {

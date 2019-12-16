@@ -69,11 +69,11 @@
                 </div>
                 <div class="card-body px-0 pb-0">
                   <p class="dash-analytic-icon"><i class="feather icon-users primary-rgba text-primary"></i></p>
-                  <h4 class="mb-3">125</h4>
-                  <p>80% Target</p>
+                  <h4 class="mb-3" th:text="${activeUserAmount}">125</h4>
+                  <p><span th:text="${activeUserPercent}"></span>% Active Users</p>
                   <div class="progress" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 80%"
-                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" th:style="'width:' + ' ' + ${activeUserPercent}+'%'"
+                         th:aria-valuenow="${activeUserPercent}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
