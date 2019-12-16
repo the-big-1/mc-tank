@@ -32,7 +32,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 /**
  * A controller to manage the Cart.
  * @author vivien
- *
+ * @author ArtemSer
  */
 @Controller
 @SessionAttributes("cart")
@@ -42,15 +42,15 @@ public class CartController {
 	private GasPumpService pumpService;
 	private CustomerService customerService;
 
-	private boolean fuelWarning = false;  // add to model and call warning if true
-	
-/**
- * 
- * @param cartService
- * @param cart must not be null.
- * @param pumpService
- * @param customerService to handle a Cart session for each user.
- */
+	/**
+	 *
+	 * Cart controller constructor.
+	 *
+	 * @param cartService car service
+	 * @param cart must not be null.
+	 * @param pumpService pump service
+	 * @param customerService to handle a Cart session for each user.
+	 */
 	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService, CustomerService customerService) {
 		Assert.notNull(cart, "Cart must not be null!");
 		this.cart = cart;
@@ -69,10 +69,15 @@ public class CartController {
 		return new McTankCart();
 	}
 
+	/**
+	 * Returns view cart.
+	 *
+	 * @param model model
+	 * @return view name
+	 */
 	@GetMapping(value = "/cart")
 	public String showCart(Model model) {
 		model.addAttribute("cart", this.cart);
-		model.addAttribute("warning", fuelWarning); //idea: if true display warning
 		return "cart";
 	}
 	
@@ -80,7 +85,7 @@ public class CartController {
 	 * 
 	 * @param product adds a product to the cart.
 	 * @param amount the amount of a product in the cart.
-	 * @param claim 
+	 * @param claim claim
 	 * @return the view name.
 	 */
 	@PostMapping(value = "/cart")
@@ -114,7 +119,13 @@ public class CartController {
 		this.cartService.addOrUpdateItem(this.cart, product, Quantity.of(amount, Metric.LITER));
 		return "redirect:/cart";
 	}
-	
+
+	/**
+	 * Add item by pump number.
+	 *
+	 * @param number pump number
+	 * @return view name
+	 */
 	@PostMapping(value = "/cart/pump/direct")
 	public String addItem(@RequestParam("pump-number") int number) {
 		if (this.pumpService.isInValid(number))
@@ -143,7 +154,6 @@ public class CartController {
 		this.cartService.save(cart);
 		return "redirect:/cart";
 	}
-	
 
 	/**
 	 * 
@@ -154,8 +164,13 @@ public class CartController {
 	public String addDiscount(String discountCode) {
 		this.cart.addDiscount(discountCode);
 		return "redirect:/cart";
-	}	
+	}
 
+	/**
+	 * Checkout mapping.
+	 *
+	 * @return response entity
+	 */
 	@PostMapping("/cart/checkout")
 	public ResponseEntity<?> checkout() {
 		if (this.cartService.buy(this.cart, Cash.CASH)) {
@@ -171,21 +186,19 @@ public class CartController {
 					.status(HttpStatus.NOT_IMPLEMENTED)
 					.build();
 	}
-	
-	public boolean getFuelWarning(){
-		return fuelWarning;
-	}
 
-	public void setFuelWarning(boolean fuelWarning) {
-		this.fuelWarning = fuelWarning;
-	}
-
+	/**
+	 * Handle discount.
+	 */
 	private void handleDiscount() {
 		this.removeDiscounts();
 		this.addDiscounts();
 		this.updateDiscounts();
 	}
 
+	/**
+	 * Remove discount from customer in cart.
+	 */
 	private void removeDiscounts () {
 		this.cart.get().forEach(cartItem -> {
 			if (cartItem.getPrice().isNegative()) {
@@ -194,11 +207,17 @@ public class CartController {
 		});
 	}
 
+	/**
+	 * Add discount to customer in cart.
+	 */
 	private void addDiscounts () {
 		this.cart.getCustomer()
 				.addDiscount(DiscountFactory.create(this.cart.getMcPointBonus()));
 	}
 
+	/**
+	 * Update discount in repository.
+	 */
 	private void updateDiscounts () {
 		this.customerService.updateCustomersDiscounts(
 				this.cart.getCustomer().getDiscounts(),

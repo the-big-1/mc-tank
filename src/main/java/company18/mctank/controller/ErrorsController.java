@@ -8,8 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Controller for handling errors.
+ */
 @Controller
 public class ErrorsController implements ErrorController {
+
+	/**
+	 * Handler all errors.
+	 *
+	 * @param request http servlet request
+	 * @return view name
+	 */
 	@RequestMapping("/error")
 	public String handleError(HttpServletRequest request) {
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);

@@ -9,7 +9,13 @@ $(document).ready(function () {
         // noinspection JSUnresolvedFunction -- resolved from Apex.min.js
         chart.render();
     };
-    $.renderPieChart = function () {
+    $.renderPieChart = function (result) {
+        var resultTwo = [
+            Object.values(result.amountsOnMcDrive).reduce((a,b) => a + b, 0),
+            Object.values(result.amountsOnMcSit).reduce((a,b) => a + b, 0),
+            Object.values(result.amountsOnMcWash).reduce((a,b) => a + b, 0),
+            Object.values(result.amountsOnMcZapf).reduce((a,b) => a + b, 0)
+        ];
         var options = {
             chart: {
                 type: 'donut',
@@ -26,7 +32,7 @@ $(document).ready(function () {
                 enabled: false
             },
             colors: ['#0080ff', '#18d26b', '#d4d8de', '#cf0800'],
-            series: [30, 30, 45, 25],
+            series: resultTwo,
             labels: ['McSit', 'McTank', 'McWash', "McZapf"],
             legend: {
                 show: true,
@@ -48,80 +54,101 @@ $(document).ready(function () {
         $.render(chart);
     };
     $.renderStackedChart = function () {
-        var options = {
-            chart: {
-                height: 260,
-                type: 'bar',
-                stacked: true,
-                toolbar: {
-                    show: false
-                },
-                zoom: {
-                    enabled: false
-                }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '30%'
-                },
-            },
-            colors: ['#0080ff', '#18d26b', '#d4d8de', '#cf0800'],
-            series: [
-                {
-                    name: 'McSit',
-                    data: [5, 7, 8, 6, 7, 5, 6, 6, 7, 4, 8]
-                },
-                {
-                    name: 'McTank',
-                    data: [5, 4, 4, 5, 3, 4, 3, 5, 4, 6, 2]
-                },
-                {
-                    name: 'McWash',
-                    data: [5, 4, 4, 5, 3, 4, 3, 5, 4, 6, 2]
-                },
-                {
-                    name: 'McZapf',
-                    data: [5, 4, 4, 5, 3, 4, 3, 5, 4, 6, 2]
-                }
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/api/orders/stacked",
+            success: function (result) {
+                var options = {
+                    chart: {
+                        height: 260,
+                        type: 'bar',
+                        stacked: true,
+                        toolbar: {
+                            show: false
+                        },
+                        zoom: {
+                            enabled: false
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '30%'
+                        },
+                    },
+                    colors: ['#0080ff', '#18d26b', '#d4d8de', '#cf0800'],
+                    series: [
+                        {
+                            name: 'McSit',
+                            data: Object.values(result.amountsOnMcSit),
+                        },
+                        {
+                            name: 'McZapf',
+                            data: Object.values(result.amountsOnMcZapf)
+                        },
+                        {
+                            name: 'McWash',
+                            data: Object.values(result.amountsOnMcWash)
+                        },
+                        {
+                            name: 'McDrive',
+                            data: Object.values(result.amountsOnMcDrive)
+                        }
 
-            ],
-            xaxis: {
-                type: 'datetime',
-                categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT', '01/05/2011 GMT', '01/06/2011 GMT', '01/07/2011 GMT', '01/08/2011 GMT', '01/09/2011 GMT', '01/10/2011 GMT'],
-                axisBorder: {
-                    show: true,
-                    color: 'rgba(0,0,0,0.05)'
-                },
-                axisTicks: {
-                    show: true,
-                    color: 'rgba(0,0,0,0.05)'
-                }
-            },
-            grid: {
-                row: {
-                    colors: ['transparent', 'transparent'], opacity: .2
-                },
-                borderColor: 'rgba(0,0,0,0.05)'
-            },
-            legend: {
-                show: false
-            },
-            fill: {
-                opacity: 1
+                    ],
+                    xaxis: {
+                        type: 'datetime',
+                        categories: Object.keys(result.amountsOnMcZapf),
+                        axisBorder: {
+                            show: true,
+                            color: 'rgba(0,0,0,0.05)'
+                        },
+                        axisTicks: {
+                            show: true,
+                            color: 'rgba(0,0,0,0.05)'
+                        }
+                    },
+                    grid: {
+                        row: {
+                            colors: ['transparent', 'transparent'], opacity: .2
+                        },
+                        borderColor: 'rgba(0,0,0,0.05)'
+                    },
+                    legend: {
+                        show: false
+                    },
+                    fill: {
+                        opacity: 1
+                    }
+                };
+                var chart = new ApexCharts(
+                    document.querySelector("#apex-stacked-bar-chart"),
+                    options
+                );
+                $.render(chart);
+                $.renderAreaChart(result);
+                $.renderPieChart(result);
             }
-        };
-        var chart = new ApexCharts(
-            document.querySelector("#apex-stacked-bar-chart"),
-            options
-        );
-        $.render(chart);
+        });
     };
-    $.renderAreaChart = function () {
+    $.renderAreaChart = function (result) {
+        var resultOne = [
+            Object.values(result.amountsOnMcDrive),
+            Object.values(result.amountsOnMcSit),
+            Object.values(result.amountsOnMcWash),
+            Object.values(result.amountsOnMcZapf)
+        ];
+        var res = [];
+        res.push(0);
+        for (var i = 0; i < resultOne[0].length; i++){
+            res.push(resultOne[0][i] + resultOne[1][i] + resultOne[2][i] + resultOne[3][i]);
+        }
+        res.push(0);
         var options = {
             chart: {
                 type: "area",
-                height: 135,
+                height: 155,
                 sparkline: {
                     enabled: true
                 }
@@ -137,7 +164,8 @@ $(document).ready(function () {
             }
             ,
             series: [{
-                data: [15, 8, 12, 6, 10, 16, 5, 11, 6]
+                name: "Total orders",
+                data: res
             }
             ],
             yaxis: {
@@ -164,12 +192,8 @@ $(document).ready(function () {
         $.render(chart);
     };
 
-    /* -- Apex Pie Chart -- */
-    $.renderPieChart();
     /* Apex Stacked Bar Chart */
     $.renderStackedChart();
-    /* -----  Apex Area Chart ----- */
-    $.renderAreaChart();
 
     /* Best Product Slider */
     $('.best-product-slider').slick({

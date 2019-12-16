@@ -84,18 +84,4 @@ public class RefillInventoryServiceUnitTest {
 		}
 
 	}
-
-	@Test
-	void getFuelAmountBenzine() {
-		double expectedAmount = 100;
-
-		assertTrue(service.getFuelAmountBenzine() == expectedAmount);
-	}
-
-	@Test
-	void getFuelAmountDiesel() {
-		double expectedAmount = 100;
-		assertTrue(service.getFuelAmountDiesel() == expectedAmount);
-
-	}
 }

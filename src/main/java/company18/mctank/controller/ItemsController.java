@@ -1,32 +1,26 @@
 
 package company18.mctank.controller;
 
-import company18.mctank.domain.McTankOrder;
+import company18.mctank.forms.NewItemForm;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.GasPumpService;
 import company18.mctank.service.ItemsService;
-import company18.mctank.forms.NewItemForm;
-
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-
-
 import org.salespointframework.catalog.Product;
-import org.salespointframework.core.SalespointIdentifier;
-import org.salespointframework.inventory.UniqueInventory;
-import org.salespointframework.inventory.UniqueInventoryItem;
-import org.salespointframework.order.OrderManager;
-import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+/**
+ * Controller for managing items.
+ *
+ * @author ArtemSer
+ */
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
 public class ItemsController {
@@ -40,8 +34,14 @@ public class ItemsController {
 	
 	private static final Quantity NONE = Quantity.of(0);
 	
-	private final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
+	private static final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
 
+	/**
+	 * Return items with data.
+	 *
+	 * @param model model
+	 * @return view name
+	 */
 	@GetMapping("/items")
 	public String index(Model model) {
 		model.addAttribute("quantityMap", itemsService.getQuantityMap());
@@ -59,20 +59,40 @@ public class ItemsController {
 		
 		return "redirect:/";
 	}
-	
+
+	/**
+	 * Returns view with newItem.
+	 *
+	 * @param model model
+	 * @param form form
+	 * @return view name
+	 */
 	@GetMapping("/newItem")
 	public String newItem(Model model, NewItemForm form){
 		model.addAttribute("form", form);
 		model.addAttribute("Categories", mcPoints);
 		return"newItem";
 	}
-		
+
+	/**
+	 * Saving new item.
+	 *
+	 * @param form new item form
+	 * @return redirect to items
+	 */
 	@PostMapping("/item/new")
 	public String registerNew(@RequestBody NewItemForm form) {
 		itemsService.createNewProduct(form);
 		return "redirect:/items";
 	}
-	
+
+	/**
+	 * Item details page with data.
+	 *
+	 * @param product product
+	 * @param model model
+	 * @return view name
+	 */
 	@GetMapping("/items/{product}")	//itemDetails Page for adding a Product to the Bill/Order
 	public String itemDetails(@PathVariable Product product, Model model) {
 		Quantity quantity = itemsService.getProductQuantity(product);
@@ -83,7 +103,14 @@ public class ItemsController {
 		
 		return "items-details";
 	}
-	
+
+	/**
+	 * Items details.
+	 *
+	 * @param number pump number
+	 * @param model model
+	 * @return view name
+	 */
 	@GetMapping("/pump/{number}")	
 	public String itemDetails(@PathVariable int number, Model model) {
 		model.addAttribute("number", number);

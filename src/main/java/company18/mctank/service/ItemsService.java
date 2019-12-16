@@ -1,5 +1,6 @@
 package company18.mctank.service;
 
+import company18.mctank.domain.McProduct;
 import company18.mctank.domain.McTankOrder;
 import company18.mctank.repository.ItemsRepository;
 
@@ -8,11 +9,14 @@ import company18.mctank.forms.NewItemForm;
 
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
+import javax.swing.text.html.parser.Entity;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
+import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
@@ -40,7 +44,9 @@ public class ItemsService {
 	@Autowired
 	private OrderManager<McTankOrder> orderManager;
 	@Autowired
-	private UniqueInventory<UniqueInventoryItem> inventory;
+	private UniqueInventory<UniqueInventoryItem> inventoryRepository;
+	@Autowired
+	private OrdersService ordersService;
 
 
 	/**
@@ -118,14 +124,69 @@ public class ItemsService {
 
 	public Map<String, Integer> getQuantityMap() {
 		Map<String, Integer> quantityMap = new HashMap<>();
-		for (UniqueInventoryItem item : inventory.findAll()) {
-			quantityMap.put(Objects.requireNonNull(item.getProduct().getId()).getIdentifier(), item.getQuantity().getAmount().intValue());
+		for (UniqueInventoryItem item : inventoryRepository.findAll()) {
+			String id = Objects.requireNonNull(item.getProduct().getId()).getIdentifier();
+			Integer amount = item.getQuantity().getAmount().intValue();
+			quantityMap.put(id, amount);
 		}
 		return quantityMap;
 	}
 
-	public Quantity getProductQuantity(Product product) {
-		return inventory.findByProductIdentifier(product.getId()).get().getQuantity();
+
+	public Optional<UniqueInventoryItem> findProduct(Product product){
+		return inventoryRepository.findByProduct(product);
 	}
 
+	public Optional<UniqueInventoryItem> findProduct(ProductIdentifier productId){
+		return inventoryRepository.findByProductIdentifier(productId);
+	}
+
+	public Quantity getProductQuantity(Product product) {
+		return this.findProduct(product).map(InventoryItem::getQuantity).orElse(null);
+	}
+
+	public void updateProductQuantity(ProductIdentifier productId, Quantity q){
+		this.findProduct(productId).map(p -> p.increaseQuantity(q));
+	}
+
+	public List<Product> findByCategory(String category) {
+		return itemsRepository.findByCategory(category).toList();
+	}
+
+	public Map<String, McProduct> findBestProducts() {
+		String[] p = {"McZapf", "McSit", "McDrive"};
+		Map<String, McProduct> result = new HashMap<>();
+		Map<String, List<Product>> points = this.makeAssortment(p);
+		Map<String, Integer> orderMap = this.getOrderMap();
+		if(!orderMap.isEmpty()) {
+			for (Map.Entry<String, List<Product>> point : points.entrySet()) {
+				McProduct bestProduct = this.findBest(orderMap, point.getValue());
+				result.put(point.getKey(), bestProduct);
+			}
+		}
+		return result;
+	}
+
+	private McProduct findBest(Map<String, Integer> orderMap, List<Product> products) {
+		String tmpId;
+		int orders = 0, tmpOrders = 0;
+		Product prod = null;
+		for (Product product : products){
+			tmpId = Objects.requireNonNull(product.getId()).getIdentifier();
+			if (orderMap.containsKey(tmpId))
+				tmpOrders = orderMap.get(tmpId);
+			if (tmpOrders > orders){
+				orders = tmpOrders;
+				prod = product;
+			}
+		}
+		return new McProduct(prod, this.getProductQuantity(prod), orders);
+
+	}
+
+	public String getFuelFuture(Product benzine, Product diesel) {
+		int b =this.getProductQuantity(benzine).getAmount().intValue();
+		int d = this.getProductQuantity(diesel).getAmount().intValue();
+		return String.format( "%.1f", (float)(b * 2 - 23 / d * 2 - 13));
+	}
 }

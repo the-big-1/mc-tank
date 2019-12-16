@@ -54,6 +54,12 @@ public class ReservationService {
 		return result;
 	}
 
+	/**
+	 * Find reservations for list of points.
+	 *
+	 * @param points list of points
+	 * @return map of string and list of reservations
+	 */
 	public Map<String, List<Reservation>> findReservationsFor(List<Class> points){
 		Map<String, List<Reservation>> reservations = new HashMap<>();
 		points
@@ -110,6 +116,11 @@ public class ReservationService {
 		}
 	}
 
+	/**
+	 * Get all Events for customer.
+	 *
+	 * @return list of reservations for customer
+	 */
 	public List<Reservation> getAllEventsForCustomer() {
 		String currentUsername = null;
 		try {

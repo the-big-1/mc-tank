@@ -1,5 +1,7 @@
 package company18.mctank.initializer;
 
+import company18.mctank.domain.GasPump;
+import company18.mctank.service.GasPumpService;
 import org.javamoney.moneta.Money;
 
 import org.salespointframework.catalog.Product;

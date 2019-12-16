@@ -2,7 +2,7 @@
 <!--suppress XmlUnusedNamespaceDeclaration -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <!--suppress HtmlRequiredTitleElement  -- Will be inserted with thymeleaf-->
-<head th:insert="core/head :: all(pageName='Overview')"></head>
+<head th:insert="core/head :: all(pageName='Overview', headerSweet=true)"></head>
 <body class="vertical-layout">
 <div id="containerbar">
   <div th:insert="components/admin-nav :: nav "></div>
@@ -21,10 +21,10 @@
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-5">
-                      <h5 class="card-title mb-0">Average <br/>Profit</h5>
+                      <h5 class="card-title mb-0">Average Profit<br/>per Order</h5>
                     </div>
                     <div class="col-7 text-right">
-                      <h4 class="mb-0">$2075 <span class="badge badge-secondary-inverse font-14 v-a-m">+23</span></h4>
+                      <h4 class="mb-0" th:text="${averageProfitPerOrder}">$2075 </h4>
                     </div>
                   </div>
                 </div>
@@ -53,11 +53,11 @@
                 </div>
                 <div class="card-body px-0 pb-0">
                   <p class="dash-analytic-icon"><i class="feather icon-shopping-bag success-rgba text-success"></i></p>
-                  <h4 class="mb-3">79</h4>
-                  <p>60% Target</p>
+                  <h4 class="mb-3" th:text="${ordersAmount}">79</h4>
+                  <p><span th:text="${completedOrdersPercent}"></span>% Completed</p>
                   <div class="progress" style="height: 5px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%"
-                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" th:style="'width: ' + ${completedOrdersPercent} + '%'"
+                         th:aria-valuenow="${completedOrdersPercent}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -69,11 +69,11 @@
                 </div>
                 <div class="card-body px-0 pb-0">
                   <p class="dash-analytic-icon"><i class="feather icon-users primary-rgba text-primary"></i></p>
-                  <h4 class="mb-3">125</h4>
-                  <p>80% Target</p>
+                  <h4 class="mb-3" th:text="${activeUserAmount}">125</h4>
+                  <p><span th:text="${activeUserPercent}"></span>% Active Users</p>
                   <div class="progress" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 80%"
-                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" th:style="'width:' + ' ' + ${activeUserPercent}+'%'"
+                         th:aria-valuenow="${activeUserPercent}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -103,12 +103,16 @@
             <div class="card-body">
               <div class="row align-items-center">
                 <div class="col-lg-6 col-xl-7">
-                  <p><i class="feather icon-arrow-up text-primary mr-1"></i>Used: <strong>7.2k L</strong></p>
-                  <p><i class="feather icon-arrow-down mr-1"></i>Total: <strong>17.8k L</strong></p>
+                  <span class="badge badge-danger text-uppercase m-b-15" th:if="${fuelDieselWarning}">DIESEL FINISHING</span>
+                  <span class="badge badge-danger text-uppercase m-b-15" th:if="${fuelBenzineWarning}">BENZINE FINISHING</span>
+                  <p><i class="feather icon-arrow-up text-primary mr-1">Diesel</i>: <strong th:text="${dieselTotal}">7.2k L</strong></p>
+                  <p><i class="feather icon-star text-primary mr-1">Prediction</i>: <strong th:text="${fuelFuture}">7.2k L</strong></p>
+                  <p><i class="feather icon-arrow-down mr-1"></i>Benzine: <strong th:text="${benzineTotal}">17.8k L</strong></p>
+                  <button type="button" id="order-fuel" class="btn btn-primary-rgba" th:if="${fuelDieselWarning || fuelBenzineWarning}"><i class="feather icon-plus mr-2"></i>Order Fuel</button>
                 </div>
                 <div class="col-lg-6 col-xl-5 text-center">
                   <img src="/images/backgrounds/storage.png" class="img-fluid" alt="storage">
-                  <p class="storage-num">10.6k L</p>
+                  <p class="storage-num" th:text="(${dieselTotal.getAmount().intValue()} + ${benzineTotal.getAmount().intValue()}) + 'L'">10.6k L</p>
                 </div>
               </div>
             </div>
@@ -120,85 +124,37 @@
               <h5 class="card-title mb-0">Best Selling Product</h5>
             </div>
             <div class="card-body">
-              <div class="best-product-slider">
-                <div class="best-product-slider-item">
+              <div class="best-product-slider" th:unless="${bestProducts.isEmpty()}">
+                <div th:each="point : ${bestProducts}" class="best-product-slider-item">
                   <div class="row">
                     <div class="col-4">
-                      <img src="https://retohercules.com/images/snickers-png-6.png" class="img-fluid" alt="product">
+                      <img th:src="'/images/svg/icons/'+ ${point.key}+'.svg'" class="img-fluid" alt="product">
                     </div>
                     <div class="col-8">
-                      <span class="font-12 text-uppercase">McSit</span>
-                      <h5 class="mt-2 mb-4 font-16">Snickers</h5>
+                      <span class="font-12 text-uppercase" th:text="${point.key}">McSit</span>
+                      <h5 class="mt-2 mb-4 font-16" th:text="${point.value.getProduct().getName()}">Snickers</h5>
                       <ul class="list-inline mb-0">
                         <li class="list-inline-item pr-2 border-right">
-                          <h4 class="mb-0">205</h4>
+                          <h4 class="mb-0" th:text="${point.value.getOrders()}">205</h4>
                           <p class="mb-0">Sold</p>
                         </li>
                         <li class="list-inline-item">
-                          <h4 class="mb-0">52</h4>
+                          <h4 class="mb-0" th:text="${point.value.getQuantity()}">52</h4>
                           <p class="mb-0">In Stock</p>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="best-product-slider-item">
-                  <div class="row">
-                    <div class="col-4">
-                      <img src="https://www.stickpng.com/assets/images/58d2a6b0dc164e9dd9e668f2.png" class="img-fluid"
-                           alt="product">
-                    </div>
-                    <div class="col-8">
-                      <span class="font-12 text-uppercase">McTank</span>
-                      <h5 class="mt-2 mb-4 font-16">Kitkat std.</h5>
-                      <ul class="list-inline mb-0">
-                        <li class="list-inline-item pr-3 border-right">
-                          <h4 class="mb-0">121</h4>
-                          <p class="mb-0">Sold</p>
-                        </li>
-                        <li class="list-inline-item">
-                          <h4 class="mb-0">35</h4>
-                          <p class="mb-0">In Stock</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="best-product-slider-item">
-                  <div class="row">
-                    <div class="col-4">
-                      <img src="https://www.evochem.gr/images/stories/virtuemart/product/ANTIFREEZE.png"
-                           class="img-fluid" alt="product">
-                    </div>
-                    <div class="col-8">
-                      <span class="font-12 text-uppercase">McWash</span>
-                      <h5 class="mt-2 mb-4 font-16">Antifreeze</h5>
-                      <ul class="list-inline mb-0">
-                        <li class="list-inline-item pr-3 border-right">
-                          <h4 class="mb-0">55</h4>
-                          <p class="mb-0">Sold</p>
-                        </li>
-                        <li class="list-inline-item">
-                          <h4 class="mb-0">31</h4>
-                          <p class="mb-0">In Stock</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div th:if="${fuelWarning}">
-        <script>
-          window.alert(FuelWarning);
-        </script>
-      </div>
     </div>
   </div>
 </div>
-<div th:replace="core/scripts :: std(scriptCharts=true, scriptSlider=true, scriptOverview=true)"></div>
+<div th:replace="core/scripts :: std(scriptSweetAlert=true, scriptCharts=true, scriptOrderFuel=true, scriptSlider=true, scriptOverview=true)"></div>
 </body>
 </html>

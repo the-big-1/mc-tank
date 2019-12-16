@@ -11,12 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+/**
+ * Sign up controller.
+ */
 @Controller
 public class SignUpController {
 
 	@Autowired
 	private CustomerService customerService;
 
+	/**
+	 * Register new user
+	 * @param form form with data
+	 * @param result errors if found some
+	 * @return redirect to view with error of main view
+	 */
 	@PostMapping("/sign-up")
 	String registerNew(@Valid SignUpForm form, Errors result) {
 		if (result.hasErrors()) {
@@ -30,6 +39,11 @@ public class SignUpController {
 		return "redirect:/";
 	}
 
+	/**
+	 * Returns sin-up page.
+	 *
+	 * @return sign-up view
+	 */
 	@GetMapping("/sign-up")
 	String registrierung() {
 		return "sign-up";

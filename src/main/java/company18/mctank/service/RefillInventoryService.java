@@ -38,7 +38,6 @@ public class RefillInventoryService {
 	 *
 	 * @throws FuelStorageFullException if the amount is bigger than the size of the Inventory.
 	 */
-
 	public boolean refillFuels(double amountBenzine, double amountDiesel) throws FuelStorageFullException{
 		var benzineObj = items.findByName("Super Benzin")
 							  .stream()
@@ -92,7 +91,6 @@ public class RefillInventoryService {
 	 * @param prodName of the Items to add.
 	 * @param amount of which the stock should be refilled with.
 	 */
-
 	public boolean refillInventoryItem(String prodName, double amount){
 		var productObj = items.findByName(prodName)
 				.stream()
@@ -110,14 +108,13 @@ public class RefillInventoryService {
 		UniqueInventoryItem item = inventory.findByProduct(product).get();
 
 		item.increaseQuantity(product.createQuantity(amount));
-
+		inventory.save(item);
 		return true;
 	}
 
 	/**
 	 * @return Current amount of Benzine.
 	 */
-
 	public double getFuelAmountBenzine(){
 		var benzineObj = items.findByName("Super Benzin")
 							 .stream()
@@ -141,7 +138,6 @@ public class RefillInventoryService {
 	/**
 	 * @return Current amount of diesel fuel.
 	 */
-
 	public double getFuelAmountDiesel(){
 		var dieselObj = items.findByName("Diesel")
 							 .stream()

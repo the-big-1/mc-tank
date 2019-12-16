@@ -3,104 +3,66 @@ package company18.mctank.service;
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
 import company18.mctank.domain.Discount;
-import company18.mctank.exception.ExistedUserException;
 import company18.mctank.exception.AnonymusUserException;
+import company18.mctank.exception.ExistedUserException;
 import company18.mctank.exception.UserNotFoundException;
 import company18.mctank.factory.DiscountFactory;
 import company18.mctank.forms.CustomerInfoUpdateForm;
 import company18.mctank.forms.LicensePlateForm;
 import company18.mctank.forms.SignUpForm;
-import company18.mctank.domain.McTankOrder;
-
-
 import company18.mctank.repository.CustomerRepository;
-
 import org.salespointframework.useraccount.*;
-
-
-import org.salespointframework.order.OrderManager;
-import org.salespointframework.useraccount.Role;
-import org.salespointframework.useraccount.UserAccount;
-import org.salespointframework.useraccount.UserAccountIdentifier;
-import org.salespointframework.useraccount.UserAccountManager;
-
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Repository;
-
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-
+import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
-
-import static java.util.concurrent.TimeUnit.MINUTES;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
-
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
 import javax.annotation.PostConstruct;
-import javax.validation.Valid;
 
 
 @Service
 public class CustomerService {
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
-
+	private static final long USER_MAXIMUM_INACTIVITY_TIME_IN_MS = 1000 * 60 * 60 * 24 * 120L; // 120 days
 
 	private final CustomerRepository customerRepository;
 
 	private final UserAccountManager userAccountManager;
 
-	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
-	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-	private final OrderManager<McTankOrder> orderManager;
-	private final ZoneId localZone = ZoneId.of("Europe/Berlin");
-	private ZonedDateTime newYear = ZonedDateTime.of(2020,1,1,0,0,0,0,localZone);
-	private final long initialDelay = ZonedDateTime.now(localZone).until(newYear,ChronoUnit.MINUTES);
-	private final CustomerRepository customers;
-
-
 	@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-	public CustomerService(CustomerRepository customers, UserAccountManager userAccounts,OrderManager<McTankOrder> orderManager) {
+	public CustomerService(CustomerRepository customers, UserAccountManager userAccounts) {
 
 		Assert.notNull(customers, "CustomerRepository must not be null!");
 		Assert.notNull(userAccounts, "UserAccountManager must not be null!");
 
-
 		this.customerRepository = customers;
 		this.userAccountManager = userAccounts;
-
-		this.customers = customers;
-		this.orderManager = orderManager;
-
 	}
 
 
-	public Customer createCustomer(SignUpForm form) throws ExistedUserException {
+	public void createCustomer(SignUpForm form) throws ExistedUserException {
 		Assert.notNull(form, "Registration form must not be null!");
 		UnencryptedPassword password = UnencryptedPassword.of(form.getPassword());
-		return this.createCustomer(form.getName(), form.getEmail(), password, CustomerRoles.CUSTOMER);
+		this.createCustomer(form.getName(), form.getEmail(), password, CustomerRoles.CUSTOMER);
 	}
 
 	public Customer createCustomer(String username,
 								   String email,
 								   UnencryptedPassword password,
 								   Role role) throws ExistedUserException {
-		UserAccount userAccount = null;
+		UserAccount userAccount;
 		try {
 			userAccount = userAccountManager.create(username, password, role);
 			userAccount.setEmail(email);
@@ -136,7 +98,6 @@ public class CustomerService {
 			form.getId());
 	}
 
-
 	public void updateCustomer(String firstname,
 							   String lastname,
 							   String email,
@@ -148,13 +109,21 @@ public class CustomerService {
 		customer.setEmail(email);
 		customer.setMobile(mobile);
 		customerRepository.save(customer);
-		LOG.info("Request:  Update User's Info. Done: User " + customer.getUsername() +" was updated");
+		LOG.info("Request:  Update User's Info. Done: User " + customer.getUsername() + " was updated");
 	}
 
 	public void updateCustomersDiscounts(List<Discount> discounts, long customerId) {
 		Customer customer = getCustomer(customerId);
 		customer.setDiscounts(discounts);
 		customerRepository.save(customer);
+	}
+
+	public void updateCurrentCustomerLastActivityDate() {
+		Customer customer = this.getCurrentCustomer();
+		if (customer != null) {
+			customer.updateLastActivityDate();
+			this.customerRepository.save(customer);
+		}
 	}
 
 	public void updatePassword(String newPassword, long id) {
@@ -164,8 +133,8 @@ public class CustomerService {
 		LOG.info("Request: Change password. Status: Completed");
 	}
 
-	public Iterable<Customer> findAll() {
-		return customerRepository.findAll();
+	public List<Customer> findAll() {
+		return (List<Customer>) customerRepository.findAll();
 	}
 
 	public boolean isAdmin() {
@@ -181,7 +150,7 @@ public class CustomerService {
 	}
 
 	private boolean checkRole(Role role) {
-		UserDetails userDetails = null;
+		UserDetails userDetails;
 		try {
 			userDetails = this.getPrincipal();
 			return userDetails.getAuthorities()
@@ -194,7 +163,6 @@ public class CustomerService {
 			return false;
 		}
 	}
-
 
 	private UserDetails getPrincipal() throws AnonymusUserException {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -247,29 +215,25 @@ public class CustomerService {
 		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
 		return customerRepository.findCustomerByUserAccount(userAccount);
 	}
-	@PostConstruct
-	public void customerCleanup() {
-		final Runnable cleanup = new Runnable() { 
-			public void run() {
-				for(McTankOrder s:orderManager.findAll(PageRequest.of(0,10))) {
-					if(s.getDateCreated().until(newYear,ChronoUnit.DAYS)>=100) {
-							orderManager.delete(s);
-						}
-					}
-				for(Customer c:customers.findAll()) {
-						if(c.getLastOrderDate().atZone(localZone).until(newYear, ChronoUnit.DAYS)>=365) {
-							customers.delete(c);	
-						}
-					}
-				newYear.plusYears(1);
-				}
-			};
-			final ScheduledFuture<?> cleaningHandle = scheduler.scheduleAtFixedRate(cleanup,initialDelay, 525600,MINUTES);
-		}
 
+	@Transactional
+	public void deleteLongInactiveUsers() {
+		final Date lastPossibleDate = new Date(System.currentTimeMillis() - USER_MAXIMUM_INACTIVITY_TIME_IN_MS);
+		Integer deletedUsers = this.customerRepository.deleteAllByLastActivityDateBefore(lastPossibleDate);
+		LOG.info("Users Deleted: {}", deletedUsers);
+	}
+
+	public int findAllActiveUsersAmount() {
+		return (int) findAll().stream().filter(c -> c.getUserAccount().isEnabled()).count();
+	}
+
+	public String findAllActivePercent() {
+		float rawPercent = ((float) this.findAllActiveUsersAmount() / this.findAll().size()) * 100f;
+		return String.format("%.1f", rawPercent).replace(",", ".");
+	}
 
 	public void updateLicensePlate(LicensePlateForm form) {
-			Customer customer = getCustomer(form.getId());
-			customer.setLicensePlate(form.getLicensePlate());
-		}
+		Customer customer = getCustomer(form.getId());
+		customer.setLicensePlate(form.getLicensePlate());
+	}
 }

@@ -15,21 +15,25 @@
  */
 package company18.mctank.controller;
 
-import company18.mctank.repository.CustomerRepository;
 import company18.mctank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Main controller.
+ */
 @Controller
 public class MainController {
 
 	@Autowired
-	CustomerRepository customerRepository;
-
-	@Autowired
 	CustomerService customerService;
 
+	/**
+	 * Main path. Redirects to different pages depending on the role.
+	 *
+	 * @return view name
+	 */
 	@GetMapping("/")
 	public String index() {
 		String view = "login";

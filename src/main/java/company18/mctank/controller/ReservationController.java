@@ -1,9 +1,10 @@
 package company18.mctank.controller;
 
-import java.util.List;
-import javax.validation.Valid;
-
+import company18.mctank.domain.McSitReservation;
+import company18.mctank.domain.McWashReservation;
+import company18.mctank.forms.ReservationForm;
 import company18.mctank.service.CustomerService;
+import company18.mctank.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import company18.mctank.domain.McSitReservation;
-import company18.mctank.domain.McWashReservation;
-import company18.mctank.forms.ReservationForm;
-import company18.mctank.service.ReservationService;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
+/**
+ * Controller for creating and handling reservations.
+ */
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
 public class ReservationController {

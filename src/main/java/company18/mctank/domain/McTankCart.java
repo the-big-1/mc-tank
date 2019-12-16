@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.money.MonetaryAmount;
-
+import javax.validation.constraints.NotNull;
 
 import org.javamoney.moneta.function.MonetaryOperators;
 import org.salespointframework.catalog.Product;
@@ -16,15 +16,22 @@ import org.springframework.stereotype.Component;
 
 /**
  * McTankCart as a component of Cart in Salespoint.
- * @author vivien
  *
+ * @author vivien
+ * @author ArtemSer
  */
-
 @Component
 public class McTankCart extends Cart{
 
 	private Customer customer;
 
+	/**
+	 * Get mcPoint bonus.
+	 * It is bonus calculated by count of mcPoints visited bu customer.
+	 * If customer visits mcZapf and mcSit - its 2 mcPoints
+	 *
+	 * @return count of mcPoints
+	 */
 	public int getMcPointBonus() {
 		
 		// counts the number of categories in the cart to calculate discount
@@ -51,7 +58,9 @@ public class McTankCart extends Cart{
 
 
 	/**
-	 * 
+	 * Add discount to cart.
+	 * It is amount depends on total price in cart.
+	 *
 	 * @param discountCode each user gets a certain discount code once when registrated
 	 */
 	public void addDiscount(String discountCode){
@@ -70,9 +79,10 @@ public class McTankCart extends Cart{
 	}
 
 	/**
-	 * 
-	 * @param discount 
-	 * @return if the code has already been used.
+	 * Checks if cart already contains discount.
+	 *
+	 * @param discount discount
+	 * @return true if cart contains this discount
 	 */
 	public boolean containsDiscount(Discount discount){
 		// every code can only be used once
@@ -85,6 +95,10 @@ public class McTankCart extends Cart{
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Clears all item from cart and customer.
+	 */
 	@Override
 	public void clear() {
 		super.clear();

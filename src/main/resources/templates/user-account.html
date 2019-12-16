@@ -110,7 +110,7 @@
                           <i class="feather icon-award"></i>
                           <div class="media-body">
                             <h5>My Coupons</h5>
-                            <p>7 Point(s)</p>
+                            <p th:text="${customer.getDiscounts().size()} + ' Coupon(s)'">7 Coupon(s)</p>
                           </div>
                         </div>
                       </div>
@@ -155,75 +155,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card m-b-30" th:unless="${orders.isEmpty()}">
-                <div class="card-header">
-                  <h5 class="card-title mb-0">Orders list</h5>
-                </div>
-                <div class="card-body">
-                  <div class="order-box" th:each="order : ${orders}">
-                    <div class="card border m-b-30">
-                      <div class="card-header">
-                        <div class="row align-items-center">
-                          <div class="col-sm-6">
-                            <h5>ID : #<span th:text="${order.getIdString()}"></span></h5>
-                          </div>
-                          <div class="col-sm-6">
-                            <h6 class="mb-0">Total :
-                              <strong th:text="${order.getTotalString()}">
-                              </strong>
-                            </h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="table-responsive">
-                          <table class="table table-borderless">
-                            <thead>
-                            <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col">Identifier</th>
-                              <th scope="col">Qty</th>
-                              <th scope="col" class="text-right">Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="line : ${order.getOrderLines()}">
-                              <th scope="row" th:text="${line.getProductName()}">1</th>
-                              <td th:text="${line.getId()}">Apple Watch</td>
-                              <td th:text="${line.getQuantity()}">1</td>
-                              <td th:text="${line.getPrice()}" class="text-right">$100</td>
-                            </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="card-footer">
-                        <div class="row align-items-center">
-                          <div class="col-sm-6">
-                            <h5>Status :
-                              <span th:if="${order.isOpen()}"
-                                  class="badge badge-warning-inverse font-14">Open</span>
-                              <span th:if="${order.isPaid()}"
-                                  class="badge badge-success-inverse font-14">Paid</span>
-                              <span th:if="${order.isCompleted()}"
-                                    class="badge badge-success-inverse font-14">Completed</span>
-                            </h5>
-                          </div>
-                          <div class="col-sm-6">
-                            <h6 class="mb-0">
-                              <button class="btn btn-success-rgba font-16">
-                                <i class="feather icon-file mr-2"></i>
-                                Request Invoice
-                              </button>
-                            </h6>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <div th:replace="components/tables/orders :: table(role='Customer')"></div>
+            </div >
             <!-- My Orders End -->
             <!-- My Reservations Start -->
             <div class="tab-pane fade" id="v-pills-reservations" role="tabpanel"
