@@ -68,9 +68,9 @@ public class CustomerService {
 	private static Role CUSTOMER_ROLE = Role.of("CUSTOMER");
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	private final OrderManager<McTankOrder> orderManager;
-	private ZoneId localZone = ZoneId.of("Europe/Berlin");
+	private final ZoneId localZone = ZoneId.of("Europe/Berlin");
 	private ZonedDateTime newYear = ZonedDateTime.of(2020,1,1,0,0,0,0,localZone);
-	private long initialDelay = ZonedDateTime.now(localZone).until(newYear,ChronoUnit.MINUTES);
+	private final long initialDelay = ZonedDateTime.now(localZone).until(newYear,ChronoUnit.MINUTES);
 	private final CustomerRepository customers;
 
 
@@ -268,8 +268,8 @@ public class CustomerService {
 		}
 
 
-	public void updateLicensePlate(String licenseplate,long id) {
-		Customer customer = getCustomer(id);
-		customer.setLicensePlate(licenseplate);
+	public void updateLicensePlate(LicensePlateForm form) {
+			Customer customer = getCustomer(form.getId());
+			customer.setLicensePlate(form.getLicensePlate());
 		}
 }
