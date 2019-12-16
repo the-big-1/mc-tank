@@ -12,6 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * User manager controller.
+ *
+ * @author ArtemSer
+ */
 @Controller
 @PreAuthorize("hasRole('ADMIN')")
 class UserManagementController {
@@ -21,12 +26,24 @@ class UserManagementController {
 	@Autowired
 	private CustomerService customerService;
 
+	/**
+	 * Get customers method.
+	 *
+	 * @param model model
+	 * @return user management view
+	 */
 	@GetMapping("/user-management")
 	String customers(Model model) {
 		model.addAttribute("customerList", customerService.findAll());
 		return "user-management";
 	}
 
+	/**
+	 * Registe new user from form.
+	 *
+	 * @param form form
+	 * @return redirect to user management
+	 */
 	@PostMapping("/customer/new")
 	public String registerNew(@RequestBody SignUpForm form) {
 		try {
@@ -38,12 +55,27 @@ class UserManagementController {
 		return "redirect:/user-management";
 	}
 
+	/**
+	 * Disable customer.
+	 *
+	 * @param model model
+	 * @param id customer id to disable
+	 * @return redirect to user management
+	 */
 	@RequestMapping("/customer/disable")
 	String disableCustomer(Model model,  @RequestParam UserAccountIdentifier id){
 		customerService.disableCustomer(id);
 		model.addAttribute("customerList", customerService.findAll());
 		return "redirect:/user-management";
 	}
+
+	/**
+	 * Enable customer.
+	 *
+	 * @param model model
+	 * @param id customer id to enable
+	 * @return redirect to user management
+	 */
 	@RequestMapping("/customer/enable")
 	String enableCustomer(Model model,  @RequestParam UserAccountIdentifier id){
 		customerService.enableCustomer(id);
@@ -51,6 +83,13 @@ class UserManagementController {
 		return "redirect:/user-management";
 	}
 
+	/**
+	 * Delete customer.
+	 *
+	 * @param model model
+	 * @param id id customer to delete
+	 * @return redirect to user management
+	 */
 	@RequestMapping("/customer/delete")
 	String deleteCustomer(Model model,  @RequestParam long id){
 		customerService.deleteCustomer(id);
