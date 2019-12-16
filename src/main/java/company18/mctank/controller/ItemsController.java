@@ -40,7 +40,7 @@ public class ItemsController {
 	
 	private static final Quantity NONE = Quantity.of(0);
 	
-	private final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
+	private static final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
 
 	@GetMapping("/items")
 	public String index(Model model) {

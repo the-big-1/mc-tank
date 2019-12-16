@@ -44,13 +44,15 @@ public class CartController {
 
 	private boolean fuelWarning = false;  // add to model and call warning if true
 	
-/**
- * 
- * @param cartService
- * @param cart must not be null.
- * @param pumpService
- * @param customerService to handle a Cart session for each user.
- */
+	/**
+	 *
+	 * Cart controller constructor.
+	 *
+	 * @param cartService car service
+	 * @param cart must not be null.
+	 * @param pumpService pump service
+	 * @param customerService to handle a Cart session for each user.
+	 */
 	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService, CustomerService customerService) {
 		Assert.notNull(cart, "Cart must not be null!");
 		this.cart = cart;

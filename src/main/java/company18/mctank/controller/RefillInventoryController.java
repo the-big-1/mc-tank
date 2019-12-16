@@ -1,12 +1,16 @@
 package company18.mctank.controller;
 
 
-import company18.mctank.exception.FuelStorageFullException;
+import company18.mctank.domain.GasPump;
+import company18.mctank.forms.RequestFuelBody;
 import company18.mctank.service.RefillInventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 /**
@@ -16,23 +20,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RefillInventoryController {
 
 	@Autowired
-	private RefillInventoryService service;
+	private RefillInventoryService serviceInventory;
 
 	/**
 	 * Refill fuels.
 	 *
-	 * @param amountBenzine benzine amount
-	 * @param amountDiesel diesel amount
+	 * @param requestFuelBody request fuel body
 	 * @return string
 	 */
-	@GetMapping("/orderfuel")
-	public String refillFuels(double amountBenzine, double amountDiesel){
-		try {
-			service.refillFuels(amountBenzine, amountDiesel);
-		}
-		catch (FuelStorageFullException e){
-			//send message that order is to large
-		}
-		return "";
+	@PostMapping("/orderfuel")
+	public ResponseEntity<?> refillFuels(@RequestBody RequestFuelBody requestFuelBody) {
+		String productName = requestFuelBody.getFuelType().equals(GasPump.DIESEL) ? GasPump.DIESEL : GasPump.SUPER_BENZIN;
+		serviceInventory.refillInventoryItem(productName, requestFuelBody.getAmount());
+		return ResponseEntity.ok().build();
 	}
 }

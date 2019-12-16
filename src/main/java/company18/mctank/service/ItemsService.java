@@ -143,4 +143,8 @@ public class ItemsService {
 		this.findProduct(productId).map(p -> p.increaseQuantity(q));
 	}
 
+	public List<Product> findByCategory(String category) {
+		return itemsRepository.findByCategory(category).toList();
+	}
+
 }

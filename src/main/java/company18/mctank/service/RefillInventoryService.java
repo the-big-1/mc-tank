@@ -108,7 +108,7 @@ public class RefillInventoryService {
 		UniqueInventoryItem item = inventory.findByProduct(product).get();
 
 		item.increaseQuantity(product.createQuantity(amount));
-
+		inventory.save(item);
 		return true;
 	}
 
