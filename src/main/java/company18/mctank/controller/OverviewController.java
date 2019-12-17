@@ -26,7 +26,7 @@ import java.util.Optional;
 @PreAuthorize("hasRole('ADMIN')")
 public class OverviewController {
 
-	private static final Quantity MAX_FUEL_QUANTITY = Quantity.of(10L, Metric.LITER);
+	private static final Quantity MIN_FUEL_QUANTITY = Quantity.of(10000L, Metric.LITER);  //min quantity before warning is triggered
 
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventoryRepository;
@@ -86,11 +86,11 @@ public class OverviewController {
 	public boolean isFuelFinishing(Product product) {
 		Optional<UniqueInventoryItem> inventoryItem = inventoryRepository.findByProduct(product).or(Optional::empty);
 		return inventoryItem
-				.map(this::isItemGreaterThanMaxFuelQuantity)
+				.map(this::isItemGreaterThanMinFuelQuantity)
 				.orElse(false);
 	}
 
-	private boolean isItemGreaterThanMaxFuelQuantity(UniqueInventoryItem uniqueInventoryItem) {
-		return uniqueInventoryItem.getQuantity().isLessThan(MAX_FUEL_QUANTITY);
+	private boolean isItemGreaterThanMinFuelQuantity(UniqueInventoryItem uniqueInventoryItem) {
+		return uniqueInventoryItem.getQuantity().isLessThan(MIN_FUEL_QUANTITY);
 	}
 }
