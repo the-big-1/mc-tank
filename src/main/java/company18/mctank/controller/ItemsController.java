@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * Controller for managing items.
  *
  * @author ArtemSer
+ * @author David Leistner
  */
 @Controller
 @PreAuthorize("hasAnyRole({'ADMIN', 'MANAGER'})")
@@ -34,7 +35,7 @@ public class ItemsController {
 	
 	private static final Quantity NONE = Quantity.of(0);
 	
-	private static final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
+	private static final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"};
 
 	/**
 	 * Return items with data.
@@ -86,27 +87,9 @@ public class ItemsController {
 		return "redirect:/items";
 	}
 
-	//item details gibt es nicht mehr
+	//not used?
 	/**
-	 * Item details page with data.
-	 *
-	 * @param product product
-	 * @param model model
-	 * @return view name
-	 */
-	@GetMapping("/items/{product}")	//itemDetails Page for adding a Product to the Bill/Order
-	public String itemDetails(@PathVariable Product product, Model model) {
-		Quantity quantity = itemsService.getProductQuantity(product);
-		model.addAttribute("category", mcPoints);
-		model.addAttribute("product", product);
-		model.addAttribute("quantity", quantity);
-		model.addAttribute("orderable", quantity.isGreaterThan(product.createQuantity(0)));
-		
-		return "items-details";
-	}
-
-	/**
-	 * Items details.
+	 * Pump details.
 	 *
 	 * @param number pump number
 	 * @param model model

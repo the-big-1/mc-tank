@@ -5,6 +5,14 @@ import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * Form for adding a new {@link org.salespointframework.catalog.Product}s to the {@link company18.mctank.repository.ItemsRepository}.
+ *
+ * POJO class with Getters and Setters.
+ *
+ * @author David Leistner
+ */
+
 public class NewItemForm {
 
 	@NotEmpty(message = "Name darf nicht leer sein.") //
@@ -13,7 +21,7 @@ public class NewItemForm {
 	@NotEmpty(message = "Preis darf nicht leer sein.") //
 	private String price;
 	
-	private List<String> productCategories = new ArrayList<String>();
+	private List<String> productCategories;
 	
 	
 	public NewItemForm(String productName, String price, List<String> productCategories) {

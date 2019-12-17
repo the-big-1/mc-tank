@@ -93,6 +93,13 @@ public class ItemsService {
 		return itemsRepository.save(product);
 	}
 
+	/**
+	 * Makes a Map with Products sorted by McPoints.
+	 *
+	 * @param mcPoints array with the McPoints in which the Product is available.
+	 * @return map with McPoints as Keys and Lists of Products (available at this Point) as Value.
+	 */
+
 	public Map<String, List<Product>> makeAssortment(String[] mcPoints) {
 		Map<String, List<Product>> assortmentMap = new HashMap<>();
 
@@ -183,6 +190,14 @@ public class ItemsService {
 		return new McProduct(prod, this.getProductQuantity(prod), orders);
 
 	}
+
+	/**
+	 * Prediction for future Fuel Orders.
+	 *
+	 * @param benzine
+	 * @param diesel
+	 * @return Prediction
+	 */
 
 	public String getFuelFuture(Product benzine, Product diesel) {
 		int b =this.getProductQuantity(benzine).getAmount().intValue();

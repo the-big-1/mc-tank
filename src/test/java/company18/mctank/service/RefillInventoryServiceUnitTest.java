@@ -1,24 +1,18 @@
 package company18.mctank.service;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
-import org.salespointframework.quantity.Metric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
+import java.util.Properties;
 
 @SpringBootTest
 public class RefillInventoryServiceUnitTest {
@@ -33,55 +27,37 @@ public class RefillInventoryServiceUnitTest {
 	private RefillInventoryService service;
 
 	@Test
-	public void refillInventoryItemTest(){
+	public void refillInventoryItemTest() {
 		MonetaryAmount price = Monetary.getDefaultAmountFactory()
-									   .setCurrency("EUR")
-									   .setNumber(1.33)
-									   .create();
+				.setCurrency("EUR")
+				.setNumber(1.33)
+				.create();
 
 		double testAmount = 1000;
-		double expectedAmount = 2500;
 
 		Product product1 = new Product("Cola Test", price);
-
+		Product notInventory = new Product("InCatalogButNotInInv", price);
 		items.save(product1);
-
+		items.save(notInventory);
 		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(1500)));
+
 
 		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
 
-		assertFalse(service.refillInventoryItem("Snickers Test", testAmount)); // Item not in Inventory/Catalog
+		assertFalse(service.refillInventoryItem("Snickers Test", 1)); // Item not in Catalog and Inventory
+
+		assertFalse(service.refillInventoryItem("InCatalogButNotInInv", 1)); //Item in Catalog but not in Inventory
 	}
 
 	@Test
-	public void refillFuelsTest(){
+	void getFuelAmountBenzineTest() {
+		//Initialized with 100 Liter but 2 Liter taken in OrderInitializer for TestOrders
+		assertTrue(service.getFuelAmountBenzine() == 98.0);
+	}
 
-		double testAmount = 2500;
-		double failAmount = 50000;
-		double failAmount2 = 49000;
-
-		// Benzine/Diesel created in DataInitializer with 100 Liter amount
-
-		try {
-			assertTrue(service.refillFuels(testAmount, testAmount));
-		}
-		catch (FuelStorageFullException e){
-			fail();
-		}
-
-		try {
-			service.refillFuels(failAmount, failAmount);
-		}
-		catch (FuelStorageFullException e){
-			assertThat(e.getClass().equals(new FuelStorageFullException()));
-		}
-
-		try {
-			service.refillFuels(failAmount2, failAmount2);
-		}
-		catch (FuelStorageFullException e){
-			assertThat(e.getClass().equals(new FuelStorageFullException()));
-		}
-
+	@Test
+	void getFuelAmountDieselTest() {
+		//Initialized with 100 Liter but 2 Liter taken in OrderInitializer for TestOrders
+		assertTrue(service.getFuelAmountDiesel() == 98.0);
 	}
 }

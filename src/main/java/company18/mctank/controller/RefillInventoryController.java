@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Refill inventory controller.
+ *
+ * @author ArtemSer
  */
 @Controller
 public class RefillInventoryController {
