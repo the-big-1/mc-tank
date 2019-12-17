@@ -1,6 +1,5 @@
 package company18.mctank.service;
 
-import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
 
 import org.salespointframework.catalog.Product;
