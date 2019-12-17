@@ -40,8 +40,9 @@ public class McTankCart extends Cart{
 		for(CartItem i: this) {
 			currentCategories= i.getProduct().getCategories();
 			for(String cat : currentCategories) {
-				if (!listedCategories.contains(cat))
+				if (!listedCategories.contains(cat)) {
 					listedCategories.add(cat);
+				}
 			}
 		}
 
@@ -64,8 +65,9 @@ public class McTankCart extends Cart{
 	 * @param discountCode each user gets a certain discount code once when registrated
 	 */
 	public void addDiscount(String discountCode){
-		if (discountCode.length() < Discount.VALID_DISCOUNT_LENGTH)
+		if (discountCode.length() < Discount.VALID_DISCOUNT_LENGTH) {
 			return;
+		}
 
 		for (Discount discount: this.customer.getDiscounts()) {
 			if (discount.getStatus() == Discount.DiscountStatus.AVAILABLE &&

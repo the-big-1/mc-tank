@@ -86,6 +86,7 @@ public class ItemsController {
 		return "redirect:/items";
 	}
 
+	//item details gibt es nicht mehr
 	/**
 	 * Item details page with data.
 	 *

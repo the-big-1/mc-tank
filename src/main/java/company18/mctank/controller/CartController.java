@@ -128,10 +128,11 @@ public class CartController {
 	 */
 	@PostMapping(value = "/cart/pump/direct")
 	public String addItem(@RequestParam("pump-number") int number) {
-		if (this.pumpService.isInValid(number))
+		if (this.pumpService.isInValid(number)) {
 			return "redirect:/";
-		else
+		} else {
 			this.cartService.addOrUpdateItem(this.cart, pumpService.getFuel(number), Quantity.of(pumpService.getFuelQuantity(number), Metric.LITER));
+		}
 		return "redirect:/cart";
 	}
 
@@ -180,11 +181,11 @@ public class CartController {
 			return ResponseEntity
 					 .ok()
 					 .build();
-		}
-		else
+		} else {
 			return ResponseEntity
 					.status(HttpStatus.NOT_IMPLEMENTED)
 					.build();
+		}
 	}
 
 	/**

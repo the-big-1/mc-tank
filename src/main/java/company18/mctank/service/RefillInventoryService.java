@@ -1,6 +1,5 @@
 package company18.mctank.service;
 
-import company18.mctank.domain.FuelWarningEvent;
 import company18.mctank.exception.FuelStorageFullException;
 import company18.mctank.repository.ItemsRepository;
 
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * Service for refilling the {@link Product}s in the {@link UniqueInventory}.
- * Especially for the Fuels.
  *
  * @author David Leistner
  */
@@ -75,9 +73,6 @@ public class RefillInventoryService {
 		}
 
 		if (amountBenzine + currentamountBenzine > 10000.0 && amountDiesel + currentamountDiesel > 10000.0){
-
-			//reset warning to false
-			publishEvent(false);
 		}
 
 		benzineItem.increaseQuantity(benzine.createQuantity(amountBenzine));
@@ -156,16 +151,5 @@ public class RefillInventoryService {
 				.doubleValue();
 
 		return currentamountDiesel;
-	}
-
-	public void publishEvent(boolean fuelWarning){
-		FuelWarningEvent event = new FuelWarningEvent(this, fuelWarning);
-		publisher.publishEvent(event);
-	}
-
-	public void checkStock(){
-		if(getFuelAmountBenzine() < 10000.0 || getFuelAmountDiesel() < 10000.0){
-			publishEvent(true);
-		}
 	}
 }

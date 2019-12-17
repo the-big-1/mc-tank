@@ -37,12 +37,13 @@ public class MainController {
 	@GetMapping("/")
 	public String index() {
 		String view = "login";
-		if (customerService.isAdmin())
+		if (customerService.isAdmin()) {
 			view = "overview";
-		else if (customerService.isManager())
+		} else if (customerService.isManager()) {
 			view = "cart";
-		else if (customerService.isCustomer())
+		} else if (customerService.isCustomer()) {
 			view = "account";
+		}
 		return "redirect:/" + view;
 	}
 }

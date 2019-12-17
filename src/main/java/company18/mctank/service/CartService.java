@@ -62,10 +62,6 @@ public class CartService {
 
 		//save order
 		this.orderManager.save(order);
-		
-
-		//RefillService checks the stock and publishes a warning if needed
-//		 refillService.checkStock();
 
 		return true;
 	}

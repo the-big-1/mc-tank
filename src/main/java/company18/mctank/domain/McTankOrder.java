@@ -43,6 +43,8 @@ public class McTankOrder extends Order implements Comparable<McTankOrder>{
 			return -1;
 		} else if (isThisOrderEarlier) {
 			return 1;
-		} else return 0;
+		} else {
+			return 0;
+		}
 	}
 }
