@@ -52,36 +52,4 @@ public class RefillInventoryServiceUnitTest {
 
 		assertFalse(service.refillInventoryItem("Snickers Test", testAmount)); // Item not in Inventory/Catalog
 	}
-
-	@Test
-	public void refillFuelsTest(){
-
-		double testAmount = 2500;
-		double failAmount = 50000;
-		double failAmount2 = 49000;
-
-		// Benzine/Diesel created in DataInitializer with 100 Liter amount
-
-		try {
-			assertTrue(service.refillFuels(testAmount, testAmount));
-		}
-		catch (FuelStorageFullException e){
-			fail();
-		}
-
-		try {
-			service.refillFuels(failAmount, failAmount);
-		}
-		catch (FuelStorageFullException e){
-			assertThat(e.getClass().equals(new FuelStorageFullException()));
-		}
-
-		try {
-			service.refillFuels(failAmount2, failAmount2);
-		}
-		catch (FuelStorageFullException e){
-			assertThat(e.getClass().equals(new FuelStorageFullException()));
-		}
-
-	}
 }

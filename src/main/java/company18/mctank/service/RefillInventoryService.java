@@ -11,7 +11,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 /**
- * Service for refilling the {@link Product}s in the {@link UniqueInventory}.
+ * Service for refilling the amount of {@link Product}s in the {@link UniqueInventory}.
  *
  * @author David Leistner
  */
@@ -29,60 +29,7 @@ public class RefillInventoryService {
 	private ApplicationEventPublisher publisher;
 
 	/**
-	 * Refills the stock of fuels.
-	 *
-	 * @param amountBenzine which should be added to the current amount of Benzine.
-	 * @param amountDiesel which should be added to the current amount of Diesel.
-	 *
-	 * @throws FuelStorageFullException if the amount is bigger than the size of the Inventory.
-	 */
-	public boolean refillFuels(double amountBenzine, double amountDiesel) throws FuelStorageFullException{
-		var benzineObj = items.findByName("Super Benzin")
-							  .stream()
-							  .findFirst();
-		var dieselObj = items.findByName("Diesel")
-				.stream()
-				.findFirst();
-
-		if (benzineObj.isEmpty() || dieselObj.isEmpty()){
-			return false;
-		}
-
-		Product benzine = benzineObj.get();
-		Product diesel = dieselObj.get();
-
-		var benzineOpt = inventory.findByProduct(benzine)
-									 .stream()
-									 .findFirst();
-		var dieselOtp = inventory.findByProduct(diesel)
-							     .stream()
-								 .findFirst();
-
-		UniqueInventoryItem benzineItem = benzineOpt.get();
-		UniqueInventoryItem dieselItem = dieselOtp.get();
-
-		double currentamountBenzine = benzineItem.getQuantity()
-											   .getAmount()
-								   		       .doubleValue();
-		double currentamountDiesel = dieselItem.getQuantity()
-											   .getAmount()
-											   .doubleValue();
-
-		if (amountBenzine + currentamountBenzine > 50000.0 || amountDiesel + currentamountDiesel > 50000.0){
-			throw new FuelStorageFullException();
-		}
-
-		if (amountBenzine + currentamountBenzine > 10000.0 && amountDiesel + currentamountDiesel > 10000.0){
-		}
-
-		benzineItem.increaseQuantity(benzine.createQuantity(amountBenzine));
-		dieselItem.increaseQuantity(diesel.createQuantity(amountDiesel));
-
-		return true;
-	}
-
-	/**
-	 * Refills the stock for any offered Item, except Fuel.
+	 * Refills the stock for any offered Item.
 	 * @param prodName of the Items to add.
 	 * @param amount of which the stock should be refilled with.
 	 */

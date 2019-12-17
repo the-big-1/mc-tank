@@ -14,7 +14,8 @@ import company18.mctank.repository.ItemsRepository;
 /**
  * Service to get data from gas pump api.
  * Holds one {@link GasPump}.
- * @author CS, ArtemSer
+ * @author CS
+ * @author ArtemSer
  *
  */
 @Service
