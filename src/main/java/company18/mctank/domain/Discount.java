@@ -44,8 +44,12 @@ public class Discount {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 		Discount discount = (Discount) o;
 		return Objects.equals(id, discount.id);
 	}
@@ -98,8 +102,9 @@ public class Discount {
 	 * @param discount discount
 	 */
 	public void setDiscount(float discount) {
-		if (discount > 0.2f)
+		if (discount > 0.2f) {
 			throw new IllegalArgumentException("discount can not be more than 20%");
+		}
 		this.discount = discount;
 	}
 

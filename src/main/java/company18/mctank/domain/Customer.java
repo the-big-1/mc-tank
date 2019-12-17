@@ -154,8 +154,9 @@ public class Customer {
 	}
 
 	public void addDiscount(Discount discount) {
-		if (this.discounts == null)
+		if (this.discounts == null) {
 			this.discounts = new LinkedList<>();
+		}
 		this.discounts.add(discount);
 	}
 
