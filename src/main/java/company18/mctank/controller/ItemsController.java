@@ -35,7 +35,7 @@ public class ItemsController {
 	
 	private static final Quantity NONE = Quantity.of(0);
 	
-	private static final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"}; // TODO: Decomposite to McPoint;
+	private static final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"};
 
 	/**
 	 * Return items with data.

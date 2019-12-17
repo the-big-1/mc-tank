@@ -44,7 +44,11 @@ public class ItemsServiceUnitTest {
 
     @Test
     void makeAssortment() {
-    }
+		String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"};
+
+		assertThat(service.makeAssortment(mcPoints)).isNotNull();
+
+	}
 
     @Test
     void getProduct() {
@@ -52,10 +56,12 @@ public class ItemsServiceUnitTest {
 
     @Test
     void getOrderMap() {
+    	assertThat(service.getOrderMap()).isNotNull();
     }
 
     @Test
     void getQuantityMap() {
+		assertThat(service.getQuantityMap()).isNotNull();
     }
 
     @Test
