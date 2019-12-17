@@ -49,6 +49,7 @@ public class RefillInventoryServiceUnitTest {
 		assertFalse(service.refillInventoryItem("InCatalogButNotInInv", 1)); //Item in Catalog but not in Inventory
 	}
 
+
 	@Test
 	void getFuelAmountBenzineTest() {
 		//Initialized with 100 Liter but 2 Liter taken in OrderInitializer for TestOrders
