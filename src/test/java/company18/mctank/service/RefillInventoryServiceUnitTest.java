@@ -50,8 +50,8 @@ public class RefillInventoryServiceUnitTest {
 	}
 
 	/*
-	// work lokal but ont in jenkins
-	
+	// work lokal but not in jenkins
+
 	@Test
 	void getFuelAmountBenzineTest() {
 		//Initialized with 100 Liter but 2 Liter taken in OrderInitializer for TestOrders
