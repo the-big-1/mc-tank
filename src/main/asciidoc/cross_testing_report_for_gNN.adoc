@@ -1,7 +1,7 @@
 = Cross-Testing Feedback
 
-__Durchführende Gruppe:__
-__Anwendung von Gruppe:__
+__Durchführende Gruppe:__  18 
+__Anwendung von Gruppe:__  17
 
 == Getestetes System
 Welche Aufgabe/Problemstellung löst die Anwendung.
@@ -14,10 +14,16 @@ Welche Aufgabe/Problemstellung löst die Anwendung.
 | … | … | … | … |
 |===
 
+- Fehler beim Klick auf Kasse "template "Kasse" might not exist or might not be accessible"
+
 == Sonstiges
 * Optik der Anwendung
 * Fehlende Features
 * Interaktion mit der Anwendung (Usability)
+- nach löschen von Mitarbeiter/Manager/Customer immer redirect zu /customers
+- Klick auf Username immer Error
+- bei Items bearbeiten: Fehlende Einträge werden nicht abgefangen -> redirect zu Errorpage 
+- bei Items bearbeiten: leere Namen werden aktzeptiert -> Produkte ohne Name möglich
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
