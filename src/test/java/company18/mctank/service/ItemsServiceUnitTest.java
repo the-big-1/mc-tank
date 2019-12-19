@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.quantity.Quantity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -69,7 +70,7 @@ public class ItemsServiceUnitTest {
 				.setNumber(1.33)
 				.create();
 
-		Product idtest = new Product("idtest",price);
+		Product idtest = new Product("idtest", price);
 		items.save(idtest);
 
 		assertTrue(service.getProduct(idtest.getId()).get().equals(idtest));
@@ -92,7 +93,7 @@ public class ItemsServiceUnitTest {
 				.setNumber(1.33)
 				.create();
 
-		Product invTest = new Product("invTest",price);
+		Product invTest = new Product("invTest", price);
 		items.save(invTest);
 
 		UniqueInventoryItem item = new UniqueInventoryItem(invTest, invTest.createQuantity(100));
@@ -110,7 +111,7 @@ public class ItemsServiceUnitTest {
 				.setNumber(1.33)
 				.create();
 
-		Product invTest2 = new Product("invTest2",price);
+		Product invTest2 = new Product("invTest2", price);
 		items.save(invTest2);
 
 		UniqueInventoryItem item = new UniqueInventoryItem(invTest2, invTest2.createQuantity(100));
@@ -121,6 +122,19 @@ public class ItemsServiceUnitTest {
 
     @Test
     void getProductQuantity() {
+		MonetaryAmount price = Monetary.getDefaultAmountFactory()
+				.setCurrency("EUR")
+				.setNumber(1.33)
+				.create();
+
+		Product quantityTest = new Product("quantityTest", price);
+		items.save(quantityTest);
+
+		UniqueInventoryItem item = new UniqueInventoryItem(quantityTest, quantityTest.createQuantity(100));
+		inventory.save(item);
+
+
+    	assertThat(service.getProductQuantity(quantityTest)).isNotNull();
     }
 
     @Test
