@@ -7,6 +7,7 @@
 |0.3  | 16.11 | David
 |0.4  | 16.11 | Christoph
 |0.5  | 17.11 | Vivien
+|0.6  | 27.12 | Vivien
 |===
 
 = Entwicklerdokumentation
@@ -182,13 +183,14 @@ image:models/design/InventoryUML.svg[]
 
 
 === Order
-image:models/analysis/Order.svg[]
+image:models/analysis/OrderNew.svg[]
 
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|OrderController | Spring Controller, der den Warenkorb verwaltet
-|Items | Catalog, listet Produkte auf, die in den Warenkorb hinzugefügt werden können
+|OrderHistoryController | Spring Controller, der die Bestellungen verwaltet
+|McTankOrder | weist eine Bestellung einem bestimmten Nutzer hinzu
+|OrdersService | Funktionalitäten zur Verwaltung der Bestellungen nach Datum oder UserID
 |===
 
 === Cart
