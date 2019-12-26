@@ -191,6 +191,18 @@ image:models/analysis/Order.svg[]
 |Items | Catalog, listet Produkte auf, die in den Warenkorb hinzugefügt werden können
 |===
 
+=== Cart
+image:models/analysis/Cart.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|CartController | Spring Controller, der den Warenkorb verwaltet
+|McTankCart | Basisfunktionalitäten des Warenkorbs, vor allem der Rabatt
+|CartService | Grundlage für Order, weist einen Warenkorb einem bestimmten Nutzer hinzu, Speichern des Warenkorbs
+|Discount |Generierung der Rabattcodes bei Registrierung und Nutzung von McPoints
+|===
+
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
