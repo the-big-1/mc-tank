@@ -4,7 +4,8 @@ __Durchführende Gruppe:__  18
 __Anwendung von Gruppe:__  17
 
 == Getestetes System
-Welche Aufgabe/Problemstellung löst die Anwendung.
+Welche Aufgabe/Problemstellung löst die Anwendung. +
+Die Anwendung löst die Aufgabenstellung zur Erstellung einer Spring- und Salespointanwendung für die Tankstelle "McTank". Darin sind die Basisfunktionalitäten wie z.B. die Kasse, Reservierungen, Useraccount-Erstellung und Verwaltung, Inventar und Bestellungen implementiert.
 
 == Fehler-Report
 // See http://asciidoctor.org/docs/user-manual/#tables
@@ -18,6 +19,8 @@ Welche Aufgabe/Problemstellung löst die Anwendung.
 
 == Sonstiges
 * Optik der Anwendung
+- übersichtlich und simpel gehalten
+- einfach zu bedienen
 * Fehlende Features
 * Interaktion mit der Anwendung (Usability)
 - nach löschen von Mitarbeiter/Manager/Customer immer redirect zu /customers
