@@ -26,7 +26,7 @@ Die Anwendung löst die Aufgabenstellung zur Erstellung einer Spring- und Salesp
 * Interaktion mit der Anwendung (Usability)
 - nach löschen von Mitarbeiter/Manager/Customer immer redirect zu /customers (kann verwirren bzw übersehen werden)
 - Klick auf Username immer Error
-- beim bearbeiten von Items: Fehlende Einträge werden nicht abgefangen -> redirect zu Errorpage
+- beim bearbeiten von Items: Fehlende Einträge werden nicht abgefangen -> evtl inputs requiered machen statt redirect zu Errorpage
 - beim bearbeiten von Items: leere Namen werden aktzeptiert -> Produkte ohne Name möglich
 
 == Verbesserungsvorschläge
