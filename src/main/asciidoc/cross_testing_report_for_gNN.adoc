@@ -29,7 +29,7 @@ Die Anwendung löst die Aufgabenstellung zur Erstellung einer Spring- und Salesp
 - beim bearbeiten von Items: Fehlende Einträge werden nicht abgefangen -> evtl inputs requiered machen statt redirect zu Errorpage
 - beim bearbeiten von Items: leere Namen werden aktzeptiert -> Produkte ohne Name möglich
 - beim erstellen von Kunden: telefon input nimmt auch text
--meim bearbeiten von Kunden: wenn das Kennzeichen nicht nochmal eingegeben wird kann es Hunden ohne KZ geben
+- meim bearbeiten von Kunden: wenn das Kennzeichen nicht nochmal eingegeben wird kann es Hunden ohne KZ geben
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
