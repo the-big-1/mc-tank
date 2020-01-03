@@ -19,7 +19,7 @@ Die Anwendung löst die Aufgabenstellung zur Erstellung einer Spring- und Salesp
 
 == Sonstiges
 * Optik der Anwendung
-- übersichtlich und simpel gehalten
+- übersichtlich
 - einfach zu bedienen
 * Fehlende Features
 * Interaktion mit der Anwendung (Usability)
