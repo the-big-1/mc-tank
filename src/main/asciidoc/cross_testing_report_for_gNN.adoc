@@ -13,7 +13,10 @@ Die Anwendung löst die Aufgabenstellung zur Erstellung einer Spring- und Salesp
 [options="header"]
 |===
 |Pfad |Parameter |Beschreibung |Rückgabe
-| … | … | … | … |
+| /dashboard | - | anmelden mit neu erstelltem Nutzeraccount | 404 Page not found 
+| */register | bereits vergebener Nutzername | registrieren schlägt fehl | 404 Page not found 
+| /Kasse | - | Kasse nicht aufrufbar | 404 Page not found 
+| … | … | … | … 
 |===
 
 - Fehler beim Klick auf Kasse "template "Kasse" might not exist or might not be accessible"
@@ -26,10 +29,11 @@ Die Anwendung löst die Aufgabenstellung zur Erstellung einer Spring- und Salesp
 * Interaktion mit der Anwendung (Usability)
 - nach löschen von Mitarbeiter/Manager/Customer immer redirect zu /customers (kann verwirren bzw übersehen werden)
 - Klick auf Username immer Error
-- beim bearbeiten von Items: Fehlende Einträge werden nicht abgefangen -> evtl inputs requiered machen statt redirect zu Errorpage
+- beim bearbeiten von Items: Fehlende Einträge werden nicht abgefangen -> evtl inputs required machen statt redirect zu Errorpage
 - beim bearbeiten von Items: leere Namen werden aktzeptiert -> Produkte ohne Name möglich
-- beim erstellen von Kunden: telefon input nimmt auch text
-- meim bearbeiten von Kunden: wenn das Kennzeichen nicht nochmal eingegeben wird kann es Hunden ohne KZ geben
+- beim erstellen von Kunden und Reservierungen: telefon input nimmt auch text, name und vorname nimmt auch zahlen
+- beim bearbeiten von Kunden: wenn das Kennzeichen nicht nochmal eingegeben wird kann es Hunden ohne KZ geben
+- Inventory: Preis lässt keine Nachkommastellen zu; bei mehreren Produkten mit gleichem Namen funktioniert das Löschen nicht zuverlässig
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
