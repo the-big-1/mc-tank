@@ -22,7 +22,8 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 |===
 
 Bitte tragen Sie am Ende des Praktikums noch folgende weitere Werte ein:
-Summe der Arbeitsstunden pro Student:
+
+=== Summe der Arbeitsstunden pro Student:
 
 SUMME(SPALTE(DevX))
 
@@ -32,7 +33,7 @@ SUMME(SPALTE(DevX))
 * Artem:
 * Clemens:
 
-Arbeitsstunden pro Woche pro Student:
+=== Arbeitsstunden pro Woche pro Student:
 
 SUMME(SPALTE(DevX)) / 12
 
@@ -42,7 +43,7 @@ SUMME(SPALTE(DevX)) / 12
 * Artem:
 * Clemens:
 
-Durchschnittliche Arbeitzeit aller Studenten pro Woche:
+=== Durchschnittliche Arbeitzeit aller Studenten pro Woche:
 
 (SUMME(SPALTE(Dev1)) + SUMME(SPALTE(Dev2)) + SUMME(SPALTE(Dev3)) + SUMME(SPALTE(Dev4)) + SUMME(SPALTE(Dev5)) +SUMME(SPALTE(Dev6))) / 6
 
