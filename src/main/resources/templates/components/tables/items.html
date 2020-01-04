@@ -39,24 +39,8 @@
                 <form th:if="${role} == 'MANAGER'" method="post" th:action="@{/cart}">
                   <input type="hidden" name="product-id" th:value="${product.id}"/>
                   <div class="input-group">
-                    <!--suppress HtmlFormInputWithoutLabel -->
-                    <select
-                        required
-                        class="form-control col-3"
-                        th:id="'pump-select-' + ${#strings.replace(product.Name,' ','-')}"
-                        onChange="changeInputMaxValue(this, this.options[this.selectedIndex].value)"
-                        th:if="${point.key} == 'McZapf'">
-                      <option value="" selected disabled>pump №</option>
-
-                      <option th:each="pump : ${pumps}"
-                              th:if="${pump != null && pump.getFuelType() == product.Name}"
-                              th:value="${pump.fuelQuantity}" th:text="${pump.number}"></option>
-
-                    </select>
                     <input width="1" type="number" name="amount"
                            class="form-control col-4"
-                           th:classappend="${point.key} == 'McZapf' ?
-                              'pump-input-' + ${#strings.replace(product.Name,' ','-')} : ''"
                            th:max="${quantityMap.get(product.getId().getIdentifier())}"
                            placeholder="1" value="1" min="1" step="1"
                            aria-label="Recipient's username" aria-describedby="button-addon-group" required>
@@ -69,11 +53,39 @@
             </div>
           </td>
         </tr>
+		<tr th:if="${point.key} == 'McZapf'" id="gas_pump_row">
+			<th>Zapfsäule</th>
+			<td colspan="3">No Info</td>
+			<td> <div class="button-list">
+              <div class="input-group mb-0">
+                <form th:if="${role} == 'MANAGER'" method="post" th:action="@{/cart/pump/direct}">
+                  <input type="hidden" name="pump-number"/>
+                  <div class="input-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                  <select
+                        required
+                        class="form-control col-3"
+                        th:id="pump-select"
+                        onChange="changeGasPumpRowValues(this, this.options[this.selectedIndex].value)">
+                      <option value="" selected disabled>pump №</option>
+                      <option th:each="pump,iter : ${pumps}"
+							th:value="${iter.index}"
+							th:text="${iter.index + 1}"></option>
+                    </select>
+                    <div class="input-group-append">
+                      <button class="btn btn-primary-rgba" type="submit" id="add-to-cart">Add to cart</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+			</td>
+		</tr>
         </tbody>
       </table>
     </div>
   </div>
-  <script>
+  <script th:inline="javascript">
       function changeInputMaxValue(selectObject, value) {
           let input = document.getElementsByClassName(selectObject.id.replace('select', 'input'))[0];
           input.setAttribute("max", value); // set a new value;
@@ -84,6 +96,21 @@
                   el.removeAttribute("selected")
           });
       }
+	function changeGasPumpRowValues(obj, value){
+		// get gas pump row and pumps
+		let row = document.getElementById('gas_pump_row');
+		let pumps = /*[[${pumps}]]*/ 'defaultvalue';
+		
+		// set hidden input value for submitting
+		document.getElementsByName("pump-number")[0].value = value;
+		
+		// set description
+		if (pumps === 'defaultvalue' || pumps[value] === null){
+			row.getElementsByTagName("td")[0].innerHTML = "No Info";
+			return;
+		}
+		row.getElementsByTagName("td")[0].innerHTML = pumps[value].fuelType + "/"+ pumps[value].fuelQuantity.toFixed(2)+ "l";
+	}
   </script>
 </div>
 </body>
