@@ -133,6 +133,7 @@ public class CartController {
 		} else {
 			this.cartService.addOrUpdateItem(this.cart, pumpService.getFuel(number), Quantity.of(pumpService.getFuelQuantity(number), Metric.LITER));
 		}
+		this.pumpService.pumpsInit();
 		return "redirect:/cart";
 	}
 
