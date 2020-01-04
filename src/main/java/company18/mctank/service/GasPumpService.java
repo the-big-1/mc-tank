@@ -36,9 +36,9 @@ public class GasPumpService {
 	 */
 	@PostConstruct
 	public void pumpsInit() {
-		for (int i=0; i<TOTAL_GAS_STATIONS; ++i) {
+		for (int i = 0; i < TOTAL_GAS_STATIONS; i++) {
 			try {
-				this.pumps[i] = new RestTemplate().getForObject(API_URL + i, GasPump.class);
+				this.pumps[i] = new RestTemplate().getForObject(API_URL + (i+1), GasPump.class);
 			} catch (Exception e) {
 				this.pumps[i] = null;
 			}
