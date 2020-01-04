@@ -26,21 +26,21 @@ Summe der Arbeitsstunden pro Student:
 
 SUMME(SPALTE(DevX))
 
-David:
-Vivien:
-Christoph:
-Artem:
-Clemens:
+* David:
+* Vivien:
+* Christoph:
+* Artem:
+* Clemens:
 
 Arbeitsstunden pro Woche pro Student:
 
 SUMME(SPALTE(DevX)) / 12
 
-David:
-Vivien:
-Christoph:
-Artem:
-Clemens:
+* David:
+* Vivien:
+* Christoph:
+* Artem:
+* Clemens:
 
 Durchschnittliche Arbeitzeit aller Studenten pro Woche:
 
