@@ -32,7 +32,7 @@ Die Anwendung löst die Aufgabenstellung zur Erstellung einer Spring- und Salesp
 - beim bearbeiten von Items: Fehlende Einträge werden nicht abgefangen -> evtl inputs required machen statt redirect zu Errorpage
 - beim bearbeiten von Items: leere Namen werden aktzeptiert -> Produkte ohne Name möglich
 - beim erstellen von Kunden und Reservierungen: telefon input nimmt auch text, name und vorname nimmt auch zahlen
-- beim bearbeiten von Kunden: wenn das Kennzeichen nicht nochmal eingegeben wird kann es Hunden ohne KZ geben
+- beim bearbeiten von Kunden: wenn das Kennzeichen nicht nochmal eingegeben wird kann es Kunden ohne KZ geben
 - Inventory: Preis lässt keine Nachkommastellen zu; bei mehreren Produkten mit gleichem Namen funktioniert das Löschen nicht zuverlässig
 
 == Verbesserungsvorschläge
