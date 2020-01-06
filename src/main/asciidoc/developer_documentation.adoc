@@ -129,7 +129,7 @@ image:models/design/mctank.svg[]
 |===
 
 === Catalog
-image:models/design/CatalogUML.svg[]
+image:models/design/Catalog.svg[]
 
 [options="header"]
 |=== 
