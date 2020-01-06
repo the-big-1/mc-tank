@@ -1,0 +1,709 @@
+@startuml
+
+title __SWT19W18's Class Diagram__\n
+
+  namespace  {
+    namespace mvn.wrapper {
+      class .mvn.wrapper.MavenWrapperDownloader {
+      }
+    }
+  }
+  
+
+  namespace  {
+    class MavenWrapperDownloader {
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      class company18.mctank.Application {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace config {
+        class company18.mctank.config.ItemFilterConfig {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace config {
+        class company18.mctank.config.MvcConfig {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace config {
+        class company18.mctank.config.MvcSecurityConfig {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.AccountController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.CartController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.ErrorsController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.InventoryController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.ItemsController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.MainController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.OrderHistoryController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.OverviewController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.RefillInventoryController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.ReservationController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.SignUpController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace controller {
+        class company18.mctank.controller.UserManagementController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.Customer {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.CustomerRoles {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.Discount {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.GasPump {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.McProduct {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.McSitReservation {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.McTankCart {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.McTankOrder {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.McWashReservation {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.QCustomer {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.QDiscount {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.QMcSitReservation {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.QMcTankOrder {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.QMcWashReservation {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        class company18.mctank.domain.QReservation {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace domain {
+        abstract class company18.mctank.domain.Reservation {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace exception {
+        class company18.mctank.exception.AnonymusUserException {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace exception {
+        class company18.mctank.exception.ExistedUserException {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace exception {
+        class company18.mctank.exception.UserNotFoundException {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace factory {
+        class company18.mctank.factory.DiscountFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace forms {
+        class company18.mctank.forms.CustomerInfoUpdateForm {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace forms {
+        class company18.mctank.forms.DataStacked {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace forms {
+        class company18.mctank.forms.LicensePlateForm {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace forms {
+        class company18.mctank.forms.NewItemForm {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace forms {
+        class company18.mctank.forms.RequestFuelBody {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace forms {
+        class company18.mctank.forms.ReservationForm {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace forms {
+        class company18.mctank.forms.SignUpForm {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace initializer {
+        class company18.mctank.initializer.CustomerDataInitializer {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace initializer {
+        class company18.mctank.initializer.InventoryDataInitializer {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace initializer {
+        class company18.mctank.initializer.ItemsInitializer {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace initializer {
+        class company18.mctank.initializer.OrdersDataInitializer {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace initializer {
+        class company18.mctank.initializer.ReservationDataInitializer {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace interceptor {
+        class company18.mctank.interceptor.UserAvailabilityInterceptor {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace repository {
+        interface company18.mctank.repository.CustomerRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace repository {
+        interface company18.mctank.repository.ItemsRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace repository {
+        interface company18.mctank.repository.ReservationRepository {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace service {
+        class company18.mctank.service.CartService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace service {
+        class company18.mctank.service.CustomerService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace service {
+        class company18.mctank.service.GasPumpService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace service {
+        class company18.mctank.service.ItemsService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace service {
+        class company18.mctank.service.OrdersService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace service {
+        class company18.mctank.service.RefillInventoryService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ompany18.mctank {
+      namespace service {
+        class company18.mctank.service.ReservationService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rc.main.java.kickstart {
+      class src.main.java.kickstart.Application {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rc.main.java.kickstart {
+      namespace controller {
+        class src.main.java.kickstart.controller.WelcomeController {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rc.test.java.kickstart.controller {
+      class src.test.java.kickstart.controller.WelcomeControllerIntegrationTests {
+      }
+    }
+  }
+  
+
+  company18.mctank.config.MvcConfig .up.|> org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  company18.mctank.config.MvcConfig o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.config.MvcSecurityConfig -up-|> org.salespointframework.SalespointSecurityConfiguration
+  company18.mctank.controller.AccountController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.controller.AccountController o-- company18.mctank.service.OrdersService : ordersService
+  company18.mctank.controller.AccountController o-- company18.mctank.service.ReservationService : reservationService
+  company18.mctank.controller.CartController o-- company18.mctank.domain.McTankCart : cart
+  company18.mctank.controller.CartController o-- company18.mctank.service.CartService : cartService
+  company18.mctank.controller.CartController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.controller.CartController o-- company18.mctank.service.GasPumpService : pumpService
+  company18.mctank.controller.ErrorsController .up.|> org.springframework.boot.web.servlet.error.ErrorController
+  company18.mctank.controller.ItemsController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.controller.ItemsController o-- company18.mctank.service.ItemsService : itemsService
+  company18.mctank.controller.ItemsController o-- company18.mctank.service.GasPumpService : pumpService
+  company18.mctank.controller.MainController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.controller.OrderHistoryController o-- company18.mctank.service.OrdersService : ordersService
+  company18.mctank.controller.OverviewController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.controller.OverviewController o-- company18.mctank.service.ItemsService : itemsService
+  company18.mctank.controller.OverviewController o-- company18.mctank.service.OrdersService : ordersService
+  company18.mctank.controller.RefillInventoryController o-- company18.mctank.service.RefillInventoryService : serviceInventory
+  company18.mctank.controller.ReservationController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.controller.ReservationController o-- company18.mctank.service.ReservationService : reservationService
+  company18.mctank.controller.SignUpController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.controller.UserManagementController o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.domain.Discount o-- company18.mctank.domain.Discount.DiscountStatus : status
+  company18.mctank.domain.McSitReservation -up-|> company18.mctank.domain.Reservation
+  company18.mctank.domain.McTankCart -up-|> org.salespointframework.order.Cart
+  company18.mctank.domain.McTankCart o-- company18.mctank.domain.Customer : customer
+  company18.mctank.domain.McTankOrder .up.|> java.lang.Comparable
+  company18.mctank.domain.McTankOrder -up-|> org.salespointframework.order.Order
+  company18.mctank.domain.McWashReservation -up-|> company18.mctank.domain.Reservation
+  company18.mctank.domain.QCustomer -up-|> com.querydsl.core.types.dsl.EntityPathBase
+  company18.mctank.domain.QDiscount -up-|> com.querydsl.core.types.dsl.EntityPathBase
+  company18.mctank.domain.QMcSitReservation -up-|> com.querydsl.core.types.dsl.EntityPathBase
+  company18.mctank.domain.QMcSitReservation o-- company18.mctank.domain.QReservation : _super
+  company18.mctank.domain.QMcTankOrder -up-|> com.querydsl.core.types.dsl.EntityPathBase
+  company18.mctank.domain.QMcWashReservation -up-|> com.querydsl.core.types.dsl.EntityPathBase
+  company18.mctank.domain.QMcWashReservation o-- company18.mctank.domain.QReservation : _super
+  company18.mctank.domain.QReservation -up-|> com.querydsl.core.types.dsl.EntityPathBase
+  company18.mctank.initializer.CustomerDataInitializer .up.|> org.salespointframework.core.DataInitializer
+  company18.mctank.initializer.CustomerDataInitializer o-- company18.mctank.repository.CustomerRepository : customerRepository
+  company18.mctank.initializer.CustomerDataInitializer o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.initializer.InventoryDataInitializer .up.|> org.salespointframework.core.DataInitializer
+  company18.mctank.initializer.InventoryDataInitializer o-- company18.mctank.service.GasPumpService : gasPumpService
+  company18.mctank.initializer.InventoryDataInitializer o-- company18.mctank.repository.ItemsRepository : itemsRepository
+  company18.mctank.initializer.ItemsInitializer .up.|> org.salespointframework.core.DataInitializer
+  company18.mctank.initializer.ItemsInitializer o-- company18.mctank.repository.ItemsRepository : itemsRepository
+  company18.mctank.initializer.OrdersDataInitializer .up.|> org.salespointframework.core.DataInitializer
+  company18.mctank.initializer.OrdersDataInitializer o-- company18.mctank.service.CartService : cartService
+  company18.mctank.initializer.OrdersDataInitializer o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.initializer.OrdersDataInitializer o-- company18.mctank.repository.ItemsRepository : itemsRepository
+  company18.mctank.initializer.ReservationDataInitializer .up.|> org.salespointframework.core.DataInitializer
+  company18.mctank.initializer.ReservationDataInitializer o-- company18.mctank.service.ReservationService : service
+  company18.mctank.interceptor.UserAvailabilityInterceptor -up-|> org.springframework.web.servlet.handler.HandlerInterceptorAdapter
+  company18.mctank.interceptor.UserAvailabilityInterceptor o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.service.CartService o-- company18.mctank.service.ItemsService : itemsService
+  company18.mctank.service.CartService o-- company18.mctank.service.RefillInventoryService : refillService
+  company18.mctank.service.CustomerService o-- company18.mctank.repository.CustomerRepository : customerRepository
+  company18.mctank.service.GasPumpService o-- company18.mctank.repository.ItemsRepository : itemsRepository
+  company18.mctank.service.ItemsService o-- company18.mctank.repository.ItemsRepository : itemsRepository
+  company18.mctank.service.ItemsService o-- company18.mctank.service.OrdersService : ordersService
+  company18.mctank.service.OrdersService o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.service.OrdersService o-- company18.mctank.repository.ItemsRepository : itemsRepository
+  company18.mctank.service.OrdersService o-- company18.mctank.service.ItemsService : itemsService
+  company18.mctank.service.RefillInventoryService o-- company18.mctank.repository.ItemsRepository : items
+  company18.mctank.service.ReservationService o-- company18.mctank.service.CustomerService : customerService
+  company18.mctank.service.ReservationService o-- company18.mctank.repository.ReservationRepository : reservationRepository
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
