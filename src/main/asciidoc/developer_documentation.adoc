@@ -134,10 +134,10 @@ image:models/design/Catalog.svg[]
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|Catalog | listet alle Produkte der Firma nach McPoints sortiert auf
-|CatalogContoller | ein Spring MVC Controller um Anfragen zu bearbeiten
+|ItemsRepository | listet alle Produkte der Firma nach McPoints sortiert auf
+|ItemsContoller | ein Spring MVC Controller um Anfragen zu bearbeiten
 |NewItemForm | nimmt die Daten für ein neues Item auf und validiert sie
-|CatalogManagement | Klasse um Items zu organisieren und anzulegen
+|ItemsService | Klasse um Items zu organisieren und anzulegen
 ||
 |===
 
