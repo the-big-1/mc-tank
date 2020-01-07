@@ -4,10 +4,16 @@ package company18.mctank.domain;
 import javax.money.MonetaryAmount;
 import javax.persistence.Entity;
 
+import org.salespointframework.catalog.Product;
+import org.salespointframework.order.ChargeLine;
 import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderIdentifier;
+import org.salespointframework.order.OrderLine;
+import org.salespointframework.quantity.Metric;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -46,5 +52,16 @@ public class McTankOrder extends Order implements Comparable<McTankOrder>{
 		} else {
 			return 0;
 		}
+	}
+	
+	public Quantity getQuantity(Product fuel){
+		List<OrderLine> orderLines = this.getOrderLines().toList();
+		Quantity quantity = fuel.createQuantity(0);
+		for (OrderLine line : orderLines) {
+			if (line.getProductIdentifier() == fuel.getId()) {
+				quantity.add(line.getQuantity());
+			}
+		}
+		return quantity;
 	}
 }
