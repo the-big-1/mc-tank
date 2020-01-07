@@ -106,7 +106,8 @@
                   <span class="badge badge-danger text-uppercase m-b-15" th:if="${fuelDieselWarning}">DIESEL FINISHING</span>
                   <span class="badge badge-danger text-uppercase m-b-15" th:if="${fuelBenzineWarning}">BENZINE FINISHING</span>
                   <p><i class="feather icon-arrow-up text-primary mr-1">Diesel</i>: <strong th:text="${dieselTotal}">7.2k L</strong></p>
-                  <p><i class="feather icon-star text-primary mr-1">Prediction</i>: <strong th:text="${fuelFuture}">7.2k L</strong></p>
+				  <p><i class="feather icon-star text-primary mr-1">Diesel Prediction</i>: <strong th:text="${dieselFuture}">7.2k L</strong></p>
+                  <p><i class="feather icon-star text-primary mr-1">Benzine Prediction</i>: <strong th:text="${benzineFuture}">7.2k L</strong></p>
                   <p><i class="feather icon-arrow-down mr-1"></i>Benzine: <strong th:text="${benzineTotal}">17.8k L</strong></p>
                   <button type="button" id="order-fuel" class="btn btn-primary-rgba" th:if="${fuelDieselWarning || fuelBenzineWarning}"><i class="feather icon-plus mr-2"></i>Order Fuel</button>
                 </div>

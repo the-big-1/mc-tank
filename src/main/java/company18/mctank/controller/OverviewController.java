@@ -72,8 +72,9 @@ public class OverviewController {
 		model.addAttribute("fuelBenzineWarning", isBenzineFinishing);
 		model.addAttribute("fuelDieselWarning", isDieselFinishing);
 		model.addAttribute("benzineTotal", itemsService.getProductQuantity(benzine));
-		model.addAttribute("fuelFuture", itemsService.getFuelFuture(benzine, diesel));
+		model.addAttribute("benzineFuture", itemsService.getFuelFuture(benzine));
 		model.addAttribute("dieselTotal", itemsService.getProductQuantity(diesel));
+		model.addAttribute("dieselFuture", itemsService.getFuelFuture(diesel));
 	}
 
 	public Product getProductByName(List<Product> productList, String name) {
