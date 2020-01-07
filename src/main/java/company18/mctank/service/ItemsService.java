@@ -16,15 +16,21 @@ import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
+import org.salespointframework.order.ChargeLine;
 import org.salespointframework.order.OrderLine;
 import org.salespointframework.order.OrderManager;
+import org.salespointframework.order.OrderStatus;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
+import org.salespointframework.time.Interval;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 /**
@@ -192,16 +198,25 @@ public class ItemsService {
 	}
 
 	/**
-	 * Prediction for future Fuel Orders.
+	 * Prediction for future Fuel Orders made with data of last 100 days.
 	 *
-	 * @param benzine
-	 * @param diesel
+	 * @param fuel
 	 * @return Prediction
 	 */
-
-	public String getFuelFuture(Product benzine, Product diesel) {
-		int b =this.getProductQuantity(benzine).getAmount().intValue();
-		int d = this.getProductQuantity(diesel).getAmount().intValue();
-		return String.format( "%.1f", (float)(b * 2 - 23 / d * 2 - 13));
+	public String getFuelFuture(Product fuel) {
+		List<McTankOrder> daysOrders;
+		float usedLiters = 0;
+		for (int i = 100; i > 0; i--) {
+			// get orders from day
+			daysOrders = this.orderManager.findBy(
+					Interval.from(LocalDateTime.of(LocalDate.now().minusDays(i), LocalTime.of(0, 0)))
+					.to(LocalDateTime.of(LocalDate.now().minusDays(i-1), LocalTime.of(0, 0)))).toList();
+			// add to total liters used
+			for (McTankOrder order: daysOrders) {
+				usedLiters += order.getQuantity(fuel).getAmount().floatValue();
+			}
+		}
+		// returns average per day since divided by 100
+		return String.format( "%.1f", (float) usedLiters/100);
 	}
 }

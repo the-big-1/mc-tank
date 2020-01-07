@@ -12,6 +12,7 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.Cash;
+import org.salespointframework.time.BusinessTime;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -59,9 +61,7 @@ class OrdersDataInitializer implements DataInitializer {
 		if (!this.orderManager.findBy(this.customerService.getCustomer("test").getUserAccount()).isEmpty()) {
 			return;
 		}
-
 		McTankCart cart = new McTankCart();
-
 		LOG.info("Initializing: orders");
 
 		for (Product product : this.itemsRepository.findAll()) {
@@ -70,9 +70,6 @@ class OrdersDataInitializer implements DataInitializer {
 			cartService.buy(cart, Cash.CASH);
 			cart.clear();
 		}
-
 		LOG.info("Initializing: orders. Done.");
-
-
 	}
 }
