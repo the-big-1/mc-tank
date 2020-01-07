@@ -3,12 +3,15 @@ package company18.mctank.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import company18.mctank.domain.McSitReservation;
 import company18.mctank.domain.McWashReservation;
@@ -91,7 +94,12 @@ public class ReservationServiceUnitTest {
 		// testing for McWashReservation class
 		assertEquals(this.getIterableSize(reservationService.findByClass(McWashReservation.class)), 1);
 	}
-	
+
+	@Test
+	void findReservationsFor(){
+		assertNotNull(reservationService.findReservationsFor(new ArrayList<Class>()));
+	}
+
 	// sortByDate() tests
 	@Test
 	void sortByDateTest() {
@@ -110,5 +118,14 @@ public class ReservationServiceUnitTest {
 			assertEquals(iterator.next().getName(), String.valueOf(no));
 			no++;
 		}
+	}
+
+	@Test
+	void saveTest() {
+	}
+
+	@Test
+	void getAllEventsForCustomer(){
+		//assertNotNull(reservationService.getAllEventsForCustomer());
 	}
 }
