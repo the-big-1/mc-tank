@@ -46,7 +46,7 @@ class CustomerDataInitializer implements DataInitializer {
 	@Override
 	public void initialize() {
 
-		// Skip creation if database was already populated
+		// dont initialize if already populated
 		if (userAccountManager.findByUsername("boss").isPresent()) {
 			return;
 		}

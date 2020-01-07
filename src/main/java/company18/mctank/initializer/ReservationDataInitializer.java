@@ -32,6 +32,11 @@ public class ReservationDataInitializer implements DataInitializer {
 	 */
 	@Override
 	public void initialize() {
+		// dont initialize if already populated
+		if (this.service.findAll().iterator().hasNext()) {
+			return;
+		}
+		
 		LOG.info("Initializing: Reservation data");
 		service.save("McSit", "Party 01", LocalDateTime.now().plusDays(1).plusHours(5), "boss");
 		service.save("McSit", "Birthday 01", LocalDateTime.now().plusDays(2).plusHours(4), "boss");

@@ -33,6 +33,10 @@ class ItemsInitializer implements DataInitializer {
 	
 	@Override
 	public void initialize() {
+		// dont initialize if already populated
+		if (this.itemsRepository.findAll().iterator().hasNext()) {
+			return;
+		}
 
 		var prod1 = new Product("Cola 0,5L", Money.of(3.00, "EUR"));
 		var prod2 = new Product("Cola 0,2L", Money.of(1.50, "EUR"));

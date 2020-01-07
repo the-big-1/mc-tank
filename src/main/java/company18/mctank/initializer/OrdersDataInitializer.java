@@ -10,6 +10,7 @@ import company18.mctank.service.CartService;
 import company18.mctank.service.CustomerService;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
+import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.Cash;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.UserAccountManager;
@@ -44,6 +45,8 @@ class OrdersDataInitializer implements DataInitializer {
 	private ItemsRepository itemsRepository;
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private OrderManager<McTankOrder> orderManager;
 
 
 	/*
@@ -52,6 +55,10 @@ class OrdersDataInitializer implements DataInitializer {
 	 */
 	@Override
 	public void initialize() {
+		// dont initialize if already populated
+		if (!this.orderManager.findBy(this.customerService.getCustomer("test").getUserAccount()).isEmpty()) {
+			return;
+		}
 
 		McTankCart cart = new McTankCart();
 

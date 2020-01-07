@@ -49,6 +49,12 @@ public class InventoryDataInitializer implements DataInitializer {
 	@Override
 	@Order(Ordered.LOWEST_PRECEDENCE)
 	public void initialize() {
+
+		// dont initialize if already populated
+		if (this.inventoryRepository.findAll().iterator().hasNext()) {
+			return;
+		}
+		
 		LOG.info("Initializing: Inventory");
 		for (Product product : this.itemsRepository.findAll()) {
 			if (inventoryRepository.findByProduct(product).isEmpty()) {
