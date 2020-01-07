@@ -15,6 +15,9 @@ class RequestFuelBodyUnitTest {
 
     @Test
     void testToString() {
+		System.out.println(testBody.toString());
+
+		assertTrue(testBody.toString().equals("RequestFuelBody{fuelType='Benzine', amount=100}"));
     }
 
     @Test
