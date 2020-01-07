@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
-import java.util.Properties;
 
 @SpringBootTest
 public class RefillInventoryServiceUnitTest {
