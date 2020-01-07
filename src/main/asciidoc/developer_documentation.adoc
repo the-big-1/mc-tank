@@ -141,7 +141,7 @@ image:models/design/Catalog.svg[]
 ||
 |===
 
-===RefillInventory und GasPump Service
+=== RefillInventory und GasPump Service
 image:models/design/Service.svg[]
 
 [options="header"]
