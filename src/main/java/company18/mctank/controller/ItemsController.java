@@ -32,8 +32,6 @@ public class ItemsController {
 	@Autowired
 	private GasPumpService pumpService;
 	
-	private static final Quantity NONE = Quantity.of(0);
-	
 	private static final String[] mcPoints = {"McZapf", "McSit", "McDrive", "McWash"};
 
 	/**

@@ -6,7 +6,6 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,9 +22,6 @@ public class RefillInventoryService {
 
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventory;
-
-	@Autowired
-	private ApplicationEventPublisher publisher;
 
 	/**
 	 * Refills the stock for any offered Item.
