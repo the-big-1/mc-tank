@@ -1,0 +1,64 @@
+= Protokoll Gruppe XX
+
+Treffen am 07.01.2020
+
+Ort:      APB E005+
+Beginn:   13:00 Uhr +
+Ende:     14:30 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+14.01.2020, 13:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David
+- Christoph
+- Artem
+- Clemens
+- Vivien
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/37[37]     |Cross-Testing       |abgeschlossen     |-
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/38[38]   |Kann-Kriterien       |in Arbeit    |-
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/21[21]     |Ausarbeitung Testplan     |in Arbeit     |alle Tests sollten im Testplan stehen
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+- Personalübersicht, Personalfilter
+- Mindestbestand an Benzin über GUI ändern
+- Filterfunktion im Catalog und bei den Rechnungen (Kunden)
+- Rechnungen erstellen, z.B. zum Drucken
+- Passwortkriterien
+- Kennzeichenfilter
+- eventuell Spracheinstellungen
+
+Dokumentation aktualisieren und fertigstellen.
+Abschlusspräsentation vorbereiten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|…     |…     |…            |…                |…
+|===
