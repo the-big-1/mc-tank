@@ -6,15 +6,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SignUpFormUnitTest {
 
+	public SignUpForm testForm = new SignUpForm("test", "test@mail.de", "123");
+
     @Test
     void getPassword() {
+    	assertEquals(testForm.getPassword(), "123");
     }
 
     @Test
     void getName() {
+    	assertEquals(testForm.getName(), "test");
     }
 
     @Test
     void getEmail() {
+    	assertEquals(testForm.getEmail(), "test@mail.de");
     }
 }
