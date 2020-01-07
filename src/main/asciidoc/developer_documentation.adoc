@@ -141,6 +141,16 @@ image:models/design/Catalog.svg[]
 ||
 |===
 
+image:models/design/Service.svg[]
+
+[options="header"]
+|=== 
+|Klasse/Enumeration |Description
+|RefillInventoryService | Service um Inventory wieder zu aufzustocken
+|GasPumpService | Sevice um mit REST-API zu interagieren
+|GasPump | Klasse die konkrete eine Zapfsäaule repräsentiert
+|===
+
 === Reservation
 image:models/design/ReservationUML.svg[]
 
