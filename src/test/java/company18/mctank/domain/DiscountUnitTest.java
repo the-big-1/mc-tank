@@ -1,14 +1,10 @@
 package company18.mctank.domain;
 
-import company18.mctank.factory.DiscountFactory;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.money.Monetary;
-import javax.money.MonetaryAmount;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,6 +20,21 @@ class DiscountUnitTest {
 		testDiscount.setId(UUID.randomUUID());
 	}
 
+	@Test
+	void Discount(){
+		Discount constructorTest = new Discount("test2", 0.05f);
+
+		assertEquals(constructorTest.getName(), "test2");
+		assertEquals(constructorTest.getDiscount(), 0.05f);
+		assertEquals(constructorTest.getStatus(), Discount.DiscountStatus.AVAILABLE);
+	}
+
+	@Test
+	void Discount2(){
+		Discount testEmptyConstructor = new Discount();
+		assertEquals(testEmptyConstructor.getClass(),  Discount.class);
+	}
+
     @Test
     void onCreate() {
     	//assertNotNull(testDiscount.getCreated());
@@ -31,11 +42,14 @@ class DiscountUnitTest {
 
     @Test
     void testEquals() {
+		assertTrue(testDiscount.equals(testDiscount));
+		assertFalse(testDiscount.equals(new Discount()));
+		assertFalse(testDiscount.equals(null));
     }
 
     @Test
     void testHashCode() {
-
+		assertNotNull(testDiscount.hashCode());
     }
 
     @Test
