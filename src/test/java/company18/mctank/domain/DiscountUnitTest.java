@@ -1,14 +1,10 @@
 package company18.mctank.domain;
 
-import company18.mctank.factory.DiscountFactory;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.money.Monetary;
-import javax.money.MonetaryAmount;
 import java.util.Date;
 import java.util.UUID;
 
