@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.salespointframework.useraccount.UserAccount;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,11 +34,19 @@ class CustomerUnitTest {
 
     @Test
     void getUsername() {
+		//assertNotNull(testCustomer.getUsername());
+		//NullpointerExcetion
+		//sth wrong with id
     }
 
     @Test
     void getFullName() {
     	assertEquals(testCustomer.getFullName(), "No Info");
+
+    	testCustomer.setFirstName("Miracle of");
+    	testCustomer.setLastName("Sound");
+
+    	assertEquals(testCustomer.getFullName(), "Miracle of Sound");
     }
 
     @Test
@@ -66,6 +75,7 @@ class CustomerUnitTest {
 
     @Test
     void getLicensePlate() {
+		assertNull(testCustomer.getLicensePlate());
     }
 
     @Test
@@ -98,6 +108,9 @@ class CustomerUnitTest {
 
     @Test
     void setLicensePlate() {
+		testCustomer.setLicensePlate("DD-Q-12");
+
+		assertEquals(testCustomer.getLicensePlate(), "DD-Q-12");
     }
 
     @Test
@@ -119,14 +132,22 @@ class CustomerUnitTest {
 
     @Test
     void getDiscounts() {
+		assertNull(testCustomer.getDiscounts());
     }
 
     @Test
     void setDiscounts() {
+		testCustomer.setDiscounts(new LinkedList<Discount>());
+
+		assertEquals(testCustomer.getDiscounts(), new LinkedList<Discount>());
+		assertTrue(testCustomer.getDiscounts().isEmpty());
     }
 
     @Test
     void addDiscount() {
+		testCustomer.addDiscount(new Discount());
+
+		assertEquals(testCustomer.getDiscounts().size(), 1);
     }
 
     @Test
