@@ -9,8 +9,8 @@
         });
         var steps = [
             {
-                title: 'Enter user\'s username please',
-                text: 'Will be displayed to customer',
+                title: 'Enter username please',
+                text: 'Will be displayed',
                 input: 'text'
             },
             {
