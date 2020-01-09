@@ -10,14 +10,14 @@
 		<table>
 			<thead>
 			<tr>
-				<th>Produkt</th>
-				<th>Menge</th>
+				<th>Product</th>
+				<th>Quantity</th>
 			</tr>
 			</thead>
 			<tbody>
 				<tr th:each="item : ${inventory}">
 					<td th:text="${item.product.name}">Name</td>
-					<td th:text="${item.quantity}">Anzahl</td>
+					<td th:text="${item.quantity}">Quantity</td>
 				</tr>
 			</tbody>
 		</table>
