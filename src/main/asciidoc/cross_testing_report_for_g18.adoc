@@ -1,0 +1,52 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe:__ Swt19w17
+
+__Anwendung von Gruppe:__ Swt19w18
+
+== Getestetes System
+Welche Aufgabe/Problemstellung löst die Anwendung.
+
+== Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+| http://localhost:8080/items | pump-Menge * 10, mehr als Bestand des Produktes | manipuliert man die html Datei, so dass es keine maximale Eingabe gibt, lässt es einen das Produkt dennoch hinzufügen, selbst wenn dies den Bestand überschreitet. | Produkt wird zunächst erfolgreich hinzugefügt, Check-Out schlägt aber ohne spezifischen Fehler fehl. 
+| http://localhost:8080/cart | nicht-vorhandener Username | 500 Internal Server Error | http://localhost:8080/cart/username 
+| http://localhost:8080/items | Order Fuel, Diesel, -650 | Bestand war zuvor 147 | Erfolg: Available Diesel jetzt -502
+| http://localhost:8080/items | -3 Bei Fuel Order | Bestand durch negative Bestellung von Benzin zuvor bereits auf 0 reduziert | Erfolg. Neuer Bestand: -2 
+| http://localhost:8080/reservation/delete/13 | Löschen einer Reservation | delete button gedrückt.. | 404 Error, Page Not Found
+|http://localhost:8080/account# | create reservation(customer) | make reservation button gedrückt | nix passiert
+|http://localhost:8080/cart | save card | save card button gedrückt | Save Error, egal ob mit oder ohne registrieten User im Eingabefeld
+|http://localhost:8080/cart | checkout, + user + 1Item | procede to checkout button gedrückt | Errorfeld erscheind
+|===
+
+== Sonstiges
+=== Optik der Anwendung
+  * sieht sehr gut aus
+  
+=== Fehlende Features
+	* keine Angabe von Kennzeichen, welche als 'Identifikation' gelten sollen beim Hinzufügen von Produkten, sondern nur Username
+	* Product Management ausschließlich auf Hinzufügen neuer Produkte und Benzin-Bestellung beschränkt
+	* trotz Fehlschlagen der Order wegen uneindeutigen Errors werden die Orders bei den Produkten hinzugefügt -> kommt auch in Order-History etc, wobei sich der Bestand des Produktes nicht änderte. Aber sie werden anscheinend als uncompleted gespeichert?
+=== Interaktion mit der Anwendung (Usability)
+	* Auswahl von Pump Selection-Feld zu klein, es wird nur 'pun' angezeigt
+	* Wählt man die Pump wird einem vorgeschrieben welcher Wert in die Menge maximal rein darf. Statt es automatisch hinzuzufügen o.Ä. Außerdem darf dieser Wert auch unterschritten werden??
+	* Eingabefelder bei http://localhost:8080/items sollten generell nochmal überarbeitet werden, einige ziemlich klein
+
+== Verbesserungsvorschläge
+=== Was kann noch weiter verbessert werden?
+
+* Gänzlich auf ""Englisch""
+* Beim Anlegen eines neuen Users steht beim Passwort "User can log in _wit_ this password." _Anmerkung:_ weitere Sprachfehler aufzulisten, spar ich mir erst einmal.
+* man kann gleiche Namen eines Produktes mehrfach verwenden, es wird einfach ein neues angelegt
+* fügt man einen User mit gleichen Username wie schon vorhanden hinzu, erhält man lediglich eine Meldung, dass dieser 'bald' im System erscheint, aber anders als bei Produkten wird scheinbar kein neuer User angelegt -> sollte man vllt. zuvor abfangen
+* (pumps können nur Diesel ODER Benzin haben, ist das richtig?)
+* Produkte einzeln aus dem Cart löschen zu können wäre praktisch
+* Bei BenzinE Bestellung sollte man vielleicht einfach die konkreten Produktnamen displayen.
+* Man kann bei Reservation einen beliebigen Namen angeben, für wen diese ist. Das ist okay, dann sollte man bei der Tabelle aber nicht in den Head der Spalte 'Username' schreiben
+* Reservation bei McSit vielleicht um Personenzahl erweitern
+* customeredit wirkt unübersichtlich, da man keinen optishcen Unterschied zwischen Text und Eingabefeld 
+* verwirrende bezeichung der Mitarbeiter
+* wenn man eine reservierung in der Vergangenheit erstellt, erscheind keine Meldung das ein "falsches" Datum ausgewählt wurde
