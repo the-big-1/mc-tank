@@ -1,14 +1,12 @@
 package company18.mctank.service;
 
+import company18.mctank.domain.Customer;
 import company18.mctank.domain.CustomerRoles;
 import company18.mctank.exception.ExistedUserException;
 import company18.mctank.forms.SignUpForm;
 import company18.mctank.repository.CustomerRepository;
 import org.junit.After;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.salespointframework.useraccount.Password;
 import org.salespointframework.useraccount.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomerServiceUnitTest {
-	/*
 
 	@Autowired
 	private CustomerService testService;
-
-	@Autowired
-	private CustomerRepository customerRepository;
-
-	@BeforeAll
-	void init(){
-		customerRepository.deleteAll();
-	}
 
     @Test
     void createCustomer() {
@@ -42,6 +31,7 @@ class CustomerServiceUnitTest {
 		catch (ExistedUserException e){
 			fail();
 			//fail because of in memory database ??
+			//@AfterAll should delete Customers
 		}
     }
 
@@ -58,7 +48,7 @@ class CustomerServiceUnitTest {
 			testService.createCustomer("unitTest","test@mail.de", Password.UnencryptedPassword.of("123"), CustomerRoles.CUSTOMER);
 		}
 		catch (ExistedUserException e){
-			assertEquals(e.getClass(), ExistedUserException.class);
+			assertEquals(e.getClass(), ExistedUserException.class);  //second call to get Exception
 		}
     }
 
@@ -149,11 +139,14 @@ class CustomerServiceUnitTest {
     void updateLicensePlate() {
     }
 
-    @AfterEach
+	@AfterAll
 	void delete(){
-    	customerRepository.deleteAll();
-	}
+		Customer delete = testService.getCustomer("unitTest2");
+		long deleteId = delete.getId();
+		testService.deleteCustomer(deleteId);
 
-	
-	 */
+		Customer delete2 = testService.getCustomer("unitTest");
+		long deleteId2 = delete2.getId();
+		testService.deleteCustomer(deleteId2);
+	}
 }
