@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomerServiceUnitTest {
+	/*
 
 	@Autowired
 	private CustomerService testService;
@@ -152,4 +153,7 @@ class CustomerServiceUnitTest {
 	void delete(){
     	customerRepository.deleteAll();
 	}
+
+	
+	 */
 }
