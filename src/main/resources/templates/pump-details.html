@@ -9,24 +9,24 @@
 	<body>
 		<h1 th:text="${'Zapfsäule ' + number}">Pump Details</h1>
 		<div th:unless="${invalid}">
-			<span>Kraftstoff:</span>
+			<span>Fuel type:</span>
 			<span th:text="${fuelproduct.name}"></span><br>
 		
-			<span>Menge:</span>
+			<span>Quantity:</span>
 			<span th:text="${quantity + ' Liter'}"></span><br>
 			
-			<span>Preis:</span>
+			<span>Price:</span>
 			<span th:text="${price}"></span><br>
 		</div>
 		<div th:if="${invalid}">
-			<p>Keine Daten verfügbar</p>
+			<p>No Data</p>
 		</div>
 		
 		<form class="ui form" method="post" th:action="@{/cart/pump}" th:if="${orderable}">
 			<input type="hidden" name="product-id" value="0" th:value="${fuelproduct.id}"/>
 			<input type="hidden" name="amount" value="0" th:value="${quantity}"/>
 			<input type="hidden" name="pump-number" value="0" th:value="${number}"/>
-            <button type="submit">Zur Rechnung hinzufügen</button>
+            <button type="submit">Add to cart</button>
         </form>
 	</body>
 </html>

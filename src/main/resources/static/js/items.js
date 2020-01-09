@@ -10,7 +10,7 @@
         var steps = [
             {
                 title: 'Name of the Product',
-                text: 'Will be displayed to customer',
+                text: 'Will be displayed in Stock',
                 input: 'text'
             },
             {
@@ -19,7 +19,7 @@
                 input: 'text'
             },
             {
-                title: 'Where customer can by it?',
+                title: 'Which McPoint?',
                 text: 'Minimum one place',
                 html:
                     '<div class="custom-control custom-checkbox">' +
