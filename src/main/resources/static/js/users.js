@@ -15,7 +15,7 @@
             },
             {
                 title: 'Enter user\'s password please',
-                text: 'User can log in wit this password.',
+                text: 'User can log in with this password.',
                 input: 'password'
             }
             // {
@@ -59,7 +59,7 @@
                 error: function (){
                     swal({
                         title: 'User added failed :(',
-                        text: 'This user exists or other error occurred.',
+                        text: 'This user exists already or other error occurred.',
                         type: 'error',
                         confirmButtonText: 'Done!',
                         confirmButtonClass: 'btn btn-success',

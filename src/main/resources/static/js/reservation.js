@@ -36,8 +36,8 @@
                 }
             },
             {
-                title: 'Where customer can by it?',
-                text: 'Minimum one place',
+                title: 'For which McPoint is the reservation?',
+                text: 'McSit or McWash',
                 input: 'radio',
                 inputOptions: {
                     'McSit': 'McSit',
@@ -60,7 +60,7 @@
                 data: makeData(result, time),
                 success: function () {
                     swal({
-                        title: 'Product added successfully!',
+                        title: 'Reservation added successfully!',
                         text: 'It will appear soon everywhere.',
                         type: 'success',
                         confirmButtonText: 'Done!',
