@@ -5,14 +5,12 @@ import company18.mctank.forms.NewItemForm;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.GasPumpService;
 import company18.mctank.service.ItemsService;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller for managing items.
@@ -104,5 +102,19 @@ public class ItemsController {
 		model.addAttribute("price", pumpService.getPrice(number));
 		model.addAttribute("orderable", pumpService.getFuelQuantity(number) > 0);
 		return "pump-details";
+	}
+
+	/**
+	 * Delete Inventory Item.
+	 *
+	 * @param model model
+	 * @param id id Item to delete
+	 * @return redirect to items
+	 */
+	@RequestMapping("/items/delete")
+	String deleteItem(Model model,  @RequestParam ProductIdentifier id){
+		itemsService.deleteProduct(id);
+
+		return "redirect:/items";
 	}
 }
