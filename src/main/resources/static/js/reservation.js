@@ -53,6 +53,10 @@
         swal.queue(steps).then(function (result) {
             console.log(result);
             swal.resetDefaults();
+			if (result[0] === "" || timeStringBeforeNow(time) || result[2] === null || result[3] === ""){
+				swal("Result was not valid.");
+				return;
+			}
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
@@ -66,13 +70,27 @@
                         confirmButtonText: 'Done!',
                         confirmButtonClass: 'btn btn-success',
                         showCancelButton: false
-                    });
+                    }).then(function(){
+									document.location.reload();
+					});
                 }
             });
         }, function () {
             swal.resetDefaults()
         })
     });
+
+	function timeStringBeforeNow(time){
+		let dayAndTime = time.split('-');
+		let day = dayAndTime[0].trim();
+		let daytimeArray = dayAndTime[1].trim().split(' ');
+		let hours = parseInt(daytimeArray[0].split(':')[0]);
+		let minutes = parseInt(daytimeArray[0].split(':')[1]);
+		if (daytimeArray[1] === "pm") hours += 12;
+		let dayValues = day.split('/');
+		let date = new Date(parseInt(dayValues[0]), parseInt(dayValues[1])-1, parseInt(dayValues[2]), hours, minutes);
+		return (date <= new Date());
+	}
 
     function makeData(result, time) {
         return JSON.stringify(
