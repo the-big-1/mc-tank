@@ -15,18 +15,8 @@
 					'Diesel': 'Diesel',
 					'Super Benzine': 'Benzine'
 				},
+				inputValue: 'Diesel',
 				currentProgressStep: 0,
-				// trying to validate input value, not working yet
-				preConfirm: function () {
-					        return new Promise(function (resolve, reject) {	
-									// radio inputs have same id, getElemById finds only one       
-					                if (!document.getElementById('swal2-radio-1').checked) {
-					                    reject('err');
-					                } else {
-					                    resolve(undefined);
-									}
-					        })
-					    }
 			}).then((value) => {
 				amountSwal(value);
 				}
@@ -47,8 +37,13 @@
 						input: 'number',
 						inputAttributes: {
 							'min': '1'
-						}
+						},
 					}).then(function (amount) {
+						swal.resetDefaults();
+						if (amount === null || amount <= 0){
+							swal("Input value was not correct.");
+							return;
+						}
 						var result = [fuel, amount];
 						console.log(result);
 						swal.resetDefaults();
