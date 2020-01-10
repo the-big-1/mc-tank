@@ -1,10 +1,7 @@
 package company18.mctank.initializer;
 
-import company18.mctank.domain.CustomerRoles;
 import company18.mctank.domain.McTankCart;
 import company18.mctank.domain.McTankOrder;
-import company18.mctank.exception.ExistedUserException;
-import company18.mctank.repository.CustomerRepository;
 import company18.mctank.repository.ItemsRepository;
 import company18.mctank.service.CartService;
 import company18.mctank.service.CustomerService;
@@ -12,9 +9,6 @@ import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.payment.Cash;
-import org.salespointframework.time.BusinessTime;
-import org.salespointframework.useraccount.Password.UnencryptedPassword;
-import org.salespointframework.useraccount.UserAccountManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +16,6 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
-import java.util.List;
 
 /**
  * Initializes default user accounts and customers. The following are created:
@@ -57,7 +49,6 @@ class OrdersDataInitializer implements DataInitializer {
 	 */
 	@Override
 	public void initialize() {
-		/*
 
 		// dont initialize if already populated
 		if (!this.orderManager.findBy(this.customerService.getCustomer("test").getUserAccount()).isEmpty()) {
@@ -73,7 +64,5 @@ class OrdersDataInitializer implements DataInitializer {
 			cart.clear();
 		}
 		LOG.info("Initializing: orders. Done.");
-
-		 */
 	}
 }
