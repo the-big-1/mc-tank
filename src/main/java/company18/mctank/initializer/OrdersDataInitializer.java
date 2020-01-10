@@ -57,6 +57,8 @@ class OrdersDataInitializer implements DataInitializer {
 	 */
 	@Override
 	public void initialize() {
+		/*
+
 		// dont initialize if already populated
 		if (!this.orderManager.findBy(this.customerService.getCustomer("test").getUserAccount()).isEmpty()) {
 			return;
@@ -71,5 +73,7 @@ class OrdersDataInitializer implements DataInitializer {
 			cart.clear();
 		}
 		LOG.info("Initializing: orders. Done.");
+
+		 */
 	}
 }

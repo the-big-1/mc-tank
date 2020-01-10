@@ -11,18 +11,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @SpringBootTest
-class ItemsControllerTest implements InitializingBean {
+class MainControllerTest implements InitializingBean {
 
 	@Autowired
-	WebApplicationContext wac;
+	public WebApplicationContext wac;
 
-	MockMvc mockMvc;
+	public MockMvc mockMvc;
 
 	@Override
 	public void afterPropertiesSet() {
@@ -34,45 +32,29 @@ class ItemsControllerTest implements InitializingBean {
 
     @Test
     void index() throws Exception {
-		mockMvc.perform(get("/items"))
-				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("http://localhost/login"));
-    }
-
-
-    /*
-	@Test
-	@WithMockUser("ADMIN")
-	void index1() throws Exception {
-		mockMvc.perform(get("/items"))
-				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("/items-management"));
+		mockMvc.perform(get("/")).andExpect(status().isFound());
 	}
 
 	@Test
-	@WithMockUser("MANAGER")
-	void index2() throws Exception {
-		mockMvc.perform(get("/items"))
-				.andExpect(status().isOk())
-				.andExpect(redirectedUrl("/items"));
+	void indexLogin() throws Exception{
+		mockMvc.perform(get("/")).andExpect(status().isFound()).andExpect(redirectedUrl("/login"));
 	}
 
-     */
+	@Test
+	@WithMockUser(roles = "ADMIN")
+	void indexAdmin() throws Exception{
+		mockMvc.perform(get("/")).andExpect(status().isFound()).andExpect(redirectedUrl("/overview"));
+	}
 
-    @Test
-    void newItem() throws Exception {
-		mockMvc.perform(get("/newItem"))
-			.andExpect(status().isFound());
-    }
+	@Test
+	@WithMockUser(roles = "MANAGER")
+	void indexManager() throws Exception{
+		mockMvc.perform(get("/")).andExpect(status().isFound()).andExpect(redirectedUrl("/cart"));
+	}
 
-    @Test
-    void registerNew() throws Exception {
-    }
-
-    @Test
-    void itemDetails() throws Exception {
-		mockMvc.perform(get("/pump/{number}", 2))
-				.andExpect(status().isFound());
-    }
-
+	@Test
+	@WithMockUser(roles = "CUSTOMER")
+	void indexCustomer() throws Exception{
+		mockMvc.perform(get("/")).andExpect(status().isFound()).andExpect(redirectedUrl("/account"));
+	}
 }
