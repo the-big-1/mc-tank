@@ -171,7 +171,10 @@ public class ItemsService {
 	}
 
 	public void updateProductQuantity(ProductIdentifier productId, Quantity q){
-		this.findProduct(productId).map(p -> p.increaseQuantity(q)).orElse(null);
+		Optional<UniqueInventoryItem> p;
+		if ((p = this.findProduct(productId)).isPresent()) {
+			p.get().increaseQuantity(q);
+		}
 	}
 
 	public List<Product> findByCategory(String category) {
