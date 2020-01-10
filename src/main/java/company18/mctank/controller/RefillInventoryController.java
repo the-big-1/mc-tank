@@ -44,7 +44,7 @@ public class RefillInventoryController {
 	
 	/**
 	 * Gets price of fuel.
-	 * @param requestBody
+	 * @param fuelType string
 	 * @return double 
 	 */
 	@GetMapping("/getFuelPrice")
