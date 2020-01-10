@@ -210,7 +210,7 @@ public class ItemsService {
 			// get orders from day
 			daysOrders = this.orderManager.findBy(
 					Interval.from(LocalDateTime.of(LocalDate.now().minusDays(i), LocalTime.of(0, 0)))
-					.to(LocalDateTime.of(LocalDate.now().minusDays(i-1), LocalTime.of(0, 0)))).toList();
+					.to(LocalDateTime.of(LocalDate.now().minusDays(((long)i)-1), LocalTime.of(0, 0)))).toList();
 			// add to total liters used
 			for (McTankOrder order: daysOrders) {
 				usedLiters += order.getQuantity(fuel).getAmount().floatValue();
