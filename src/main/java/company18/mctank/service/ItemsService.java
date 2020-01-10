@@ -99,6 +99,18 @@ public class ItemsService {
 		return itemsRepository.save(product);
 	}
 
+
+	/**
+	 * Deletes Product with given ID form inventory and items.
+	 *
+	 * @param id
+	 */
+	public void deleteProduct(ProductIdentifier id){
+		UniqueInventoryItem invItem = inventoryRepository.findByProductIdentifier(id).get();
+		inventoryRepository.delete(invItem);
+		itemsRepository.deleteById(id);
+	}
+
 	/**
 	 * Makes a Map with Products sorted by McPoints.
 	 *
