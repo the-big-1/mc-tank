@@ -2,7 +2,6 @@ package company18.mctank.controller;
 
 import company18.mctank.domain.Customer;
 
-import company18.mctank.domain.Discount;
 import company18.mctank.domain.McTankCart;
 
 import company18.mctank.factory.DiscountFactory;
@@ -11,7 +10,6 @@ import company18.mctank.service.CustomerService;
 import company18.mctank.service.GasPumpService;
 
 import org.salespointframework.payment.*;
-import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,14 +18,11 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
-import org.salespointframework.useraccount.UserAccount;
-import org.salespointframework.useraccount.web.LoggedIn;
 
 /**
  * A controller to manage the Cart.

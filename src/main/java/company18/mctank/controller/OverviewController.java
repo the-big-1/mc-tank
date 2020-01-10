@@ -1,7 +1,6 @@
 package company18.mctank.controller;
 
 import company18.mctank.domain.GasPump;
-import company18.mctank.repository.CustomerRepository;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.ItemsService;
 import company18.mctank.service.OrdersService;
