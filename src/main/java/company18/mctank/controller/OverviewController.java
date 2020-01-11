@@ -64,8 +64,8 @@ public class OverviewController {
 
 	private void addFuelStats(Model model){
 		List<Product> productList = itemsService.findByCategory("McZapf");
-		Product benzine = getProductByName(productList, GasPump.SUPER_BENZIN);
-		Product diesel = getProductByName(productList, GasPump.DIESEL);
+		Product benzine = getProductByName(productList, "Benzine");
+		Product diesel = getProductByName(productList, "Diesel");
 		boolean isBenzineFinishing = isFuelFinishing(benzine);
 		boolean isDieselFinishing = isFuelFinishing(diesel);
 		model.addAttribute("fuelBenzineWarning", isBenzineFinishing);

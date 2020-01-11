@@ -40,10 +40,10 @@ class ItemsInitializer implements DataInitializer {
 
 		var prod1 = new Product("Cola 0,5L", Money.of(3.00, "EUR"));
 		var prod2 = new Product("Cola 0,2L", Money.of(1.50, "EUR"));
-		var prod3 = new Product("Super Benzin", Money.of(100, "EUR"), Metric.LITER);
-		var prod4 = new Product("Diesel", Money.of(50, "EUR"), Metric.LITER);
+		var prod3 = new Product("Benzine", Money.of(1.40, "EUR"), Metric.LITER);
+		var prod4 = new Product("Diesel", Money.of(1.33, "EUR"), Metric.LITER);
 		var prod5 = new Product("McBig", Money.of(5.00, "EUR"));
-		var prod6 = new Product("Basiswäsche", Money.of(4.50, "EUR"));
+		var prod6 = new Product("Wash Basic", Money.of(4.50, "EUR"));
 		
 		prod1.addCategory("McSit");
 		prod2.addCategory("McDrive");
