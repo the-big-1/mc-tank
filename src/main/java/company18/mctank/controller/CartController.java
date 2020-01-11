@@ -96,9 +96,15 @@ public class CartController {
 	 */
 	@PostMapping("/cart/username")
 	public String saveUsername(String username) {
-		Customer customer = customerService.getCustomer(username);
-		cart.setCustomer(customer);
-		cartService.load(cart, customer.getUserAccount());
+
+		try {
+			Customer customer = customerService.getCustomer(username);
+			cart.setCustomer(customer);
+			cartService.load(cart, customer.getUserAccount());
+		}
+		catch (Exception e){
+			return "redirect:/cart";
+		}
 		return "redirect:/cart";
 	}
 	

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="gasoline-pump")
 public class GasPump {
 	public static final String DIESEL = "Diesel";
-	public static final String SUPER_BENZIN = "Super Benzin";
+	public static final String SUPER_BENZIN = "Benzine";
 	@XmlElement(name="number")
 	private int number;
 	
