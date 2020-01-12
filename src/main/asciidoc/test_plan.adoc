@@ -42,15 +42,7 @@ Die gesamte Anwendung von McTank bestehend aus
 
 
 == Zu testende Funktionalitäten
-- Registrierung <<U1>>
-- Benzinbestellung <<U2>>
-- Rabatt <<U3>>
-- Altersabfrage <<U4>>
-- Login/Logout <<U5>>
-- Reservierung <<U6>>
-- Bezahlvorgang <<U7>>
-- Items werden vollständig angezeigt <<I1>>
-- User sind korrekt autorisiert <<I2>>
+- <<MainControllerTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
