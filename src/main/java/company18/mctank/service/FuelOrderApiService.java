@@ -37,8 +37,9 @@ public class FuelOrderApiService {
 			     .body(body);
 		try {	
 		ResponseEntity<String> answer = new RestTemplate().postForEntity(API_URL, request, String.class);
-		if (answer.getStatusCode().equals(HttpStatus.OK)) 
+		if (answer.getStatusCode().equals(HttpStatus.OK)) {
 			return true;
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 			// something went wrong

@@ -199,11 +199,13 @@ public class CustomerService {
 		Optional<Customer> customer = customerRepository.findById(id);
 		if (customer.isPresent()) {
 			return customer.get();
-		} else try {
-			throw new UserNotFoundException();
-		} catch (UserNotFoundException e) {
-			LOG.error(e.getMessage());
-			return null;
+		} else {
+			try {
+				throw new UserNotFoundException();
+			} catch (UserNotFoundException e) {
+				LOG.error(e.getMessage());
+				return null;
+			}
 		}
 	}
 

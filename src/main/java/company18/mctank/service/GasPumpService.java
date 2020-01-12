@@ -69,8 +69,9 @@ public class GasPumpService {
 	 * @return Fuel as {@link Product}
 	 */
 	public Product getFuel(int pumpNumber) {
-		if (this.pumps[pumpNumber] == null)
+		if (this.pumps[pumpNumber] == null) {
 			return null;
+		}
 		String productName = this.pumps[pumpNumber].getFuelType();
 		return this.itemsRepository.findByName(productName).get()
 				.findFirst().get();
@@ -82,8 +83,9 @@ public class GasPumpService {
 	 * @return fuel quantity rounded to two decimals
 	 */
 	public float getFuelQuantity(int pumpNumber) {
-		if (this.pumps[pumpNumber] == null)
+		if (this.pumps[pumpNumber] == null) {
 			return 0f;
+		}
 		return this.pumps[pumpNumber].getFuelQuantity();
 	}
 

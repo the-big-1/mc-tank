@@ -29,7 +29,10 @@ public class CartService {
 	private RefillInventoryService refillService;
 
 
-	public CartService(OrderManager<McTankOrder> orderManager, ItemsService itemsService, RefillInventoryService refillService) {
+	public CartService(OrderManager<McTankOrder> orderManager,
+					   ItemsService itemsService,
+					   RefillInventoryService refillService) {
+
 		this.orderManager = orderManager;
 		this.itemsService = itemsService;
 		this.refillService = refillService;
@@ -42,8 +45,9 @@ public class CartService {
 	 * @return whether the cart can be turned to an order.
 	 */
 	public boolean buy(McTankCart cart, PaymentMethod payMethod) {
-		if (cart.getCustomer() == null || cart.get().count() == 0)
+		if (cart.getCustomer() == null || cart.get().count() == 0) {
 			return false;
+		}
 
 		McTankOrder order = getOrder(cart);
 		
@@ -76,8 +80,9 @@ public class CartService {
 
 	public boolean load(McTankCart cart, UserAccount userAccount) {
 		McTankOrder openOrder = getOpenOrder(userAccount);
-		if (openOrder == null)
+		if (openOrder == null) {
 			return false;
+		}
 		openOrder.getOrderLines()
 				.forEach(orderLine ->
 						itemsService.getProduct(orderLine.getProductIdentifier())
@@ -108,7 +113,9 @@ public class CartService {
 		if (claim) {
 			Product negatedProduct = new Product(product.getName().concat(" REKLAMATION"), product.getPrice().negate());
 			cart.addOrUpdateItem(negatedProduct, amount);
-		} else cart.addOrUpdateItem(product, amount);
+		} else {
+			cart.addOrUpdateItem(product, amount);
+		}
 	}
 	
 	public void addOrUpdateItem(McTankCart cart, Product product, Quantity amount) {

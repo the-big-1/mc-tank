@@ -31,10 +31,18 @@ public class DataStacked {
 
 	private void arrangeProduct(Product product, LocalDate date) {
 		Set<String> categories = product.getCategories().toSet();
-		if (categories.contains("McZapf")) updateValue(date, this.amountsOnMcZapf);
-		if (categories.contains("McDrive")) updateValue(date, this.amountsOnMcDrive);
-		if (categories.contains("McSit")) updateValue(date, this.amountsOnMcSit);
-		if (categories.contains("McWash")) updateValue(date, this.amountsOnMcWash);
+		if (categories.contains("McZapf")) {
+			updateValue(date, this.amountsOnMcZapf);
+		}
+		if (categories.contains("McDrive")) {
+			updateValue(date, this.amountsOnMcDrive);
+		}
+		if (categories.contains("McSit")) {
+			updateValue(date, this.amountsOnMcSit);
+		}
+		if (categories.contains("McWash")) {
+			updateValue(date, this.amountsOnMcWash);
+		}
 	}
 
 	private void updateValue(LocalDate date, Map<LocalDate, Integer> map){

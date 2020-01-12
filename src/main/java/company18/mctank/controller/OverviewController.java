@@ -25,7 +25,8 @@ import java.util.Optional;
 @PreAuthorize("hasRole('ADMIN')")
 public class OverviewController {
 
-	private static final Quantity MIN_FUEL_QUANTITY = Quantity.of(10000L, Metric.LITER);  //min quantity before warning is triggered
+	//min quantity before warning is triggered
+	private static final Quantity MIN_FUEL_QUANTITY = Quantity.of(10000L, Metric.LITER);
 
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventoryRepository;
