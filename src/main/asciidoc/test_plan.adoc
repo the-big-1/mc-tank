@@ -132,3 +132,44 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
  |			.andExpect(status().isFound());
 ||Item-Details           |Die Details der Zapfsäulen sollen angezeigt werden              |		mockMvc.perform(get("/pump/{number}", 2)) |				.andExpect(status().isFound());
 |===
+
+== CustomerUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Bestelldatum abrufen |das neueste Bestelldatum eines bestimmten Users soll abgerufen werden |getLastOrderDate() |assertNotNull(testCustomer.getLastOrderDate());
+||Bestelldatum festlegen |zu jeder Bestellung soll das entsprechende Datum festgelegt werden |setLastOrderDate()
+testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.getLastOrderDate(), testDateTime);
+||User-Account abrufen |für jeden User soll der entsprechende User-Account abgerufen werden |getUserAccount() |    	assertEquals(testCustomer.getUserAccount(), testAcc);
+||User Full Name abrufen |für jeden User soll der entsprechende vollständige Name abgerufen werden |getFullName() |    	assertEquals(testCustomer.getFullName(), "No Info");
+||User-Vorname abrufen |für jeden User soll der entsprechende Vorname abgerufen werden |getFirstName() |    	assertEquals(testCustomer.getFirstname(), "No Info");
+||User-Vorname festlegen|zu jedem User soll ein Vorname festgelegt werden |    	testCustomer.setFirstName("test");
+|    	assertEquals(testCustomer.getFirstname(), "test");
+||User-Nachname abrufen |für jeden User soll der entsprechende Nachname abgerufen werden |getLastName() |    	assertEquals(testCustomer.getLastname(), "No Info");
+||User-Nachname festlegen|zu jedem User soll ein Nachname festgelegt werden |    	testCustomer.setLastName("test");
+|    	assertEquals(testCustomer.getLastname(), "test");
+||User-Emailadresse abrufen |für jeden User soll die entsprechende Email-Adresse abgerufen werden |getEmail() |    	assertNull(testCustomer.getEmail());
+||User-Emailadresse festlegen |für jeden User soll eine Email-Adresse festgelegt werden |		testCustomer.setEmail("test@mail.de"); |		assertEquals(testCustomer.getEmail(), "test@mail.de");
+||User-Telefonnummer abrufen |für jeden User soll die entsprechende Telefonnummer abgerufen werden |getMobile() |    	assertEquals(testCustomer.getMobile(), "Mobile number");
+||User-Telefonnummer festlegen |für jeden User soll eine Telefonnummer festgelegt werden |		testCustomer.setMobile("080032168");|		assertEquals(testCustomer.getMobile(), "080032168");
+||User-Kennzeichen abrufen |für jeden User soll das entsprechende Kennzeichen abgerufen werden |getLicensePlate() |		assertNull(testCustomer.getLicensePlate());
+||User-Kennzeichen festlegen |für jeden User soll ein Kennzeichen festgelegt werden|		testCustomer.setLicensePlate("DD-Q-12"); | 		assertEquals(testCustomer.getLicensePlate(), "DD-Q-12");
+||letzte Useraktivität |Für jeden User soll die Uhrzeit der letzten Aktivität auf der Website geupdated und entsprechend angezeigt werden |		testCustomer.updateLastActivityDate(); |		assertNotNull(testCustomer.getLastActivityDate());
+||User-Rabattcodes anzeigen |Ein User kann in seinem Useraccount all seine Rabattcodes einsehen können |getDiscounts() |		assertNull(testCustomer.getDiscounts());
+||User-Rabattcodes festlegen |Für einen User wird bei Registrierung (einmalig) und bei der Nutzung eines McPoints ein zufälliger Rabattcode generiert |		testCustomer.setDiscounts(new LinkedList<Discount>()); |assertEquals(testCustomer.getDiscounts(), new LinkedList<Discount>());
+		assertTrue(testCustomer.getDiscounts().isEmpty());
+||User-Rabattcodes hinzufügen |die generierten Rabattcodes werden dem entsprechenden Useraccount hinzugefügt |		testCustomer.addDiscount(new Discount()); |		assertEquals(testCustomer.getDiscounts().size(), 1);
+|===
+
+== DiscountUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|===
