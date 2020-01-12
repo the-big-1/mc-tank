@@ -64,6 +64,11 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<RequestFuelBodyUnitTest>>
 - <<ReservationFormUnitTest>>
 - <<SignUpFormUnitTest>>
+- <<CartServiceUnitTest>>
+- <<CustomerServiceUnitTest>>
+- <<FuelOrderApiServiceUnitTest>>
+- <<GasPumpServiceUnitTest>>
+- <<ItemsServiceUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -403,6 +408,78 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
+||User-Passwort |jeder User hat ein eindeutiges Passwort für seinen Benutzeraccount |getPassword() |    	assertEquals(testForm.getPassword(), "123");
+||User-Name | jeder User hat einen eindeutigen Namen in seinem Benutzeraccount |getName() |    	assertEquals(testForm.getName(), "test");
+||User-Email | jeder User hat eine Emailadresse, mit der er sich einen Benutzeraccount angelegt hat |getEmail() |    	assertEquals(testForm.getEmail(), "test@mail.de");
+|=== 
+
+== CartServiceUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Cart-Useraccount |eine Cart-Session kann nur abgeschlossen werden, wenn sie einem Useraccount zugeordnet ist |		cart.setCustomer(null); | 		assertFalse(service.buy(cart, Cash.CASH));
+||clear Cart |der Warenkorb soll ohne Probleme geleert werden können |cart.clear() | 		assertTrue(cart.isEmpty());
+||Produkt zum Warenkorb hinzufügen |ein Produkt soll in der korrekten Anzahl zum Warenkorb hinzugefügt werden |		this.service.addOrUpdateItem(cart, testProduct, 3, false); | 		assertTrue(cart.get().findFirst().get().getQuantity().getAmount().intValueExact() == 3);
+||Produktreklamation |Produkte können zurückgegeben werden |		this.service.addOrUpdateItem(cart, testProduct, 5, true); |		assertTrue(claimitem.getProduct().getName().equals(testProduct.getName()+" REKLAMATION"));
+|=== 
+
+== CustomerServiceUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Useraccount-Erstellung |ein Benutzerkonto kann erstellt werden, wenn der Nutzer noch nicht existiert |		SignUpForm testForm = new SignUpForm("unitTest","test@mail.de", "123"); | try {
+			testService.createCustomer(testForm);
+		}
+		catch (ExistedUserException e){
+			fail();
+||Kundenkonto löschen |ein Kundenkonto soll gelöscht werden |deleteCustomer() |try {
+			testService.createCustomer("unitTest3", "test3@mail.de", Password.UnencryptedPassword.of("123"), CustomerRoles.CUSTOMER);
+		}
+    	catch (ExistedUserException e){
+    		fail();
+		}
+
+		Customer delete = testService.getCustomer("unitTest3");
+		long deleteId = delete.getId();
+		testService.deleteCustomer(deleteId);
+||Kundenkonto aktualisieren |ein Kunde kann seine Daten in seinem Konto ändern |updateCustomer() |		try {
+			testService.createCustomer("unitTest4", "test4@mail.de", Password.UnencryptedPassword.of("123"), CustomerRoles.CUSTOMER);
+		}
+		catch (ExistedUserException e){
+			fail();
+		}
+
+		Customer test = testService.getCustomer("unitTest4");
+		long testId = test.getId();
+    	CustomerInfoUpdateForm testform = new CustomerInfoUpdateForm("newTest","newTest","newTest@mail.de","800032168", testId);
+
+    	testService.updateCustomer(testform);
+
+|===
+
+== FuelOrderApiServiceUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Kraftstoffpreise |die Kraftstoffpreise dürfen nicht negativ sein |priceTest() |assertTrue(FuelOrderApiService.getBenzinePrice() > 0);
+		assertTrue(FuelOrderApiService.getDieselPrice() > 0);
+|===
+
+== GasPumpServiceUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Zapfsäulen-Auflistung |die Zapfsäulen werden in einer chronologischen Reihenfolge gespeichert |testArrayOfPumps() |		Assert.notNull(gasPumpService.getPumps(), "Needed Array");
+|===
+
+== ItemsServiceUnitTest 
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+|||||
+|||||
+|||||
+|||||
 |||||
 |||||
 |||||
