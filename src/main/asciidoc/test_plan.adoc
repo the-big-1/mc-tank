@@ -49,6 +49,8 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<CustomerUnitTest>>
 - <<DiscountUnitTest>>
 - <<GasPumpUnitTest>>
+- <<McProductUnitTest>>
+- <<McSitReservationUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -188,14 +190,24 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
+||Zapfsäule-Nummer |Jede Zafpsäule hat eine eigene Nummer, auf die man zugreifen kann |getNumber() |    	assertEquals(testpump.getNumber(), 0);
+||Kraftstoff-Typ|Die verschiedenen Typen an Kraftstoff können unterschieden werden |getFuelType() |    	assertNotNull(testpump.getFuelType());
+||Kraftstoff-Menge |Man kann auf die Mengen der unterschiedlichen Kraftstoffe zugreifen |getFuelQuantity() |    	assertEquals(testpump.getFuelQuantity(), 0.0f);
+|===
+
+== McProductUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Produkt-Anzahl |Jedes Produkt wird mit einer bestimmten Anzahl erstellt |getQuantity() |    	assertEquals(testMcProduct.getQuantity(), Quantity.of(10));
+||Produkte anzeigen |Jedes Produkt wird im Catalog mit einem bestimmten Namen angezeigt |getProduct() |    	assertEquals(testMcProduct.getProduct(), testProduct);
+||Produkt-Bestellung |Für jedes Produkt soll angegeben werden, wie oft es bestellt wurde um die Bestände aktuell zu halten |getOrders()|    	assertEquals(testMcProduct.getOrders(), 10);
+|===
+
+== McSitReservationUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
 |||||
 |||||
 |===
