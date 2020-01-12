@@ -39,7 +39,6 @@ public class ReservationService {
 
 	/**
 	 * Finds reservations by class.
-	 * @param <T>
 	 * @param reservationClass class of reservations to be found
 	 * @return reservations with matching class
 	 */
