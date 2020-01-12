@@ -39,6 +39,7 @@ public class ReservationService {
 
 	/**
 	 * Finds reservations by class.
+	 * @param <T>
 	 * @param reservationClass class of reservations to be found
 	 * @return reservations with matching class
 	 */
@@ -88,7 +89,9 @@ public class ReservationService {
 
 	public void save(ReservationForm form){
 		LocalDateTime time = LocalDateTime.of(form.getDate(), form.getTime());
-		this.save(form.getMcPoint(), form.getName(), time, form.getUsername());
+		if (form.getPersons() > 0) 
+			this.saveMcSitReservation(form.getMcPoint(), form.getName(), time, form.getUsername(), form.getPersons());
+		else this.save(form.getMcPoint(), form.getName(), time, form.getUsername());
 	}
 
 	/**
@@ -107,10 +110,19 @@ public class ReservationService {
 		
 		// save entry as concrete class
 		if (mcPoint.equals("McSit")) {
-			reservationRepository.save(new McSitReservation(name, dateAndTime, username));
+			reservationRepository.save(new McSitReservation(name, dateAndTime, username, 1));
 		}
 		if (mcPoint.equals("McWash")) {
 			reservationRepository.save(new McWashReservation(name, dateAndTime, username));
+		}
+	}
+	
+	public void saveMcSitReservation(String mcPoint, String name, LocalDateTime dateAndTime, String username, int personCount) {
+		if (dateAndTime.isBefore(LocalDateTime.now())) {
+			throw new IllegalArgumentException();
+		}
+		if (mcPoint.equals("McSit")) {
+			reservationRepository.save(new McSitReservation(name, dateAndTime, username, personCount));
 		}
 	}
 
@@ -127,5 +139,27 @@ public class ReservationService {
 			LOG.error("Cannot get reservations for Customer. Cause: " + e.getMessage());
 		}
 		return reservationRepository.findAllByUsername(currentUsername);
+	}
+	
+	
+	/**
+	 * Checks if reservation (at McSit) with given time and amount of persons is possible.
+	 * @param persons number of persons
+	 * @param time reservations time
+	 * @return true if reservation is possible
+	 */
+	public boolean mcSitReservationPossible(int persons, LocalDateTime time) {
+		int maxPersonsPossible = 60;
+		int alreadyReserved = 0;
+		for (Reservation res : this.findByClass(McSitReservation.class)) {
+			McSitReservation reservation = (McSitReservation) res;
+			LocalDateTime reservationDate = reservation.getDate();
+			if (reservationDate.isAfter(time.minusMinutes(30)) && reservationDate.isBefore(time)) {
+				alreadyReserved += reservation.getCount();
+			}
+		}
+		if (alreadyReserved <= maxPersonsPossible - persons)
+			return true;
+		return false;
 	}
 }

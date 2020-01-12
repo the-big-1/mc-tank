@@ -53,15 +53,56 @@
         swal.queue(steps).then(function (result) {
             console.log(result);
             swal.resetDefaults();
-			if (result[0] === "" || timeStringBeforeNow(time) || result[2] === null || result[3] === ""){
+			if (result[0] === "" || time === null || timeStringBeforeNow(time) || result[2] === null || result[3] === ""){
 				swal("Result was not valid.");
 				return;
 			}
-            $.ajax({
+			if (result[2] === 'McSit'){
+				swal({title: 'How many persons?',
+						text: 'Enter how many persons are expected:',
+						input: 'number',
+						inputAttributes: {
+							'min': '1'
+						}
+						}).then(function (persons) {
+							if (persons === null){
+								swal("No input value found.");
+								return;
+							}
+							$.ajax({
+									type: "GET",
+									contentType: "application/json",
+									url: '/reservation/possible',
+									data: {personCount : persons,
+									resTime: time},
+									success: function (data) {
+										if (data)
+											postData(result, time, persons);
+										else {					
+											swal("We are fully booked at " + time+".");
+											return;
+										}
+									}
+									});
+						});
+			} else {
+				postData(result, time);
+			}
+        }, function () {
+            swal.resetDefaults()
+        })
+    });
+
+	function postData(result, time){
+		let sendData;
+		// arguments[2] contains number of persons to order mcsitreservation for
+		if (result[2] == "McSit") sendData = makeData(result, time, arguments[2])
+		else sendData = makeData(result, time, 0);
+		$.ajax({
                 type: "POST",
                 contentType: "application/json",
                 url: '/reservation',
-                data: makeData(result, time),
+                data: sendData,
                 success: function () {
                     swal({
                         title: 'Reservation added successfully!',
@@ -75,10 +116,7 @@
 					});
                 }
             });
-        }, function () {
-            swal.resetDefaults()
-        })
-    });
+	}
 
 	function timeStringBeforeNow(time){
 		let dayAndTime = time.split('-');
@@ -92,13 +130,14 @@
 		return (date <= new Date());
 	}
 
-    function makeData(result, time) {
+    function makeData(result, time, personCount) {
         return JSON.stringify(
             {
                 name: result[0],
                 date: time,
                 mcPoint: result[2],
-                username: result[3]
+                username: result[3],
+				persons: personCount
                 }
             )
     }

@@ -10,17 +10,24 @@ import javax.persistence.Entity;
  */
 @Entity
 public class McSitReservation extends Reservation {
+	int count;
+	
 	@SuppressWarnings("unused")
 	private McSitReservation() {
 		super();
 	}
 
-	public McSitReservation(String name, LocalDateTime date, String username) {
+	public McSitReservation(String name, LocalDateTime date, String username, int personCount){
 		super(name, date, username);
+		this.count = personCount;
 	}
 
 	@Override
 	public String getMcPoint() {
 		return "McSit";
+	}
+	
+	public int getCount() {
+		return this.count;
 	}
 }

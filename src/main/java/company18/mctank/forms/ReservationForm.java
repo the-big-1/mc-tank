@@ -35,6 +35,8 @@ public class ReservationForm {
 	@DateTimeFormat(pattern="hh:mm a")
 	private LocalTime time;
 	
+	private int persons;
+	
 	public ReservationForm(String name, String date, String mcPoint, String username) {
 		String[] data = date.split(" ");
 		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH);
@@ -84,5 +86,13 @@ public class ReservationForm {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public int getPersons() {
+		return persons;
+	}
+
+	public void setPersons(int persons) {
+		this.persons = persons;
 	}
 }

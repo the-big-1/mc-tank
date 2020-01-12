@@ -6,6 +6,8 @@ import company18.mctank.forms.ReservationForm;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Controller for creating and handling reservations.
@@ -76,5 +83,18 @@ public class ReservationController {
 	public String delete(@PathVariable long id) {
 		reservationService.deleteById(id);
 		return "redirect:/reservation";
+	}
+	
+	/**
+	 * Ajax mapping to check if McSit reservation is possible.
+	 * @param persons number of persons.
+	 * @param timeStr String of pattern 'yyyy/MM/dd - hh:mm a'
+	 * @return if reservation is possible
+	 */
+	@GetMapping("/reservation/possible")
+	public ResponseEntity<Boolean> reservationPossible(@RequestParam("personCount") int persons, @RequestParam("resTime") String timeStr){
+		DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("yyyy/MM/dd - hh:mm a").toFormatter(Locale.US);
+		LocalDateTime time = LocalDateTime.parse(timeStr, formatter);
+		return ResponseEntity.ok(this.reservationService.mcSitReservationPossible(persons, time));
 	}
 }

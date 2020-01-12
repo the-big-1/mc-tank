@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class McSitReservationUnitTest {
 
 	LocalDateTime testTime = LocalDateTime.now();
-	McSitReservation reservationTest = new McSitReservation("test", testTime,"testUser");
+	McSitReservation reservationTest = new McSitReservation("test", testTime,"testUser", 1);
 
 
 	@Test

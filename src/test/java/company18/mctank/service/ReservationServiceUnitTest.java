@@ -105,10 +105,10 @@ public class ReservationServiceUnitTest {
 	void sortByDateTest() {
 		// preparing list (correct order number given in reservations name)
 		LinkedList<Reservation> list = new LinkedList<Reservation>();
-		list.add(new McSitReservation("4", LocalDateTime.now().plusDays(10), "boss"));
-		list.add(new McSitReservation("3", LocalDateTime.now().plusDays(9), "boss"));
+		list.add(new McSitReservation("4", LocalDateTime.now().plusDays(10), "boss", 1));
+		list.add(new McSitReservation("3", LocalDateTime.now().plusDays(9), "boss", 1));
 		list.add(new McWashReservation("2", LocalDateTime.now().plusDays(8), "boss"));
-		list.add(new McSitReservation("5", LocalDateTime.now().plusDays(11), "boss"));
+		list.add(new McSitReservation("5", LocalDateTime.now().plusDays(11), "boss", 1));
 		list.add(new McWashReservation("1", LocalDateTime.now().plusDays(7), "boss"));
 		
 		// testing correct order
