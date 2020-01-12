@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 
@@ -51,7 +52,7 @@ class OrdersDataInitializer implements DataInitializer {
 	public void initialize() {
 
 		// dont initialize if already populated
-		if (!this.orderManager.findBy(this.customerService.getCustomer("test").getUserAccount()).isEmpty()) {
+		if (!this.orderManager.findAll(Pageable.unpaged()).isEmpty()) {
 			return;
 		}
 		McTankCart cart = new McTankCart();

@@ -58,7 +58,6 @@ public class ReservationController {
 		if (result.hasErrors()) {
 			return "redirect:/reservation";
 		}
-		
 		// else save and redirect
 		try {
 			reservationService.save(form);
@@ -73,7 +72,7 @@ public class ReservationController {
 	 * @param id of reservation to be deleted
 	 * @return views name
 	 */
-	@PostMapping(value="/delete-reservation/{id}")
+	@PostMapping(value="/reservation/delete/{id}")
 	public String delete(@PathVariable long id) {
 		reservationService.deleteById(id);
 		return "redirect:/reservation";
