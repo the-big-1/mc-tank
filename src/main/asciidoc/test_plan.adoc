@@ -163,7 +163,7 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Rabattcode |Ein Rabattcode soll einen Namen, einen Wert und einen Status bekommen |		Discount constructorTest = new Discount("test2", 0.05f); |assertEquals(constructorTest.getName(), "test2");
+||Rabattcode |Ein Rabattcode soll einen Namen, einen Wert und einen Status bekommen | Discount constructorTest = new Discount("test2", 0.05f); |assertEquals(constructorTest.getName(), "test2");
 		assertEquals(constructorTest.getDiscount(), 0.05f);
 		assertEquals(constructorTest.getStatus(), Discount.DiscountStatus.AVAILABLE);
 ||Rabattcode-Abgleich |Jeder Rabattcode darf nur ein einziges mal vorhanden sein |testEquals() |assertTrue(testDiscount.equals(testDiscount));
@@ -171,7 +171,7 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 		assertFalse(testDiscount.equals(null));
 ||Rabattcode-Hashcode |Der HashCode darf nicht null sein |testHashCode() |		assertNotNull(testDiscount.hashCode());
 ||Rabattcode-ShortId |Die ShortId darf nicht null sein |getShortId() |    	assertNotNull(testDiscount.getShortId());
-||Rabattname |Die verschiedenen Rabattereignisse sollen dem Rabattcode angefügt werden und in der Kasse angezeigt werden |getDiscountProductName() |    	assertEquals(testDiscount.getDiscountProductName(), testDiscount.getShortId() + " | " + "test");
+||Rabattname |Die verschiedenen Rabattereignisse sollen dem Rabattcode angefügt werden und in der Kasse angezeigt werden |getDiscountProductName() |    	assertEquals(testDiscount.getDiscountProductName(), testDiscount.getShortId() + "" + "test");
 ||Rabattpreis |Jeder Rabattcode soll einen bestimmten Wert bezogen auf das Rabattereignis bekommen |getDiscountPrice() |		assertNotNull(testDiscount.getDiscountPrice(Monetary.getDefaultAmountFactory().setCurrency("EUR").setNumber(10).create()));
 ||Rabatt-ID abrufen |Für jeden Rabattcode soll dessen ID aberufen werden können |getId() |    	assertNotNull(testDiscount.getId());
 ||Rabatt-ID festlegen |Jeder Rabattcode soll eine eindeutige Identifikation erhalten|    	testDiscount.setId(UUID.randomUUID()); |testDiscount.setId(UUID.randomUUID());
