@@ -157,49 +157,49 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Bestelldatum abrufen |das neueste Bestelldatum eines bestimmten Users soll abgerufen werden |getLastOrderDate() |assertNotNull(testCustomer.getLastOrderDate());
-||Bestelldatum festlegen |zu jeder Bestellung soll das entsprechende Datum festgelegt werden |setLastOrderDate()
+|<<U01>> |Bestelldatum abrufen |das neueste Bestelldatum eines bestimmten Users soll abgerufen werden |getLastOrderDate() |assertNotNull(testCustomer.getLastOrderDate());
+|<<U02>> |Bestelldatum festlegen |zu jeder Bestellung soll das entsprechende Datum festgelegt werden |setLastOrderDate()
 testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.getLastOrderDate(), testDateTime);
-||User-Account abrufen |für jeden User soll der entsprechende User-Account abgerufen werden |getUserAccount() |    	assertEquals(testCustomer.getUserAccount(), testAcc);
-||User Full Name abrufen |für jeden User soll der entsprechende vollständige Name abgerufen werden |getFullName() |    	assertEquals(testCustomer.getFullName(), "No Info");
-||User-Vorname abrufen |für jeden User soll der entsprechende Vorname abgerufen werden |getFirstName() |    	assertEquals(testCustomer.getFirstname(), "No Info");
-||User-Vorname festlegen|zu jedem User soll ein Vorname festgelegt werden |    	testCustomer.setFirstName("test");
+|<<U03>> |User-Account abrufen |für jeden User soll der entsprechende User-Account abgerufen werden |getUserAccount() |    	assertEquals(testCustomer.getUserAccount(), testAcc);
+|<<U04>> |User Full Name abrufen |für jeden User soll der entsprechende vollständige Name abgerufen werden |getFullName() |    	assertEquals(testCustomer.getFullName(), "No Info");
+|<<U05>> |User-Vorname abrufen |für jeden User soll der entsprechende Vorname abgerufen werden |getFirstName() |    	assertEquals(testCustomer.getFirstname(), "No Info");
+|<<U06>> |User-Vorname festlegen|zu jedem User soll ein Vorname festgelegt werden |    	testCustomer.setFirstName("test");
 |    	assertEquals(testCustomer.getFirstname(), "test");
-||User-Nachname abrufen |für jeden User soll der entsprechende Nachname abgerufen werden |getLastName() |    	assertEquals(testCustomer.getLastname(), "No Info");
-||User-Nachname festlegen|zu jedem User soll ein Nachname festgelegt werden |    	testCustomer.setLastName("test");
+|<<U07>> |User-Nachname abrufen |für jeden User soll der entsprechende Nachname abgerufen werden |getLastName() |    	assertEquals(testCustomer.getLastname(), "No Info");
+|<<U08>> |User-Nachname festlegen|zu jedem User soll ein Nachname festgelegt werden |    	testCustomer.setLastName("test");
 |    	assertEquals(testCustomer.getLastname(), "test");
-||User-Emailadresse abrufen |für jeden User soll die entsprechende Email-Adresse abgerufen werden |getEmail() |    	assertNull(testCustomer.getEmail());
-||User-Emailadresse festlegen |für jeden User soll eine Email-Adresse festgelegt werden |		testCustomer.setEmail("test@mail.de"); |		assertEquals(testCustomer.getEmail(), "test@mail.de");
-||User-Telefonnummer abrufen |für jeden User soll die entsprechende Telefonnummer abgerufen werden |getMobile() |    	assertEquals(testCustomer.getMobile(), "Mobile number");
-||User-Telefonnummer festlegen |für jeden User soll eine Telefonnummer festgelegt werden |		testCustomer.setMobile("080032168");|		assertEquals(testCustomer.getMobile(), "080032168");
-||User-Kennzeichen abrufen |für jeden User soll das entsprechende Kennzeichen abgerufen werden |getLicensePlate() |		assertNull(testCustomer.getLicensePlate());
-||User-Kennzeichen festlegen |für jeden User soll ein Kennzeichen festgelegt werden|		testCustomer.setLicensePlate("DD-Q-12"); | 		assertEquals(testCustomer.getLicensePlate(), "DD-Q-12");
-||letzte Useraktivität |Für jeden User soll die Uhrzeit der letzten Aktivität auf der Website geupdated und entsprechend angezeigt werden |		testCustomer.updateLastActivityDate(); |		assertNotNull(testCustomer.getLastActivityDate());
-||User-Rabattcodes anzeigen |Ein User kann in seinem Useraccount all seine Rabattcodes einsehen können |getDiscounts() |		assertNull(testCustomer.getDiscounts());
-||User-Rabattcodes festlegen |Für einen User wird bei Registrierung (einmalig) und bei der Nutzung eines McPoints ein zufälliger Rabattcode generiert |		testCustomer.setDiscounts(new LinkedList<Discount>()); |assertEquals(testCustomer.getDiscounts(), new LinkedList<Discount>());
+|<<U09>> |User-Emailadresse abrufen |für jeden User soll die entsprechende Email-Adresse abgerufen werden |getEmail() |    	assertNull(testCustomer.getEmail());
+|<<U10>> |User-Emailadresse festlegen |für jeden User soll eine Email-Adresse festgelegt werden |		testCustomer.setEmail("test@mail.de"); |		assertEquals(testCustomer.getEmail(), "test@mail.de");
+|<<U11>>|User-Telefonnummer abrufen |für jeden User soll die entsprechende Telefonnummer abgerufen werden |getMobile() |    	assertEquals(testCustomer.getMobile(), "Mobile number");
+|<<U12>>|User-Telefonnummer festlegen |für jeden User soll eine Telefonnummer festgelegt werden |		testCustomer.setMobile("080032168");|		assertEquals(testCustomer.getMobile(), "080032168");
+|<<U13>> |User-Kennzeichen abrufen |für jeden User soll das entsprechende Kennzeichen abgerufen werden |getLicensePlate() |		assertNull(testCustomer.getLicensePlate());
+|<<U14>>|User-Kennzeichen festlegen |für jeden User soll ein Kennzeichen festgelegt werden|		testCustomer.setLicensePlate("DD-Q-12"); | 		assertEquals(testCustomer.getLicensePlate(), "DD-Q-12");
+|<<U15>>|letzte Useraktivität |Für jeden User soll die Uhrzeit der letzten Aktivität auf der Website geupdated und entsprechend angezeigt werden |		testCustomer.updateLastActivityDate(); |		assertNotNull(testCustomer.getLastActivityDate());
+|<<U16>>|User-Rabattcodes anzeigen |Ein User kann in seinem Useraccount all seine Rabattcodes einsehen können |getDiscounts() |		assertNull(testCustomer.getDiscounts());
+|<<U17>>|User-Rabattcodes festlegen |Für einen User wird bei Registrierung (einmalig) und bei der Nutzung eines McPoints ein zufälliger Rabattcode generiert |		testCustomer.setDiscounts(new LinkedList<Discount>()); |assertEquals(testCustomer.getDiscounts(), new LinkedList<Discount>());
 		assertTrue(testCustomer.getDiscounts().isEmpty());
-||User-Rabattcodes hinzufügen |die generierten Rabattcodes werden dem entsprechenden Useraccount hinzugefügt |		testCustomer.addDiscount(new Discount()); |		assertEquals(testCustomer.getDiscounts().size(), 1);
+|<<U18>>|User-Rabattcodes hinzufügen |die generierten Rabattcodes werden dem entsprechenden Useraccount hinzugefügt |		testCustomer.addDiscount(new Discount()); |		assertEquals(testCustomer.getDiscounts().size(), 1);
 |===
 
 == DiscountUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Rabattcode |Ein Rabattcode soll einen Namen, einen Wert und einen Status bekommen | Discount constructorTest = new Discount("test2", 0.05f); |assertEquals(constructorTest.getName(), "test2");
+|<<U19>>|Rabattcode |Ein Rabattcode soll einen Namen, einen Wert und einen Status bekommen | Discount constructorTest = new Discount("test2", 0.05f); |assertEquals(constructorTest.getName(), "test2");
 		assertEquals(constructorTest.getDiscount(), 0.05f);
 		assertEquals(constructorTest.getStatus(), Discount.DiscountStatus.AVAILABLE);
-||Rabattcode-Abgleich |Jeder Rabattcode darf nur ein einziges mal vorhanden sein |testEquals() |assertTrue(testDiscount.equals(testDiscount));
+|<<U20>>|Rabattcode-Abgleich |Jeder Rabattcode darf nur ein einziges mal vorhanden sein |testEquals() |assertTrue(testDiscount.equals(testDiscount));
 		assertFalse(testDiscount.equals(new Discount()));
 		assertFalse(testDiscount.equals(null));
-||Rabattcode-Hashcode |Der HashCode darf nicht null sein |testHashCode() |		assertNotNull(testDiscount.hashCode());
-||Rabattcode-ShortId |Die ShortId darf nicht null sein |getShortId() |    	assertNotNull(testDiscount.getShortId());
-||Rabattname |Die verschiedenen Rabattereignisse sollen dem Rabattcode angefügt werden und in der Kasse angezeigt werden |getDiscountProductName() |    	assertEquals(testDiscount.getDiscountProductName(), testDiscount.getShortId() + "" + "test");
-||Rabattpreis |Jeder Rabattcode soll einen bestimmten Wert bezogen auf das Rabattereignis bekommen |getDiscountPrice() |		assertNotNull(testDiscount.getDiscountPrice(Monetary.getDefaultAmountFactory().setCurrency("EUR").setNumber(10).create()));
-||Rabatt-ID abrufen |Für jeden Rabattcode soll dessen ID aberufen werden können |getId() |    	assertNotNull(testDiscount.getId());
-||Rabatt-ID festlegen |Jeder Rabattcode soll eine eindeutige Identifikation erhalten|    	testDiscount.setId(UUID.randomUUID()); |testDiscount.setId(UUID.randomUUID());
+|<<U21>>|Rabattcode-Hashcode |Der HashCode darf nicht null sein |testHashCode() |		assertNotNull(testDiscount.hashCode());
+|<<U22>>|Rabattcode-ShortId |Die ShortId darf nicht null sein |getShortId() |    	assertNotNull(testDiscount.getShortId());
+|<<U23>>|Rabattname |Die verschiedenen Rabattereignisse sollen dem Rabattcode angefügt werden und in der Kasse angezeigt werden |getDiscountProductName() |    	assertEquals(testDiscount.getDiscountProductName(), testDiscount.getShortId() + "" + "test");
+|<<U24>>|Rabattpreis |Jeder Rabattcode soll einen bestimmten Wert bezogen auf das Rabattereignis bekommen |getDiscountPrice() |		assertNotNull(testDiscount.getDiscountPrice(Monetary.getDefaultAmountFactory().setCurrency("EUR").setNumber(10).create()));
+|<<U25>>|Rabatt-ID abrufen |Für jeden Rabattcode soll dessen ID aberufen werden können |getId() |    	assertNotNull(testDiscount.getId());
+|<<U26>>|Rabatt-ID festlegen |Jeder Rabattcode soll eine eindeutige Identifikation erhalten|    	testDiscount.setId(UUID.randomUUID()); |testDiscount.setId(UUID.randomUUID());
     	assertNotNull(testDiscount.getId());
-||Rabattcode-Status anzeigen |Für jeden Rabattcode soll dessen Status angezeigt werden |getStatus() |    	assertEquals(testDiscount.getStatus(), Discount.DiscountStatus.AVAILABLE);
-||Rabattcode-Status festlegen |Für jeden Rabattcode soll dessen Status festgelegt werden |setStatus() | testDiscount.setStatus(Discount.DiscountStatus.EXPIRED);
+|<<U27>>|Rabattcode-Status anzeigen |Für jeden Rabattcode soll dessen Status angezeigt werden |getStatus() |    	assertEquals(testDiscount.getStatus(), Discount.DiscountStatus.AVAILABLE);
+|<<U28>>|Rabattcode-Status festlegen |Für jeden Rabattcode soll dessen Status festgelegt werden |setStatus() | testDiscount.setStatus(Discount.DiscountStatus.EXPIRED);
 
 		assertEquals(testDiscount.getStatus(), Discount.DiscountStatus.EXPIRED);
 
@@ -210,63 +210,63 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Zapfsäule-Nummer |Jede Zafpsäule hat eine eigene Nummer, auf die man zugreifen kann |getNumber() |    	assertEquals(testpump.getNumber(), 0);
-||Kraftstoff-Typ|Die verschiedenen Typen an Kraftstoff können unterschieden werden |getFuelType() |    	assertNotNull(testpump.getFuelType());
-||Kraftstoff-Menge |Man kann auf die Mengen der unterschiedlichen Kraftstoffe zugreifen |getFuelQuantity() |    	assertEquals(testpump.getFuelQuantity(), 0.0f);
+|<<U29>>|Zapfsäule-Nummer |Jede Zafpsäule hat eine eigene Nummer, auf die man zugreifen kann |getNumber() |    	assertEquals(testpump.getNumber(), 0);
+|<<U30>>|Kraftstoff-Typ|Die verschiedenen Typen an Kraftstoff können unterschieden werden |getFuelType() |    	assertNotNull(testpump.getFuelType());
+|<<U31>>|Kraftstoff-Menge |Man kann auf die Mengen der unterschiedlichen Kraftstoffe zugreifen |getFuelQuantity() |    	assertEquals(testpump.getFuelQuantity(), 0.0f);
 |===
 
 == McProductUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Produkt-Anzahl |Jedes Produkt wird mit einer bestimmten Anzahl erstellt |getQuantity() |    	assertEquals(testMcProduct.getQuantity(), Quantity.of(10));
-||Produkte anzeigen |Jedes Produkt wird im Catalog mit einem bestimmten Namen angezeigt |getProduct() |    	assertEquals(testMcProduct.getProduct(), testProduct);
-||Produkt-Bestellung |Für jedes Produkt soll angegeben werden, wie oft es bestellt wurde um die Bestände aktuell zu halten |getOrders()|    	assertEquals(testMcProduct.getOrders(), 10);
+|<<U32>>|Produkt-Anzahl |Jedes Produkt wird mit einer bestimmten Anzahl erstellt |getQuantity() |    	assertEquals(testMcProduct.getQuantity(), Quantity.of(10));
+|<<U33>>|Produkte anzeigen |Jedes Produkt wird im Catalog mit einem bestimmten Namen angezeigt |getProduct() |    	assertEquals(testMcProduct.getProduct(), testProduct);
+|<<U34>>|Produkt-Bestellung |Für jedes Produkt soll angegeben werden, wie oft es bestellt wurde um die Bestände aktuell zu halten |getOrders()|    	assertEquals(testMcProduct.getOrders(), 10);
 |===
 
 == McSitReservationUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||McSit-Reservierungen erstellen |jede neue Reservierung soll mit einem Namen und dem dazugehörenden Useraccount hinzugefügt werden |ConstructorTest() | assertEquals(reservationTest.getClass(), McSitReservation.class);
+|<<U35>>|McSit-Reservierungen erstellen |jede neue Reservierung soll mit einem Namen und dem dazugehörenden Useraccount hinzugefügt werden |ConstructorTest() | assertEquals(reservationTest.getClass(), McSitReservation.class);
 		assertEquals(reservationTest.getName(), "test");
 		assertEquals(reservationTest.getUsername(),"testUser");
-||Reservierung-McPoint |jede Reservierung ist auf einen bestimmten McPoint bezogen (entweder McSit oder McWash) |getMcPoint() |		assertEquals(reservationTest.getMcPoint(), "McSit");
+|<<U36>>|Reservierung-McPoint |jede Reservierung ist auf einen bestimmten McPoint bezogen (entweder McSit oder McWash) |getMcPoint() |		assertEquals(reservationTest.getMcPoint(), "McSit");
 |===
 
 == McWashReservationUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||McWash-Reservierungen erstellen |jede neue Reservierung soll mit einem Namen und dem dazugehörigen Useraccount hinzugefügt werden |ConstructorTest() |assertEquals(reservationTest.getClass(), McWashReservation.class);
+|<<U37>>|McWash-Reservierungen erstellen |jede neue Reservierung soll mit einem Namen und dem dazugehörigen Useraccount hinzugefügt werden |ConstructorTest() |assertEquals(reservationTest.getClass(), McWashReservation.class);
 		assertEquals(reservationTest.getName(), "test");
 		assertEquals(reservationTest.getUsername(),"testUser");
-||Reservierung-McPoint |jede Reservierung ist auf einen bestimmten McPoint bezogen (entweder McSit oder McWash) |getMcPoint() |		assertEquals(reservationTest.getMcPoint(), "McWash");
+|<<U38>>|Reservierung-McPoint |jede Reservierung ist auf einen bestimmten McPoint bezogen (entweder McSit oder McWash) |getMcPoint() |		assertEquals(reservationTest.getMcPoint(), "McWash");
 |===
 
 == McTankCartUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||McPoint-Bonus |in jeder Cart-Session wird ein McPoint Bonus für genutzte Produkte vergeben |getMcPointBonus() |    	assertEquals(testCart.getMcPointBonus(),0);
-||Cart Price | Der Gesamtpreis in der Cart-Session soll abgerufen werden können |getPrice() |MonetaryAmount expectedPrice = Monetary.getDefaultAmountFactory()
+|<<U39>>|McPoint-Bonus |in jeder Cart-Session wird ein McPoint Bonus für genutzte Produkte vergeben |getMcPointBonus() |    	assertEquals(testCart.getMcPointBonus(),0);
+|<<U40>>|Cart Price | Der Gesamtpreis in der Cart-Session soll abgerufen werden können |getPrice() |MonetaryAmount expectedPrice = Monetary.getDefaultAmountFactory()
 				.setCurrency("EUR")
 				.setNumber(0)
 				.create();
 
 		assertEquals(testCart.getPrice(), expectedPrice);
-||clear Cart |Der Warenkorb kann geleert werden |clear() |testCart.clear();
+|<<U41>>|clear Cart |Der Warenkorb kann geleert werden |clear() |testCart.clear();
 
     	assertTrue(testCart.isEmpty());
     	assertNull(testCart.getCustomer());
-||Cart-Customer |der Warenkorb ist einem bestimmten User zugeordnet der in der Kasse angezeigt wird |getCustomer() |    	assertNull(testCart.getCustomer());
+|<<U42>>|Cart-Customer |der Warenkorb ist einem bestimmten User zugeordnet der in der Kasse angezeigt wird |getCustomer() |    	assertNull(testCart.getCustomer());
 |===
 
 == AnonymousUserExceptionUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Anonymous User | ein User muss eingeloggt sein, um die Anwendung zu benutzen |		AnonymusUserException testException = new AnonymusUserException(); |assertEquals(testException.getClass(), AnonymusUserException.class);
+|<<U43>>|Anonymous User | ein User muss eingeloggt sein, um die Anwendung zu benutzen |		AnonymusUserException testException = new AnonymusUserException(); |assertEquals(testException.getClass(), AnonymusUserException.class);
 		assertEquals(testException.getMessage(), "User is not Authorized");
 |===
 
@@ -274,7 +274,7 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Already existing user|jeder User muss einzigartig sein, d.h. die Useridentifikation (hier: das KFZ-Kennzeichen) darf nur einem einzigen User zugeordnet sein |		ExistedUserException testException = new ExistedUserException(); |assertEquals(testException.getClass(), ExistedUserException.class);
+|<<U44>>|Already existing user|jeder User muss einzigartig sein, d.h. die Useridentifikation (hier: das KFZ-Kennzeichen) darf nur einem einzigen User zugeordnet sein |		ExistedUserException testException = new ExistedUserException(); |assertEquals(testException.getClass(), ExistedUserException.class);
 		assertEquals(testException.getMessage(), "User with name test already exists!");
 |=== 
 
@@ -282,7 +282,7 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||User not found |die Login-Daten müssen korrekt eingegeben werden und registriert sein |		UserNotFoundException testException = new UserNotFoundException(); |assertEquals(testException.getClass(), UserNotFoundException.class);
+|<<U45>>|User not found |die Login-Daten müssen korrekt eingegeben werden und registriert sein |		UserNotFoundException testException = new UserNotFoundException(); |assertEquals(testException.getClass(), UserNotFoundException.class);
 		assertEquals(testException.getMessage(), "User was not found in DB");
 |=== 
 
@@ -290,13 +290,13 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Rabattcode-Erstellung |die verschiedenen Rabattcodes für den McPointBonus werden nach ihrem Wert erstellt |create() |assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.REGISTRATION).getClass(), Discount.class);
+|<<U46>>|Rabattcode-Erstellung |die verschiedenen Rabattcodes für den McPointBonus werden nach ihrem Wert erstellt |create() |assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.REGISTRATION).getClass(), Discount.class);
 		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.MC_FIVE).getClass(), Discount.class);
 		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.MC_TEN).getClass(), Discount.class);
 		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.HUGE).getClass(), Discount.class);
 		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.LEGENDARY).getClass(), Discount.class);
 
-||Rabatt-Typen |die Rabatte müssen einen bestimmten Typ oder eine bestimmte Anzahl haben, um erstellt werden zu können |testCreate() |	assertEquals(DiscountFactory.create(1).getClass(), Discount.class);
+|<<U47>>|Rabatt-Typen |die Rabatte müssen einen bestimmten Typ oder eine bestimmte Anzahl haben, um erstellt werden zu können |testCreate() |	assertEquals(DiscountFactory.create(1).getClass(), Discount.class);
 
     	try {
 			DiscountFactory.create(-1);
@@ -315,45 +315,45 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Customer-Firstname |der richtige Vorname des Kunden muss in das Registrierungsfeld geschrieben werden |getFirstName() |		assertThat(testForm.getFirstname().equals("Bob")).isTrue();
-||Customer-Lastname |der richtige Nachname des Kunden muss in das Registrierungsfeld geschrieben werden |getLastName() |		assertThat(testForm.getLastname().equals("Marley")).isTrue();
-||Customer-Emailadresse |die richtige Emailadresse des Kunden muss in das Registrierungsfeld geschrieben werden |getEmail() |		assertThat(testForm.getEmail().equals("test@mail.de")).isTrue();
-||Customer-Handynummer |die richtige Handynummer des Kunden muss in das Registrierungsfeld geschrieben werden |getMobile() |		assertThat(testForm.getMobile().equals("080032168")).isTrue();
-||Customer-ID |jeder Kunde muss eine valide Identifikation bei Registrierung erhalten |getId() |		assertThat(testForm.getId() == 80001010l).isTrue();
+|<<U48>>|Customer-Firstname |der richtige Vorname des Kunden muss in das Registrierungsfeld geschrieben werden |getFirstName() |		assertThat(testForm.getFirstname().equals("Bob")).isTrue();
+|<<U49>>|Customer-Lastname |der richtige Nachname des Kunden muss in das Registrierungsfeld geschrieben werden |getLastName() |		assertThat(testForm.getLastname().equals("Marley")).isTrue();
+|<<U50>>|Customer-Emailadresse |die richtige Emailadresse des Kunden muss in das Registrierungsfeld geschrieben werden |getEmail() |		assertThat(testForm.getEmail().equals("test@mail.de")).isTrue();
+|<<U51>>|Customer-Handynummer |die richtige Handynummer des Kunden muss in das Registrierungsfeld geschrieben werden |getMobile() |		assertThat(testForm.getMobile().equals("080032168")).isTrue();
+|<<U52>>|Customer-ID |jeder Kunde muss eine valide Identifikation bei Registrierung erhalten |getId() |		assertThat(testForm.getId() == 80001010l).isTrue();
 |===
 
 == DataStackedUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Anzahl der McWash-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McWash-Nutzungen erstellt werden |getAmountsOnMcWash() |    	assertNotNull(testStack.getAmountsOnMcWash());
-||Anzahl der McSit-Nutzungen | für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McSit-Nutzungen erstellt werden |getAmountsOnMcSit() |		assertNotNull(testStack.getAmountsOnMcSit());
-||Anzahl der McDrive-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McDrive-Nutzungen erstellt werden |getAmountsOnMcDrive() |		assertNotNull(testStack.getAmountsOnMcDrive());
-||Anzahl der McZapf-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McZapf-Nutzungen erstellt werden|getAmountsOnMcZapf() |		assertNotNull(testStack.getAmountsOnMcZapf());
+|<<U53>>|Anzahl der McWash-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McWash-Nutzungen erstellt werden |getAmountsOnMcWash() |    	assertNotNull(testStack.getAmountsOnMcWash());
+|<<U54>>|Anzahl der McSit-Nutzungen | für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McSit-Nutzungen erstellt werden |getAmountsOnMcSit() |		assertNotNull(testStack.getAmountsOnMcSit());
+|<<U55>>|Anzahl der McDrive-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McDrive-Nutzungen erstellt werden |getAmountsOnMcDrive() |		assertNotNull(testStack.getAmountsOnMcDrive());
+|<<U56>>|Anzahl der McZapf-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McZapf-Nutzungen erstellt werden|getAmountsOnMcZapf() |		assertNotNull(testStack.getAmountsOnMcZapf());
 |===
 
 == LicensePlateFormUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Kennzeichen abrufen |Bei der Eingabe des Kennzeichen eines Kunden soll dieses dessen Account zugeordnet werden und dort abgerufen werden können |getLicencePlate() |    	assertEquals(testForm.getLicensePlate(), "DD-Q-1001");
-||Kennzeichen-Registrierung |die Registrierung mit Kennzeichen soll eine eindeutige Identifikation erhalten |getID() |    	assertEquals(testForm.getId(), 80001010l);
+|<<U57>>|Kennzeichen abrufen |Bei der Eingabe des Kennzeichen eines Kunden soll dieses dessen Account zugeordnet werden und dort abgerufen werden können |getLicencePlate() |    	assertEquals(testForm.getLicensePlate(), "DD-Q-1001");
+|<<U58>>|Kennzeichen-Registrierung |die Registrierung mit Kennzeichen soll eine eindeutige Identifikation erhalten |getID() |    	assertEquals(testForm.getId(), 80001010l);
 |===
 
 == NewItemFormUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Produktname abrufen |Jedes einzelne Produkt im Catalog hat einen eindeutigen Namen, welcher dort angezeigt wird |getProductName() |    	assertEquals(testForm.getProductName(), "Test");
-||Produktname festlegen |Für jedes Produkt soll ein eindeutiger Name festgelegt werden |    	testForm.setProductName("New"); |assertEquals(testForm.getProductName(), "New");
+|<<U59>>|Produktname abrufen |Jedes einzelne Produkt im Catalog hat einen eindeutigen Namen, welcher dort angezeigt wird |getProductName() |    	assertEquals(testForm.getProductName(), "Test");
+|<<U60>>|Produktname festlegen |Für jedes Produkt soll ein eindeutiger Name festgelegt werden |    	testForm.setProductName("New"); |assertEquals(testForm.getProductName(), "New");
 
     	testForm.setProductName("Test");
-||Produktpreis abrufen |Im Catalog wird jedes Produkt mit einem Preis gespeichert, welcher dort angezeigt wird |getPrice() |    	assertEquals(testForm.getPrice(), "1.20");
-||Produktpreis festlegen |Für ein Produkt soll dessen Preis festgelegt werden |		testForm.setPrice("1.80"); | assertEquals(testForm.getPrice(), "1.80");
+|<<U61>>|Produktpreis abrufen |Im Catalog wird jedes Produkt mit einem Preis gespeichert, welcher dort angezeigt wird |getPrice() |    	assertEquals(testForm.getPrice(), "1.20");
+|<<U62>>|Produktpreis festlegen |Für ein Produkt soll dessen Preis festgelegt werden |		testForm.setPrice("1.80"); | assertEquals(testForm.getPrice(), "1.80");
 
 		testForm.setProductName("1.20");
-||Produktkategorie abrufen |Im Catalog wird jedes Produkt mit einer Kategorie gespeichert, welche dort angezeigt wird |getProductCategories() |    	assertNotNull(testForm.getProductCategories());
-||Produktkategorie festlegen |Für ein Produkt soll dessen Kategorie festgelegt werden |List mcPoints = new LinkedList();
+|<<U63>>|Produktkategorie abrufen |Im Catalog wird jedes Produkt mit einer Kategorie gespeichert, welche dort angezeigt wird |getProductCategories() |    	assertNotNull(testForm.getProductCategories());
+|<<U64>>|Produktkategorie festlegen |Für ein Produkt soll dessen Kategorie festgelegt werden |List mcPoints = new LinkedList();
     	mcPoints.add("McTank");
     	mcPoints.add("McSit");
 
@@ -364,44 +364,44 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Kraftstofftyp abrufen |Bei der Kraftstoffbestellung wird der Kraftstofftyp angezeigt |getFuelType() |    	assertEquals(testBody.getFuelType(),"Benzine");
-||Kraftstofftyp festlegen |Bei der Kraftstoffbestellung wird der Kraftstofftyp festgelegt|    	testBody.setFuelType("Diesel");
+|<<U65>>|Kraftstofftyp abrufen |Bei der Kraftstoffbestellung wird der Kraftstofftyp angezeigt |getFuelType() |    	assertEquals(testBody.getFuelType(),"Benzine");
+|<<U66>>|Kraftstofftyp festlegen |Bei der Kraftstoffbestellung wird der Kraftstofftyp festgelegt|    	testBody.setFuelType("Diesel");
 |assertEquals(testBody.getFuelType(), "Diesel");
 
 		testBody.setFuelType("Benzine");
-||Kraftstoffmenge abrufen |Bei der Kraftstoffbestellung wird die Bestellmenge angezeigt |getAmount() |    	assertEquals(testBody.getAmount(), 100);
-||Kraftstoffmenge festlegen | Bei der Kraftstoffbestellung wird die Bestellmenge festgelegt | 		testBody.setAmount(120);
+|<<U67>>|Kraftstoffmenge abrufen |Bei der Kraftstoffbestellung wird die Bestellmenge angezeigt |getAmount() |    	assertEquals(testBody.getAmount(), 100);
+|<<U68>>|Kraftstoffmenge festlegen | Bei der Kraftstoffbestellung wird die Bestellmenge festgelegt | 		testBody.setAmount(120);
  | assertEquals(testBody.getAmount(), 120);
 
 		testBody.setAmount(100);
-||Kraftstoffbestellformular |Das Kraftstoffbestellformular muss angezeigt werden |testEmptyConstructor() |		assertNotNull(new RequestFuelBody());
+|<<U69>>|Kraftstoffbestellformular |Das Kraftstoffbestellformular muss angezeigt werden |testEmptyConstructor() |		assertNotNull(new RequestFuelBody());
 |=== 
 
 == ReservationFormUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Reservierung-Datum |Eine Reservierung hat ein bestimmtes Datum |    	LocalDate date = LocalDate.of(2021,01,13); |     	assertEquals(testForm.getDate(), date);
-||Reservierung-Datum festlegen| Eine Reservierung wird für ein ganz bestimmtes Datum festgelegt |LocalDate oldDate = LocalDate.of(2021,01,13);
+|<<U70>>|Reservierung-Datum |Eine Reservierung hat ein bestimmtes Datum |    	LocalDate date = LocalDate.of(2021,01,13); |     	assertEquals(testForm.getDate(), date);
+|<<U71>>|Reservierung-Datum festlegen| Eine Reservierung wird für ein ganz bestimmtes Datum festgelegt |LocalDate oldDate = LocalDate.of(2021,01,13);
     	LocalDate newDate = LocalDate.of(2021,02,02);
     	testForm.setDate(newDate); |assertEquals(testForm.getDate(), newDate);
 
     	testForm.setDate(oldDate);
-||Reservierung-Uhrzeit |Jede Reservierung wird für eine ganz bestimmte Uhrzeit festgelegt |LocalTime oldTime = LocalTime.of(17, 27);
+|<<U72>>|Reservierung-Uhrzeit |Jede Reservierung wird für eine ganz bestimmte Uhrzeit festgelegt |LocalTime oldTime = LocalTime.of(17, 27);
 		LocalTime newTime = LocalTime.of(10,30);
 		testForm.setTime(newTime); | assertEquals(testForm.getTime(), newTime);
 
 		testForm.setTime(oldTime);
-||Reservierung-Name |Jede Reservierung hat einen bestimmten Namen |getName() |    	assertEquals(testForm.getName(), "Test");
-||Reservierung-Name festlegen |Jede Reservierung wird mit einem bestimmten Namen festgelegt |    	testForm.setName("New"); | assertEquals(testForm.getName(), "New");
+|<<U73>>|Reservierung-Name |Jede Reservierung hat einen bestimmten Namen |getName() |    	assertEquals(testForm.getName(), "Test");
+|<<U74>>|Reservierung-Name festlegen |Jede Reservierung wird mit einem bestimmten Namen festgelegt |    	testForm.setName("New"); | assertEquals(testForm.getName(), "New");
 
 		testForm.setName("Test");
-||Reservierung-McPoint |Jede Reservierung gehört zu einem McPoint |getMcPoint() |    	assertEquals(testForm.getMcPoint(), "McSit");
-||Reservierung-McPoint festlegen |Jede Reservierung wird für einen bestimmten McPoint festgelegt | testForm.setMcPoint("McWash"); | assertEquals(testForm.getMcPoint(), "McWash");
+|<<U75>>|Reservierung-McPoint |Jede Reservierung gehört zu einem McPoint |getMcPoint() |    	assertEquals(testForm.getMcPoint(), "McSit");
+|<<U76>>|Reservierung-McPoint festlegen |Jede Reservierung wird für einen bestimmten McPoint festgelegt | testForm.setMcPoint("McWash"); | assertEquals(testForm.getMcPoint(), "McWash");
 
 		testForm.setMcPoint("McSit");
-||Reservierung-Username |Jede Reservierung gehört zu einem Useraccount |getUsername() |    	assertEquals(testForm.getUsername(), "TestUser");
-||Reservierung-Username festlegen | Jede Reservierung wird für einen bestimmten Useraccount festgelegt |     	testForm.setUsername("new"); | assertEquals(testForm.getUsername(), "new");
+|<<U77>>|Reservierung-Username |Jede Reservierung gehört zu einem Useraccount |getUsername() |    	assertEquals(testForm.getUsername(), "TestUser");
+|<<U78>>|Reservierung-Username festlegen | Jede Reservierung wird für einen bestimmten Useraccount festgelegt |     	testForm.setUsername("new"); | assertEquals(testForm.getUsername(), "new");
 
     	testForm.setUsername("TestUser");
 |=== 
@@ -410,31 +410,31 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||User-Passwort |jeder User hat ein eindeutiges Passwort für seinen Benutzeraccount |getPassword() |    	assertEquals(testForm.getPassword(), "123");
-||User-Name | jeder User hat einen eindeutigen Namen in seinem Benutzeraccount |getName() |    	assertEquals(testForm.getName(), "test");
-||User-Email | jeder User hat eine Emailadresse, mit der er sich einen Benutzeraccount angelegt hat |getEmail() |    	assertEquals(testForm.getEmail(), "test@mail.de");
+|<<U79>>|User-Passwort |jeder User hat ein eindeutiges Passwort für seinen Benutzeraccount |getPassword() |    	assertEquals(testForm.getPassword(), "123");
+|<<U80>>|User-Name | jeder User hat einen eindeutigen Namen in seinem Benutzeraccount |getName() |    	assertEquals(testForm.getName(), "test");
+|<<U81>>|User-Email | jeder User hat eine Emailadresse, mit der er sich einen Benutzeraccount angelegt hat |getEmail() |    	assertEquals(testForm.getEmail(), "test@mail.de");
 |=== 
 
 == CartServiceUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Cart-Useraccount |eine Cart-Session kann nur abgeschlossen werden, wenn sie einem Useraccount zugeordnet ist |		cart.setCustomer(null); | 		assertFalse(service.buy(cart, Cash.CASH));
-||clear Cart |der Warenkorb soll ohne Probleme geleert werden können |cart.clear() | 		assertTrue(cart.isEmpty());
-||Produkt zum Warenkorb hinzufügen |ein Produkt soll in der korrekten Anzahl zum Warenkorb hinzugefügt werden |		this.service.addOrUpdateItem(cart, testProduct, 3, false); | 		assertTrue(cart.get().findFirst().get().getQuantity().getAmount().intValueExact() == 3);
-||Produktreklamation |Produkte können zurückgegeben werden |		this.service.addOrUpdateItem(cart, testProduct, 5, true); |		assertTrue(claimitem.getProduct().getName().equals(testProduct.getName()+" REKLAMATION"));
+|<<U82>>|Cart-Useraccount |eine Cart-Session kann nur abgeschlossen werden, wenn sie einem Useraccount zugeordnet ist |		cart.setCustomer(null); | 		assertFalse(service.buy(cart, Cash.CASH));
+|<<U83>>|clear Cart |der Warenkorb soll ohne Probleme geleert werden können |cart.clear() | 		assertTrue(cart.isEmpty());
+|<<U84>>|Produkt zum Warenkorb hinzufügen |ein Produkt soll in der korrekten Anzahl zum Warenkorb hinzugefügt werden |		this.service.addOrUpdateItem(cart, testProduct, 3, false); | 		assertTrue(cart.get().findFirst().get().getQuantity().getAmount().intValueExact() == 3);
+|<<U85>>|Produktreklamation |Produkte können zurückgegeben werden |		this.service.addOrUpdateItem(cart, testProduct, 5, true); |		assertTrue(claimitem.getProduct().getName().equals(testProduct.getName()+" REKLAMATION"));
 |=== 
 
 == CustomerServiceUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Useraccount-Erstellung |ein Benutzerkonto kann erstellt werden, wenn der Nutzer noch nicht existiert |		SignUpForm testForm = new SignUpForm("unitTest","test@mail.de", "123"); | try {
+|<<U86>>|Useraccount-Erstellung |ein Benutzerkonto kann erstellt werden, wenn der Nutzer noch nicht existiert |		SignUpForm testForm = new SignUpForm("unitTest","test@mail.de", "123"); | try {
 			testService.createCustomer(testForm);
 		}
 		catch (ExistedUserException e){
 			fail();
-||Kundenkonto löschen |ein Kundenkonto soll gelöscht werden |deleteCustomer() |try {
+|<<U87>>|Kundenkonto löschen |ein Kundenkonto soll gelöscht werden |deleteCustomer() |try {
 			testService.createCustomer("unitTest3", "test3@mail.de", Password.UnencryptedPassword.of("123"), CustomerRoles.CUSTOMER);
 		}
     	catch (ExistedUserException e){
@@ -444,7 +444,7 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 		Customer delete = testService.getCustomer("unitTest3");
 		long deleteId = delete.getId();
 		testService.deleteCustomer(deleteId);
-||Kundenkonto aktualisieren |ein Kunde kann seine Daten in seinem Konto ändern |updateCustomer() |		try {
+|<<U88>>|Kundenkonto aktualisieren |ein Kunde kann seine Daten in seinem Konto ändern |updateCustomer() |		try {
 			testService.createCustomer("unitTest4", "test4@mail.de", Password.UnencryptedPassword.of("123"), CustomerRoles.CUSTOMER);
 		}
 		catch (ExistedUserException e){
@@ -463,7 +463,7 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Kraftstoffpreise |die Kraftstoffpreise dürfen nicht negativ sein |priceTest() |assertTrue(FuelOrderApiService.getBenzinePrice() > 0);
+|<<U89>>|Kraftstoffpreise |die Kraftstoffpreise dürfen nicht negativ sein |priceTest() |assertTrue(FuelOrderApiService.getBenzinePrice() > 0);
 		assertTrue(FuelOrderApiService.getDieselPrice() > 0);
 |===
 
@@ -471,15 +471,15 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Zapfsäulen-Auflistung |die Zapfsäulen werden in einer chronologischen Reihenfolge gespeichert |testArrayOfPumps() |		Assert.notNull(gasPumpService.getPumps(), "Needed Array");
+|<<U90>>|Zapfsäulen-Auflistung |die Zapfsäulen werden in einer chronologischen Reihenfolge gespeichert |testArrayOfPumps() |		Assert.notNull(gasPumpService.getPumps(), "Needed Array");
 |===
 
 == ItemsServiceUnitTest 
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Items hinzufügen |neue Items werden über ein Protokoll hinzugefügt |		NewItemForm testForm = new NewItemForm("TEST","1.39", new ArrayList<String>()); | 		assertThat(service.createNewProduct(testForm)).isNotNull();
-||Items nach Kategorie hinzufügen | die neuen Items werden nach ihren Kategorien sortiert aufgenommen |createNewProduct()
+|<<U91>>|Items hinzufügen |neue Items werden über ein Protokoll hinzugefügt |		NewItemForm testForm = new NewItemForm("TEST","1.39", new ArrayList<String>()); | 		assertThat(service.createNewProduct(testForm)).isNotNull();
+|<<U92>>|Items nach Kategorie hinzufügen | die neuen Items werden nach ihren Kategorien sortiert aufgenommen |createNewProduct()
 List<String> list = new ArrayList<String>();
 		list.add("McZapf");
 		list.add("McSit");
@@ -487,14 +487,14 @@ List<String> list = new ArrayList<String>();
 		list.add("McWash");|		assertThat(service.createNewProduct("Cola 0,5", "1.30", list)).isNotNull();
 		assertThat(service.createNewProduct("Cola 0,5", "1,30", list)).isNotNull();
 		assertThat(service.createNewProduct("Cola 0,5", "1.30 €", list)).isNotNull(); 
-||Items können mit ihrer eindeutigen Identifikation aufgerufen werden |Product idtest = new Product("idtest", price);
+|<<U93>>|Items können mit ihrer eindeutigen Identifikation aufgerufen werden |Product idtest = new Product("idtest", price);
 		items.save(idtest); |		assertTrue(service.getProduct(idtest.getId()).get().equals(idtest));
-||Items-Anzahl |Items werden mit einer bestimmten Anzahl in den Catalog aufgenommen |Product quantityTest = new Product("quantityTest", price);
+|<<U94>>|Items-Anzahl |Items werden mit einer bestimmten Anzahl in den Catalog aufgenommen |Product quantityTest = new Product("quantityTest", price);
 		items.save(quantityTest);
 
 		UniqueInventoryItem item = new UniqueInventoryItem(quantityTest, quantityTest.createQuantity(100));
 		inventory.save(item); |assertThat(service.getProductQuantity(quantityTest)).isNotNull();
-||Best-selling products |Die Bestellmenge der einzelnen Produkte wird diesen angehängt und so können die am meisten verkauften Produkte ermittelt werden |findBestProducts() |	assertThat(service.findBestProducts()).isNotNull();
+|<<U95>>|Best-selling products |Die Bestellmenge der einzelnen Produkte wird diesen angehängt und so können die am meisten verkauften Produkte ermittelt werden |findBestProducts() |	assertThat(service.findBestProducts()).isNotNull();
 		assertThat(service.findBestProducts()).isNotEmpty();
 |===
 
@@ -502,10 +502,10 @@ List<String> list = new ArrayList<String>();
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Kunden-Bestellübersicht |alle von einem bestimmten Nutzer getätigten Bestellungen können in dessen Benutzerkonto aufgelistet werden |getAllOrdersForCustomer() |Exception thrown = assertThrows(Exception.class,
+|<<U96>>|Kunden-Bestellübersicht |alle von einem bestimmten Nutzer getätigten Bestellungen können in dessen Benutzerkonto aufgelistet werden |getAllOrdersForCustomer() |Exception thrown = assertThrows(Exception.class,
 				() -> ordersService.getAllOrdersForCustomer());
     	assertNotNull(thrown);
-||Bestellübersicht |alle getätigten Bestellungen bei McTank können aufgelistet werden und sind für den Manager einsehbar |findAll() |List<McTankOrder> orders = ordersService.findAll();
+|<<U97>>|Bestellübersicht |alle getätigten Bestellungen bei McTank können aufgelistet werden und sind für den Manager einsehbar |findAll() |List<McTankOrder> orders = ordersService.findAll();
 		assertNotNull(orders);
 		assertFalse(orders.isEmpty());
 |=== 
@@ -514,7 +514,7 @@ List<String> list = new ArrayList<String>();
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Inventar auffüllen |Produkte, die sich im Catalog befinden, können dem Inventar hinzugefügt werden |	Product product1 = new Product("Cola Test", price);
+|<<U98>>|Inventar auffüllen |Produkte, die sich im Catalog befinden, können dem Inventar hinzugefügt werden |	Product product1 = new Product("Cola Test", price);
 		Product notInventory = new Product("InCatalogButNotInInv", price);
 		items.save(product1);
 		items.save(notInventory);
