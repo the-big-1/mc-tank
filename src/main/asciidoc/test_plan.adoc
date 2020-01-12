@@ -61,6 +61,9 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<DataStackedUnitTest>>
 - <<LicensePlateFormUnitTest>>
 - <<NewItemFormUnitTest>>
+- <<RequestFuelBodyUnitTest>>
+- <<ReservationFormUnitTest>>
+- <<SignUpFormUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -354,6 +357,54 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
+||Kraftstofftyp abrufen |Bei der Kraftstoffbestellung wird der Kraftstofftyp angezeigt |getFuelType() |    	assertEquals(testBody.getFuelType(),"Benzine");
+||Kraftstofftyp festlegen |Bei der Kraftstoffbestellung wird der Kraftstofftyp festgelegt|    	testBody.setFuelType("Diesel");
+|assertEquals(testBody.getFuelType(), "Diesel");
+
+		testBody.setFuelType("Benzine");
+||Kraftstoffmenge abrufen |Bei der Kraftstoffbestellung wird die Bestellmenge angezeigt |getAmount() |    	assertEquals(testBody.getAmount(), 100);
+||Kraftstoffmenge festlegen | Bei der Kraftstoffbestellung wird die Bestellmenge festgelegt | 		testBody.setAmount(120);
+ | assertEquals(testBody.getAmount(), 120);
+
+		testBody.setAmount(100);
+||Kraftstoffbestellformular |Das Kraftstoffbestellformular muss angezeigt werden |testEmptyConstructor() |		assertNotNull(new RequestFuelBody());
+|=== 
+
+== ReservationFormUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Reservierung-Datum |Eine Reservierung hat ein bestimmtes Datum |    	LocalDate date = LocalDate.of(2021,01,13); |     	assertEquals(testForm.getDate(), date);
+||Reservierung-Datum festlegen| Eine Reservierung wird für ein ganz bestimmtes Datum festgelegt |LocalDate oldDate = LocalDate.of(2021,01,13);
+    	LocalDate newDate = LocalDate.of(2021,02,02);
+    	testForm.setDate(newDate); |assertEquals(testForm.getDate(), newDate);
+
+    	testForm.setDate(oldDate);
+||Reservierung-Uhrzeit |Jede Reservierung wird für eine ganz bestimmte Uhrzeit festgelegt |LocalTime oldTime = LocalTime.of(17, 27);
+		LocalTime newTime = LocalTime.of(10,30);
+		testForm.setTime(newTime); | assertEquals(testForm.getTime(), newTime);
+
+		testForm.setTime(oldTime);
+||Reservierung-Name |Jede Reservierung hat einen bestimmten Namen |getName() |    	assertEquals(testForm.getName(), "Test");
+||Reservierung-Name festlegen |Jede Reservierung wird mit einem bestimmten Namen festgelegt |    	testForm.setName("New"); | assertEquals(testForm.getName(), "New");
+
+		testForm.setName("Test");
+||Reservierung-McPoint |Jede Reservierung gehört zu einem McPoint |getMcPoint() |    	assertEquals(testForm.getMcPoint(), "McSit");
+||Reservierung-McPoint festlegen |Jede Reservierung wird für einen bestimmten McPoint festgelegt | testForm.setMcPoint("McWash"); | assertEquals(testForm.getMcPoint(), "McWash");
+
+		testForm.setMcPoint("McSit");
+||Reservierung-Username |Jede Reservierung gehört zu einem Useraccount |getUsername() |    	assertEquals(testForm.getUsername(), "TestUser");
+||Reservierung-Username festlegen | Jede Reservierung wird für einen bestimmten Useraccount festgelegt |     	testForm.setUsername("new"); | assertEquals(testForm.getUsername(), "new");
+
+    	testForm.setUsername("TestUser");
+|=== 
+
+== SignUpFormUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+|||||
+|||||
 |||||
 |||||
 |||||
