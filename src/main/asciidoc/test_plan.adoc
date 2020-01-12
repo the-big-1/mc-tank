@@ -59,6 +59,8 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<DiscountFactoryUnitTest>>
 - <<CustomerInfoUpdateFormUnitTest>>
 - <<DataStackedUnitTest>>
+- <<LicensePlateFormUnitTest>>
+- <<NewItemFormUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -320,20 +322,38 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 ||Anzahl der McZapf-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McZapf-Nutzungen erstellt werden|getAmountsOnMcZapf() |		assertNotNull(testStack.getAmountsOnMcZapf());
 |===
 
-== DataStackedUnitTest
+== LicensePlateFormUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
+||Kennzeichen abrufen |Bei der Eingabe des Kennzeichen eines Kunden soll dieses dessen Account zugeordnet werden und dort abgerufen werden können |getLicencePlate() |    	assertEquals(testForm.getLicensePlate(), "DD-Q-1001");
+||Kennzeichen-Registrierung |die Registrierung mit Kennzeichen soll eine eindeutige Identifikation erhalten |getID() |    	assertEquals(testForm.getId(), 80001010l);
+|===
+
+== NewItemFormUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Produktname abrufen |Jedes einzelne Produkt im Catalog hat einen eindeutigen Namen, welcher dort angezeigt wird |getProductName() |    	assertEquals(testForm.getProductName(), "Test");
+||Produktname festlegen |Für jedes Produkt soll ein eindeutiger Name festgelegt werden |    	testForm.setProductName("New"); |assertEquals(testForm.getProductName(), "New");
+
+    	testForm.setProductName("Test");
+||Produktpreis abrufen |Im Catalog wird jedes Produkt mit einem Preis gespeichert, welcher dort angezeigt wird |getPrice() |    	assertEquals(testForm.getPrice(), "1.20");
+||Produktpreis festlegen |Für ein Produkt soll dessen Preis festgelegt werden |		testForm.setPrice("1.80"); | assertEquals(testForm.getPrice(), "1.80");
+
+		testForm.setProductName("1.20");
+||Produktkategorie abrufen |Im Catalog wird jedes Produkt mit einer Kategorie gespeichert, welche dort angezeigt wird |getProductCategories() |    	assertNotNull(testForm.getProductCategories());
+||Produktkategorie festlegen |Für ein Produkt soll dessen Kategorie festgelegt werden |List mcPoints = new LinkedList();
+    	mcPoints.add("McTank");
+    	mcPoints.add("McSit");
+
+    	testForm.setProductCategories(mcPoints); |     	assertEquals(testForm.getProductCategories(), mcPoints);
+|===
+
+== RequestFuelBodyUnitTest 
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
 |||||
 |||||
 |||||
