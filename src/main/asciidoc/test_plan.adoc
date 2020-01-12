@@ -53,6 +53,9 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<McSitReservationUnitTest>>
 - <<McWashReservationUnitTest>>
 - <<McTankCartUnitTest>>
+- <<AnonymousUserExceptionUnitTest>>
+- <<ExistedUserExceptionUnitTest>>
+- <<UserNotFoundExceptionUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -230,5 +233,60 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
+||McPoint-Bonus |in jeder Cart-Session wird ein McPoint Bonus für genutzte Produkte vergeben |getMcPointBonus() |    	assertEquals(testCart.getMcPointBonus(),0);
+||Cart Price | Der Gesamtpreis in der Cart-Session soll abgerufen werden können |getPrice() |MonetaryAmount expectedPrice = Monetary.getDefaultAmountFactory()
+				.setCurrency("EUR")
+				.setNumber(0)
+				.create();
+
+		assertEquals(testCart.getPrice(), expectedPrice);
+||clear Cart |Der Warenkorb kann geleert werden |clear() |testCart.clear();
+
+    	assertTrue(testCart.isEmpty());
+    	assertNull(testCart.getCustomer());
+||Cart-Customer |der Warenkorb ist einem bestimmten User zugeordnet der in der Kasse angezeigt wird |getCustomer() |    	assertNull(testCart.getCustomer());
+|===
+
+== AnonymousUserExceptionUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Anonymous User | ein User muss eingeloggt sein, um die Anwendung zu benutzen |		AnonymusUserException testException = new AnonymusUserException(); |assertEquals(testException.getClass(), AnonymusUserException.class);
+		assertEquals(testException.getMessage(), "User is not Authorized");
+|===
+
+== ExistedUserExceptionUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Already existing user|jeder User muss einzigartig sein, d.h. die Useridentifikation (hier: das KFZ-Kennzeichen) darf nur einem einzigen User zugeordnet sein |		ExistedUserException testException = new ExistedUserException(); |assertEquals(testException.getClass(), ExistedUserException.class);
+		assertEquals(testException.getMessage(), "User with name test already exists!");
+|=== 
+
+== UserNotFoundExceptionUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||User not found |die Login-Daten müssen korrekt eingegeben werden und registriert sein |		UserNotFoundException testException = new UserNotFoundException(); |assertEquals(testException.getClass(), UserNotFoundException.class);
+		assertEquals(testException.getMessage(), "User was not found in DB");
+|=== 
+
+== UserNotFoundExceptionUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
+|||||
 |||||
 |===
