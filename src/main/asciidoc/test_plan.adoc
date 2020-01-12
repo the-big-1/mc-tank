@@ -43,6 +43,11 @@ Die gesamte Anwendung von McTank bestehend aus
 
 == Zu testende Funktionalitäten
 - <<MainControllerTest>>
+- <<RefillInventoryControllerTest>>
+- <<UserManagementControllerTest>>
+- <<ItemsControllerTest>>
+- <<CustomerUnitTest>>
+- <<DiscountUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
