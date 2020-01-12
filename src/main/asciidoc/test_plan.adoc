@@ -56,6 +56,9 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<AnonymousUserExceptionUnitTest>>
 - <<ExistedUserExceptionUnitTest>>
 - <<UserNotFoundExceptionUnitTest>>
+- <<DiscountFactoryUnitTest>>
+- <<CustomerInfoUpdateFormUnitTest>>
+- <<DataStackedUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -271,10 +274,60 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 		assertEquals(testException.getMessage(), "User was not found in DB");
 |=== 
 
-== UserNotFoundExceptionUnitTest
+== DiscountFactoryUnitTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
+||Rabattcode-Erstellung |die verschiedenen Rabattcodes für den McPointBonus werden nach ihrem Wert erstellt |create() |assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.REGISTRATION).getClass(), Discount.class);
+		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.MC_FIVE).getClass(), Discount.class);
+		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.MC_TEN).getClass(), Discount.class);
+		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.HUGE).getClass(), Discount.class);
+		assertEquals(DiscountFactory.create(DiscountFactory.DiscountType.LEGENDARY).getClass(), Discount.class);
+
+||Rabatt-Typen |die Rabatte müssen einen bestimmten Typ oder eine bestimmte Anzahl haben, um erstellt werden zu können |testCreate() |	assertEquals(DiscountFactory.create(1).getClass(), Discount.class);
+
+    	try {
+			DiscountFactory.create(-1);
+		}
+    	catch (IllegalArgumentException e){
+		}
+
+		try {
+			DiscountFactory.create(5);
+		}
+		catch (IllegalArgumentException e){
+		}
+|=== 
+
+== CustomerInfoUpdateFormUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Customer-Firstname |der richtige Vorname des Kunden muss in das Registrierungsfeld geschrieben werden |getFirstName() |		assertThat(testForm.getFirstname().equals("Bob")).isTrue();
+||Customer-Lastname |der richtige Nachname des Kunden muss in das Registrierungsfeld geschrieben werden |getLastName() |		assertThat(testForm.getLastname().equals("Marley")).isTrue();
+||Customer-Emailadresse |die richtige Emailadresse des Kunden muss in das Registrierungsfeld geschrieben werden |getEmail() |		assertThat(testForm.getEmail().equals("test@mail.de")).isTrue();
+||Customer-Handynummer |die richtige Handynummer des Kunden muss in das Registrierungsfeld geschrieben werden |getMobile() |		assertThat(testForm.getMobile().equals("080032168")).isTrue();
+||Customer-ID |jeder Kunde muss eine valide Identifikation bei Registrierung erhalten |getId() |		assertThat(testForm.getId() == 80001010l).isTrue();
+|===
+
+== DataStackedUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Anzahl der McWash-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McWash-Nutzungen erstellt werden |getAmountsOnMcWash() |    	assertNotNull(testStack.getAmountsOnMcWash());
+||Anzahl der McSit-Nutzungen | für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McSit-Nutzungen erstellt werden |getAmountsOnMcSit() |		assertNotNull(testStack.getAmountsOnMcSit());
+||Anzahl der McDrive-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McDrive-Nutzungen erstellt werden |getAmountsOnMcDrive() |		assertNotNull(testStack.getAmountsOnMcDrive());
+||Anzahl der McZapf-Nutzungen |für die Verkaufsstatistiken, die der Manager einsehen kann, soll eine Übersicht der McZapf-Nutzungen erstellt werden|getAmountsOnMcZapf() |		assertNotNull(testStack.getAmountsOnMcZapf());
+|===
+
+== DataStackedUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+|||||
+|||||
+|||||
+|||||
 |||||
 |||||
 |||||
