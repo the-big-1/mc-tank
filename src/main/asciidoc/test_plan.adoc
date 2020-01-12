@@ -102,12 +102,26 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||           |              | |
-||           |              | |
-||           |              | |
-||           |              | |
-||           |              | |
-||           |              | |
+||Inventar wird aufgefüllt           |Es soll Benzin nachbestellt werden              |		RequestFuelBody requestFuelBody = new RequestFuelBody();
+		requestFuelBody.setAmount(10);
+		requestFuelBody.setFuelType(GasPump.DIESEL); |		assertEquals(controller.refillFuels(requestFuelBody), ResponseEntity.ok().build());
+|===
+
+== UserManagementControllerTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||User-Management           | Es soll eine Liste aller User angezeigt werden, welche sich bearbeiten lässt             |mockMvc.perform(get("/user-management")) |.andExpect(status().isOk())
+				.andExpect(view().name("user-management"))
+				.andExpect(model().attributeExists("customerList"));
+||User-Status aktivieren         | Ein Useraccount und seine damit verbundenen Funktionalitäten kann aktiviert werden             |mockMvc.perform(get("/customer/disable")) |				.andExpect(status().isFound());
+||User-Status deaktivieren          | Ein Useraccount und seine damit verbundenen Funktionalitäten kann deaktiviert werden             |		mockMvc.perform(get("/customer/enable")) |				.andExpect(status().isFound());
+|===
+
+== ItemsControllerTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
 ||           |              | |
 ||           |              | |
 ||           |              | |
