@@ -46,7 +46,8 @@ public class CartController {
 	 * @param pumpService pump service
 	 * @param customerService to handle a Cart session for each user.
 	 */
-	CartController(CartService cartService, @ModelAttribute McTankCart cart, GasPumpService pumpService, CustomerService customerService) {
+	CartController(CartService cartService, @ModelAttribute McTankCart cart,
+				   GasPumpService pumpService, CustomerService customerService) {
 		Assert.notNull(cart, "Cart must not be null!");
 		this.cart = cart;
 		Assert.notNull(cartService, "CartService must not be null!");
@@ -84,7 +85,9 @@ public class CartController {
 	 * @return the view name.
 	 */
 	@PostMapping(value = "/cart")
-	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") int amount, @RequestParam("claim") Optional<Boolean> claim) {
+	public String addItem(@RequestParam("product-id") Product product,
+						  @RequestParam("amount") int amount,
+						  @RequestParam("claim") Optional<Boolean> claim) {
 		this.cartService.addOrUpdateItem(this.cart, product, amount, claim.isPresent());
 		return "redirect:/cart";
 	}
@@ -96,9 +99,15 @@ public class CartController {
 	 */
 	@PostMapping("/cart/username")
 	public String saveUsername(String username) {
-		Customer customer = customerService.getCustomer(username);
-		cart.setCustomer(customer);
-		cartService.load(cart, customer.getUserAccount());
+
+		try {
+			Customer customer = customerService.getCustomer(username);
+			cart.setCustomer(customer);
+			cartService.load(cart, customer.getUserAccount());
+		}
+		catch (Exception e){
+			return "redirect:/cart";
+		}
 		return "redirect:/cart";
 	}
 	
@@ -110,7 +119,9 @@ public class CartController {
 	 * @return the view name.
 	 */
 	@PostMapping(value = "/cart/pump")
-	public String addItem(@RequestParam("product-id") Product product, @RequestParam("amount") float amount, @RequestParam("pump-number") int number) {
+	public String addItem(@RequestParam("product-id") Product product,
+						  @RequestParam("amount") float amount,
+						  @RequestParam("pump-number") int number) {
 		this.cartService.addOrUpdateItem(this.cart, product, Quantity.of(amount, Metric.LITER));
 		return "redirect:/cart";
 	}
@@ -126,7 +137,9 @@ public class CartController {
 		if (this.pumpService.isInValid(number)) {
 			return "redirect:/";
 		} else {
-			this.cartService.addOrUpdateItem(this.cart, pumpService.getFuel(number), Quantity.of(pumpService.getFuelQuantity(number), Metric.LITER));
+			this.cartService.addOrUpdateItem(this.cart,
+											 pumpService.getFuel(number),
+											 Quantity.of(pumpService.getFuelQuantity(number), Metric.LITER));
 		}
 		this.pumpService.pumpsInit();
 		return "redirect:/cart";

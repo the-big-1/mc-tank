@@ -138,8 +138,9 @@ public class ItemsService {
 			mcTankOrder.getOrderLines().forEach(orderLine -> {
 				String lineId = orderLine.getProductIdentifier().getIdentifier();
 				Integer ordersCount = orderMap.get(lineId);
-				if (ordersCount == null)
+				if (ordersCount == null) {
 					ordersCount = 0;
+				}
 				ordersCount += orderLine.getQuantity().getAmount().intValue();
 				orderMap.put(lineId, ordersCount);
 			});
@@ -201,8 +202,9 @@ public class ItemsService {
 		Product prod = null;
 		for (Product product : products){
 			tmpId = Objects.requireNonNull(product.getId()).getIdentifier();
-			if (orderMap.containsKey(tmpId))
+			if (orderMap.containsKey(tmpId)) {
 				tmpOrders = orderMap.get(tmpId);
+			}
 			if (tmpOrders > orders){
 				orders = tmpOrders;
 				prod = product;

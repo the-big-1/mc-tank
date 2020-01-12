@@ -23,7 +23,10 @@ public class UserAvailabilityInterceptor extends HandlerInterceptorAdapter {
 	 * Updates current customer last activity date.
 	 */
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+	public void afterCompletion(HttpServletRequest request,
+								HttpServletResponse response,
+								Object handler, Exception ex) throws Exception {
+
 		super.afterCompletion(request, response, handler, ex);
 		if (customerService.isManager()) {
 			this.customerService.deleteLongInactiveUsers();

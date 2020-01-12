@@ -51,13 +51,17 @@
                   </div>
                 </form>
               </div>
-              <form th:if="${role} == 'ADMIN'" method="post" th:action="@{/items/delete}">
-                <button th:name="id" th:value="${product.id}"
-                        class="btn btn-danger-rgba">
-                  <i class="feather icon-trash m-r-5"></i>
-                  Delete
-                </button>
-              </form>
+              <div th:if="${product.name} != 'Diesel'">
+                <div th:if="${product.name} != 'Benzine'">
+                  <form th:if="${role} == 'ADMIN'"  method="post" th:action="@{/items/delete}">
+                    <button th:name="id" th:value="${product.id}"
+                            class="btn btn-danger-rgba">
+                      <i class="feather icon-trash m-r-5"></i>
+                      Delete
+                    </button>
+                </form>
+                </div>
+              </div>
 
             </div>
           </td>

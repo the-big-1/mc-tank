@@ -51,9 +51,12 @@ public class RefillInventoryController {
 	@GetMapping("/getFuelPrice")
 	public ResponseEntity<Double> getFuelPrice(@RequestParam("fuelType") String fuelType){
 		double price;
-		if (fuelType.equals(GasPump.DIESEL))
+		if (fuelType.equals(GasPump.DIESEL)) {
 			price = FuelOrderApiService.getDieselPrice();
-		else price = FuelOrderApiService.getBenzinePrice();
+		}
+		else {
+			price = FuelOrderApiService.getBenzinePrice();
+		}
 		return ResponseEntity.ok(price);
 	}
 }

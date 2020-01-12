@@ -25,7 +25,8 @@ import java.util.Optional;
 @PreAuthorize("hasRole('ADMIN')")
 public class OverviewController {
 
-	private static final Quantity MIN_FUEL_QUANTITY = Quantity.of(10000L, Metric.LITER);  //min quantity before warning is triggered
+	//min quantity before warning is triggered
+	private static final Quantity MIN_FUEL_QUANTITY = Quantity.of(10000L, Metric.LITER);
 
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventoryRepository;
@@ -64,8 +65,8 @@ public class OverviewController {
 
 	private void addFuelStats(Model model){
 		List<Product> productList = itemsService.findByCategory("McZapf");
-		Product benzine = getProductByName(productList, GasPump.SUPER_BENZIN);
-		Product diesel = getProductByName(productList, GasPump.DIESEL);
+		Product benzine = getProductByName(productList, "Benzine");
+		Product diesel = getProductByName(productList, "Diesel");
 		boolean isBenzineFinishing = isFuelFinishing(benzine);
 		boolean isDieselFinishing = isFuelFinishing(diesel);
 		model.addAttribute("fuelBenzineWarning", isBenzineFinishing);

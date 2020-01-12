@@ -47,8 +47,9 @@ public class DiscountFactory {
 	 * @return Discount
 	 */
 	public static Discount create(int mcPoints) {
-		if (mcPoints <=0 || mcPoints > 4)
+		if (mcPoints <=0 || mcPoints > 4) {
 			throw new IllegalArgumentException("McPoints can not be less or equal than 0 and more then 4");
+		}
 		return create(DiscountType.values()[mcPoints]);
 	}
 
