@@ -33,7 +33,7 @@ $(document).ready(function () {
             },
             colors: ['#0080ff', '#18d26b', '#d4d8de', '#cf0800'],
             series: resultTwo,
-            labels: ['McSit', 'McTank', 'McWash', "McZapf"],
+            labels: ['McDrive', 'McSit', 'McWash', "McZapf"],
             legend: {
                 show: true,
                 position: 'bottom'
@@ -80,22 +80,21 @@ $(document).ready(function () {
                     colors: ['#0080ff', '#18d26b', '#d4d8de', '#cf0800'],
                     series: [
                         {
-                            name: 'McSit',
-                            data: Object.values(result.amountsOnMcSit),
+                           name: 'McDrive',
+                           data: Object.values(result.amountsOnMcDrive)
                         },
                         {
-                            name: 'McZapf',
-                            data: Object.values(result.amountsOnMcZapf)
+                            name: 'McSit',
+                            data: Object.values(result.amountsOnMcSit),
                         },
                         {
                             name: 'McWash',
                             data: Object.values(result.amountsOnMcWash)
                         },
                         {
-                            name: 'McDrive',
-                            data: Object.values(result.amountsOnMcDrive)
+                            name: 'McZapf',
+                            data: Object.values(result.amountsOnMcZapf)
                         }
-
                     ],
                     xaxis: {
                         type: 'datetime',
