@@ -48,6 +48,7 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<ItemsControllerTest>>
 - <<CustomerUnitTest>>
 - <<DiscountUnitTest>>
+- <<GasPumpUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -183,6 +184,10 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 		testDiscount.setStatus(Discount.DiscountStatus.AVAILABLE);
 |=== 
 
+== GasPumpUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
 |||||
 |||||
 |||||
