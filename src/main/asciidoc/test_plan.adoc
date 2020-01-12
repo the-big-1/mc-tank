@@ -114,18 +114,21 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 ||User-Management           | Es soll eine Liste aller User angezeigt werden, welche sich bearbeiten lässt             |mockMvc.perform(get("/user-management")) |.andExpect(status().isOk())
 				.andExpect(view().name("user-management"))
 				.andExpect(model().attributeExists("customerList"));
-||User-Status aktivieren         | Ein Useraccount und seine damit verbundenen Funktionalitäten kann aktiviert werden             |mockMvc.perform(get("/customer/disable")) |				.andExpect(status().isFound());
-||User-Status deaktivieren          | Ein Useraccount und seine damit verbundenen Funktionalitäten kann deaktiviert werden             |		mockMvc.perform(get("/customer/enable")) |				.andExpect(status().isFound());
+||User-Status aktivieren         | Ein Useraccount und seine damit verbundenen Funktionalitäten kann aktiviert werden             |mockMvc.perform(get("/customer/enable")) |				.andExpect(status().isFound());
+||User-Status deaktivieren          | Ein Useraccount und seine damit verbundenen Funktionalitäten kann deaktiviert werden             |		mockMvc.perform(get("/customer/disable")) |				.andExpect(status().isFound());
 |===
 
 == ItemsControllerTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||           |              | |
-||           |              | |
-||           |              | |
-||           |              | |
-||           |              | |
-
+||User-Items-Aufruf           |Ein nicht eingeloggter User will auf die Items-Seite zugreifen    |mockMvc.perform(get("/items")) |.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("http://localhost/login"));
+||Admin-Items-Aufruf           |Ein als Admin eingeloggter User will auf die Items-Seite zugreifen |mockMvc.perform(get("/items")) |.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/items-management"));
+||Mitarbeiter-Items-Aufruf           | Ein als Mitarbeiter eingeloggter User will auf die Items-Seite zugreifen    |mockMvc.perform(get("/items")) |.andExpect(status().isOk())
+				.andExpect(redirectedUrl("/items"));
+|| Neues Item          | Es soll ein neues Item zum Catalog hinzugefügt werden             |		mockMvc.perform(get("/newItem"))
+ |			.andExpect(status().isFound());
+||Item-Details           |Die Details der Zapfsäulen sollen angezeigt werden              |		mockMvc.perform(get("/pump/{number}", 2)) |				.andExpect(status().isFound());
 |===
