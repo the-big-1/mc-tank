@@ -28,17 +28,20 @@ zum Beispiel: U1, U2, I1
 == Test Gegenstände
 Die gesamte Anwendung von McTank bestehend aus 
 
-- McZapf 
-- McWash 
-- McSit 
-- McDrive 
 - registrierter Kunde 
 - nicht registrierter Kunde 
+- Registrierung
+- Login
 - Manager 
 - Mitarbeiter 
-- Catalog 
+- Catalog/Items
 - Inventory 
-- Order 
+- Order
+- Cart
+- Reservierungen
+- Reklamationen
+- Overview
+- Discount
 
 
 == Zu testende Funktionalitäten
