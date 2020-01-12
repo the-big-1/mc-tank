@@ -51,6 +51,8 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<GasPumpUnitTest>>
 - <<McProductUnitTest>>
 - <<McSitReservationUnitTest>>
+- <<McWashReservationUnitTest>>
+- <<McTankCartUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -208,6 +210,25 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|||||
+||McSit-Reservierungen erstellen |jede neue Reservierung soll mit einem Namen und dem dazugehörenden Useraccount hinzugefügt werden |ConstructorTest() | assertEquals(reservationTest.getClass(), McSitReservation.class);
+		assertEquals(reservationTest.getName(), "test");
+		assertEquals(reservationTest.getUsername(),"testUser");
+||Reservierung-McPoint |jede Reservierung ist auf einen bestimmten McPoint bezogen (entweder McSit oder McWash) |getMcPoint() |		assertEquals(reservationTest.getMcPoint(), "McSit");
+|===
+
+== McWashReservationUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||McWash-Reservierungen erstellen |jede neue Reservierung soll mit einem Namen und dem dazugehörigen Useraccount hinzugefügt werden |ConstructorTest() |assertEquals(reservationTest.getClass(), McWashReservation.class);
+		assertEquals(reservationTest.getName(), "test");
+		assertEquals(reservationTest.getUsername(),"testUser");
+||Reservierung-McPoint |jede Reservierung ist auf einen bestimmten McPoint bezogen (entweder McSit oder McWash) |getMcPoint() |		assertEquals(reservationTest.getMcPoint(), "McWash");
+|===
+
+== McTankCartUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
 |||||
 |===
