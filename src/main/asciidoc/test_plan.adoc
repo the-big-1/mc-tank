@@ -69,6 +69,8 @@ Die gesamte Anwendung von McTank bestehend aus
 - <<FuelOrderApiServiceUnitTest>>
 - <<GasPumpServiceUnitTest>>
 - <<ItemsServiceUnitTest>>
+- <<OrdersServiceTest>>
+- <<RefillInventoryServiceUnitTest>>
 
 == Nicht zu testende Funktionalitäten
 z.B. Bibliotheken von Drittanbietern (eigene Tests beschränken sich auf Schnittstelle, bzw. Zusammenspiel).
@@ -109,18 +111,18 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID   |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-||HTML-Seitenaufruf            |Eine Seite wird von einem User aufgerufen| mockMvc.perform(get("/"))     |.andExpect(status().isFound())
-||Login-Aufruf           | Falls ein nicht eingeloggter User auf die Anwendung zugreifen will, wird er auf die Login-Page geleitet             |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/login")
-||Admin-Startseite | Ein User loggt sich als Admin auf der Website ein             |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/overview")
-|| Mitarbeiter-Startseite          |Ein User loggt sich als Mitarbeiter auf der Website ein              |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/cart"))
-|| Customer-Startseite          | Ein User loggt sich als Kunde auf der Website ein             |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/account"))
+|<<I01>> |HTML-Seitenaufruf            |Eine Seite wird von einem User aufgerufen| mockMvc.perform(get("/"))     |.andExpect(status().isFound())
+|<<I02>> |Login-Aufruf           | Falls ein nicht eingeloggter User auf die Anwendung zugreifen will, wird er auf die Login-Page geleitet             |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/login")
+|<<I03>> |Admin-Startseite | Ein User loggt sich als Admin auf der Website ein             |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/overview")
+|<<I04>> | Mitarbeiter-Startseite          |Ein User loggt sich als Mitarbeiter auf der Website ein              |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/cart"))
+|<<I05>> | Customer-Startseite          | Ein User loggt sich als Kunde auf der Website ein             |mockMvc.perform(get("/")) |.andExpect(status().isFound()).andExpect(redirectedUrl("/account"))
 |===
 
 == RefillInventoryControllerTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||Inventar wird aufgefüllt           |Es soll Benzin nachbestellt werden              |		RequestFuelBody requestFuelBody = new RequestFuelBody();
+|<<I06>> |Inventar wird aufgefüllt           |Es soll Benzin nachbestellt werden              |		RequestFuelBody requestFuelBody = new RequestFuelBody();
 		requestFuelBody.setAmount(10);
 		requestFuelBody.setFuelType(GasPump.DIESEL); |		assertEquals(controller.refillFuels(requestFuelBody), ResponseEntity.ok().build());
 |===
@@ -129,26 +131,26 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||User-Management           | Es soll eine Liste aller User angezeigt werden, welche sich bearbeiten lässt             |mockMvc.perform(get("/user-management")) |.andExpect(status().isOk())
+|<<I07>> |User-Management           | Es soll eine Liste aller User angezeigt werden, welche sich bearbeiten lässt             |mockMvc.perform(get("/user-management")) |.andExpect(status().isOk())
 				.andExpect(view().name("user-management"))
 				.andExpect(model().attributeExists("customerList"));
-||User-Status aktivieren         | Ein Useraccount und seine damit verbundenen Funktionalitäten kann aktiviert werden             |mockMvc.perform(get("/customer/enable")) |				.andExpect(status().isFound());
-||User-Status deaktivieren          | Ein Useraccount und seine damit verbundenen Funktionalitäten kann deaktiviert werden             |		mockMvc.perform(get("/customer/disable")) |				.andExpect(status().isFound());
+|<<I08>> |User-Status aktivieren         | Ein Useraccount und seine damit verbundenen Funktionalitäten kann aktiviert werden             |mockMvc.perform(get("/customer/enable")) |				.andExpect(status().isFound());
+|<<I09>> |User-Status deaktivieren          | Ein Useraccount und seine damit verbundenen Funktionalitäten kann deaktiviert werden             |		mockMvc.perform(get("/customer/disable")) |				.andExpect(status().isFound());
 |===
 
 == ItemsControllerTest
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-||User-Items-Aufruf           |Ein nicht eingeloggter User will auf die Items-Seite zugreifen    |mockMvc.perform(get("/items")) |.andExpect(status().is3xxRedirection())
+|<<I10>> |User-Items-Aufruf           |Ein nicht eingeloggter User will auf die Items-Seite zugreifen    |mockMvc.perform(get("/items")) |.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("http://localhost/login"));
-||Admin-Items-Aufruf           |Ein als Admin eingeloggter User will auf die Items-Seite zugreifen |mockMvc.perform(get("/items")) |.andExpect(status().is3xxRedirection())
+|<<I11>> |Admin-Items-Aufruf           |Ein als Admin eingeloggter User will auf die Items-Seite zugreifen |mockMvc.perform(get("/items")) |.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("/items-management"));
-||Mitarbeiter-Items-Aufruf           | Ein als Mitarbeiter eingeloggter User will auf die Items-Seite zugreifen    |mockMvc.perform(get("/items")) |.andExpect(status().isOk())
+|<<I12>> |Mitarbeiter-Items-Aufruf           | Ein als Mitarbeiter eingeloggter User will auf die Items-Seite zugreifen    |mockMvc.perform(get("/items")) |.andExpect(status().isOk())
 				.andExpect(redirectedUrl("/items"));
-|| Neues Item          | Es soll ein neues Item zum Catalog hinzugefügt werden             |		mockMvc.perform(get("/newItem"))
+|<<I13>> | Neues Item          | Es soll ein neues Item zum Catalog hinzugefügt werden             |		mockMvc.perform(get("/newItem"))
  |			.andExpect(status().isFound());
-||Item-Details           |Die Details der Zapfsäulen sollen angezeigt werden              |		mockMvc.perform(get("/pump/{number}", 2)) |				.andExpect(status().isFound());
+|<<I14>> |Item-Details           |Die Details der Zapfsäulen sollen angezeigt werden              |		mockMvc.perform(get("/pump/{number}", 2)) |				.andExpect(status().isFound());
 |===
 
 == CustomerUnitTest
@@ -476,18 +478,46 @@ testCustomer.setLastOrderDate(testDateTime); |    	assertEquals(testCustomer.get
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="headers"]
 |===
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
-|||||
+||Items hinzufügen |neue Items werden über ein Protokoll hinzugefügt |		NewItemForm testForm = new NewItemForm("TEST","1.39", new ArrayList<String>()); | 		assertThat(service.createNewProduct(testForm)).isNotNull();
+||Items nach Kategorie hinzufügen | die neuen Items werden nach ihren Kategorien sortiert aufgenommen |createNewProduct()
+List<String> list = new ArrayList<String>();
+		list.add("McZapf");
+		list.add("McSit");
+		list.add("McDrive");
+		list.add("McWash");|		assertThat(service.createNewProduct("Cola 0,5", "1.30", list)).isNotNull();
+		assertThat(service.createNewProduct("Cola 0,5", "1,30", list)).isNotNull();
+		assertThat(service.createNewProduct("Cola 0,5", "1.30 €", list)).isNotNull(); 
+||Items können mit ihrer eindeutigen Identifikation aufgerufen werden |Product idtest = new Product("idtest", price);
+		items.save(idtest); |		assertTrue(service.getProduct(idtest.getId()).get().equals(idtest));
+||Items-Anzahl |Items werden mit einer bestimmten Anzahl in den Catalog aufgenommen |Product quantityTest = new Product("quantityTest", price);
+		items.save(quantityTest);
+
+		UniqueInventoryItem item = new UniqueInventoryItem(quantityTest, quantityTest.createQuantity(100));
+		inventory.save(item); |assertThat(service.getProductQuantity(quantityTest)).isNotNull();
+||Best-selling products |Die Bestellmenge der einzelnen Produkte wird diesen angehängt und so können die am meisten verkauften Produkte ermittelt werden |findBestProducts() |	assertThat(service.findBestProducts()).isNotNull();
+		assertThat(service.findBestProducts()).isNotEmpty();
 |===
+
+== OrdersServiceTest 
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Kunden-Bestellübersicht |alle von einem bestimmten Nutzer getätigten Bestellungen können in dessen Benutzerkonto aufgelistet werden |getAllOrdersForCustomer() |Exception thrown = assertThrows(Exception.class,
+				() -> ordersService.getAllOrdersForCustomer());
+    	assertNotNull(thrown);
+||Bestellübersicht |alle getätigten Bestellungen bei McTank können aufgelistet werden und sind für den Manager einsehbar |findAll() |List<McTankOrder> orders = ordersService.findAll();
+		assertNotNull(orders);
+		assertFalse(orders.isEmpty());
+|=== 
+
+== RefillInventoryServiceUnitTest
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+||Inventar auffüllen |Produkte, die sich im Catalog befinden, können dem Inventar hinzugefügt werden |	Product product1 = new Product("Cola Test", price);
+		Product notInventory = new Product("InCatalogButNotInInv", price);
+		items.save(product1);
+		items.save(notInventory);
+		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(1500)));|		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
+|===
+
