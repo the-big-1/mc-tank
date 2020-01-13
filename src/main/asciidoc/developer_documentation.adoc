@@ -194,7 +194,7 @@ image:models/design/InventoryUML.svg[]
 
 
 === Order
-image:models/analysis/OrderNew.svg[]
+image:models/design/OrderUpdate.svg[]
 
 [options="header"]
 |=== 
