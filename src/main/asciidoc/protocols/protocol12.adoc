@@ -1,0 +1,54 @@
+= Protokoll Gruppe 18
+
+Treffen am 14.01.2020
+
+Ort:      APB +
+Beginn:   13:00 Uhr +
+Ende:     14:30 Uhr
+
+__Schriftführer: Vivien__
+
+*Nächstes Treffen:* +
+Abschlusspräsentation: + 
+21.01.2020, 14:50 Uhr, Ort des nächsten Treffens
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Jannusch (Kunde)
+- David
+- Christoph
+- Clemens
+- Artem
+- Vivien
+
+== Bemerkungen
+Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/47[47]    |Fehler von der Cross-Testing Rückmeldung beseitigen       |in Arbeit      |-
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/38[38]    |Kann-Kriterien implementieren       |in Arbeit      |-
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/21[21]    |Testfälle in den Testplan übertragen       |fertig     |-
+|===
+
+
+== Aktueller Stand
+Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
+Dokumenten.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|…     |…     |…            |…                |…
+|===
