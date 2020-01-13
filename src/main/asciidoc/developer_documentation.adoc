@@ -183,7 +183,7 @@ image:models/design/Customer_Class_Diagramm.svg[]
 |===
 
 === Inventory
-image:models/design/InventoryUML.svg[]
+image:models/design/Inventory.svg[]
 
 [options="header"]
 |=== 
@@ -214,11 +214,6 @@ image:models/analysis/Cart.svg[]
 |McTankCart | Basisfunktionalitäten des Warenkorbs, vor allem der Rabatt
 |CartService | Grundlage für Order, weist einen Warenkorb einem bestimmten Nutzer hinzu, Speichern des Warenkorbs
 |Discount |Generierung der Rabattcodes bei Registrierung und Nutzung von McPoints
-|===
-
-[options="header"]
-|=== 
-|Klasse/Enumeration |Description
 |===
 
 
