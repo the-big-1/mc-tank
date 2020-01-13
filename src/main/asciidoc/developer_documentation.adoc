@@ -183,7 +183,6 @@ image:models/design/Customer_Class_Diagramm.svg[]
 |CustomerDataInitializer | erstellt Useraccounts für Mitabeiter und Boss eventuelle Bestandskunden
 |RegistrationForm | repräsentiert und validiert Eingaben des Nutzers
 |CustomerInfoUpdateForm | um userDaten zu ändern
-|Customer |repräsentiert den Kunden
 |===
 
 === Inventory
