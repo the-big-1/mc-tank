@@ -50,5 +50,5 @@ Dokumenten.
 [option="headers"]
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/53[53]    |Abschlusspräsentation vorbereiten     |jeder erstellt PowerPoint-Folien für seinen Abschnitt            |alle                |in Arbeit
 |===
