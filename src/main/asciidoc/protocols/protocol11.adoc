@@ -60,5 +60,5 @@ Abschlusspräsentation vorbereiten.
 [option="headers"]
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-|…     |…     |…            |…                |…
+|https://github.com/st-tu-dresden-praktikum/swt19w18/issues/47[47]    |Cross-Testing Feedback bearbeiten     |alle gefundenen Fehler sollen behoben werden           |alle                |in Arbeit
 |===
