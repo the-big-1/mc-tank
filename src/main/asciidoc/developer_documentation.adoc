@@ -175,11 +175,15 @@ image:models/design/Customer_Class_Diagramm.svg[]
 |===
 |Klasse/Enumeration|Description
 |Customer | repräsentiert einen Kunden
-|CustomerController | Spring MVC Controller um Anfragen bearbeiten
+|SignUpController | Spring MVC Controller um Anfragen bearbeiten
+|UserManagementController | Spring MVC Controller um Anfragen bearbeiten
+|AccountController | Spring MVC Controller um Anfragen bearbeiten
 |CustomerRepository | Interface (Spring Crudrepository) zum speichern von Customers
-|CustomerManagement | Service KLasse für Customer
-|CustomerDataInitializer | erstellt USeraccounts für Mitabeiter und Boss eventuelle Bestandskunden
+|CustomerService | Service Klasse für Customer (buisness logic)
+|CustomerDataInitializer | erstellt Useraccounts für Mitabeiter und Boss eventuelle Bestandskunden
 |RegistrationForm | repräsentiert und validiert Eingaben des Nutzers
+|CustomerInfoUpdateForm | um userDaten zu ändern
+|Customer |repräsentiert den Kunden
 |===
 
 === Inventory
@@ -188,7 +192,6 @@ image:models/design/Inventory.svg[]
 [options="header"]
 |=== 
 |Klasse/Enumeration |Description
-|InventoryController | Spring Controller, stellt das Inventory für den Nutzer dar
 |InventoryInitializer | initialisiert das Salespoint UniqueInventory
 |===
 
