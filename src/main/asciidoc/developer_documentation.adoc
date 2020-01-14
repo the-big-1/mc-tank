@@ -219,7 +219,7 @@ image:models/analysis/Cart.svg[]
 |===
 
 === DiscountFactory
-image:models/analysis/factory.svg[]
+image:models/design/factory.svg[]
 
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
