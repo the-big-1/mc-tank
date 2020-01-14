@@ -103,7 +103,7 @@ public class CartServiceUnitTest {
 		Iterator<CartItem> iterator = cart.get().iterator();
 		iterator.next();
 		CartItem claimitem = iterator.next();
-		assertTrue(claimitem.getProduct().getName().equals(testProduct.getName()+" REKLAMATION"));
+		assertTrue(claimitem.getProduct().getName().equals(testProduct.getName()+" RECLAMATION"));
 		assertTrue(claimitem.getQuantity().getAmount().intValueExact() == 5);
 	}
 }

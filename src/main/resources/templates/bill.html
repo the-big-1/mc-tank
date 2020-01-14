@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:fragment="headerfiles">
   <meta charset="UTF-8"/>
-  <title>Orders History</title>
 </head>
 <body>
 <div class="card m-b-30" th:fragment="table" th:unless="${orders.isEmpty()}">
@@ -60,20 +59,8 @@
                       class="badge badge-success-inverse font-14">Completed</span>
                 <span th:unless="${role} == 'Customer'" class="ml-3">
                   <span>User: <span th:text="${order.getUserAccount().getUsername()}"></span></span>
-                  <a href='/bill'><button>Show bill</button></a>
                 </span>
               </h5>
-            </div>
-            <div class="col-sm-6" th:if="${role} == 'Customer'">
-              <h6 class="mb-0">
-                <form action="/order/delete" method="post">
-                  <button type="submit" th:name="id" th:value="${order.getIdString()}"
-                          class="btn btn-danger-rgba font-16">
-                    <i class="feather icon-rewind mr-2"></i>
-                    Request Refund
-                  </button>
-                </form>
-              </h6>
             </div>
           </div>
         </div>
