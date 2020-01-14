@@ -54,7 +54,7 @@ Grob Diagramme zeigen, z.B. die Packages
 Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
 Dokumenten.
 
-
+noch mehr Tests schreiben, Kann-Kriterien fertig machen
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
