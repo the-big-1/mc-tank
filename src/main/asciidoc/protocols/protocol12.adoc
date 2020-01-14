@@ -28,7 +28,7 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 Bewertungsbogen soll von jedem einzeln ausgefüllt werden.
 
 Zur Abschlusspräsentation:
-Grob Diagramme zeigen, z.B. die Packages
+Grob Diagramme zeigen, z.B. die Packages +
 - Aufgabenstellung sehr kurz, z.B. Use-Case-Diagramm +
 - Entwurfsentscheidungen (besonderes) +
 - Rückblick auf Teamarbeit, was haben wir gelernt und wie wurden Probleme gelöst + 
