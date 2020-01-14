@@ -74,11 +74,6 @@ class CustomerUnitTest {
     }
 
     @Test
-    void getLicensePlate() {
-		assertNull(testCustomer.getLicensePlate());
-    }
-
-    @Test
     void setFirstName() {
     	testCustomer.setFirstName("test");
 
@@ -104,13 +99,6 @@ class CustomerUnitTest {
 		testCustomer.setMobile("080032168");
 
 		assertEquals(testCustomer.getMobile(), "080032168");
-    }
-
-    @Test
-    void setLicensePlate() {
-		testCustomer.setLicensePlate("DD-Q-12");
-
-		assertEquals(testCustomer.getLicensePlate(), "DD-Q-12");
     }
 
     @Test

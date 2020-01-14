@@ -41,10 +41,10 @@
                         <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
                           <div class="order-note">
                               <div class="form-group">
-                                <form th:action="@{/cart/username}" method="post" th:if="${cart.customer == null}">
+                                <form th:action="@{/cart/license_plate}" method="post" th:if="${cart.customer == null}">
                                   <div class="input-group">
-                                    <input id="username" type="text" class="form-control" placeholder="Username"
-                                           name="username" aria-label="Username" aria-describedby="button-addonTags">
+                                    <input id="license_plate" type="text" class="form-control" placeholder="License plate"
+                                           name="license_plate" aria-label="License plate" aria-describedby="button-addonTags">
                                     <div class="input-group-append">
                                       <button class="input-group-text btn-secondary" type="submit"
                                               id="button-addonTags">Apply
@@ -71,7 +71,7 @@
                             <table class="table table-borderless text-right">
                               <tbody>
                               <tr>
-                                <td th:text="${cart.customer} ? 'Username' : ''"></td>
+                                <td th:text="${cart.customer} ? 'License plate' : ''"></td>
                                 <td th:text="${cart.customer} ? ${cart.customer.getUsername()} : ''"></td>
                               </tr>
                               <tr>

@@ -97,11 +97,11 @@ public class CartController {
 	 * @param username each cart session belongs to a certain user.
 	 * @return the view name.
 	 */
-	@PostMapping("/cart/username")
-	public String saveUsername(String username) {
+	@PostMapping("/cart/license_plate")
+	public String saveUsername(String license_plate) {
 
 		try {
-			Customer customer = customerService.getCustomer(username);
+			Customer customer = customerService.getCustomer(license_plate);
 			cart.setCustomer(customer);
 			cartService.load(cart, customer.getUserAccount());
 		}

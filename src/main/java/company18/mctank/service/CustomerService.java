@@ -55,16 +55,16 @@ public class CustomerService {
 	public void createCustomer(SignUpForm form) throws ExistedUserException {
 		Assert.notNull(form, "Registration form must not be null!");
 		UnencryptedPassword password = UnencryptedPassword.of(form.getPassword());
-		this.createCustomer(form.getName(), form.getEmail(), password, CustomerRoles.CUSTOMER);
+		this.createCustomer(form.getLicensePlate(), form.getEmail(), password, CustomerRoles.CUSTOMER);
 	}
 
-	public Customer createCustomer(String username,
+	public Customer createCustomer(String lic_plate,
 								   String email,
 								   UnencryptedPassword password,
 								   Role role) throws ExistedUserException {
 		UserAccount userAccount;
 		try {
-			userAccount = userAccountManager.create(username, password, role);
+			userAccount = userAccountManager.create(lic_plate, password, role);
 			userAccount.setEmail(email);
 		} catch (IllegalArgumentException e) {
 			throw new ExistedUserException();
@@ -189,8 +189,8 @@ public class CustomerService {
 
 	public UserAccount getCurrentUserAccount() throws AnonymusUserException {
 		UserDetails userDetails = this.getPrincipal();
-		String username = userDetails.getUsername();
-		UserAccount userAccount = this.userAccountManager.findByUsername(username).orElse(null);
+		String lic_plate = userDetails.getUsername();
+		UserAccount userAccount = this.userAccountManager.findByUsername(lic_plate).orElse(null);
 		// TODO: Throw exception of not found user;
 		return userAccount;
 	}
@@ -213,8 +213,8 @@ public class CustomerService {
 		return this.getCustomer(customerId).getUserAccount();
 	}
 
-	public Customer getCustomer(String username) {
-		UserAccount userAccount = userAccountManager.findByUsername(username).orElseThrow();
+	public Customer getCustomer(String lic_plate) {
+		UserAccount userAccount = userAccountManager.findByUsername(lic_plate).orElseThrow();
 		return customerRepository.findCustomerByUserAccount(userAccount);
 	}
 
@@ -235,7 +235,8 @@ public class CustomerService {
 	}
 
 	public void updateLicensePlate(LicensePlateForm form) {
-		Customer customer = getCustomer(form.getId());
-		customer.setLicensePlate(form.getLicensePlate());
+		// not working since username is license plate
+		//Customer customer = getCustomer(form.getId());
+		//customer.setLicensePlate(form.getLicensePlate());
 	}
 }

@@ -14,8 +14,8 @@ class SignUpFormUnitTest {
     }
 
     @Test
-    void getName() {
-    	assertEquals(testForm.getName(), "test");
+    void getLicensePlate() {
+    	assertEquals(testForm.getLicensePlate(), "test");
     }
 
     @Test

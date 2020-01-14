@@ -20,7 +20,6 @@ public class Customer {
 	long id;
 
 	private String mobile;
-	private String licenseplate;
 	private Date lastActivityDate;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -90,9 +89,6 @@ public class Customer {
 		return this.id;
 	}
 	
-	public String getLicensePlate(){
-		return this.licenseplate;
-	}
 
 	public void setFirstName(String firstName) {
 		this.userAccount.setFirstname(firstName);
@@ -108,10 +104,6 @@ public class Customer {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
-	}
-	
-	public void setLicensePlate(String licenseplate) {
-		this.licenseplate = licenseplate;
 	}
 
 	/**

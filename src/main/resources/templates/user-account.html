@@ -292,22 +292,6 @@
                 </div>
               </div>
               <div class="card m-b-30">
-              	<div class="card-header">
-              		<h5 class="card-title mb-0">License Plate</h5>
-              	</div>
-              	<div class="card-body">
-              		<form action="/account/licenseplate" method="post" th:object="${form}">
-            		<label for="licenseplate">License plate</label>
-            		<input th:value="${customer.getLicensePlate()}" name="licenseplate" type="text" class="form-control" id="licenseplate" >
-            		<input type="hidden" th:name="id" th:value="${customer.getId()}">
-            		    <button type="submit" class="btn btn-primary-rgba font-16">
-                      	<i class="feather icon-save mr-2"></i>
-                      	Save updated info
-                    	</button>
-                  	</form>
-              	</div>
-              </div>
-              <div class="card m-b-30">
                 <div class="card-header">
                   <h5 class="card-title mb-0">Edit Profile Informations</h5>
                 </div>
