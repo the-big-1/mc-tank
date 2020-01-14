@@ -58,14 +58,14 @@ public class CartService {
 		// set order state to completed
 		try {
 			this.orderManager.completeOrder(order);
+			//save order if completed
+			this.orderManager.save(order);
 		} catch (Exception e) {
+			// else cancel 
 			this.orderManager.cancelOrder(order);
 			LOGGER.error(e.getMessage());
 			return false;
 		}
-
-		//save order
-		this.orderManager.save(order);
 
 		return true;
 	}
