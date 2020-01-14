@@ -6,11 +6,8 @@ Dieser Testplan stellt eine vereinfachte Version der IEEE 829-1998 Vorlage dar.
 Der Testplan wird erstellt, um den Testprozess unserer Anwendung zu beschreiben und folgende Aspekte zu klären:
 
 - die Auswahl der richtigen Strategien für verschiedene Tests von Software-Komponenten
-- Verteilung der Aufgaben zwischen den Teammitgliedern
-- Priorität der Fragen
-- Ressourcenplanung
-- die Nutzung der erforderlichen Software und Hardware
-- Abschätzung der Risiken, die während der Prüfung auftreten können.
+- Leitfaden für das Implementieren
+- vermeidet aufwendige Änderungen
 
 == Aufbau der Testbezeichner
 

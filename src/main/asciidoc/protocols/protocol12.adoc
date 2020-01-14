@@ -25,6 +25,17 @@ __Teilnehmer:__
 == Bemerkungen
 Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entscheidungen
 
+Bewertungsbogen soll von jedem einzeln ausgefüllt werden.
+
+Zur Abschlusspräsentation:
+Grob Diagramme zeigen, z.B. die Packages +
+- Aufgabenstellung sehr kurz, z.B. Use-Case-Diagramm +
+- Entwurfsentscheidungen (besonderes) +
+- Rückblick auf Teamarbeit, was haben wir gelernt und wie wurden Probleme gelöst + 
+- Anwendungsvorführung +
+- Arbeitszeiten +
+- Evaluation (wie das Projekt gelaufen ist) +
+
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
 // Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
@@ -42,6 +53,8 @@ Verwarnungen, besondere Vorfälle, Organisatorisches, wichtige getroffene Entsch
 == Aktueller Stand
 Anmerkungen und Kritik zum aktuellen Stand der Software, den Diagrammen und den
 Dokumenten.
+
+noch mehr Tests schreiben, Kann-Kriterien fertig machen
 
 == Planung des nächsten Sprints
 *Issue referenziert die Issue ID von GitHub*
