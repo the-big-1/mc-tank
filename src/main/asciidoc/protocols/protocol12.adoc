@@ -29,12 +29,12 @@ Bewertungsbogen soll von jedem einzeln ausgefüllt werden.
 
 Zur Abschlusspräsentation:
 Grob Diagramme zeigen, z.B. die Packages
-- Aufgabenstellung sehr kurz, z.B. Use-Case-Diagramm
-- Entwurfsentscheidungen (besonderes)
-- Rückblick auf Teamarbeit, was haben wir gelernt und wie wurden Probleme gelöst
-- Anwendungsvorführung
-- Arbeitszeiten
-- Evaluation (wie das Projekt gelaufen ist)
+- Aufgabenstellung sehr kurz, z.B. Use-Case-Diagramm +
+- Entwurfsentscheidungen (besonderes) +
+- Rückblick auf Teamarbeit, was haben wir gelernt und wie wurden Probleme gelöst + 
+- Anwendungsvorführung +
+- Arbeitszeiten +
+- Evaluation (wie das Projekt gelaufen ist) +
 
 == Retrospektive des letzten Sprints
 *Issue referenziert die Issue ID von GitHub*
