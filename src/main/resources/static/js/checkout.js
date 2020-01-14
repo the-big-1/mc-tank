@@ -3,9 +3,9 @@
     $("body").on("click", "#checkout-button", function() {
         swal.setDefaults({
             confirmButtonText: 'Next &rarr;',
-            showCancelButton: true,
             animation: false,
-            progressSteps: ['1']
+            progressSteps: ['1'],
+			showCancelButton: true
         });
         var steps = [
             // {
@@ -37,17 +37,21 @@
                         confirmButtonText: 'Done!',
                         confirmButtonClass: 'btn btn-success',
                         showCancelButton: false
-                    });
-                },
+                    }).then(function (){
+						document.location.reload();
+					});
+	             },
                 error: function () {
                     swal({
                         title: 'Error!',
                         text: 'Something went wrong. Sorry.',
-                        type: 'failure',
+                        type: 'error',
                         confirmButtonText: 'Ok',
                         confirmButtonClass: 'btn btn-success',
                         showCancelButton: false
-                    });
+                    }).then(function (){
+						document.location.reload();
+					});
                 }
             });
         }, function () {
