@@ -2,6 +2,7 @@ package company18.mctank.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -16,9 +17,9 @@ public class BillController {
 	@Autowired
 	OrdersService ordersService;
 	
-	@GetMapping(value = "/bill")
-	String rechnung(Model model) {
-		model.addAttribute("bill", ordersService.findAll());
+	@PostMapping("/bill")
+	String bill(Model model) {
+		model.addAttribute("orders", ordersService.findAll());
 		return "bill";
 	}
 	
