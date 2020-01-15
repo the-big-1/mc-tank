@@ -97,7 +97,8 @@ public class CartController {
 	}
 
 	/**
-	 * 
+	 * Adds a user to the Cart if no user with this license plate exists a new Customer is created.
+	 *
 	 * @param license_plate each cart session belongs to a certain user with this license plate.
 	 * @return the view name.
 	 */
@@ -111,6 +112,7 @@ public class CartController {
 		}
 		catch (Exception e){
 			try {
+				//if no customer with this license plate exists -> create new one
 				Customer customer_new = customerService.createCustomer(license_plate, null, Password.UnencryptedPassword.of(license_plate), CustomerRoles.CUSTOMER);
 				cart.setCustomer(customer_new);
 				cartService.load(cart, customer_new.getUserAccount());
