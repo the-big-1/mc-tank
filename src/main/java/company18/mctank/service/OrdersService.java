@@ -109,6 +109,18 @@ public class OrdersService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void showOrder(String orderId) {
+		try {
+			UserAccount userAccount = customerService.getCurrentUserAccount();
+			List<McTankOrder> orders = this.orderService.findBy(userAccount).toList();
+			McTankOrder order = this.findOrderById(orders, orderId);
+			this.returnAllProducts(order);
+			} catch (AnonymusUserException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	private void returnAllProducts(McTankOrder order) {
 		order.getOrderLines()

@@ -6,10 +6,10 @@
 <body>
 <div class="card m-b-30" th:fragment="table" th:unless="${orders.isEmpty()}">
   <div class="card-header">
-    <h5 class="card-title mb-0">Orders list</h5>
+    <h5 class="card-title mb-0">Bill</h5>
   </div>
   <div class="card-body">
-    <div class="order-box" th:each="order : ${bill}">
+    <div class="order-box" th:each="order : ${order}">
       <div class="card border m-b-30">
         <div class="card-header">
           <div class="row align-items-center">

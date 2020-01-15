@@ -1,13 +1,17 @@
 package company18.mctank.controller;
 
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
-import company18.mctank.forms.DataStacked;
 import company18.mctank.service.OrdersService;
 
 
@@ -16,19 +20,19 @@ public class BillController {
 	
 	@Autowired
 	OrdersService ordersService;
-	
-	@PostMapping("/bill")
+
+	@GetMapping("/bill")
 	String bill(Model model) {
-		model.addAttribute("orders", ordersService.findAll());
+		model.addAttribute("bill", ordersService.findAll());
 		return "bill";
 	}
 	
-	/*@GetMapping("/api/orders/stacked")
-	@ResponseBody
-	public DataStacked getStackedData(){
-		DataStacked data = ordersService.stackData();
-		return data;
-	} */
+	@PostMapping("/bill")
+	public String showBill(@RequestParam @NotEmpty String id){
+		ordersService.showOrder(id);
+		return "bill";
+	}
+
 
 }
 
