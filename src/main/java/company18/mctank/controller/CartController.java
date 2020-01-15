@@ -2,14 +2,18 @@ package company18.mctank.controller;
 
 import company18.mctank.domain.Customer;
 
+import company18.mctank.domain.CustomerRoles;
 import company18.mctank.domain.McTankCart;
 
+import company18.mctank.exception.ExistedUserException;
 import company18.mctank.factory.DiscountFactory;
 import company18.mctank.service.CartService;
 import company18.mctank.service.CustomerService;
 import company18.mctank.service.GasPumpService;
 
 import org.salespointframework.payment.*;
+import org.salespointframework.useraccount.Password;
+import org.salespointframework.useraccount.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -93,8 +97,9 @@ public class CartController {
 	}
 
 	/**
-	 * 
-	 * @param username each cart session belongs to a certain user.
+	 * Adds a user to the Cart if no user with this license plate exists a new Customer is created.
+	 *
+	 * @param license_plate each cart session belongs to a certain user with this license plate.
 	 * @return the view name.
 	 */
 	@PostMapping("/cart/license_plate")
@@ -106,7 +111,17 @@ public class CartController {
 			cartService.load(cart, customer.getUserAccount());
 		}
 		catch (Exception e){
-			return "redirect:/cart";
+			try {
+				//if no customer with this license plate exists -> create new one
+				Customer customer_new = customerService.createCustomer(license_plate, null, Password.UnencryptedPassword.of(license_plate), CustomerRoles.CUSTOMER);
+				cart.setCustomer(customer_new);
+				cartService.load(cart, customer_new.getUserAccount());
+			}
+			catch (Exception ex){
+				return "redirect:/cart";
+			}
+
+
 		}
 		return "redirect:/cart";
 	}
