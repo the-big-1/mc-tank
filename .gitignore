@@ -27,3 +27,4 @@ Desktop.ini
 # H2 database files
 *.mv.db
 *.h2.db
+*.trace.db

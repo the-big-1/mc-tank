@@ -218,6 +218,9 @@ image:models/analysis/Cart.svg[]
 |Discount |Generierung der Rabattcodes bei Registrierung und Nutzung von McPoints
 |===
 
+=== DiscountFactory
+image:models/design/factory.svg[]
+
 
 === Rückverfolgbarkeit zwischen Analyse- und Entwurfsmodell
 
