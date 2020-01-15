@@ -94,7 +94,7 @@ Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darau
 
 === Überblick Anwendungsfalldiagramm
 
-image:models/analysis/UseCaseSWT.svg[]
+image:models/analysis/usecase.svg[]
 
 === Anwendungsfallbeschreibungen
 Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
