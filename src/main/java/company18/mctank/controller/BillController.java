@@ -36,15 +36,15 @@ public class BillController {
 	}
 
 	@PostMapping("/bill/pdf")
-	public ResponseEntity<InputStreamResource> Kasse_PayNow(Model model) {
+	public ResponseEntity<InputStreamResource> pdf(Model model) {
 		BillService pdf = new BillService();
 		try{
-			pdf.createPdf("Hallo!.pdf");
+			pdf.createPdf("billpdf.pdf");
 		}catch (Exception ex)
 		{
 			System.out.println("nicht gut");
 		}
-		java.io.File file = new java.io.File("Hallo!.pdf");
+		java.io.File file = new java.io.File("billpdf.pdf");
 		try {
 			org.springframework.core.io.InputStreamResource inputStreamResource = new InputStreamResource(new FileInputStream(file));
 			return org.springframework.http.ResponseEntity.ok()

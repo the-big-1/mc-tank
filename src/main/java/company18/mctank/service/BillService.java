@@ -11,8 +11,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class BillService {
 
-	public static final String PDF = "/Users/Timo Seitz/Desktop/iText/document.pdf";
-
 	public void createPdf(String filename) throws DocumentException, IOException {
 		Document document = new Document();
 		PdfWriter writer = PdfWriter.getInstance(document,
