@@ -129,7 +129,7 @@ public class OrdersService {
 			);
 	}
 
-	private McTankOrder findOrderById(List<McTankOrder> orders, String orderId) {
+	public McTankOrder findOrderById(List<McTankOrder> orders, String orderId) {
 		return orders.stream()
 			.filter(order -> order.getIdString().equals(orderId))
 			.findFirst().get();

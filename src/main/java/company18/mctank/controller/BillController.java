@@ -1,5 +1,6 @@
 package company18.mctank.controller;
 
+import company18.mctank.domain.McTankOrder;
 import org.salespointframework.order.OrderIdentifier;
 import org.springframework.stereotype.Controller;
 
@@ -24,9 +25,14 @@ public class BillController {
 
 
 	@PostMapping("/bill")
-	public String showBill(Model model, @RequestParam OrderIdentifier id){
-		model.addAttribute("orders", ordersService.findAll());
-		model.addAttribute("id", id);
+	public String showBill(Model model, @RequestParam String id){
+		McTankOrder order = ordersService.findOrderById(ordersService.findAll(), id);
+		model.addAttribute("order", order);
+
+		//model.addAttribute("orders", ordersService.findAll());
+		//model.addAttribute("id", id);
+
+
 		//ordersService.showOrder(id);
 		return "bill";
 	}
