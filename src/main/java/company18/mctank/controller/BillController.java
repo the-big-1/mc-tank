@@ -1,5 +1,6 @@
 package company18.mctank.controller;
 
+import org.salespointframework.order.OrderIdentifier;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +22,12 @@ public class BillController {
 	@Autowired
 	OrdersService ordersService;
 
-	@GetMapping("/bill")
-	String bill(Model model) {
-		model.addAttribute("bill", ordersService.findAll());
-		return "bill";
-	}
-	
+
 	@PostMapping("/bill")
-	public String showBill(@RequestParam @NotEmpty String id){
-		ordersService.showOrder(id);
+	public String showBill(Model model, @RequestParam OrderIdentifier id){
+		model.addAttribute("orders", ordersService.findAll());
+		model.addAttribute("id", id);
+		//ordersService.showOrder(id);
 		return "bill";
 	}
 
