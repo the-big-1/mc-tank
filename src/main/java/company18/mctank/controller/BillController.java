@@ -36,10 +36,10 @@ public class BillController {
 	}
 
 	@PostMapping("/bill/pdf")
-	public ResponseEntity<InputStreamResource> pdf(Model model) {
-		BillService pdf = new BillService();
+	public ResponseEntity<InputStreamResource> pdf(Model model, @RequestParam String pdf) {
+		BillService pdf2 = new BillService();
 		try{
-			pdf.createPdf("billpdf.pdf");
+			pdf2.createPdf("billpdf.pdf");
 		}catch (Exception ex)
 		{
 			System.out.println("nicht gut");

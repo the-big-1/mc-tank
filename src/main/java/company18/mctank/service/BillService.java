@@ -22,12 +22,12 @@ public class BillService {
 		//setImage(cb, "img/memory.png", 40);
 		cb.beginText();
 		cb.setFontAndSize(bf, 12);
-		cb.moveText(20, 105);
-		cb.showText("Falsches Üben von Xylophonmusik quält jeden größeren Zwerg.");
+		cb.moveText(20, 150);
+		cb.showText("McTank");
 		cb.moveText(120, -16);
 		cb.setCharacterSpacing(2);
 		cb.setWordSpacing(12);
-		cb.newlineShowText("Erst recht auch jeden kleineren.");
+		cb.newlineShowText("Rechnung");
 		cb.endText();
 
 		document.close();

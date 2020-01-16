@@ -63,7 +63,7 @@
   <div>
     <div>
       <form action="/bill/pdf" method="post">
-        <button type="submit" th:name="pdf" class="btn btn-danger-rgba font-16">
+        <button type="submit" th:name="pdf" class="btn btn-danger-rgba font-16" th:value="${order.getIdString()}">
           <i class="feather icon-rewind mr-2"></i>
           Show as PDF
         </button>
