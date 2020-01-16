@@ -54,6 +54,7 @@ public class Customer {
 		return userAccount.getUsername();
 	}
 
+
 	/**
 	 * Append first name and last name.
 	 * @return full name

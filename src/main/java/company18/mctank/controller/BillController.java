@@ -1,5 +1,6 @@
 package company18.mctank.controller;
 
+import company18.mctank.domain.Customer;
 import company18.mctank.domain.McTankOrder;
 import company18.mctank.service.BillService;
 import org.springframework.core.io.InputStreamResource;
@@ -25,6 +26,7 @@ public class BillController {
 	
 	@Autowired
 	OrdersService ordersService;
+	private company18.mctank.domain.Customer Customer;
 
 
 	@PostMapping("/bill")
