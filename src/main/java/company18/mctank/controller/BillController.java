@@ -39,7 +39,7 @@ public class BillController {
 	public ResponseEntity<InputStreamResource> pdf(Model model, @RequestParam String pdf) {
 		BillService pdf2 = new BillService();
 		try{
-			pdf2.createPdf("billpdf.pdf");
+			pdf2.createPdf("billpdf.pdf", ordersService.findOrderById(ordersService.findAll(), pdf));
 		}catch (Exception ex)
 		{
 			System.out.println("nicht gut");
