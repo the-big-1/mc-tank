@@ -61,18 +61,26 @@
     </div>
   </div>
   <div>
+    <table>
+      <tr>
+        <td>
     <div>
       <form action="/bill/pdf" method="post">
         <button type="submit" th:name="pdf" class="btn btn-danger-rgba font-16" th:value="${order.getIdString()}">
            Show as PDF
         </button>
       </form>
-    </div><br>
+    </div>
+        </td>
+        <td>
  	<a href="/account">
     <button class="btn btn-primary-rgba">
       Back
     </button>
     </a>
+        </td>
+      </tr>
+      </table>
   </div>
 
 </div>
