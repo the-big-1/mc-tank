@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:fragment="headerfiles">
   <meta charset="UTF-8"/>
+  <title>Bill</title>
 </head>
 <body>
 <div class="card m-b-30" th:fragment="table">
@@ -50,14 +51,6 @@
         <div class="card-footer">
           <div class="row align-items-center">
             <div class="col-sm-6">
-              <h5>Status :
-                <span th:if="${order.isOpen()}"
-                      class="badge badge-warning-inverse font-14">Open</span>
-                <span th:if="${order.isPaid()}"
-                      class="badge badge-success-inverse font-14">Paid</span>
-                <span th:if="${order.isCompleted()}"
-                      class="badge badge-success-inverse font-14">Completed</span>
-                <span th:unless="${role} == 'Customer'" class="ml-3">
                   <span>User: <span th:text="${order.getUserAccount().getUsername()}"></span></span>
                 </span>
               </h5>
@@ -67,6 +60,14 @@
       </div>
     </div>
   </div>
+  <div>
+    <a href="/orders">
+    <button class="btn btn-primary-rgba">
+      Back
+    </button>
+    </a>
+  </div>
+
 </div>
 </body>
 </html>

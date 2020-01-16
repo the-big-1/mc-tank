@@ -29,11 +29,6 @@ public class BillController {
 		McTankOrder order = ordersService.findOrderById(ordersService.findAll(), id);
 		model.addAttribute("order", order);
 
-		//model.addAttribute("orders", ordersService.findAll());
-		//model.addAttribute("id", id);
-
-
-		//ordersService.showOrder(id);
 		return "bill";
 	}
 
