@@ -61,13 +61,14 @@
     </div>
   </div>
   <div>
-      <div>
- 	<a href="/account">
-    <button class="btn btn-primary-rgba">
-      Show as PDF
-    </button>
-    </a>
-  </div><br>
+    <div>
+      <form action="/bill/pdf" method="post">
+        <button type="submit" th:name="pdf" class="btn btn-danger-rgba font-16">
+          <i class="feather icon-rewind mr-2"></i>
+          Show as PDF
+        </button>
+      </form>
+    </div><br>
  	<a href="/account">
     <button class="btn btn-primary-rgba">
       Back
