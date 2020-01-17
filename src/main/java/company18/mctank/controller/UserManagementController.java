@@ -54,7 +54,7 @@ class UserManagementController {
 			return ResponseEntity.badRequest().build();
 			
 		}
-		LOG.error("Request: New user. Done: New user was created");
+		LOG.info("Request: New user. Done: New user was created");
 		return ResponseEntity.ok(null);
 	}
 
