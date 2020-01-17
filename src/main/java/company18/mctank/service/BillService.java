@@ -47,7 +47,7 @@ public class BillService {
 		cb.showText("Dear " + order.getUserNameString());
 		cb.moveText(0, -20);
 		cb.showText("thank you for visiting McTank. We hope you are satisfied and would enjoy to see you again!");
-		cb.moveText(0, -50);
+		cb.moveText(0, -100);
 		cb.showText("Productname");
 		cb.moveText(0, -20);
 		cb.showText("Cola 0.5L");
@@ -63,9 +63,9 @@ public class BillService {
 		cb.showText("Price");
 		cb.moveText(0, -20);
 		cb.showText("3");
-
-
-		//cb.showText("Total: " + order.getTotalString());
+		cb.setFontAndSize(bf, 15);
+		cb.moveText(-200, -80);
+		cb.showText("Total: " + order.getTotalString());
 
 		cb.setCharacterSpacing(2);
 		cb.setWordSpacing(12);

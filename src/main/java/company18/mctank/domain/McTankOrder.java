@@ -47,8 +47,7 @@ public class McTankOrder extends Order implements Comparable<McTankOrder>{
 	public String getUserNameString(){
 		return super.getUserAccount().getUsername().toString(); }
 
-	public String getProductNameString(){
-		return super.getOrderLines().toString(); }
+
 
 
 	@Override
