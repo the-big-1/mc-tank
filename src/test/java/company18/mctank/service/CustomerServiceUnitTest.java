@@ -24,7 +24,7 @@ class CustomerServiceUnitTest {
 
     @Test
     void createCustomer() {
-		SignUpForm testForm = new SignUpForm("unitTest","test@mail.de", "123");
+		SignUpForm testForm = new SignUpForm("unitTest","test@mail.de", "123", "CUSTOMER");
 
 		try {
 			testService.createCustomer(testForm);

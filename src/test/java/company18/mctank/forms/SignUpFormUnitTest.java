@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SignUpFormUnitTest {
 
-	public SignUpForm testForm = new SignUpForm("test", "test@mail.de", "123");
+
+	public SignUpForm testForm = new SignUpForm("test", "test@mail.de", "123", "CUSTOMER");
 
     @Test
     void getPassword() {
