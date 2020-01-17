@@ -3,7 +3,13 @@ package company18.mctank.service;
 import company18.mctank.domain.Customer;
 import company18.mctank.domain.McTankCart;
 import company18.mctank.domain.McTankOrder;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+
 import org.salespointframework.catalog.Product;
+import org.salespointframework.order.CartItem;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.payment.PaymentMethod;
@@ -12,6 +18,7 @@ import org.salespointframework.useraccount.UserAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 
 /**
  * Service to turn the session of a cart into an order and handle pay function.
@@ -48,15 +55,13 @@ public class CartService {
 		if (cart.getCustomer() == null || cart.get().count() == 0) {
 			return false;
 		}
-
-		McTankOrder order = getOrder(cart);
-		
-		// set paymentmethod
-		order.setPaymentMethod(payMethod);
-		this.orderManager.payOrder(order);
-		
+		McTankOrder order = new McTankOrder(cart.getCustomer().getUserAccount());
+		cart.addItemsTo(order);
 		// set order state to completed
 		try {
+			// set paymentmethod
+			order.setPaymentMethod(payMethod);
+			this.orderManager.payOrder(order);
 			this.orderManager.completeOrder(order);
 			//save order if completed
 			this.orderManager.save(order);
@@ -72,9 +77,14 @@ public class CartService {
 
 	public boolean save(McTankCart cart) {
 		McTankOrder order = getOrder(cart);
-
+		Optional<McTankOrder> oldOrder = this.orderManager.findBy(order.getUserAccount()).stream()
+											.filter(mcTankOrder ->
+											mcTankOrder.getOrderStatus() == OrderStatus.OPEN).findFirst();
+		if (oldOrder.isPresent())
+			this.orderManager.delete(oldOrder.get());
 		//save order
-		this.orderManager.save(order);;
+		this.orderManager.save(order);
+		
 		return true;
 	}
 
@@ -86,7 +96,8 @@ public class CartService {
 		openOrder.getOrderLines()
 				.forEach(orderLine ->
 						itemsService.getProduct(orderLine.getProductIdentifier())
-							.ifPresent(product -> cart.addOrUpdateItem(product, orderLine.getQuantity())));
+							.ifPresent(product -> this.addOrUpdateItem(cart, product, orderLine.getQuantity())));
+		this.orderManager.delete(openOrder);
 		return true;
 	}
 
@@ -114,12 +125,29 @@ public class CartService {
 			Product negatedProduct = new Product(product.getName().concat(" RECLAMATION"), product.getPrice().negate());
 			cart.addOrUpdateItem(negatedProduct, amount);
 		} else {
-			cart.addOrUpdateItem(product, amount);
+			this.addOrUpdateItem(cart, product, product.createQuantity(amount));
 		}
 	}
 	
 	public void addOrUpdateItem(McTankCart cart, Product product, Quantity amount) {
-		 cart.addOrUpdateItem(product, amount);
+		 Optional<CartItem> prodInCart;
+		 Quantity possible = this.itemsService.getProductQuantity(product);
+		 // if product already in cart
+		 if ((prodInCart = cart.get().filter((item) -> item.getProduct().getId().equals(product.getId())).findFirst()).isPresent()){
+			 // check if new amount exceeds inventory
+			 if (prodInCart.get().getQuantity().add(amount).isGreaterThan(possible))
+				 // if so remove and replace by new order with maximum possible amount
+				 cart.removeItem(prodInCart.get().getId());
+			 	 if (possible.isGreaterThan(product.createQuantity(0)))
+			 		 cart.addOrUpdateItem(product, possible);
+			 	 return;
+		 }
+		 if (amount.isGreaterThan(possible)) {
+			 if (possible.isGreaterThan(product.createQuantity(0)))
+				 cart.addOrUpdateItem(product, possible);
+		 }
+		 else
+			 cart.addOrUpdateItem(product, amount);
 	}
 
 
