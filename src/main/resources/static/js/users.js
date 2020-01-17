@@ -5,7 +5,7 @@
             confirmButtonText: 'Next &rarr;',
             showCancelButton: true,
             animation: false,
-            progressSteps: ['1', '2']
+            progressSteps: ['1', '2', '3']
         });
         var steps = [
             {
@@ -17,26 +17,16 @@
                 title: 'Enter user\'s password please',
                 text: 'User can log in with this password.',
                 input: 'password'
+            },
+            {
+                title: 'What role has this user?',
+                text: 'Minimum one role',
+                input: 'radio',
+                inputOptions: {
+                					'CUSTOMER': 'Customer',
+                					'MANAGER': 'Manager'
+                				}
             }
-            // {
-            //     title: 'What roles have this user?',
-            //     text: 'Minimum one role',
-            //     html:
-            //         '<div class="custom-control custom-checkbox">' +
-            //         '<input type="checkbox" class="custom-control-input" id="Admin">' +
-            //         '<label class="custom-control-label" for="Admin">Admin</label>' +
-            //         '</div>' +
-            //         '<div class="custom-control custom-checkbox">' +
-            //         '<input type="checkbox" class="custom-control-input" id="Manager">' +
-            //         '<label class="custom-control-label" for="Manager">Manager</label>' +
-            //         '</div>' +
-            //         '<div class="custom-control custom-checkbox">' +
-            //         '<input type="checkbox" class="custom-control-input" id="User">' +
-            //         '<label class="custom-control-label" for="User">User</label>' +
-            //         '</div>',
-            //     showLoaderOnConfirm: true
-            //
-            // }
         ];
         swal.queue(steps).then(function (result) {
             console.log(result);
@@ -76,7 +66,8 @@
         return JSON.stringify(
             {
                 username: result[0],
-                password: result[1]
+                password: result[1],
+                role:     result[2]
                 }
             )
     }

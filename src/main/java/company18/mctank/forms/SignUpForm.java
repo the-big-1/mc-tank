@@ -1,5 +1,7 @@
 package company18.mctank.forms;
 
+import org.salespointframework.useraccount.Role;
+
 import javax.validation.constraints.NotEmpty;
 
 public class SignUpForm {
@@ -13,10 +15,19 @@ public class SignUpForm {
 	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
 	private final String email;
 
+	private Role role;
+
 	public SignUpForm(String username, String email, String password) {
 		this.license_plate = username;
 		this.email = email;
 		this.password = password;
+	}
+
+	public SignUpForm(String username, String email, String password, String role) {
+		this.license_plate = username;
+		this.email = email;
+		this.password = password;
+		this.role = Role.of(role);
 	}
 
 	public String getPassword() {
@@ -29,6 +40,10 @@ public class SignUpForm {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public Role getRole() {
+		return role;
 	}
 
 }
