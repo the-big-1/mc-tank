@@ -13,6 +13,7 @@ import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.CartItem;
 import org.salespointframework.payment.Cash;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,6 +32,7 @@ public class CartServiceUnitTest {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
 	
 	@Test
 	void buyTest() {
@@ -58,8 +60,7 @@ public class CartServiceUnitTest {
 		// salespoints isEqualTo() doesnt exist here for some reason
 		// https://st.inf.tu-dresden.de/SalesPoint/api/org/salespointframework/quantity/Quantity.html#isEqualTo(org.salespointframework.quantity.Quantity)
 		cart.get().forEach((CartItem item) -> 
-			assertTrue(item.getQuantity().isGreaterThanOrEqualTo(inv.findByProduct(item.getProduct()).get().getQuantity())
-						&& !item.getQuantity().isGreaterThan(inv.findByProduct(item.getProduct()).get().getQuantity())));
+			assertTrue(item.getQuantity().isGreaterThanOrEqualTo(inv.findByProduct(item.getProduct()).get().getQuantity())));
 		
 		// buying with first account from customerrepository (should be boss)
 		Optional<UserAccount> acc = Optional.of(customerRepository.findAll().iterator().next().getUserAccount());
@@ -79,6 +80,7 @@ public class CartServiceUnitTest {
 	void addOrUpdateItemTest() {
 		McTankCart cart = new McTankCart();
 		Product testProduct =  this.inv.findAll().iterator().next().getProduct();
+		this.inv.save(this.inv.findByProduct(testProduct).get().increaseQuantity(testProduct.createQuantity(40)));
 		
 		// adding regular product
 		this.service.addOrUpdateItem(cart, testProduct, 3, false);

@@ -97,6 +97,7 @@ public class CartService {
 				.forEach(orderLine ->
 						itemsService.getProduct(orderLine.getProductIdentifier())
 							.ifPresent(product -> this.addOrUpdateItem(cart, product, orderLine.getQuantity())));
+		this.orderManager.delete(openOrder);
 		return true;
 	}
 
