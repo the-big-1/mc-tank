@@ -1,6 +1,7 @@
 package company18.mctank.service;
 
 import company18.mctank.domain.McTankOrder;
+
 import company18.mctank.exception.AnonymusUserException;
 import company18.mctank.forms.DataStacked;
 import company18.mctank.repository.ItemsRepository;
@@ -109,6 +110,18 @@ public class OrdersService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void showOrder(String orderId) {
+		try {
+			UserAccount userAccount = customerService.getCurrentUserAccount();
+			List<McTankOrder> orders = this.orderService.findBy(userAccount).toList();
+			McTankOrder order = this.findOrderById(orders, orderId);
+			this.returnAllProducts(order);
+			} catch (AnonymusUserException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	private void returnAllProducts(McTankOrder order) {
 		order.getOrderLines()
@@ -117,7 +130,7 @@ public class OrdersService {
 			);
 	}
 
-	private McTankOrder findOrderById(List<McTankOrder> orders, String orderId) {
+	public McTankOrder findOrderById(List<McTankOrder> orders, String orderId) {
 		return orders.stream()
 			.filter(order -> order.getIdString().equals(orderId))
 			.findFirst().get();

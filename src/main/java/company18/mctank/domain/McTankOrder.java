@@ -41,6 +41,15 @@ public class McTankOrder extends Order implements Comparable<McTankOrder>{
 		return super.getTotal().toString();
 	}
 
+	public String getOrderDateString(){
+		return super.getDateCreated().toString(); }
+
+	public String getUserNameString(){
+		return super.getUserAccount().getUsername().toString(); }
+
+
+
+
 	@Override
 	public int compareTo(McTankOrder o) {
 		boolean isThisOrderEarlier = o.getDateCreated().isAfter(this.getDateCreated());
@@ -64,4 +73,5 @@ public class McTankOrder extends Order implements Comparable<McTankOrder>{
 		}
 		return quantity;
 	}
+
 }
