@@ -21,15 +21,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 
-import javax.annotation.PostConstruct;
 
 
 @Service
@@ -53,9 +48,16 @@ public class CustomerService {
 
 
 	public void createCustomer(SignUpForm form) throws ExistedUserException {
+		Role role;
+		if(form.getRole() == null){
+			role = CustomerRoles.CUSTOMER;
+		}
+		else {
+			role = form.getRole();
+		}
 		Assert.notNull(form, "Registration form must not be null!");
 		UnencryptedPassword password = UnencryptedPassword.of(form.getPassword());
-		this.createCustomer(form.getLicensePlate(), form.getEmail(), password, CustomerRoles.CUSTOMER);
+		this.createCustomer(form.getLicensePlate(), form.getEmail(), password, role);
 	}
 
 	public Customer createCustomer(String lic_plate,
