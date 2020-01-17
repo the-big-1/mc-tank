@@ -7,6 +7,7 @@ import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,14 +46,16 @@ class UserManagementController {
 	 * @return redirect to user management
 	 */
 	@PostMapping("/customer/new")
-	public String registerNew(@RequestBody SignUpForm form) {
+	public ResponseEntity<?> registerNew(@RequestBody SignUpForm form) {
 		try {
 			customerService.createCustomer(form);
 		} catch (ExistedUserException e) {
 			LOG.error("Request: New user. Failed: Username exists.");
+			return ResponseEntity.badRequest().build();
+			
 		}
 		LOG.error("Request: New user. Done: New user was created");
-		return "redirect:/user-management";
+		return ResponseEntity.ok(null);
 	}
 
 	/**

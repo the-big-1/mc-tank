@@ -17,17 +17,19 @@ public class SignUpForm {
 
 	private Role role;
 
+	/**
 	public SignUpForm(String username, String email, String password) {
 		this.license_plate = username;
 		this.email = email;
 		this.password = password;
-	}
+	}**/
 
 	public SignUpForm(String username, String email, String password, String role) {
 		this.license_plate = username;
 		this.email = email;
 		this.password = password;
-		this.role = Role.of(role);
+		if (role != null)
+			this.role = Role.of(role);
 	}
 
 	public String getPassword() {

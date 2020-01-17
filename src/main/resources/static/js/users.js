@@ -44,7 +44,9 @@
                         confirmButtonText: 'Done!',
                         confirmButtonClass: 'btn btn-success',
                         showCancelButton: false
-                    });
+                    }).then(function(){
+						document.location.reload();
+					});
                 },
                 error: function (){
                     swal({
