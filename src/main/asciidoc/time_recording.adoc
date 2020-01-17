@@ -18,7 +18,7 @@ Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Bes
 |9  |1080  |840    |780   |…    |720   |90   
 |10 |160   |180   |240    |…    |180 |45    
 |11 |750   |360   |…    |…    |…   |45    
-|12 |…   |840    |…    |…    |…   |60    
+|12 |600   |840    |…    |…    |…   |60    
 |===
 
 Bitte tragen Sie am Ende des Praktikums noch folgende weitere Werte ein:
@@ -27,8 +27,8 @@ Bitte tragen Sie am Ende des Praktikums noch folgende weitere Werte ein:
 
 SUMME(SPALTE(DevX))
 
-* David:
-* Vivien:
+* David: 5560min / 60 = 96,666h
+* Vivien: 5340min / 60 = 89h
 * Christoph:
 * Artem:
 * Clemens:
@@ -37,8 +37,8 @@ SUMME(SPALTE(DevX))
 
 SUMME(SPALTE(DevX)) / 12
 
-* David:
-* Vivien:
+* David: 5560min / 60 = 96,666h / 12 = 7.722h/pro Woche
+* Vivien: 5340min / 60 = 89h / 12 = 7.416h/pro Woche
 * Christoph:
 * Artem:
 * Clemens:
