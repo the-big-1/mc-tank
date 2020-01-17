@@ -44,6 +44,9 @@ public class McTankOrder extends Order implements Comparable<McTankOrder>{
 	public String getOrderDateString(){
 		return super.getDateCreated().toString(); }
 
+	public String getUserNameString(){
+		return super.getUserAccount().getUsername().toString(); }
+
 
 
 	@Override

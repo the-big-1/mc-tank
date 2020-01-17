@@ -2,13 +2,12 @@ package company18.mctank.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfTextArray;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 import company18.mctank.domain.McTankOrder;
 import company18.mctank.domain.Customer;
 
@@ -22,25 +21,33 @@ public class BillService {
 
 		PdfContentByte cb = writer.getDirectContent();
 		BaseFont bf = BaseFont.createFont();
-		//setImage(cb, "img/memory.png", 40);
 		cb.beginText();
-		cb.setFontAndSize(bf, 12);
-		cb.moveText(0, 800);
-		cb.newlineShowText("Rechnung");
-		cb.moveText(120, -16);
-		cb.showText("Total: " + order.getTotalString());
-		cb.moveText(120, -30);
-		cb.showText("Order-ID: " + order.getIdString());
+		cb.setFontAndSize(bf, 10);
+		cb.moveText(40, 730);
+		cb.showText("McTank, Musterstraße, 01234 Musterstadt");
+		cb.setFontAndSize(bf, 15);
+		cb.moveText(300, -80);
+		cb.showText("Bill");
+		cb.setFontAndSize(bf, 10);
+		cb.moveText(0, -20);
+		cb.showText("For Order: " + order.getIdString());
+		cb.moveText(0, -20);
+		cb.showText("Order created at: " + order.getOrderDateString());
 		cb.moveText(120, -40);
-		cb.showText(order.getOrderDateString());
-		cb.moveText(-20, -40);
-		//cb.showText();
+		cb.showText("Dear " + order.getUserNameString());
+		cb.moveText(120, -20);
+		cb.showText("thank you for visiting McTank. We hope you are satisfied and would enjoy to see you again!");
+
+
+		//cb.showText("Total: " + order.getTotalString());
+
 		cb.setCharacterSpacing(2);
 		cb.setWordSpacing(12);
 		cb.endText();
 
-		document.close();
 
+
+		document.close();
 	}
 
 
