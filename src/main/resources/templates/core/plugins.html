@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"> lang="en">
+<body>
+<script th:fragment="search-users">
+    $(document).ready(function () {
+        $("#search-users").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#table-users tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+</body>
+</html>

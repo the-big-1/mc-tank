@@ -20,6 +20,7 @@ out/
 *.mdzip.bak
 
 # OS specific
+._*
 .DS_Store
 Thumbs.db
 Desktop.ini
