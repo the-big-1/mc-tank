@@ -17,6 +17,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @SpringBootTest
 public class ItemsServiceUnitTest {
 
@@ -31,7 +32,12 @@ public class ItemsServiceUnitTest {
 
     @Test
     void createNewProductWithForm() {
-		NewItemForm testForm = new NewItemForm("TEST","1.39", new ArrayList<String>());
+		NewItemForm testForm = new NewItemForm(
+			"TEST",
+			"1.39",
+			"10",
+			new ArrayList<String>()
+		);
 
 		assertThat(service.createNewProduct(testForm)).isNotNull();
 
@@ -40,7 +46,7 @@ public class ItemsServiceUnitTest {
 
     @Test
     void testCreateNewProduct() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		list.add("McZapf");
 		list.add("McSit");
 		list.add("McDrive");
@@ -49,9 +55,9 @@ public class ItemsServiceUnitTest {
 		//empty inputs for name and cost/price already tested in form
 
 		//testing different inputs for the cost/price
-		assertThat(service.createNewProduct("Cola 0,5", "1.30", list)).isNotNull();  	//with .
-		assertThat(service.createNewProduct("Cola 0,5", "1,30", list)).isNotNull();		//with ,
-		assertThat(service.createNewProduct("Cola 0,5", "1.30 €", list)).isNotNull(); 	//with €
+		assertThat(service.createNewProduct("Cola 0,5", "1.30", 20, list)).isNotNull();  	//with .
+		assertThat(service.createNewProduct("Cola 0,5", "1,30", 20, list)).isNotNull();		//with ,
+		assertThat(service.createNewProduct("Cola 0,5", "1.30 €", 20, list)).isNotNull(); 	//with €
     }
 
     @Test
@@ -72,7 +78,7 @@ public class ItemsServiceUnitTest {
 		Product idtest = new Product("idtest", price);
 		items.save(idtest);
 
-		assertTrue(service.getProduct(idtest.getId()).get().equals(idtest));
+		assertEquals(service.getProduct(idtest.getId()).get(), idtest);
     }
 
     @Test

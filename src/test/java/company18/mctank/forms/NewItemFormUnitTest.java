@@ -1,7 +1,9 @@
 package company18.mctank.forms;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NewItemFormUnitTest {
 
-	public NewItemForm testForm = new NewItemForm("Test", "1.20" , new LinkedList<String>());
+	public NewItemForm testForm = new NewItemForm(
+		"Test",
+		"1.20",
+		"20" ,
+		new LinkedList<String>()
+	);
 
     @Test
     void getProductName() {
@@ -46,7 +53,7 @@ class NewItemFormUnitTest {
 
 	@Test
 	void setProductCategories() {
-    	List mcPoints = new LinkedList();
+    	List<String> mcPoints = new ArrayList<>();
     	mcPoints.add("McTank");
     	mcPoints.add("McSit");
 

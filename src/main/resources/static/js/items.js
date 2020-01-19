@@ -5,7 +5,7 @@
             confirmButtonText: 'Next &rarr;',
             showCancelButton: true,
             animation: false,
-            progressSteps: ['1', '2', '3']
+            progressSteps: ['1', '2', '3', '4']
         });
         var steps = [
             {
@@ -17,6 +17,11 @@
                 title: 'Cost of the Product',
                 text: 'In EUR',
                 input: 'text'
+            },
+            {
+                title: 'Amount of the Product',
+                text: 'How many of it can user buy',
+                input: "text"
             },
             {
                 title: 'Which McPoint?',
@@ -72,6 +77,7 @@
             {
                 productName: result[0],
                 price: result[1],
+                amount: result[2],
                 productCategories: points
                 }
             )
@@ -79,11 +85,14 @@
 
     function collectData() {
         var result = [];
-        if ($("#McWash")[0].checked) result.push("McWash");
-        if ($("#McDrive")[0].checked) result.push("McDrive");
-        if ($("#McZapf")[0].checked) result.push("McZapf");
-        if ($("#McSit")[0].checked) result.push("McSit");
+        if (checkById("#McWash")) result.push("McWash");
+        if (checkById("#McDrive")) result.push("McDrive");
+        if (checkById("#McZapf")) result.push("McZapf");
+        if (checkById("#McSit")) result.push("McSit");
         return result;
+    }
 
+    function checkById(id) {
+        return $(id)[0].checked
     }
 })(jQuery);
