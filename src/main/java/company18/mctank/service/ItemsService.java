@@ -63,7 +63,12 @@ public class ItemsService {
 	 */
 
 	public Product createNewProduct(NewItemForm form) {
-		return  createNewProduct(form.getProductName(), form.getPrice(), form.getProductCategories());
+		return  createNewProduct(
+			form.getProductName(),
+			form.getPrice(),
+			form.getAmount(),
+			form.getProductCategories()
+		);
 	}
 
 	/**
@@ -74,7 +79,7 @@ public class ItemsService {
 	 * @param mcPoints must not be {@literal null}. The McPoints where the new {@link Product} is available.
 	 */
 
-	public Product createNewProduct(String name, String cost, List<String> mcPoints){
+	public Product createNewProduct(String name, String cost, int amount, List<String> mcPoints){
 
 		String priceAsString = cost
 			.replace(",", ".")
@@ -88,15 +93,17 @@ public class ItemsService {
 			.create();
 
 		var product = new Product(name, price);
+		var quantity =  product.createQuantity(amount);
+		var inventoryItem = new UniqueInventoryItem(product, quantity);
 
 		if (mcPoints != null) {
 			for (String point : mcPoints) {
 				product.addCategory(point);
 			}
 		}
-
-
-		return itemsRepository.save(product);
+		itemsRepository.save(product);
+		inventoryRepository.save(inventoryItem);
+		return product;
 	}
 
 
