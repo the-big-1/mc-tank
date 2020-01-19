@@ -8,8 +8,11 @@
 <div th:fragment="user-table" class="card m-b-30">
   <div class="card-header">
     <div class="row align-items-center">
-      <div class="col-6">
-        <h5 class="card-title mb-0">All Users</h5>
+      <div class="col-9">
+        <h5 class="card-title mb-0 ml-3">All Users</h5>
+      </div>
+      <div class="col-3">
+        <input class="form-control" id="search-users" type="text" placeholder="Search..">
       </div>
     </div>
   </div>
@@ -28,7 +31,7 @@
           <th>Actions</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody  id="table-users">
         <tr th:each=" customer : ${customerList}">
           <th scope="row" th:text="'# ' + ${customer.Id}"></th>
           <td th:text="${customer.userAccount.Username}">No info</td>
