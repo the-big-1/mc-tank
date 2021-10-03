@@ -34,10 +34,10 @@ public class CustomerService {
 
 	private final CustomerRepository customerRepository;
 
-	private final UserAccountManager userAccountManager;
+	private final UserAccountManagement userAccountManager;
 
 	@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-	public CustomerService(CustomerRepository customers, UserAccountManager userAccounts) {
+	public CustomerService(CustomerRepository customers, UserAccountManagement userAccounts) {
 
 		Assert.notNull(customers, "CustomerRepository must not be null!");
 		Assert.notNull(userAccounts, "UserAccountManager must not be null!");

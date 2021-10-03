@@ -10,7 +10,8 @@ import java.util.function.Predicate;
 
 import org.salespointframework.catalog.Product;
 import org.salespointframework.order.CartItem;
-import org.salespointframework.order.OrderManager;
+import org.salespointframework.order.OrderCompletionFailure;
+import org.salespointframework.order.OrderManagement;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.payment.PaymentMethod;
 import org.salespointframework.quantity.Quantity;
@@ -31,12 +32,12 @@ public class CartService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CartService.class);
 
-	private OrderManager<McTankOrder> orderManager;
+	private OrderManagement<McTankOrder> orderManager;
 	private ItemsService itemsService;
 	private RefillInventoryService refillService;
 
 
-	public CartService(OrderManager<McTankOrder> orderManager,
+	public CartService(OrderManagement<McTankOrder> orderManager,
 					   ItemsService itemsService,
 					   RefillInventoryService refillService) {
 
@@ -44,9 +45,9 @@ public class CartService {
 		this.itemsService = itemsService;
 		this.refillService = refillService;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param cart can only be paid if there is a user account and pay method.
 	 * @param payMethod
 	 * @return whether the cart can be turned to an order.
@@ -59,15 +60,15 @@ public class CartService {
 		cart.addItemsTo(order);
 		// set order state to completed
 		try {
-			// set paymentmethod
+			// set payment method
 			order.setPaymentMethod(payMethod);
 			this.orderManager.payOrder(order);
 			this.orderManager.completeOrder(order);
 			//save order if completed
 			this.orderManager.save(order);
-		} catch (Exception e) {
-			// else cancel 
-			this.orderManager.cancelOrder(order);
+		} catch (OrderCompletionFailure e) {
+			// else cancel
+			this.orderManager.cancelOrder(order, e.getMessage());
 			LOGGER.error(e.getMessage());
 			return false;
 		}
@@ -84,7 +85,7 @@ public class CartService {
 			this.orderManager.delete(oldOrder.get());
 		//save order
 		this.orderManager.save(order);
-		
+
 		return true;
 	}
 
@@ -119,7 +120,7 @@ public class CartService {
 		}
 	}
 
-	
+
 	public void addOrUpdateItem(McTankCart cart, Product product, int amount, boolean claim) {
 		if (claim) {
 			Product negatedProduct = new Product(product.getName().concat(" RECLAMATION"), product.getPrice().negate());
@@ -128,7 +129,7 @@ public class CartService {
 			this.addOrUpdateItem(cart, product, product.createQuantity(amount));
 		}
 	}
-	
+
 	public void addOrUpdateItem(McTankCart cart, Product product, Quantity amount) {
 		 Optional<CartItem> prodInCart;
 		 Quantity possible = this.itemsService.getProductQuantity(product);

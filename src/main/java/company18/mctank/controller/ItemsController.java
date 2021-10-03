@@ -56,20 +56,6 @@ public class ItemsController {
 	}
 
 	/**
-	 * Returns view with newItem.
-	 *
-	 * @param model model
-	 * @param form form
-	 * @return view name
-	 */
-	@GetMapping("/newItem")
-	public String newItem(Model model, NewItemForm form){
-		model.addAttribute("form", form);
-		model.addAttribute("Categories", mcPoints);
-		return"newItem";
-	}
-
-	/**
 	 * Saving new item.
 	 *
 	 * @param form new item form

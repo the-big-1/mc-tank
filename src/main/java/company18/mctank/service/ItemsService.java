@@ -18,7 +18,7 @@ import org.salespointframework.inventory.UniqueInventory;
 import org.salespointframework.inventory.UniqueInventoryItem;
 import org.salespointframework.order.ChargeLine;
 import org.salespointframework.order.OrderLine;
-import org.salespointframework.order.OrderManager;
+import org.salespointframework.order.OrderManagement;
 import org.salespointframework.order.OrderStatus;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
@@ -48,7 +48,7 @@ public class ItemsService {
 	@Autowired
 	private ItemsRepository itemsRepository;
 	@Autowired
-	private OrderManager<McTankOrder> orderManager;
+	private OrderManagement<McTankOrder> orderManager;
 	@Autowired
 	private UniqueInventory<UniqueInventoryItem> inventoryRepository;
 	@Autowired

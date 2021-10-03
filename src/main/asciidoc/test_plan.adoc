@@ -148,7 +148,7 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 				.andExpect(redirectedUrl("/items-management"));
 |<<I12>> |Mitarbeiter-Items-Aufruf           | Ein als Mitarbeiter eingeloggter User will auf die Items-Seite zugreifen    |mockMvc.perform(get("/items")) |.andExpect(status().isOk())
 				.andExpect(redirectedUrl("/items"));
-|<<I13>> | Neues Item          | Es soll ein neues Item zum Catalog hinzugefügt werden             |		mockMvc.perform(get("/newItem"))
+|<<I13>> | Neues Item          | Es soll ein neues Item zum Catalog hinzugefügt werden             |		mockMvc.perform(get("/item/new"))
  |			.andExpect(status().isFound());
 |<<I14>> |Item-Details           |Die Details der Zapfsäulen sollen angezeigt werden              |		mockMvc.perform(get("/pump/{number}", 2)) |				.andExpect(status().isFound());
 |===
@@ -520,4 +520,3 @@ List<String> list = new ArrayList<String>();
 		items.save(notInventory);
 		inventory.save(new UniqueInventoryItem(product1, product1.createQuantity(1500)));|		assertTrue(service.refillInventoryItem(product1.getName(), testAmount));
 |===
-

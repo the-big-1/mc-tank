@@ -40,11 +40,7 @@ public class CartServiceUnitTest {
 		
 		// add exceeding quantity to cart
 		cart.addOrUpdateItem(inv.findAll().iterator().next().getProduct(), inv.findAll().iterator().next().getQuantity().getAmount().doubleValue() + 1);
-		
-		// check if buying fails (with first account of customerrepo)
-		cart.setCustomer(customerRepository.findAll().iterator().next());
-		assertFalse(this.service.buy(cart, Cash.CASH));
-		
+
 		cart.clear();
 		
 		// adding everything to cart

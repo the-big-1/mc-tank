@@ -7,7 +7,7 @@ import company18.mctank.service.CartService;
 import company18.mctank.service.CustomerService;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.core.DataInitializer;
-import org.salespointframework.order.OrderManager;
+import org.salespointframework.order.OrderManagement;
 import org.salespointframework.payment.Cash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +41,7 @@ class OrdersDataInitializer implements DataInitializer {
 	@Autowired
 	private CustomerService customerService;
 	@Autowired
-	private OrderManager<McTankOrder> orderManager;
+	private OrderManagement<McTankOrder> orderManager;
 
 
 	/*

@@ -6,7 +6,7 @@ import company18.mctank.repository.CustomerRepository;
 import company18.mctank.service.CustomerService;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
-import org.salespointframework.useraccount.UserAccountManager;
+import org.salespointframework.useraccount.UserAccountManagement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ class CustomerDataInitializer implements DataInitializer {
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerDataInitializer.class);
 
 	@Autowired
-	private UserAccountManager userAccountManager;
+	private UserAccountManagement userAccountManager;
 	@Autowired
 	private CustomerService customerService;
 	@Autowired

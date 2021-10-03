@@ -39,32 +39,6 @@ class ItemsControllerTest implements InitializingBean {
 				.andExpect(redirectedUrl("http://localhost/login"));
     }
 
-
-    /*
-	@Test
-	@WithMockUser("ADMIN")
-	void index1() throws Exception {
-		mockMvc.perform(get("/items"))
-				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("/items-management"));
-	}
-
-	@Test
-	@WithMockUser("MANAGER")
-	void index2() throws Exception {
-		mockMvc.perform(get("/items"))
-				.andExpect(status().isOk())
-				.andExpect(redirectedUrl("/items"));
-	}
-
-     */
-
-    @Test
-    void newItem() throws Exception {
-		mockMvc.perform(get("/newItem"))
-			.andExpect(status().isFound());
-    }
-
     @Test
     void registerNew() throws Exception {
     }

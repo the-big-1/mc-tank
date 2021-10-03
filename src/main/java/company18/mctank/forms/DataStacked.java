@@ -30,6 +30,7 @@ public class DataStacked {
 	}
 
 	private void arrangeProduct(Product product, LocalDate date) {
+		if (product == null) return;
 		Set<String> categories = product.getCategories().toSet();
 		if (categories.contains("McZapf")) {
 			updateValue(date, this.amountsOnMcZapf);

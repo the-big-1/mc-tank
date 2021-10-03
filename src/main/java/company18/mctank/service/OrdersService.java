@@ -8,7 +8,7 @@ import company18.mctank.repository.ItemsRepository;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.order.Order;
-import org.salespointframework.order.OrderManager;
+import org.salespointframework.order.OrderManagement;
 import org.salespointframework.time.Interval;
 import org.salespointframework.useraccount.UserAccount;
 import org.slf4j.Logger;
@@ -37,7 +37,7 @@ public class OrdersService {
 	private CustomerService customerService;
 
 	@Autowired
-	private OrderManager<McTankOrder> orderService;
+	private OrderManagement<McTankOrder> orderService;
 
 	@Autowired
 	private ItemsService itemsService;
@@ -110,7 +110,7 @@ public class OrdersService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showOrder(String orderId) {
 		try {
 			UserAccount userAccount = customerService.getCurrentUserAccount();
